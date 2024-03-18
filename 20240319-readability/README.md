@@ -32,6 +32,7 @@ Like with good writing:
     -   less formal: writing personal notes, texting a friend, creating a proof of concept, trying out package for the first time
     -   more formal: publications, talks, packages that you want others to use
     -   efficient, but unapproachable: air traffic controllers, low-level code (not covered in this tutorial)
+-   It can be helpful to decide (and write down) what you plan to communicate before you start drafting.
 
 Don't let the perfect be the enemy of the good.
 
@@ -64,6 +65,8 @@ One of the things that's hard about coming back to THEREALLYLONGSCRIPTtm is that
 Modularity formalizes this process. When you making A into a function separate script or especially a function, you make clear what the inputs and outputs. Therefore, you know only the outputs are used further down.
 
 ### User vs Maintainer (We contain multitudes.)
+
+User cares about the inputs and outputs of a function, but will almost never look inside. Maintainer is responsible for making the function do what it's supposed to do so they need know the internals of a particular function or module.
 
 One way to think of it is that there are multiple versions of yourself. Let's say Abbie is the maintainer of part A, and Britta is the maintainer of part B (but really both are you). Britta is also a user of part A. Britta only cares about the outputs from A, not about the details. It's Abbie's job to make it as easy as possible for Britta to understand what part A does without worrying about exactly how.
 
@@ -145,7 +148,7 @@ source('02_run_models.R')
 source('03_visualize.R')
 ```
 
-```         
+``` python
 from myproject import clean
 from myproject import model
 from myproject import visualize
@@ -163,7 +166,7 @@ Within each of these functions, scripts, or sub-modules, you then would have a f
 
 README.md for your project should explain the overall goal, what the components are, and how they fit together.
 
-Consider putting all your library functions together as a package. Further reading [python](https://packaging.python.org/en/latest/tutorials/packaging-projects/) and [R](https://tinyheero.github.io/jekyll/update/2015/07/26/making-your-first-R-package.html) , [another R resource](https://devguide.ropensci.org/pkg_building.html)
+Consider putting all your functions together as a package. Further reading [python](https://packaging.python.org/en/latest/tutorials/packaging-projects/) and [R](https://tinyheero.github.io/jekyll/update/2015/07/26/making-your-first-R-package.html) , [another R resource](https://devguide.ropensci.org/pkg_building.html)
 
 ### ✍️ Full Group Activity: Design a "Telephone Game" simulation
 
@@ -173,7 +176,7 @@ Consider putting all your library functions together as a package. Further readi
 
 You want to build a program that simulates this game to look at questions like: How often does is the word transmitted successfully? How often is the final word similar to the starting word? What factors impact the reliability of transmission and to what degree?
 
-In small groups, build an idea of how you create such a program. What would be the major components? How would they interact with each other?
+What would be the major components? How would they interact with each other?
 
 This is not a coding exercise, just a design exercise. The output should be some combination of outline, diagram, and/or pseudocode.
 
@@ -202,7 +205,19 @@ Some Principles
 
 ### Step 1: Design from Function User's Perspective
 
-The user of the function needs to know *what* it does, but not *how*.
+The user of the function needs to know *what* it does, but not *how*. You can write down the *what* before implementing the *how*.
+
+-   Document the what
+
+    -   Name
+
+    -   Arguments
+
+        -   **Avoid surprising users with implicit arguments**
+
+    -   Functionality
+
+        -   **Plan for the user who are naive to your function**
 
 #### Design by Documenting
 
@@ -267,14 +282,6 @@ similar_word <- function(word, lang){
 
 Both examples informed by [wordfreq](https://github.com/rspeer/wordfreq/).
 
-#### ✍️ Small group : roxygen/Docstring for shapes
-
-Write the signature (name, arguments) and documentation for a function for each process you identified in shapes.
-
-You do not need to implement these functions (yet!)
-
-ℹ️ **Write Reusable Tests** This is the point where you can write formal reusable tests to make sure you code is doing what you want. More details next week!
-
 #### Avoid Surprising Users
 
 -   Only explicit inputs to the function should change the output
@@ -334,22 +341,125 @@ When you have a variable with global scope that gets modified (or other implicit
 
 ``` r
 similar_word <- function(word, lang){
-  if(length(word) == 0) stop('word must be at least once character long')
+  if(length(word) == 0) stop('word must be at least one character long')
   ...
 }
 ```
 
 ``` python
 def similar_word(word, lang):
-  assert len(word) > 0, 'word must be at least once character long'
+  assert len(word) > 0, 'word must be at least one character long'
   ...
 ```
+
+#### ✍️ Small group : roxygen/Docstring for shapes
+
+Write the signature (name, arguments) and documentation for a function for each process you identified in shapes.
+
+You do not need to implement these functions (yet!)
+
+ℹ️ **Write Reusable Tests** This is the point where you can write formal reusable tests to make sure you code is doing what you want. More details next week!
 
 ### Function Maintainer's Perspective
 
 Once you know the *what*, then you can focus on the *how*. Here, you want to make the implementation as simple as possible. If you can write code in such a way that comments are not needed to explain what's going on, that's a good sign. If you have a good reason to have a more complex or hard to grasp implementation, add comments to bridge the gap.
 
-## Granular Level: Coding Style
+# 
+
+### Naming Things
+
+"There are only two hard things in Computer Science: cache invalidation, naming things, and off by one errors" (Derived from Phil Karlton quote.)
+
+**Variable and function names should be meaningful.** Similar to how we want our major sections to have human-interprable meaning, we also want our
+
+-   typically, functions should involve a verb (e.g. count), non-functions should be a noun (e.g. counter)
+
+    -   [rOpenSci](https://devguide.ropensci.org/pkg_building.html) recommends object_verb() for functions (e.g. stri_join), verb_object is another common convention (e.g. get_data). Good to chose one and be consistent.
+
+-   naming something a single letter communicates 'I'm not not important' [ref: [CodeAesthetic](https://www.youtube.com/watch?v=-J3wNP6u5YU)]
+
+-   avoid abbreviations [ref: [CodeAesthetic](https://www.youtube.com/watch?v=-J3wNP6u5YU)] but if you must abbreviate, use abbreviations consistently
+
+Some specific cases:
+
+-   consider what list/vector/vectors you're iterating over when you write for loop
+
+#### ✍️ Example
+
+``` r
+## BAD
+r <- function(p)
+  rbinom(1, p, .8) == p
+
+np <- 7:10
+ns <- 25
+
+df <- data.frame(i = numeric(0), n = numeric(0), r = logical(0))
+
+for (i in 1:ns) {
+  for (n in np) {
+    df[nrow(df) + 1, ]  <- c(i, n, r(n))
+  }
+}
+
+## Better
+run_simulation <- r
+
+player_counts <- 7:10
+sims_per_player_count <- 25
+
+results_df <-
+  data.frame(sim_idx = numeric(0),
+             n_players = numeric(0),
+             result = logical(0))
+
+for (index in 1:sims_per_player_count) {
+  for (player_count in player_counts) {
+    # add a row with each simulation
+    results_df[nrow(results_df) + 1, ]  <-
+      c(index, player_count, run_simulation(player_count))
+  }
+}
+```
+
+``` python
+from random import choice
+
+## BAD
+def r(p):
+    return all([choice([True]*8 + [False]*2) for i in range(p)]) 
+
+np = range(6, 10)
+ns = 25
+
+rl = []
+
+for i in range(ns): 
+    for n in np:
+        rl.append({
+         'i': i,
+         'n': n,
+         'rd': r(n)
+        })
+
+## Better 
+run_simulation = r
+
+player_counts = range(6, 10)
+sims_per_player_count = 25
+
+all_sim_results = []
+
+for idx in range(sims_per_player_count): 
+    for player_count in player_counts:
+        all_sim_results.append({
+         'index': idx,
+         'n_players': player_count,
+         'result': run_simulation(player_count)
+        }
+```
+
+# Granular Level: Coding Style
 
 ### Consistent Formatting
 
@@ -407,99 +517,6 @@ y =  [m * xi + b for xi in x]
     -   R: [formatR](https://yihui.org/formatr/), [styler](https://styler.r-lib.org/),
 
 Not that some of the python tools default to different style guides, and therefore will conflict with each other. Recommend adding one at a time so you can tell if this occurs and configure them to match. [Black doc on how to avoid conflicts.](https://black.readthedocs.io/en/stable/guides/using_black_with_other_tools.html)
-
-### Naming Things
-
-"There are only two hard things in Computer Science: cache invalidation, naming things, and off by one errors" (Derived from Phil Karlton quote.)
-
-**Variable and function names should be meaningful.** Similar to how we want our major sections to have human-interprable meaning, we also want our
-
--   typically, functions should involve a verb (e.g. count), non-functions should be a noun (e.g. counter)
-
-    -   [rOpenSci](https://devguide.ropensci.org/pkg_building.html) recommends object_verb() for functions (e.g. stri_join), verb_object is another common convention (e.g. get_data). Good to chose one and be consistent.
-
--   naming something a single letter communicates 'I'm not not important' [ref: [CodeAesthetic](https://www.youtube.com/watch?v=-J3wNP6u5YU)]
-
--   avoid abbreviations [ref: [CodeAesthetic](https://www.youtube.com/watch?v=-J3wNP6u5YU)] but if you must abbreviate, use abbreviations consistently
-
-Some specific cases:
-
--   consider what list/vector/vectors you're iterating over when you write for loop
-
-#### ✍️ Example
-
-``` r
-## BAD
-r <- function(p)
-  rbinom(1, p, .8) == p
-
-np <- 7:10
-ns <- 25
-
-df <- data.frame(i = numeric(0), n = numeric(0), r = logical(0))
-
-for (i in 1:ns) {
-  for (n in np) {
-    df[nrow(df) + 1, ]  <- c(i, n, r(n))
-  }
-}
-
-## Better
-run_simulation <- r
-
-player_counts <- 7:10
-sims_per_player_count <- 25
-
-results_df <-
-  data.frame(sim_idx = numeric(0),
-             n_players = numeric(0),
-             result = logical(0))
-
-for (idx in 1:sims_per_player_count) {
-  for (player_count in player_counts) {
-    # add a row with each simulation
-    results_df[nrow(results_df) + 1, ]  <-
-      c(idx, player_count, run_simulation(player_count))
-  }
-}
-```
-
-``` python
-from random import choice
-
-## BAD
-def r(p):
-    return all([choice([True]*8 + [False]*2) for i in range(p)]) 
-
-np = range(6, 10)
-ns = 25
-
-rl = []
-
-for i in range(ns): 
-    for n in np:
-        rl.append({
-         'i': i,
-         'n': n,
-         'rd': r(n)
-        })
-
-## Better 
-run_simulation = r
-
-player_counts = range(6, 10)
-sims_per_player_count = 25
-
-all_sim_results = []
-
-for idx in range(sims_per_player_count): 
-    for player_count in player_counts:
-        all_sim_results.append({
-         'index': idx,
-         'n_players': player_count,
-         'result': run_simulation(player_count)
-        }
-```
 
 #### ✍️ Small group : Implement the functions for shapes
 
