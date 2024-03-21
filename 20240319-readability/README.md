@@ -44,21 +44,13 @@ Don't let the perfect be the enemy of the good.
 
 One long unyielding script is a bit like a wall of text with no headings or paragraphs breaks.
 
-+------------------------+----------------------------------------------------+
+
 | When you're working on | What you're holding in your mind                   |
-+========================+====================================================+
+| ---------------------- | -------------------------------------------------- |
 | Part A                 | -   Everything from Part A                         |
-+------------------------+----------------------------------------------------+
-| Part B                 | -   A few things from Part A that are needed for B |
-|                        |                                                    |
-|                        | -   Everything from Part B                         |
-+------------------------+----------------------------------------------------+
-| Part C                 | -   A few things from Part B                       |
-|                        |                                                    |
-|                        | -   Maybe some thing needed from Part A            |
-|                        |                                                    |
-|                        | -   Everything needed for Part C                   |
-+------------------------+----------------------------------------------------+
+| Part B                 | -   A few things from Part A that are needed for B <br> -   Everything from Part B                         |
+| Part C                 | -   A few things from Part B <br> -   Maybe some thing needed from Part A <br> -   Everything needed for Part C                   |
+
 
 One of the things that's hard about coming back to THEREALLYLONGSCRIPTtm is that you might not remember which things are important to hold onto in your mind.
 
