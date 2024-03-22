@@ -107,13 +107,14 @@ load("intermediate_gps_05Jan2023.Rdata")
 GPS_data <- GPS_data_save
 
 #Fix positions within 1 minute
-GPS_data[GPS_data$tag.local.identifier == 9379 & GPS_data$eobs.start.timestamp == "2022-07-04 03:34:02.000" &
-           GPS_data$fix_id == 125546,]$fix_id <- 125545
-GPS_data[GPS_data$tag.local.identifier == 9379 & GPS_data$eobs.start.timestamp == "2022-07-04 03:34:02.000" &
-           GPS_data$fix_id == 125547,]$fix_id <- 125545
 
-GPS_data[GPS_data$tag.local.identifier == 9400 & GPS_data$fix_id == 13481,]$fix_id[2] <- max(GPS_data$fix_id) + 1
-GPS_data[GPS_data$tag.local.identifier == 9402 & GPS_data$fix_id == 25568,]$fix_id[2] <- max(GPS_data$fix_id) + 1
+# GPS_data[GPS_data$tag.local.identifier == 9379 & GPS_data$eobs.start.timestamp == "2022-07-04 03:34:02.000" &
+#            GPS_data$fix_id == 125546,]$fix_id <- 125545
+# GPS_data[GPS_data$tag.local.identifier == 9379 & GPS_data$eobs.start.timestamp == "2022-07-04 03:34:02.000" &
+#            GPS_data$fix_id == 125547,]$fix_id <- 125545
+# 
+# GPS_data[GPS_data$tag.local.identifier == 9400 & GPS_data$fix_id == 13481,]$fix_id[2] <- max(GPS_data$fix_id) + 1
+# GPS_data[GPS_data$tag.local.identifier == 9402 & GPS_data$fix_id == 25568,]$fix_id[2] <- max(GPS_data$fix_id) + 1
 
 #Assign fix position in GPS bursts
 GPS_data <- GPS_data %>%
@@ -274,21 +275,21 @@ regular.keep <- regular.data[do.call(c, keep),]
 rm(keep)
 
 #Convert 1Hz data to regular data
-keep <- list()
-pb <- txtProgressBar(min = 0, max = nrow(high.res.sched), style = 3)
-for (i in 1:nrow(high.res.sched)) {
-  keep[[i]] <- which((high.res.data$study.local.timestamp %in%
-                        seq(from = (high.res.sched$start_datetime[i] + 6), to = high.res.sched$stop_datetime[i], by = 180)) &
-                       high.res.data$tag.local.identifier == high.res.sched$tag.local.identifier[i])
-  setTxtProgressBar(pb, i)
-}
-close(pb)
-rm(pb)
-high.res.keep <- high.res.data[do.call(c, keep),]
-rm(keep)
-
-three.min.data <- rbind(regular.keep, high.res.keep)
-hist(three.min.data$timestamp, breaks = 100)
+# keep <- list()
+# pb <- txtProgressBar(min = 0, max = nrow(high.res.sched), style = 3)
+# for (i in 1:nrow(high.res.sched)) {
+#   keep[[i]] <- which((high.res.data$study.local.timestamp %in%
+#                         seq(from = (high.res.sched$start_datetime[i] + 6), to = high.res.sched$stop_datetime[i], by = 180)) &
+#                        high.res.data$tag.local.identifier == high.res.sched$tag.local.identifier[i])
+#   setTxtProgressBar(pb, i)
+# }
+# close(pb)
+# rm(pb)
+# high.res.keep <- high.res.data[do.call(c, keep),]
+# rm(keep)
+# 
+# three.min.data <- rbind(regular.keep, high.res.keep)
+# hist(three.min.data$timestamp, breaks = 100)
 
 
 ##### Save #####
@@ -299,7 +300,7 @@ sifaka.data <- arrange(sifaka.data, individual.local.identifier, study.local.tim
 high.res.data <- arrange(high.res.data, individual.local.identifier, study.local.timestamp)
 overnight.data <- arrange(overnight.data, individual.local.identifier, study.local.timestamp)
 regular.data <- arrange(regular.data, individual.local.identifier, study.local.timestamp)
-three.min.data <- arrange(three.min.data, individual.local.identifier, study.local.timestamp)
+# three.min.data <- arrange(three.min.data, individual.local.identifier, study.local.timestamp)
 fosa.data <- arrange(fosa.data, individual.local.identifier, study.local.timestamp)
 test.data <- arrange(test.data, deployment.id, tag.local.identifier, study.local.timestamp)
 
@@ -314,8 +315,9 @@ test.sched <- arrange(test.sched, animal, start_datetime)
 #Save
 save(list = c("high.res.data", "high.res.sched",
               "overnight.data", "overnight.sched",
-              "regular.data", "regular.sched",
-              "three.min.data"),
+              "regular.data", "regular.sched"
+#              ,"three.min.data"
+      ),
      file = "02.cleaned_june_sifaka_data_divided.RData")
 
 save(list = c("sifaka.data", "sifaka.sched"),
