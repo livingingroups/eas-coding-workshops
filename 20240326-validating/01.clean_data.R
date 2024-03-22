@@ -25,8 +25,9 @@ na.test <-  function(x) {
     stop(paste("All NA in columns", paste(which(w), collapse = ", ")))
   }
 }
+#na.test(GPS_data)
+GPS_data <- GPS_data[,-c(6, 9, 10, 21, 23, 24, 25, 27, 31, 40)]
 na.test(GPS_data)
-GPS_data <- GPS_data[,-c(8, 9)]
 str(GPS_data)
 
 #Fix times
