@@ -2,7 +2,7 @@
 rm(list = ls())
 options(stringsAsFactors = F)
 options(digits.secs = 3)
-setwd("../tracy")
+setwd("~/tracy")
 
 #Load libraries
 library(tidyverse)
@@ -43,7 +43,7 @@ GPS_data$time <- format(GPS_data$study.local.timestamp, format = "%H:%M:%OS")
 GPS_data$time <- as.POSIXct(GPS_data$time, format = "%H:%M:%OS")
 
 
-##### GPS data #####
+#GPS data _______________________________________________________________
 
 #Remove bad GPS data
 nrow(GPS_data)
@@ -97,11 +97,12 @@ rm(pb)
 summary(GPS_data$fix_id)
 
 #Save for later
-#GPS_data_save <- GPS_data
-#save(GPS_data_save, file = "intermediate_gps_05Jan2023.Rdata")
+GPS_data_save <- GPS_data
+save(GPS_data_save, file = "intermediate_gps_05Jan2023.Rdata")
 
+write.csv(GPS_data, 'output_identify_fixes.csv', row.names = F, quote = F)
 
-##### Start after for-loop #####
+# Start after for-loop ___________________________________________________
 
 load("intermediate_gps_05Jan2023.Rdata")
 GPS_data <- GPS_data_save
@@ -158,7 +159,7 @@ fix.check2 <- filter(fix.check2, num_fixes != 1)
 ## Both are fosa - should be separate fixes because burst_length == 1
 
 
-##### Separate data points by sampling regime #####
+#Separate data points by sampling regime ______________________________________
 
 #Separate sifaka data points
 sifaka.sched <- filter(sched, species == "Propithecus verreauxi")
@@ -203,6 +204,13 @@ test.sched$stop_time <- as.POSIXct(test.sched$stop_time, format = "%H:%M:%OS")
 summary(test.sched)
 
 #Add deployment id to test
+
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+## Start
+## Example 1 ####
+
+write.csv(test.sched, 'input_add_tagid_to_test.csv', row.names = F, quote = F)
+
 test.sched$deployment.id <- NA
 pb <- txtProgressBar(min = 0, max = nrow(test.sched), style = 3)
 for (i in 1:nrow(test.sched)) {
@@ -220,12 +228,24 @@ close(pb)
 rm(pb)
 summary(as.factor(test.sched$deployment.id))
 
+write.csv(test.sched, 'output_add_tagid_to_test.csv', row.names = F, quote = F)
+
+## End
+## Example 1 
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 #Separate fosa data points
 fosa.sched <- filter(sched, species == "Cryptoprocta ferox")
 fosa.sched$start_time <- format(fosa.sched$start_datetime, format = "%H:%M:%OS")
 fosa.sched$start_time <- as.POSIXct(fosa.sched$start_time, format = "%H:%M:%OS")
 fosa.sched$stop_time <- format(fosa.sched$stop_datetime, format = "%H:%M:%OS")
 fosa.sched$stop_time <- as.POSIXct(fosa.sched$stop_time, format = "%H:%M:%OS")
+
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+## Start
+## Example 2 #####
+
+write.csv(fosa.sched, 'input_add_time_lag.csv', row.names = F, quote = F)
 
 #Add time lag to fosa
 fosa.sched <- arrange(fosa.sched, animal, start_datetime)
@@ -240,9 +260,16 @@ for (i in 1:nrow(fosa.sched)) {
 }
 summary(fosa.sched)
 
+write.csv(fosa.sched, 'output_add_time_lag.csv', row.names = F, quote = F)
+
+## End
+## Example 1 
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 #Check that all data is accounted for
 nrow(sched) - (nrow(sifaka.sched) + nrow(test.sched) + nrow(fosa.sched))
 nrow(sifaka.sched) - (nrow(high.res.sched) + nrow(overnight.sched) + nrow(regular.sched))
+
 
 #Filter to create datasets
 sifaka.data <- filter(GPS_data, fix_id %in% sifaka.sched$fix_id)
@@ -259,7 +286,7 @@ nrow(GPS_data) - (nrow(sifaka.data) + nrow(test.data) + nrow(fosa.data))
 nrow(sifaka.data) - (nrow(high.res.data) + nrow(overnight.data) + nrow(regular.data))
 
 
-##### Create sifaka three-min dataset #####
+# Create sifaka three-min dataset ______________________________________________
 
 #Keep latest fix in each GPS burst
 keep <- list()
@@ -292,7 +319,7 @@ rm(keep)
 # hist(three.min.data$timestamp, breaks = 100)
 
 
-##### Save #####
+# Save ________________________________________________________________________
 
 #Arrange all
 GPS_data <- arrange(GPS_data, individual.taxon.canonical.name, individual.local.identifier, study.local.timestamp)
@@ -312,7 +339,7 @@ regular.sched <- arrange(regular.sched, animal, start_datetime)
 fosa.sched <- arrange(fosa.sched, animal, start_datetime)
 test.sched <- arrange(test.sched, animal, start_datetime)
 
-#Save
+#Save _________________________________________________________________________
 save(list = c("high.res.data", "high.res.sched",
               "overnight.data", "overnight.sched",
               "regular.data", "regular.sched"
