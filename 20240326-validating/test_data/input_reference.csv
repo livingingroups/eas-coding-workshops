@@ -1,0 +1,41 @@
+tag.id,animal.id,animal.taxon,deploy.on.date,deploy.off.date,animal.comments,animal.death.comments,animal.exact.date.of.birth,animal.group.id,animal.latest.date.born,animal.life.stage,animal.mass,animal.mortality.date,animal.mortality.type,animal.nickname,animal.reproductive.condition,animal.sex,attachment.body.part,attachment.type,deploy.off.person,deploy.on.person,deployment.comments,deployment.end.comments,deployment.end.type,deployment.id,manipulation.type,tag.comments,tag.failure.comments,tag.manufacturer.name,tag.model,tag.settings,local.deploy.on.date,local.deploy.off.date
+9437,TEST,Homo sapiens,2022-06-29 06:15:00,2022-06-29 08:27:00,,,,NA,,,NA,,,,,,,,,,,,,WalkTest_1A_1Hz_front,,,,eObs,1A,,2022-06-29 09:15:00,2022-06-29 11:27:00
+9374,TEST,Homo sapiens,2022-06-29 06:15:00,2022-06-29 08:27:00,,,,NA,,,NA,,,,,,,,,,,,,WalkTest_1A_1Hz_back,,,,eObs,1A,,2022-06-29 09:15:00,2022-06-29 11:27:00
+9437,TEST,Homo sapiens,2022-06-29 09:24:00,2022-06-29 11:20:00,,,,NA,,,NA,,,,,,,,,,,,,WalkTest_1A_3min_front,,,,eObs,1A,,2022-06-29 12:24:00,2022-06-29 14:20:00
+9374,TEST,Homo sapiens,2022-06-29 09:24:00,2022-06-29 11:20:00,,,,NA,,,NA,,,,,,,,,,,,,WalkTest_1A_3min_back,,,,eObs,1A,,2022-06-29 12:24:00,2022-06-29 14:20:00
+9375,TEST,Homo sapiens,2022-06-30 12:00:00,2022-07-02 12:00:00,,,,NA,,,NA,,,,,,,,,,38% canopy cover,,,StationaryTest_1A_00m,,,,eObs,1A,,2022-06-30 15:00:00,2022-07-02 15:00:00
+9373,TEST,Homo sapiens,2022-06-30 12:00:00,2022-07-02 12:00:00,,,,NA,,,NA,,,,,,,,,,32% canopy cover,,,StationaryTest_1A_01m,,,,eObs,1A,,2022-06-30 15:00:00,2022-07-02 15:00:00
+9374,TEST,Homo sapiens,2022-06-30 12:00:00,2022-07-02 12:00:00,,,,NA,,,NA,,,,,,,,,,34% canopy cover,,,StationaryTest_1A_06m,,,,eObs,1A,,2022-06-30 15:00:00,2022-07-02 15:00:00
+9437,TEST,Homo sapiens,2022-06-30 12:00:00,2022-07-02 12:00:00,,,,NA,,,NA,,,,,,,,,,48% canopy cover,,,StationaryTest_1A_10m,,,,eObs,1A,,2022-06-30 15:00:00,2022-07-02 15:00:00
+9437,TEST,Homo sapiens,2022-07-03 12:00:00,2022-07-05 12:00:00,,,,NA,,,NA,,,,,,,,,,9.5m below highest tag (0m from ground),,,HeightTest_1A_10m,,,,eObs,1A,,2022-07-03 15:00:00,2022-07-05 15:00:00
+9375,TEST,Homo sapiens,2022-07-03 12:00:00,2022-07-05 12:00:00,,,,NA,,,NA,,,,,,,,,,6.1m below highest tag (3.6m from ground),,,HeightTest_1A_06m,,,,eObs,1A,,2022-07-03 15:00:00,2022-07-05 15:00:00
+9374,TEST,Homo sapiens,2022-07-03 12:00:00,2022-07-05 12:00:00,,,,NA,,,NA,,,,,,,,,,0.9m below highest tag (8.8m from ground),,,HeightTest_1A_01m,,,,eObs,1A,,2022-07-03 15:00:00,2022-07-05 15:00:00
+9373,TEST,Homo sapiens,2022-07-03 12:00:00,2022-07-05 12:00:00,,,,NA,,,NA,,,,,,,,,,0m below highest tag (9.7m from ground),,,HeightTest_1A_00m,,,,eObs,1A,,2022-07-03 15:00:00,2022-07-05 15:00:00
+8591,TEST,Homo sapiens,2022-07-11 04:29:00,2022-07-11 06:07:00,,,,NA,,,NA,,,,,,,,,,,,,WalkTest_1AA1A_3min_front,,Lotek micro-TRD drop-off mechanism,,eObs,1AA,,2022-07-11 07:29:00,2022-07-11 09:07:00
+9437,TEST,Homo sapiens,2022-07-11 04:29:00,2022-07-11 06:07:00,,,,NA,,,NA,,,,,,,,,,,,,WalkTest_1AA1A_3min_back,,,,eObs,1A,,2022-07-11 07:29:00,2022-07-11 09:07:00
+9437,TEST,Homo sapiens,2022-07-11 11:00:00,2022-07-13 11:00:00,,,,NA,,,NA,,,,,,,,,,,,,StationaryTest_1AA1A_00m,,,,eObs,1A,,2022-07-11 14:00:00,2022-07-13 14:00:00
+8591,TEST,Homo sapiens,2022-07-11 11:00:00,2022-07-13 11:00:00,,,,NA,,,NA,,,,,,,,,,,,,StationaryTest_1AA1A_01m,,Lotek micro-TRD drop-off mechanism,,eObs,1AA,,2022-07-11 14:00:00,2022-07-13 14:00:00
+9375,TEST,Homo sapiens,2022-07-11 11:00:00,2022-07-13 11:00:00,,,,NA,,,NA,,,,,,,,,,,,,StationaryTest_1AA1A_06m,,,,eObs,1A,,2022-07-11 14:00:00,2022-07-13 14:00:00
+8590,TEST,Homo sapiens,2022-07-18 04:30:00,2022-07-18 06:16:00,,,,NA,,,NA,,,,,,,,,,,,,WalkTest_1AA_3min_front,,Lotek micro-TRD drop-off mechanism,Lotek drop-off failed,eObs,1AA,,2022-07-18 07:30:00,2022-07-18 09:16:00
+8589,TEST,Homo sapiens,2022-07-18 04:30:00,2022-07-18 06:16:00,,,,NA,,,NA,,,,,,,,,,,,,WalkTest_1AA_3min_back,,Lotek micro-TRD drop-off mechanism,Lotek drop-off failed,eObs,1AA,,2022-07-18 07:30:00,2022-07-18 09:16:00
+8590,TEST,Homo sapiens,2022-07-18 08:00:00,2022-07-20 08:00:00,,,,NA,,,NA,,,,,,,,,,,,,StationaryTest_1AA_00m,,Lotek micro-TRD drop-off mechanism,Lotek drop-off failed,eObs,1AA,,2022-07-18 11:00:00,2022-07-20 11:00:00
+8591,TEST,Homo sapiens,2022-07-18 08:00:00,2022-07-20 08:00:00,,,,NA,,,NA,,,,,,,,,,,,,StationaryTest_1AA_01m,,Lotek micro-TRD drop-off mechanism,,eObs,1AA,,2022-07-18 11:00:00,2022-07-20 11:00:00
+8589,TEST,Homo sapiens,2022-07-18 08:00:00,2022-07-20 08:00:00,,,,NA,,,NA,,,,,,,,,,,,,StationaryTest_1AA_06m,,Lotek micro-TRD drop-off mechanism,Lotek drop-off failed,eObs,1AA,,2022-07-18 11:00:00,2022-07-20 11:00:00
+9373,TEST,Homo sapiens,2023-06-28 12:00:00,2023-06-30 12:00:00,,,,NA,,,NA,,,,,,,,,,,,,StationaryTest_1A_5fix_01m_2023,,,,eObs,1A,,2023-06-28 15:00:00,2023-06-30 15:00:00
+9374,TEST,Homo sapiens,2023-06-28 12:00:00,2023-06-30 12:00:00,,,,NA,,,NA,,,,,,,,,,,,,StationaryTest_1A_5fix_06m_2023,,,,eObs,1A,,2023-06-28 15:00:00,2023-06-30 15:00:00
+9375,TEST,Homo sapiens,2023-06-28 12:00:00,2023-06-30 12:00:00,,,,NA,,,NA,,,,,,,,,,,,,StationaryTest_1A_5fix_00m_2023,,,,eObs,1A,,2023-06-28 15:00:00,2023-06-30 15:00:00
+9437,TEST,Homo sapiens,2023-06-28 12:00:00,2023-06-30 12:00:00,,,,NA,,,NA,,,,,,,,,,,,,StationaryTest_1A_5fix_10m_2023,,,,eObs,1A,,2023-06-28 15:00:00,2023-06-30 15:00:00
+9375,TEST,Homo sapiens,2023-06-30 12:15:00,2023-07-02 12:15:00,,,,NA,,,NA,,,,,,,,,,,,,StationaryTest_1A_1fix_00m_2023,,,,eObs,1A,,2023-06-30 15:15:00,2023-07-02 15:15:00
+9373,TEST,Homo sapiens,2023-06-30 12:15:00,2023-07-02 12:15:00,,,,NA,,,NA,,,,,,,,,,,,,StationaryTest_1A_1fix_01m_2023,,,,eObs,1A,,2023-06-30 15:15:00,2023-07-02 15:15:00
+9374,TEST,Homo sapiens,2023-06-30 12:15:00,2023-07-02 12:15:00,,,,NA,,,NA,,,,,,,,,,,,,StationaryTest_1A_1fix_06m_2023,,,,eObs,1A,,2023-06-30 15:15:00,2023-07-02 15:15:00
+9437,TEST,Homo sapiens,2023-06-30 12:15:00,2023-07-02 12:15:00,,,,NA,,,NA,,,,,,,,,,,,,StationaryTest_1A_1fix_10m_2023,,,,eObs,1A,,2023-06-30 15:15:00,2023-07-02 15:15:00
+8588,TEST,Homo sapiens,2023-07-02 05:23:00,2023-07-02 08:47:00,,,,NA,,,NA,,,,,,,,,,,,,WalkTest_1AA_front_2023,,,,eObs,1AA,,2023-07-02 08:23:00,2023-07-02 11:47:00
+8589,TEST,Homo sapiens,2023-07-02 05:23:00,2023-07-02 08:47:00,,,,NA,,,NA,,,,,,,,,,,,,WalkTest_1AA_back_2023,,Lotek micro-TRD drop-off mechanism,Lotek drop-off failed,eObs,1AA,,2023-07-02 08:23:00,2023-07-02 11:47:00
+8588,TEST,Homo sapiens,2023-07-03,2023-07-06,,,,NA,,,NA,,,,,,,,,,,,,StationaryTest_1AA_10m_2023,,,,eObs,1AA,,2023-07-03 03:00:00,2023-07-06 03:00:00
+8589,TEST,Homo sapiens,2023-07-03,2023-07-06,,,,NA,,,NA,,,,,,,,,,,,,StationaryTest_1AA_06m_2023,,Lotek micro-TRD drop-off mechanism,Lotek drop-off failed,eObs,1AA,,2023-07-03 03:00:00,2023-07-06 03:00:00
+8590,TEST,Homo sapiens,2023-07-03,2023-07-06,,,,NA,,,NA,,,,,,,,,,,,,StationaryTest_1AA_00m_2023,,Lotek micro-TRD drop-off mechanism,Lotek drop-off failed,eObs,1AA,,2023-07-03 03:00:00,2023-07-06 03:00:00
+8591,TEST,Homo sapiens,2023-07-03,2023-07-06,,,,NA,,,NA,,,,,,,,,,,,,StationaryTest_1AA_01m_2023,,Lotek micro-TRD drop-off mechanism,,eObs,1AA,,2023-07-03 03:00:00,2023-07-06 03:00:00
+9375,TEST,Homo sapiens,2023-07-03 05:21:00,2023-07-03 07:05:00,,,,NA,,,NA,,,,,,,,,,,,,WalkTest_1A_1fix_front_2023,,,,eObs,1A,,2023-07-03 08:21:00,2023-07-03 10:05:00
+9437,TEST,Homo sapiens,2023-07-03 05:21:00,2023-07-03 07:05:00,,,,NA,,,NA,,,,,,,,,,,,,WalkTest_1A_1fix_back_2023,,,,eObs,1A,,2023-07-03 08:21:00,2023-07-03 10:05:00
+9375,TEST,Homo sapiens,2023-07-03 07:08:00,2023-07-03 08:46:00,,,,NA,,,NA,,,,,,,,,,,,,WalkTest_1A_5fix_front_2023,,,,eObs,1A,,2023-07-03 10:08:00,2023-07-03 11:46:00
+9437,TEST,Homo sapiens,2023-07-03 07:08:00,2023-07-03 08:46:00,,,,NA,,,NA,,,,,,,,,,,,,WalkTest_1A_5fix_back_2023,,,,eObs,1A,,2023-07-03 10:08:00,2023-07-03 11:46:00

@@ -206,11 +206,16 @@ summary(test.sched)
 #Add deployment id to test
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+# Start
+# Ex1  Deployment ID ----
+
+# Line added by Brock to save inputs for demo purposes
+write.csv(test.sched, 'input_add_deployment_id.csv', row.names = F, quote = F)
+write.csv(filter(reference, animal.id == "TEST"), 'input_reference.csv', row.names = F, quote = F)
+
 ## Start
-## Example 1 ####
-
-write.csv(test.sched, 'input_add_tagid_to_test.csv', row.names = F, quote = F)
-
+## Original ----
+## to comment out >>> 
 test.sched$deployment.id <- NA
 pb <- txtProgressBar(min = 0, max = nrow(test.sched), style = 3)
 for (i in 1:nrow(test.sched)) {
@@ -228,7 +233,26 @@ close(pb)
 rm(pb)
 summary(as.factor(test.sched$deployment.id))
 
-write.csv(test.sched, 'output_add_tagid_to_test.csv', row.names = F, quote = F)
+## <<< End
+## Original 
+## to comment out >>> 
+
+
+
+
+## Start
+## Replacement ----
+## to uncomment >>> 
+
+# source('code/add_deployment_id.R')
+# test.sched <- add_deployment_id(test.sched, reference)
+
+## <<< End
+## Replacement
+## to uncomment
+
+# Line added by Brock to save outputs for demo purposes
+write.csv(test.sched, 'output_add_deployment_id.csv', row.names = F, quote = F)
 
 ## End
 ## Example 1 
@@ -242,10 +266,15 @@ fosa.sched$stop_time <- format(fosa.sched$stop_datetime, format = "%H:%M:%OS")
 fosa.sched$stop_time <- as.POSIXct(fosa.sched$stop_time, format = "%H:%M:%OS")
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-## Start
-## Example 2 #####
+# Start
+# Ex2 Time Lag #####
 
+# Line added by Brock to save inputs for demo purposes
 write.csv(sifaka.sched, 'input_add_time_lag.csv', row.names = F, quote = F)
+
+## Start
+## Original ----
+## to comment out >>> 
 
 #Add time lag to sifaka
 sifaka.sched <- arrange(sifaka.sched, animal, start_datetime)
@@ -260,6 +289,26 @@ for (i in 1:nrow(sifaka.sched)) {
 }
 summary(sifaka.sched)
 
+## <<< End
+## Original 
+## to comment out >>> 
+
+
+
+
+## Start
+## Replacement ----
+## to uncomment >>> 
+
+# source('code/add_time_lag.R')
+
+# sifaka.sched <- add_time_lag(sifaka.sched)
+
+## <<< End
+## Replacement
+## to uncomment
+
+# Line added by Brock to save outputs for demo purposes
 write.csv(sifaka.sched, 'output_add_time_lag.csv', row.names = F, quote = F)
 
 ## End
