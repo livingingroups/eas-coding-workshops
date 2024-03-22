@@ -245,7 +245,26 @@ fosa.sched$stop_time <- as.POSIXct(fosa.sched$stop_time, format = "%H:%M:%OS")
 ## Start
 ## Example 2 #####
 
-write.csv(fosa.sched, 'input_add_time_lag.csv', row.names = F, quote = F)
+write.csv(sifaka.sched, 'input_add_time_lag.csv', row.names = F, quote = F)
+
+#Add time lag to sifaka
+sifaka.sched <- arrange(sifaka.sched, animal, start_datetime)
+sifaka.sched$time_lag <- NA
+for (i in 1:nrow(sifaka.sched)) {
+  if (i != 1) {
+    if (sifaka.sched$animal[i] == sifaka.sched$animal[i-1]) {
+      sifaka.sched$time_lag[i] <- round(as.numeric(difftime(sifaka.sched$start_datetime[i],
+                                                          sifaka.sched$start_datetime[i - 1], units = "mins")), digits = 0)
+    }
+  }
+}
+summary(sifaka.sched)
+
+write.csv(sifaka.sched, 'output_add_time_lag.csv', row.names = F, quote = F)
+
+## End
+## Example 2 
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 #Add time lag to fosa
 fosa.sched <- arrange(fosa.sched, animal, start_datetime)
@@ -259,12 +278,6 @@ for (i in 1:nrow(fosa.sched)) {
   }
 }
 summary(fosa.sched)
-
-write.csv(fosa.sched, 'output_add_time_lag.csv', row.names = F, quote = F)
-
-## End
-## Example 1 
-#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 #Check that all data is accounted for
 nrow(sched) - (nrow(sifaka.sched) + nrow(test.sched) + nrow(fosa.sched))
