@@ -17,8 +17,9 @@ Last week, everyone wanted to use R so this week I only made the material in R. 
         -   Later: you can try adding the triangle functionality as practice.
 -   Applying Testing to Data Processing
     -   Show and tell: full data processing script
-    -   Demo: Applying validation to a data processing script
-    -   Exercise: Applying Validation to data processing script
+    -   Demo: Applying validation to a data processing script (add deployment id)
+          - [Results](https://github.com/livingingroups/eas-coding-workshops/blob/validating-after-deploymentid-demo/20240326-validating/tests/test_add_deployment_id.R)
+    -   Exercise: Applying validation to data processing script (add time lag)
 -   Final Notes
     -   [Running testthat is easier with packaging](https://github.com/r-lib/testthat/issues/659#issuecomment-478559396)
     -   Mocks (whiteboard explanation)
