@@ -44,7 +44,7 @@ parse_shape_definition_line <- function(shape_definition_line){
     shape_name = split_line[1],
     # e.g. rectangle
     shape_type = split_line[2],
-    params = params[1:2]
+    params = params
   ))
 }
 
@@ -110,30 +110,4 @@ process <- function(shape_definitions_string) {
     ))
   }
   return(output_df)
-}
-
-#####################################
-######### Example and test ##########
-#####################################
-
-shapes <- "firstshape: circle (r=3)
-secondshape: square (l=5)
-bluerect: rectangle (l=8,w=2)
-secondsquare: square (l=1)
-redrect: rectangle (l=45,w=100)"
-
-actual_output <- process(shapes)
-
-expected_output <- read.table(text ="name, type, area
-firstshape, circle, 28.27433388
-secondshape, square, 25
-bluerect, rectangle, 16
-secondsquare, square, 1
-redrect, rectangle, 4500", sep = ',', header=TRUE)
-
-
-if (all(round(actual_output$area) == round(expected_output$area))){
-  print('Working!')
-} else {
-  print('uh-oh, something broke')
 }
