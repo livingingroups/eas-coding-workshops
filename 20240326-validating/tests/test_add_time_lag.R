@@ -1,4 +1,4 @@
-setwd('..') # Set wd to project root, skip this if wd is already project root
+if(basename(getwd()) == 'tests') setwd('..')
 
 # Import testing library and file with functions to test
 library(testthat)
