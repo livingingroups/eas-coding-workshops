@@ -59,3 +59,7 @@ test_that('parsing function is working with triangle', {
 
   expect_equal(actual_output, expected_output)
 })
+
+test_that('area calculation is working',{
+  expect_equal(calculate_shape_area('square', list(l=5)), 25)
+})
