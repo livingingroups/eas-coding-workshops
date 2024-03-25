@@ -125,7 +125,7 @@ redrect: rectangle (l=45,w=100)"
 actual_output <- process(shapes)
 
 expected_output <- read.table(text ="name, type, area
-firstshape, circle, 28.27433
+firstshape, circle, 28.27433388
 secondshape, square, 25
 bluerect, rectangle, 16
 secondsquare, square, 1
