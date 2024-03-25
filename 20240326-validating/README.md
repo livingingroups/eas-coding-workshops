@@ -10,6 +10,7 @@ Last week, everyone wanted to use R so this week I only made the material in R. 
     -   Demo: test better_shapes.R::parse_shape_definition_line
         -   Test existing functionality
         -   Prepare for triangle with params: a, b, c
+        -   [Results](https://github.com/livingingroups/eas-coding-workshops/blob/validating-after-bettershapes-demo/20240326-validating/tests/test_better_shapes.R)
     -   Exercise: test better_shapes.R::calculate_shape_area
         -   Testing existing functionality with a larger variety of inputs
             -   Try to find the bug. If you see it, demonstrate it with a test.
