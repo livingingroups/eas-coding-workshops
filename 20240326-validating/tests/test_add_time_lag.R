@@ -2,7 +2,7 @@ if(basename(getwd()) == 'tests') setwd('..')
 
 # Import testing library and file with functions to test
 library(testthat)
-source('./code/add_time_lag.R')
+source('./R/add_time_lag.R')
 
 
 test_that("Test against sample dataset", {
