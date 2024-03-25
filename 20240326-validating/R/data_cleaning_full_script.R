@@ -113,7 +113,7 @@ GPS_data <- GPS_data_save
 #            GPS_data$fix_id == 125546,]$fix_id <- 125545
 # GPS_data[GPS_data$tag.local.identifier == 9379 & GPS_data$eobs.start.timestamp == "2022-07-04 03:34:02.000" &
 #            GPS_data$fix_id == 125547,]$fix_id <- 125545
-# 
+#
 # GPS_data[GPS_data$tag.local.identifier == 9400 & GPS_data$fix_id == 13481,]$fix_id[2] <- max(GPS_data$fix_id) + 1
 # GPS_data[GPS_data$tag.local.identifier == 9402 & GPS_data$fix_id == 25568,]$fix_id[2] <- max(GPS_data$fix_id) + 1
 
@@ -215,37 +215,37 @@ write.csv(filter(reference, animal.id == "TEST"), 'input_reference.csv', row.nam
 
 ## Start
 ## Original ----
-## to comment out >>> 
-test.sched$deployment.id <- NA
-pb <- txtProgressBar(min = 0, max = nrow(test.sched), style = 3)
-for (i in 1:nrow(test.sched)) {
-  options.i <- filter(reference, animal.id == "TEST" &
-                        tag.id == test.sched$tag.local.identifier[i] &
-                        local.deploy.on.date <= test.sched$start_datetime[i] &
-                        local.deploy.off.date >= test.sched$stop_datetime[i])
-  if (nrow(options.i) == 1) {
-    test.sched$deployment.id[i] <- options.i$deployment.id
-  }
-  rm(options.i)
-  setTxtProgressBar(pb, i)
-}
-close(pb)
-rm(pb)
-summary(as.factor(test.sched$deployment.id))
+## to comment out >>>
+# test.sched$deployment.id <- NA
+# pb <- txtProgressBar(min = 0, max = nrow(test.sched), style = 3)
+# for (i in 1:nrow(test.sched)) {
+#   options.i <- filter(reference, animal.id == "TEST" &
+#                         tag.id == test.sched$tag.local.identifier[i] &
+#                         local.deploy.on.date <= test.sched$start_datetime[i] &
+#                         local.deploy.off.date >= test.sched$stop_datetime[i])
+#   if (nrow(options.i) == 1) {
+#     test.sched$deployment.id[i] <- options.i$deployment.id
+#   }
+#   rm(options.i)
+#   setTxtProgressBar(pb, i)
+# }
+# close(pb)
+# rm(pb)
+# summary(as.factor(test.sched$deployment.id))
 
 ## <<< End
-## Original 
-## to comment out >>> 
+## Original
+## to comment out >>>
 
 
 
 
 ## Start
 ## Replacement ----
-## to uncomment >>> 
+## to uncomment >>>
 
-# source('code/add_deployment_id.R')
-# test.sched <- add_deployment_id(test.sched, reference)
+source('code/add_deployment_id.R')
+test.sched <- add_deployment_id(test.sched, reference)
 
 ## <<< End
 ## Replacement
@@ -255,7 +255,7 @@ summary(as.factor(test.sched$deployment.id))
 write.csv(test.sched, 'output_add_deployment_id.csv', row.names = F, quote = F)
 
 ## End
-## Example 1 
+## Example 1
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 #Separate fosa data points
@@ -274,7 +274,7 @@ write.csv(sifaka.sched, 'input_add_time_lag.csv', row.names = F, quote = F)
 
 ## Start
 ## Original ----
-## to comment out >>> 
+## to comment out >>>
 
 #Add time lag to sifaka
 sifaka.sched <- arrange(sifaka.sched, animal, start_datetime)
@@ -290,15 +290,15 @@ for (i in 1:nrow(sifaka.sched)) {
 summary(sifaka.sched)
 
 ## <<< End
-## Original 
-## to comment out >>> 
+## Original
+## to comment out >>>
 
 
 
 
 ## Start
 ## Replacement ----
-## to uncomment >>> 
+## to uncomment >>>
 
 # source('code/add_time_lag.R')
 
@@ -312,7 +312,7 @@ summary(sifaka.sched)
 write.csv(sifaka.sched, 'output_add_time_lag.csv', row.names = F, quote = F)
 
 ## End
-## Example 2 
+## Example 2
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 #Add time lag to fosa
@@ -376,7 +376,7 @@ rm(keep)
 # rm(pb)
 # high.res.keep <- high.res.data[do.call(c, keep),]
 # rm(keep)
-# 
+#
 # three.min.data <- rbind(regular.keep, high.res.keep)
 # hist(three.min.data$timestamp, breaks = 100)
 
