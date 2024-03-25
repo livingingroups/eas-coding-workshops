@@ -28,3 +28,39 @@ test_that("Test against sample dataset", {
 #
 # Therefore, in you can format sifaka.sched$start_datetime in this way
 # in your input dataframe.
+
+test_that('time lag works with one animal two timepoints', {
+  sifaka.sched <- data.frame(
+    animal = c('Honey', 'Honey'),
+    start_datetime = c(2, 5) * 60
+  )
+  expected_result <- data.frame(
+    animal = c('Honey', 'Honey'),
+    start_datetime = c(2, 5) * 60,
+    time_lag = c(NA, 3)
+  )
+
+  expect_equal(
+    add_time_lag(sifaka.sched),
+    expected_result
+  )
+
+})
+
+test_that('time lag works with two animal mixed order', {
+  sifaka.sched <- data.frame(
+    animal = c('Honey', 'Buddy', 'Honey', 'Buddy'),
+    start_datetime = c(5, 8, 2, 2) * 60
+  )
+  expected_result <- data.frame(
+    animal = c('Buddy', 'Buddy', 'Honey', 'Honey'),
+    start_datetime = c(2, 8, 2, 5) * 60,
+    time_lag = c(NA, 6, NA, 3)
+  )
+
+  expect_equal(
+    add_time_lag(sifaka.sched),
+    expected_result
+  )
+
+})
