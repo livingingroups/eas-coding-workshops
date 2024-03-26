@@ -12,7 +12,7 @@ This creates just enough of a package to get rstudio build tools to work
 
 Helpful things this enables:
 
-- `devtools::document()` will convert your roxygen docs to help pages.
+- `devtools::document()` or clicking "Addins" -> Document a package will convert your roxygen docs to help pages.
 - `devtools::test()` or clicking "Test" under the build tab will run all your tests
 - `devtools::load_all()` or "More" -> "Load all" or equivalent shortcut will reload all your functions so you don't have to source them one by one
 - Allows you to use testthat features that only work in packages, such as mocks.
