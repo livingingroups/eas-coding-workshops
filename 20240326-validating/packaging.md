@@ -2,7 +2,7 @@
 
 This creates just enough of a package to get rstudio build tools to work
 
-- Make sure project root is `20240326-validating`. If it's `eas-coding-workshops`, create a new project from directory `20240326-validating`
+- Make sure project root is `20240326-validating`. If it's `eas-coding-workshops`, create a new RStudio project from directory `20240326-validating`
 - Create a description file with package name and version.
 - Build -> Configure Build Tools. You don't need to change any of the settings, just click "ok". You should now see the "Build" tab in the top right between "Connections" and "Git". 
 - In the R console, run `usethis::use_testthat()`.
