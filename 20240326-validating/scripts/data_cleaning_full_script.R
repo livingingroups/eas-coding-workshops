@@ -6,6 +6,7 @@ setwd("~/tracy")
 
 #Load libraries
 library(tidyverse)
+library(mypackage)
 
 #Load reference data
 
@@ -244,7 +245,6 @@ write.csv(filter(reference, animal.id == "TEST"), 'input_reference.csv', row.nam
 ## Replacement ----
 ## to uncomment >>>
 
-source('code/add_deployment_id.R')
 test.sched <- add_deployment_id(test.sched, reference)
 
 ## <<< End
@@ -299,8 +299,6 @@ summary(sifaka.sched)
 ## Start
 ## Replacement ----
 ## to uncomment >>>
-
-# source('code/add_time_lag.R')
 
 # sifaka.sched <- add_time_lag(sifaka.sched)
 

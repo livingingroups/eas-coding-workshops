@@ -1,10 +1,5 @@
-# Hack to get testing to work without packaging
-if (basename(getwd()) == 'tests')
-  setwd('..')
-
-# Import testing library and file with functions to test
 library(testthat)
-source('./R/better_shapes.R')
+library(mypackage)
 
 test_that("process function is working on sample input", {
   shapes <- "firstshape: circle (r=3)

@@ -1,15 +1,12 @@
-if(basename(getwd()) == 'tests') setwd('..')
-
-# Import testing library and file with functions to test
 library(testthat)
-source('./R/add_time_lag.R')
+library(mypackage)
 
 
 test_that("Test against sample dataset", {
 
-  sifaka.sched <- read.csv('./test_data/input_add_time_lag.csv')
+  sifaka.sched <- read.csv('../../test_data/input_add_time_lag.csv')
 
-  expected_result <- read.csv('./test_data/output_add_time_lag.csv')
+  expected_result <- read.csv('../../test_data/output_add_time_lag.csv')
 
   actual_result <- add_time_lag(sifaka.sched)
 
