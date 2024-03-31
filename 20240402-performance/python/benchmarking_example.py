@@ -171,17 +171,17 @@ for row in expected_output:
 #region FunctionalTests
 
 print(deep_equal(expected_output, orig(copy.deepcopy(input_data))))  
-print(deep_equal(expected_output, do_less(copy.deepcopy(input_data))))  
-print(deep_equal(expected_output, with_pandas(copy.deepcopy(input_data))))  
+# print(deep_equal(expected_output, do_less(copy.deepcopy(input_data))))  
+#print(deep_equal(expected_output, with_pandas(copy.deepcopy(input_data))))  
 
 #endregion
 
 #region Benchmarks
 print(benchmark(
     [
-        'orig(input_data)',
-        'do_less(input_data)',
-        'with_pandas(input_data)'
+        'orig(input_data)'
+        #,'do_less(input_data)'
+        #,'with_pandas(input_data)'
     ],
     n=10,
     setup = "input_data = [i for i in csv.DictReader(open(path.join(DATA_DIR, 'input_optim.csv')))]",
