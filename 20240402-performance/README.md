@@ -4,18 +4,6 @@ editor_options:
     wrap: 72
 ---
 
-## TODO
-
--   Translate everything to python
-
-    -   Make the parseio script more function based.
-
--   Add examples to "How" section in both languages
-
--   revisit how sys.time interacts with parallelization libararies add
-    child to example script
-    <https://stackoverflow.com/questions/42963771/system-time-and-parallel-package-in-r-sys-child-is-0>
-
 # Overview
 
 Agenda
@@ -53,11 +41,26 @@ Possible issues:
 -   CPU constraint: the restaurant is plenty big, but the staff has to
     do a lot of running around to take your order and prep all the food.
     -   Single process: It could be that you program is only using one
-        CPU core. That's like having one
--   Memory constrained
-    -   Swap
--   IO constraint
--   Latency to external services
+        CPU core. That's like having one employee running back and forth
+        to take your order and cook.
+-   Memory constrained: Memory is like the counterspace in the kitchen.
+    It's really easy for the cooks to access while they're cooking. (vs
+    disk which is like the pantry)
+    -   Swap: When your system runs out of memory, it will use disc for
+        the overflow. This is is called swap. This is way slower than
+        regular memory, kind of like running out of counterspace and
+        putting ingredients, bowls, and pots in any space available
+        including the pantry.
+-   IO constrained: If your program does a lot of reading and writing
+    from storage, this can cause it to be slow especially if you reach
+    the limits of how fast you can write and retrieve things from disk.
+    This is like having the restaurant employees constantly running back
+    and forth from the kitchen to the pantry and path in between getting
+    congested.
+-   Latency to external services: This is like the kitchen ordering
+    supplies to be delivered immediately from another establishment. If
+    this takes a long time, making your kitchen more efficient won't
+    help much in completing the dish faster.
     -   Calling an API
     -   Data Server
 
@@ -65,7 +68,7 @@ Possible issues:
 
 (To learn more about this, search "Big O Notation")
 
-Some options:
+Some posibilities:
 
 -   Constant = 10x the data -\> exact same compute time/memory
 -   Linearly = 10x the data -\> 10x the compute time/memory
@@ -149,6 +152,8 @@ Try to evaluate:
 
 Meaning....will it use close to or more than the available memory?
 
+#### Measuring in R
+
 The `gc` function causes R to "give back" to the operating system any
 memory that was used by objects that are now deleted. R runs this
 function automatically from time to time, so usually, we don't need need
@@ -165,14 +170,10 @@ by our program like this:
 
 gc(reset=TRUE) # output of this will give us a baseline
 
-#....Run the program .... For example,
-
-source('your_script.R')
+x <- rnorm(10e6)
 
 gc() # Output of this can show us the size of our program's leftovers, and max used.
 ```
-
-#### Interpreting the Output
 
 `used` = currently in use `gc trigger` = not well documented, based on
 [this
@@ -183,6 +184,47 @@ last call of `gc(reset=TRUE)`
 We don't care about the difference between Ncells and Vcells so we can
 just consider the sum of each column.
 
+#### Demo: Exploring gc() examples
+
+#### Measuring in python
+
+The `gc` function in python does not report memory usage. There's
+another library
+[memory_profiler](https://github.com/pythonprofilers/memory_profiler?tab=readme-ov-file#api)
+that you can use. This works by sampling memory usage at a given
+interval.
+
+You can check how much memory the current python process is using with
+`memory_usage(-1)`. By default, this will give you 5 samples .2 seconds
+apart. If you want to profile a function, you can do that like
+`memory_usage((my_function, args, kwargs))` where `args` is a list of
+positional arguments and `kwargs` is a dictionary of keyword arguments.
+Result is in MB.
+
+Here's how you would check how much memory is used for numpy to genarate
+10\^6 random numbers
+
+``` python
+from memory_profiler import memory_usage
+import numpy as np
+
+
+baseline_mem_usage = memory_usage(-1, timeout=.1)[0]
+max_mem_usage = max(memory_usage(
+    proc=(np.random.normal, [], {'size': int(10e6)}),
+    interval = .001
+))
+
+print({
+    'baseline': baseline_mem_usage,
+    'max': max_mem_usage
+})
+```
+
+See [this
+note](https://github.com/pythonprofilers/memory_profiler?tab=readme-ov-file#tracking-forked-child-processes)
+for multiprocessing.
+
 #### Extracting insight
 
 We want to look at "max used" from while our program was running (reset
@@ -191,9 +233,9 @@ data. This will be informed by "used" at the beginning. For example, if
 the program scales linearly with more data, this will be approximately
 equal to the intercept.
 
-#### Demo: Exploring gc() examples
-
 ### Is my program CPU Constrained?
+
+#### Measuring in R
 
 To measure run time and CPU usage, call your program inside the
 `system.time` function.
@@ -202,7 +244,7 @@ To measure run time and CPU usage, call your program inside the
 system.time(source('your_script.R'))
 ```
 
-#### Demo system.time example
+For example,
 
 ``` r
 system.time(lapply(rep(1000, 1000), runif))
@@ -210,8 +252,6 @@ system.time(Sys.sleep(5))
 ```
 
 <https://psutil.readthedocs.io/en/latest/#psutil.Process.cpu_times>
-
-#### Interpreting `system.time`
 
 All these values are in seconds.
 
@@ -228,32 +268,79 @@ elapsed <- stop_time - start_time
 `user` and `system` represent two different types of CPU usage. Right
 now, we don't care too much about the distinction.
 [Here](https://stackoverflow.com/questions/556405/what-do-real-user-and-sys-mean-in-the-output-of-time1)'s
-the explanation if you're curious. We care about the sum. This is
-cores\*seconds so if the program uses 2 cores for 10 seconds,
-user+system will be 20.
+the explanation if you're curious. We care about the sum.
+
+#### Timing in python
+
+python offers functions for a few different types of time.
+
+-   `time.time()` is wall clock
+-   `time.perf_counter()` excludes sleep but still more or less measures
+    elapsed time
+-   `time.process_time()` is user + system as above
+
+`timit` offers functionality to run your code and capture starting and
+ending with the specified function.
+
+``` python
+import time
+import timeit
+
+print({
+'elapsed': timeit.timeit(
+    stmt = 'np.random.normal(size = int(10e6))',
+    setup = 'import numpy as np',
+    timer = time.perf_counter,
+    # only run the function once
+    number = 1
+  ),
+'process': timeit.timeit(
+    stmt = 'np.random.normal(size = int(10e6))',
+    setup = 'import numpy as np',
+    timer = time.process_time,
+    number = 1
+  )
+})
+```
+
+Running timeit is equivalent to
+
+``` python
+import time
+
+t1 = time.perf_counter()
+# your program
+t2 = time.perf_counter()
+
+print(t1 - t2)
+```
 
 #### Extracting insights
 
-`elapsed >> user + system` means that your computations are *not* what's
-making your script take a long time. There's lots of time when the CPU
-is sitting around waiting for...something. Usually, this is some kind of
-networked (not-on-your-computer) resource. For example, if your script
-is downloading data from the internet or pulling files from the
-dataserver. Another (less common) possibility...if your program is
-reading and writing a lot of files from your hard drive, the hard drive
-could be the thing the cpu is waiting of.
+`elapsed >> user + system` means that a bottleneck on one CPU thread is
+*not* what's making your script take a long time. There's lots of time
+when the CPU is sitting around waiting for...something.
 
-Silly example: `system.time(browser())`
+Silly example:
+
+-   R: `system.time(browser())`
+-   python: `timeit.timeit('import pdb; pdb.set_trace()', number=1)`
+
+Some possibilities: - An external resource: some kind of networked
+(not-on-your-computer) resource. For example, if your script is
+downloading data from the internet or pulling files from the
+dataserver. - Child process to complete: these tools are only measuring
+CPU usage of the parent process. It could be waiting for its children -
+In python, you can look at cpu usage of child processes using
+`psutil`. - In R, in theory, `system.time()[4:5]` should show cpu usage
+of child processes, but I have not found this to be the case in
+practice. So far, I haven't found the reason or an alternative. - Your
+harddrive (I/O limitation): Another (less common) possibility...if your
+program is reading and writing a lot of files from your hard drive, the
+hard drive could be the thing the cpu is waiting of.
 
 `elapsed < user + system` means that during the time your program is
 running, on average more than one CPU is running.
-
-Caveat: If parts of your program are parallel and other parts are
-waiting for an external resource, the results can be deceptive.
-
-Also, if you are on Windows, and your program spawns subprocesses (as
-some parallelization libraries do), CPU time will not include those
-child processes.
 
 ### Napkin Math
 
@@ -293,7 +380,32 @@ coarse_level_timing_and_memory <- function(expr) {
 print(coarse_level_timing_and_memory(source('./your_script.R')))
 ```
 
-## Whiteboard activity: interpretting the output of gc and system.time
+``` python
+import time
+from memory_profiler import memory_usage
+
+def coarse_timing_and_mem(a_function, *args, **kwargs):
+    baseline_mem_usage = memory_usage(-1, timeout=.1)[0]
+    cpu_t1 = time.process_time()
+    elapsed_t1 = time.perf_counter()
+    max_mem_usage = max(memory_usage(
+        proc=(a_function, args, kwargs),
+        interval = .001
+    ))
+    cpu_t2 = time.process_time()
+    elapsed_t2 = time.perf_counter()
+    final_mem_usage = memory_usage(-1, timeout=.1)[0]
+    return({
+        'mem_used_baseline': baseline_mem_usage,
+        # diff should always be zero, putting here for consistency with R version
+        'mem_used_diff': final_mem_usage - baseline_mem_usage,
+        'mem_used_max': max_mem_usage, 
+        'cpu_time': cpu_t2 - cpu_t1,
+        'elapsed_time': elapsed_t2 - elapsed_t1
+    }
+```
+
+## Whiteboard activity: interpreting the output of gc and system.time
 
 # Where is the bottleneck within my program?
 
@@ -336,13 +448,14 @@ RStudio's built-in profiler
 [profvis](https://rstudio.github.io/profvis/) is all you need.
 
 If you're worried about memory, look both for spike and for places where
-memory is allocated (+, right side of the memory graph) but not release.
+memory is allocated (+, right side of the memory graph) but not
+released.
 
-Remember that (on Linux/Mac) `time` here is CPU time, not elapsed time.
-CPU time will be larger than elapsed time in parts of the code that are
-parallel and less than elapsed time in parts of the code where something
-other than computation (like fetching a file) is happening. See the
-`Rprof` help page for details on Windows.
+Remember that (on Linux/Mac) `time` here is CPU time of the main R
+process, not elapsed time. Time reported here will be less than elapsed
+time in parts of the code where something other than computation (like
+fetching a file) is happening. See the `Rprof` help page for details on
+Windows.
 
 This tool makes a distinction between code it thinks you wrote/care
 about and package code. If you want to dig inside a particular package,
@@ -377,7 +490,7 @@ It's also possible to profile in Stan. More info here:
 
 ### Deeper with Profilers
 
-They sample on some interval
+They sample on some interval and check all the process that are running.
 
 #### Whiteboard - Sampling/flame graph as histogram.
 
@@ -390,12 +503,40 @@ for python).
 
 # How can I make it take less time?
 
--   [Really Nice Python-focused
+-   [Really nice python-focused
     articles](https://pythonspeed.com/datascience/)
 -   [Performance section of Advanced
     R](https://adv-r.hadley.nz/perf-improve.html)
 
-## A Note Interpreted Languages Compiled Languages
+## A Note Interpreted vs Compiled Languages
+
+[An article with some nice
+pictures](https://www.simplilearn.com/tutorials/python-tutorial/understand-the-workings-of-cpython)
+
+Both R and python are designed in such a way that they can be converted
+to byte code (what your compute actually reads) on a line by line basis.
+This is great for usability, but not so great for efficiency. This is
+kind of like a waiter who asks you what the first thing you'd like to
+order is, then runs back to the kitchen to make it,. Then, when he
+brings you your dish, he asks you for the second item you'd like to
+order. Both R and python have functions take a bunch of processes you'd
+like to implement together (or one process implemented on a bunch of
+data) and let you send through all at once. Kind of like ordering a prix
+fixe/meal deal.
+
+In addition, when functions are written in C, they have more freedom but
+also more flexibility to create an efficient implementation of a
+specific task. In our analogy, if the cook knows at the start that he
+has to make 10 of the same meal, he can do it more efficiently than if
+he's only told to make the next burger once he's completed the last one.
+
+Thus, when you use functions that are implemented efficiently in C
+instead of writing the same functionality in R or python, you can get
+the same task done in less time. In our analogy, you have the exact same
+amount of restaurant staff and are ordering the exact same food. By
+ordering it all at once, you save the staff the trouble of running back
+and forth while also letting them spend their time in the kitchen more
+efficiently.
 
 ## Ways to Reduce CPU Time
 
@@ -563,21 +704,43 @@ instead of keeping them around in memory.
 ### Multiprocessing within R and Python
 
 This will improve the ratio of CPU time to elapsed (real life) time.
-However, there is some overhead so total CPU time (time using cores \*
-number of cores) will go up. There is especially high overhead when new
-processes are spawned as opposed to forked. (Sometimes default,
-sometimes the only option depending on OS). It is possible for spawning
-processes to take more time that the process itself. Also, in most
-cases, the peak memory used will go up so if your program is memory
-constrained, this will exacerbate the problem.
 
-It's still useful in many cases, especially when you have a lot of
+Here are some reasons to think twice before doing this:
+
+-   CPU/Elapsed time overhead: There is some overhead so total CPU time
+    (time using cores \* number of cores) will go up. There is
+    especially high overhead when new processes are spawned as opposed
+    to forked. (Sometimes default, sometimes the only option depending
+    on OS). In python, spawning processes involves a lot of data
+    copying. It is possible for spawning processes to take more time
+    than the process itself.
+
+-   Memory Peak: In most cases, the peak memory used will go up so if
+    your program is memory constrained, this will exacerbate the
+    problem.
+
+-   Hampering lower-level parallelization:
+
+    -   From data.table docs: "`data.table` automatically switches to
+        single threaded mode upon fork (the mechanism used by
+        `parallel::mclapply` and the foreach package). Otherwise, nested
+        parallelism would very likely overload your CPUs and result in
+        much slower execution. "
+
+    -   [Thread](https://github.com/numpy/numpy/issues/10145) from numpy
+        github mentioning inefficiencies due to memory competition.
+
+    -   [Article](https://superfastpython.com/numpy-processes-worse-performance/)
+        empirically shows worse performance with numpy + multiprocessing
+        (due to copying issue).
+
+It's still useful in some cases, especially when you have a lot of
 hardware at your disposal e.g. HPCs, RStudio Server.
 
 Because of the overhead of starting processes, you'll want to have few
 forkpoints and longer operations done within each process.
 
-For example:
+For example (pseudocode) :
 
 ```         
 # yes
@@ -622,7 +785,7 @@ How-to in python
         execute code, while you're "waiting" for an external service.
 
 -   [Multi
-    Processingl](https://docs.python.org/3/library/multiprocessing.html#module-multiprocessing)
+    Processing](https://docs.python.org/3/library/multiprocessing.html#module-multiprocessing)
 
     -   This approach is useful when you are CPU Bound but not memory
         bound.
@@ -643,6 +806,12 @@ you're using using the number of cores that you want it to. (Mac +
 `data.table` this takes some extra steps.)
 
 This is often more fruitful that doing the parallelization yourself.
+
+More details on configuring `numpy` threading
+[here](https://superfastpython.com/numpy-number-blas-threads/).
+
+More details on configuring `data.table` threading
+[here](https://search.r-project.org/CRAN/refmans/data.table/html/openmp-utils.html).
 
 ### Use and Configure Libraries to Leverage GPUs
 
@@ -672,6 +841,15 @@ numpy/scipy-like package [CuPy](https://cupy.dev/)
 
 # Did it actually actually work?
 
-benchmark microbenchmark
+-   [Comparison of Python Benchmark
+    Tools](https://switowski.com/blog/how-to-benchmark-python-code/)
+
+R benchmarking options:
+
+-   [microbenchmark](https://cran.r-project.org/package=microbenchmark)
+
+-   [bench](https://bench.r-lib.org/)
+
+-   [tictoc](https://cran.r-project.org/web/packages/tictoc/index.html)
 
 ## Demo: Benchmarking
