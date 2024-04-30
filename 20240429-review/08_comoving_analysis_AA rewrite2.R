@@ -4,11 +4,13 @@ library( hms )
 library( dplyr )
 
 ## fcn to provide a unique name to each unique group dyad
-dy_name <- function(vec) {
-
-  temp <- sort( c( vec[ 'group1' ], vec[ 'group2' ] ) )
-
-  return( paste( temp[1], temp[2], sep = '-') )
+dy_name <- function(group1, group2) {
+  # candidate 1
+  c1 <- paste(group1, group2, sep = '-')
+  # candidate 2
+  c2 <- paste(group2, group1, sep = '-')
+  # pmin = vectorized min. For strings this means first alphabetically.
+  return(pmin(c1,c2))
 }
 
 # SET UP -------------------------------------------------------------------------------------------
@@ -44,7 +46,7 @@ spec_df$local_timestamp <- as.POSIXct( spec_df$local_timestamp, tz = 'UTC' )
 
 spec_df$date <- as.Date( spec_df$local_timestamp )
 
-spec_df$dy_name <- apply( spec_df[ , c( 'group1', 'group2' ) ], 1, function( x ) paste( sort( x ), collapse = '_' ) )
+spec_df$dy_name <- dy_name(spec_df$group1, spec_df$group2)
 
 #now duplicate the main df but take out overnight data
 str(spec_df)
@@ -143,7 +145,7 @@ enc_df$start_local_timestamp <- as.POSIXct(enc_df$start_local_timestamp, tz='UTC
 enc_df$end_local_timestamp <- as.POSIXct(enc_df$end_local_timestamp, tz='UTC')
 
 #prep
-spec_df_day$dy_name <- apply( spec_df_day, 1, FUN = dy_name)
+spec_df_day$dy_name <- dy_name(spec_df_day$group1, spec_df_day$group2)
 
 enc_df <- enc_df[order(enc_df$dyadID, enc_df$start_local_timestamp ),]
 enc_df$enc_number <- 1:nrow(enc_df)
