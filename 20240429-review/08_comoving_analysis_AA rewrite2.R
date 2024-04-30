@@ -23,6 +23,7 @@ quant <- 0.80 ## quantile of intra-group dyadic distances to determine the maxim
 
 samp_int <- 15 ## sampling interval -- this should stay at 15
 
+# Why 100?? what's so great about 100???
 min_move <- 100 ## minimum distance required to move while being within the distance set by the quant variable above to be considered a co-move
 
 min_comove_duration <- 0 ## minimum duration required remain iwthin the distance set by the quant variable above to be considered a co-move
