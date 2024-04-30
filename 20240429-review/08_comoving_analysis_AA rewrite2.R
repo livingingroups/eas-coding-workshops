@@ -2,6 +2,7 @@ library( stringr )
 library( ggplot2 )
 library( hms )
 library( dplyr )
+library( kit )
 
 ## fcn to provide a unique name to each unique group dyad
 dy_name <- function(group1, group2) {
@@ -17,7 +18,7 @@ dy_name <- function(group1, group2) {
 
 ### user-inputs ###
 
-SUBSET <- TRUE
+SUBSET <- FALSE
 
 dist_thresh <- 600
 
@@ -76,52 +77,63 @@ rownames( daily_df ) <- NULL
 
 daily_df <- daily_df[ ! duplicated( daily_df[ , c( 'dy_name', 'date' ) ]  ), ]
 
-daily_df$cosleep_last_night <- NA
-daily_df$cosleep_tonight <- NA
 
-for( i in 1:nrow( daily_df ) ){
-
-  # check whether the two groups sleep together on the previous night
-
-  sleep_site_1 <- unique( spec_df[ spec_df$group1 == daily_df$group1[ i ] & spec_df$date == as.Date( daily_df$date[ i ] - 1, origin = '1970-01-01' ), 'sleep_clus' ] )
-
-  sleep_site_1 <- sleep_site_1[ !is.na( sleep_site_1 ) ]
-
-  sleep_site_2 <- unique( spec_df[ spec_df$group1 == daily_df$group2[ i ] & spec_df$date == as.Date( daily_df$date[ i ] - 1, origin = '1970-01-01' ), 'sleep_clus' ] )
-
-  sleep_site_2 <- sleep_site_2[ !is.na( sleep_site_2 ) ]
-
-  if( length( sleep_site_1 ) > 1 | length( sleep_site_2 ) > 1 ) stop( 'more than one sleep site for this day' )
-
-  ## if we know where both groups slept on the previous night
-  if( length( sleep_site_1 ) == 1 & length( sleep_site_2 ) == 1  ){
-
-    # add whether they slept at the same site or not as a binary variable to the dataframe
-    daily_df$cosleep_last_night[ i ] <- as.numeric( sleep_site_1 == sleep_site_2 )
-
-  }
+# this is equivalent to
+# unique(spec_df[, c('date', 'group1', 'sleep_clus')])
+# but *much* faster
+# duplicate is from the kit package
+sleep_site_df <- spec_df[
+  !fduplicated(spec_df[, c('date', 'group1', 'sleep_clus')]),
+  c('date', 'group1', 'sleep_clus')
+]
+sleep_site_df <- sleep_site_df[! is.na(sleep_site_df$sleep_clus),]
 
 
-  # same for current night
+setdiff(rownames(sleep_site_df), rownames(unique(sleep_site_df[, c('date', 'group1')])))
 
-  sleep_site_1 <- unique( spec_df[ spec_df$group1 == daily_df$group1[ i ] & spec_df$date == as.Date( daily_df$date[ i ], origin = '1970-01-01' ), 'sleep_clus' ] )
+# Check for more than one site in the same day.
+# If multiple sites, the second expression will have fewer rows than the first.
+stopifnot(nrow(sleep_site_df) == nrow(unique(sleep_site_df[, c('date', 'group1')])))
 
-  sleep_site_1 <- sleep_site_1[ !is.na( sleep_site_1 ) ]
 
-  sleep_site_2 <- unique( spec_df[ spec_df$group1 == daily_df$group2[ i ] & spec_df$date == as.Date( daily_df$date[ i ], origin = '1970-01-01' ), 'sleep_clus' ] )
 
-  sleep_site_2 <- sleep_site_2[ !is.na( sleep_site_2 ) ]
+# in a working copy of daily df, create columns for curr day and next day
+# that can be used to merge with sleep site df
+daily_df_working <- daily_df
+daily_df_working$row_idx <- 1:nrow(daily_df_working)
+daily_df_working$prev  <- as.Date(daily_df$date - 1, origin = '1970-01-01')
+daily_df_working$curr  <- as.Date(daily_df$date, origin = '1970-01-01')
+daily_df_working$sleep_clus <- NA
 
-  if( length( sleep_site_1 ) > 1 | length( sleep_site_2 ) > 1 ) stop( 'more than one sleep site for this day' )
+# merge ciiiiitttyyyyyy
+# each of the four iterations merges together the working daily df with
+# the sleep site df to add a sleep site column
+# only things changing with each one are
+#   1) which columns of daily df are used for the merge
+#   2) the suffix of the sleep_clust column
+# the result is 4 sleep clust cols added to daily_df_working
 
-  ## if we know where both groups slept on the current night
-  if( length( sleep_site_1 ) == 1 & length( sleep_site_2 ) == 1  ){
-
-    # add whether they slept at the same site or not as a binary variable to the dataframe
-    daily_df$cosleep_tonight[ i ] <- as.numeric( sleep_site_1 == sleep_site_2 )
+for(group in c('group1', 'group2')){
+  for(curr_or_prev in c('curr', 'prev')){
+    daily_df_working <- merge(
+      daily_df_working,
+      sleep_site_df,
+      by.x = c(group, curr_or_prev),
+      by.y = c('group1', 'date'),
+      sort = FALSE,
+      all.x = TRUE,
+      suffixes = c('', paste('', group, curr_or_prev, sep = '_'))
+    )
 
   }
 }
+daily_df_working <- daily_df_working[order(daily_df_working$row_idx),]
+
+# compare the 4 sleep_clust cols to one another
+daily_df$cosleep_last_night = as.numeric(daily_df_working$sleep_clus_group1_prev == daily_df_working$sleep_clus_group2_prev)
+daily_df$cosleep_tonight = as.numeric(daily_df_working$sleep_clus_group1_curr == daily_df_working$sleep_clus_group2_curr)
+
+rm(daily_df_working)
 
 # NA value means missing data for one or both groups
 # 0 means no share
