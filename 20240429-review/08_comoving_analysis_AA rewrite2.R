@@ -414,4 +414,3 @@ ggplot() +
         axis.text.y = element_blank(),
         panel.border = element_blank(),
         legend.position = "none")
-
