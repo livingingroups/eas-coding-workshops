@@ -15,6 +15,8 @@ dy_name <- function(vec) {
 
 ### user-inputs ###
 
+SUBSET <- TRUE
+
 dist_thresh <- 600
 
 quant <- 0.80 ## quantile of intra-group dyadic distances to determine the maximum allowable
@@ -33,8 +35,7 @@ median_arrive_time <- "17:30:00"
 
 # bring in data
 
-# spec_df <- read.csv("bab_dyad.csv")
-spec_df <- read.csv("bab_dyad_subset.csv")
+if(SUBSET){spec_df <- read.csv("bab_dyad_subset.csv")}else{spec_df <- read.csv("bab_dyad.csv")}
 
 head( spec_df )
 
@@ -134,9 +135,8 @@ sum( daily_df$cosleep_last_night == 1, na.rm = T) #this sum hasn't changed
 
 #enc_df <- readRDS("baboons_dyadDurat_dayonly.rds") #from script 7
 #rownames(enc_df) <- NULL
-#enc_df <- read.csv("enc_df.csv")
 
-enc_df <- read.csv("enc_df_subset.csv")
+if(SUBSET){enc_df <- read.csv("enc_df_subset.csv")} else {enc_df <- read.csv("enc_df.csv")}
 
 enc_df$start_local_timestamp <- as.POSIXct(enc_df$start_local_timestamp, tz='UTC')
 enc_df$end_local_timestamp <- as.POSIXct(enc_df$end_local_timestamp, tz='UTC')
@@ -414,3 +414,4 @@ ggplot() +
         axis.text.y = element_blank(),
         panel.border = element_blank(),
         legend.position = "none")
+
