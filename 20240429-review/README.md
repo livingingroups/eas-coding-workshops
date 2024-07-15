@@ -12,3 +12,5 @@ For each of the following topics, we'll spend some time reading and running the 
    - What resource is the bottleneck in this code? (CPU? Memory? Something else?)
    - Which parts of the code should we focus on to improve efficiency of that resource?
    - What strategies could we use to make those parts run faster?
+   
+The script getting the code review was `08_comoving_analysis_AA\ rewrite2.R`, `subset.R` was used to generate a subset of the data suitable for testing, all other scripts are possible rewrites and tests for different portions generated during the workshop.
