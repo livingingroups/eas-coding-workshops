@@ -14,3 +14,5 @@ For each of the following topics, we'll spend some time reading and running the 
    - What strategies could we use to make those parts run faster?
    
 The script getting the code review was `08_comoving_analysis_AA\ rewrite2.R`, `subset.R` was used to generate a subset of the data suitable for testing, all other scripts are possible rewrites and tests for different portions generated during the workshop.
+
+There is also a branch of this repo `perf-improvement` that has some suggestions for the code.
