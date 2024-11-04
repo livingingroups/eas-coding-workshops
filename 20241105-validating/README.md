@@ -1,16 +1,23 @@
 # Agenda
 
-Last week, everyone wanted to use R so this week I only made the material in R. If there is demand to translate to python, I'm happy to do so and run a follow up workshop.
-
 -   Getting started
     -   Clone repo
-    -   Install testthat
-    -   Set your working directory to `20240326-validating`
+    -   Install tinytest
+    -   Set your working directory to `20241105-validating`
+    -   (optional but recommended) Tools\>Global Options\>Code\>Saving\>Autosave then check the box "Automatically save when editor loses focus"
 -   Using Tests to Validate Code
     -   Demo: test better_shapes.R::parse_shape_definition_line
+        -   Run with
+
+            ```         
+
+            tinytest::run_test_file('test_better_shapes.R')
+            
+            ```
+
         -   Test existing functionality
+
         -   Prepare for triangle with params: a, b, c
-        -   [Results](https://github.com/livingingroups/eas-coding-workshops/blob/validating-after-bettershapes-demo/20240326-validating/tests/test_better_shapes.R)
     -   Exercise: test better_shapes.R::calculate_shape_area
         -   Testing existing functionality with a larger variety of inputs
             -   Try to find the bug. If you see it, demonstrate it with a test.
@@ -18,10 +25,15 @@ Last week, everyone wanted to use R so this week I only made the material in R. 
 -   Applying Testing to Data Processing
     -   Show and tell: full data processing script
     -   Demo: Applying validation to a data processing script (add deployment id)
-        -   [Results](https://github.com/livingingroups/eas-coding-workshops/blob/validating-after-deploymentid-demo/20240326-validating/tests/test_add_deployment_id.R)
+        -   Run with
+
+            ```         
+
+            tinytest::run_test_file('test_add_deployment_id.R')
+            
+            ```
     -   Exercise: Applying validation to data processing script (add time lag)
 -   Final Notes
-    -   [Running testthat is easier with packaging](https://github.com/r-lib/testthat/issues/659#issuecomment-478559396)
     -   Mocks (whiteboard explanation)
         -   Helps when you
             -   are calling a function that takes a really long time even with a little data. (e.g. a model)
@@ -30,6 +42,11 @@ Last week, everyone wanted to use R so this week I only made the material in R. 
         -   Trickyness in R
             -   it's easier to put your code into package format (put your code in `R` folder and add a DESCRIPTION file) than it is to try using mocks without doing so.
             -   because the latest and greatest mocking functions just came out recently, there aren't great examples for how to use them. (I'm happy to create some once folks get to this point.)
+    -   `tinytest` vs `testthat`
+        - Both designed to work with packages, `tinytest` a bit easier to make work with scripts.
+        - `tinytest` is simpler and has no dependencies
+        - `testthat` is more full featured and integrated into RStudio UI
+        - Switching from one to the other is pretty easy.
     -   Isn't a lot of work? [Yes](https://github.com/pminasandra/bout-duration-distributions/tree/master/tests), but
         -   as an author, you have to check if your code is working anyway. This is a way to save the tests you're already doing. Also, you can speed up i iterations, because you're running it on tiny bits of data to test it.   
         -   as a code reviewer, you can get [coauthorship](https://www.biorxiv.org/content/10.1101/2024.01.20.576411v3)

@@ -44,14 +44,14 @@ parse_shape_definition_line <- function(shape_definition_line){
     shape_name = split_line[1],
     # e.g. rectangle
     shape_type = split_line[2],
-    params = params
+    params = params[1:2]
   ))
 }
 
 #' Calculate shape area
 #'
 #' @param shape_type must be one of: 'square', 'circle', 'rectangle'
-#' @param params list of paramters (see details of process function)
+#' @param params list of parameters (see details of process function)
 #'
 #' @return single numeric value representing shape area
 calculate_shape_area <- function(shape_type, params){
