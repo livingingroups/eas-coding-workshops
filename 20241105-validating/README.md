@@ -30,7 +30,9 @@
 
             tinytest::run_test_file('test_add_deployment_id.R')
             ```
-    -   Exercise: Applying validation to data processing script (add time lag)
+    -   Exercise: Add 2 more test cases
+        -   no deployment ID matches criteria -\> NA
+        -   more than one deployment id matches -\> NA
 -   Final Notes
     -   Mocks (whiteboard explanation)
         -   Helps when you

@@ -17,8 +17,10 @@
 #' returns list(
 #'   shape_name = 'redrect',
 #'   shape_type='rectangle',
+#'.  params =list (
 #'   l = 45,
 #'   w = 100
+#  )
 #' )
 parse_shape_definition_line <- function(shape_definition_line){
   split_line <- unlist(strsplit(
@@ -44,7 +46,7 @@ parse_shape_definition_line <- function(shape_definition_line){
     shape_name = split_line[1],
     # e.g. rectangle
     shape_type = split_line[2],
-    params = params[1:2]
+    params = params
   ))
 }
 
