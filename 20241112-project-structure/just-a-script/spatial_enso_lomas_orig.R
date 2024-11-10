@@ -40,6 +40,7 @@ mei <- dplyr::tibble(read.table('data/mei.csv', sep = ',', header=TRUE, stringsA
 d_mei <- mei[mei$year >= min(d_hr_gs$year) - 1,]
 d_mei <- d_mei[complete.cases(d_mei),]
 plot(mei~date , data=d_mei)
+
 #combie data frames, will do posterior across time series later
 str(d_hr_gs)
 str(d_mei)

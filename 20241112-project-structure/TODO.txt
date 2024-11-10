@@ -1,0 +1,9 @@
+X fake model so it works without dependencies
+X smash together script
+- write readme - WIP
+- break out plotting/validation part in script with functions
+- add targets part to "script with functions"
+- build versions of script
+- add script walkthrough to intro
+- toy example
+- test from a truly blank environment
