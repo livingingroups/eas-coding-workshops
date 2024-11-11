@@ -12,9 +12,9 @@ if(VISUAL_CHECKS){
 mei_data <- load_and_process_enso_data('data/mei.csv', group_data)
 # TODO: add formal validation in addition to plots checks
 if(VISUAL_CHECKS) visually_check_enso(mei_data)
-abline(v='2015-01-01', col="blue")
 
 riparian_data <- load_riparian_data("data/df_annual_riparian.csv")
+if(VISUAL_CHECKS) str(riparian_data)
 
 ## process data ----
 

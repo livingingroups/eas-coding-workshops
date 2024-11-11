@@ -49,7 +49,6 @@ load_and_process_enso_data <- function(mei_path, d_hr_gs){
 load_riparian_data <- function(path){
   drip <- read.csv(path)
   drip <- drip[drip$year < 2020,]
-  str(drip)
   drip$group_index <- as.integer(as.factor(drip$group))
   return(drip)
 }
@@ -114,7 +113,8 @@ construct_riparian_list <- function(d_mei, d_hr_gs, drip) {
   
   
   ## mei consolidate ---
-  str(d_hr_gs_2)
+  # TODO: add structure validation
+  # str(d_hr_gs_2)
   mean_df <- aggregate(mei ~ year, d_mei, mean)
   names(mean_df)[2] <- "mean_annual_mei"
   max_df <- aggregate(mei ~ year, d_mei, max)
@@ -146,8 +146,8 @@ construct_riparian_list <- function(d_mei, d_hr_gs, drip) {
   
   d_mei_hr_data_2 <- d_mei[is.element(d_mei$year , drip$year),]
   
-  str(d_mei_hr_data_2)
   # TODO: extract and/or formalize this check
+  #str(d_mei_hr_data_2)
   
   d_mei_hr_data_2 <- d_mei_hr_data_2[d_mei_hr_data_2$year < 2020,]
   drip <- merge(drip,d_hr_gs[,c(2,12,14)],by="id") 
@@ -169,7 +169,8 @@ construct_riparian_list <- function(d_mei, d_hr_gs, drip) {
     group_size_std=drip$group_size_std ,
     group_size=drip$group_size
   )
-  str(list_rip)
+  # TODO: add structure validation
+  # str(list_rip)
   return(list_rip)
 }
 
@@ -184,7 +185,8 @@ construct_main_list <- function(d_mei, d_hr_gs) {
   d_mei$year_index_overall <- d_mei$year - 1990
   
   ### mei consolidate ----
-  str(d_hr_gs_2)
+  # TODO: add structure validation
+  #str(d_hr_gs_2)
   mean_df <- aggregate(mei ~ year, d_mei, mean)
   names(mean_df)[2] <- "mean_annual_mei"
   max_df <- aggregate(mei ~ year, d_mei, max)
@@ -205,7 +207,8 @@ construct_main_list <- function(d_mei, d_hr_gs) {
   d_hr_gs_3$year_index <- as.integer(as.factor(d_hr_gs_3$year))
   d_mei_hr_data <- d_mei[is.element(d_mei$year , d_hr_gs_3$year),]
   
-  str(d_hr_gs_3)
+  # TODO add structure validation
+  #str(d_hr_gs_3)
   
   # add columns
   d_hr_gs_3$hr_area_mean <- d_hr_gs_3$area
