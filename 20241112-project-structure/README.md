@@ -29,8 +29,9 @@ A lot of this is my own workflow/opinion, with some general principles mixed in.
 
 -   **Non-code project organization** Separate folders for:
     -   inputs, in this case called `data`
-    -   code, in this case multiple folders:
-        -   `just-a-script`
+    -   code
+        -   in this case multiple folders: `01-just-a-script`, `02-script-with-functions` etc.
+        -   in general if you have a "R code" folder inside your project, you should name it `R`
     -   intermediates, in this case `saved-models`
     -   outputs, in this case `plots` . Could be broken up into separate "plots" and "results" folder, as recommended [here](#0).
 -   **Working on EAS rstudio server**
@@ -40,16 +41,107 @@ A lot of this is my own workflow/opinion, with some general principles mixed in.
 -   **Avoiding committing your data** (unless you want to). If you have your `/data` folder inside your rstudio project folder and thus inside your git repo, but you don't want to actually track changes and push to github. Then, you can add `data` (or whatever the name of your data folder is) to the `.gitignore` file.
 -   **Define paths once** Define each relevant folder (in this case, maybe just code and data folders) at the beginning of the script. Then use `file.path(...)` to put together the path (folder) and the filename like `file.path(DATA_FOLDER, 'my_data.csv')`. (`file.path('~', 'my-project', 'data', 'my-data.csv')` will result in `'~/my-project/data/my-data.csv'` on Linux/Mac and `'~\my-project\data\my-data.csv'` on Windows so it's safer than using `paste` for the same purpose.)
 
+### Non-code structure example
+
+#### Data Server + RStudio Server Workflow
+```         
+DATA SERVER
+EAS_shared/YOUR_SPECIES/working/rawdata/your-field-season/
+|- some_data.csv
+|- more_data.csv
+
+EAS_ind/YOU_USERNAME/your-analysis-results/
+|- processed_data/
+|- plots/
+|- text-ouputs/
+
+RSTUDIO SERVER
+/home/top/YOUR_USERNAME
+|- your-analysis <- root of git repo
+    |- your_code.R
+    |- another_script.R
+```   
+
+In the code
+
+```{r}
+INPUT_DIR <- '~/EAS_shared/YOUR_SPECIES/working/rawdata/your-field-season/'
+OUTPUT_DIR <- '~/EAS_ind/YOU_USERNAME/your-analysis-results/'
+source('./another_script.R')
+read.csv(file.path(INPUT_DIR, 'some_data.csv'))
+...
+write.csv(file.path(OUTPUT_DIR, 'processed_data', 'cleaned_data.csv'))
+```
+
+#### Local Workflow
+
+```
+/home/YOUR_USERNAME/
+|- YOUR_SPECIES/working/rawdata/your-field-season <- synced with filezilla
+    |- some_data.csv
+    |- more_data.csv
+|- your-analysis-results <- synced with filezilla
+    |- processed_data/
+    |- plots/
+    |- text-ouputs/
+|- your-analysis <- synced with git
+    |- your_code.R
+    |- another_script.R
+```
+
+```{r}
+# changed
+INPUT_DIR <- '~/YOUR_SPECIES/working/rawdata/your-field-season/'
+OUTPUT_DIR <- '~/your-analysis-results/'
+
+# not changed
+source('./another_script.R')
+read.csv(file.path(INPUT_DIR, 'some_data.csv'))
+...
+write.csv(file.path(OUTPUT_DIR, 'processed_data', 'cleaned_data.csv'))
+```
+
+#### How to avoid changing 2 lines of code
+
+In your .Rprofile on the rstudio server:
+```
+EAS_SHARED_PATH <- '~/EAS_shared'
+EAS_INV_PATH <- '~/EAS_ind'
+```
+
+In your .Rprofile locally:
+```
+EAS_SHARED_PATH <- '~'
+EAS_IND_PATH <- '~/..'
+# ^ (only works if your username is the same on your local machine)
+# otherwise, you'll need to slightly change your local folder structure above
+```
+
+R script:
+```{r}
+# changed
+INPUT_DIR <- file.path(EAS_SHARED_PATH, 'YOUR_SPECIES/working/rawdata/your-field-season/')
+OUTPUT_DIR <- file.path(EAS_IND_PATH, 'your-analysis-results/')
+```
+
+Once you get to the point of publishing your code beyond EAS audience,
+you will want to let the user chose what path they've put their (or your) data in.
+This will hopefully come after setting up your code into functions.
+
+
 ### 🛠️ [Code Sections](https://support.posit.co/hc/en-us/articles/200484568-Code-Folding-and-Sections-in-the-RStudio-IDE)
 
 Adding at least 4 `#` to the end of the comment makes it a section heading. The number of `#` at the beginning determines the "level". For example:
 
-
-```         
-# H1 ####
-## H2 #####
-### H3 #####
 ```
+
+# H1
+
+## H2
+
+### H3
+
+\`\`\`
 
 Results in:\
 ![](readme-images/clipboard-975315203.png)
@@ -78,28 +170,26 @@ Everything is still in one script, but the script as two parts. At the top, you 
 
 ### Tips
 
-- **Strategy to Transition** Options:
-   - Bottom up: start with small pieces of repeated code, make functions for those
-   - Top down: start by making one big function that you call at the end. 
-- **Avoiding Breakage** 
-   - You need a way to check that the final output of your script is unchanged.
-   - Having `validate` and `tinytest` checks sprinkled in will help detect problems before the end.
-- Review `list()` data structure as a way to return more than one value from a function.
-- You can use `do.call` to call a function with a per-defined list of arguments
-- **Debugging Tools** This is a good stage to start testing out [Formal Debugging Tools](https://adv-r.hadley.nz/debugging.html)
-  - `browser`
-  - `traceback` start to be useful here
-  - breakpoints
+-   **Strategy to Transition** Options:
+    -   Bottom up: start with small pieces of repeated code, make functions for those
+    -   Top down: start by making one big function that you call at the end.
+-   **Avoiding Breakage**
+    -   You need a way to check that the final output of your script is unchanged.
+    -   Having `validate` and `tinytest` checks sprinkled in will help detect problems before the end.
+-   Review `list()` data structure as a way to return more than one value from a function.
+-   You can use `do.call` to call a function with a per-defined list of arguments
+-   **Debugging Tools** This is a good stage to start testing out [Formal Debugging Tools](https://adv-r.hadley.nz/debugging.html)
+    -   `browser`
+    -   `traceback` start to be useful here
+    -   breakpoints
 
 ### Debugging Demo
-
 
 ## Three File Workflow
 
 ### Problems it solves
 
 When I'm writing my code, I do a lot of running and rerunning with a small part. It's hard to keep track of which code is left over from this process and which is part of my "real" script.
-
 
 ### :tools: Rmd
 
@@ -110,4 +200,3 @@ When I'm writing my code, I do a lot of running and rerunning with a small part.
 ### Problems it solves
 
 My file with functions is getting really long. I want to break it into separate scripts, but then, I'd have to add "source()" everywhere.
-

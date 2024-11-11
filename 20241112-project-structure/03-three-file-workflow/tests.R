@@ -110,6 +110,6 @@ expected_area_list_log$group_size <- c(3.2188758248682, 2.77258872223978, 2.7725
 
 # Test data processing functions ----
 
-expect_equal(construct_riparian_list(sample_mei_data, sample_group_data, sample_riparian_data), expected_riparian_list)
 expect_equal(construct_main_list(sample_mei_data, sample_group_data), expected_area_list)
 expect_equal(calculate_area_log(expected_area_list), expected_area_list_log)
+expect_equal(construct_riparian_list(sample_mei_data, sample_group_data, sample_riparian_data), expected_riparian_list)
