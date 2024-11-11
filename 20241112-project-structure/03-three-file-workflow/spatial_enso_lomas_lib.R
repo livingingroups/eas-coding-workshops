@@ -30,16 +30,33 @@ stan <- fetch_saved_model
 ## 1.2 Loading and initial processing functions----
 
 load_group_homerange_data <- function(path){
-  ## color pals for plots ----
-  elcol_pal <- rev(RColorBrewer::brewer.pal(3 , "RdYlBu"))
-  group_pal <- RColorBrewer::brewer.pal(11 , "Spectral")
-  
   ## group size ----
   d_hr_gs <- read.csv(path)
   
-  ### validate group size structure
-  
-  # str(d_hr_gs)
+  d_hr_gs$group_index <- as.integer(as.factor(d_hr_gs$group))
+  d_hr_gs$group_size_std <- rethinking::standardize(d_hr_gs$group_size)
+  return(d_hr_gs)
+}
+
+load_and_process_enso_data <- function(mei_path, d_hr_gs){
+  mei <- dplyr::tibble(read.table(mei_path, sep = ',', header=TRUE, stringsAsFactors = TRUE))
+  d_mei <- mei[mei$year >= min(d_hr_gs$year) - 1,]
+  d_mei <- d_mei[complete.cases(d_mei),]
+  d_mei$phase_index <- as.integer(d_mei$phase)
+  return(d_mei)
+}
+
+load_riparian_data <- function(path){
+  drip <- read.csv(path)
+  drip <- drip[drip$year < 2020,]
+  str(drip)
+  drip$group_index <- as.integer(as.factor(drip$group))
+  return(drip)
+}
+
+## 1.3 validation functions----
+
+validate_group_homerange_data <- function(d_hr_gs){
   d_hr_gs_check <- validate::confront(
     d_hr_gs,
     validate::validator(
@@ -58,38 +75,38 @@ load_group_homerange_data <- function(path){
     ),
     raise = 'all'
   ) 
-  
   if(any(summary(d_hr_gs_check)[, c("fails", "error")])) warning("Problem with group size data")
-  
-  
-  d_hr_gs$group_index <- as.integer(as.factor(d_hr_gs$group))
-  d_hr_gs$group_size_std <- rethinking::standardize(d_hr_gs$group_size)
-  return(d_hr_gs)
+  return(d_hr_gs_check)
 }
 
-load_and_process_enso_data <- function(mei_path, d_hr_gs){
-  mei <- dplyr::tibble(read.table(mei_path, sep = ',', header=TRUE, stringsAsFactors = TRUE))
-  d_mei <- mei[mei$year >= min(d_hr_gs$year) - 1,]
-  d_mei <- d_mei[complete.cases(d_mei),]
-  ### ADD HERE validations of mei -----
-  plot(mei~date , data=d_mei)
-  return(d_mei)
-}
-
-## 1.3 Major processing functions----
-
-construct_riparian_list <- function(d_mei, d_hr_gs) {
-  ## combie data frames, will do posterior across time series later ---
-  str(d_hr_gs)
-  str(d_mei)
+visually_check_enso <- function(d_mei){
   elcol_pal <- rev(RColorBrewer::brewer.pal(3 , "RdYlBu"))
   group_pal <- RColorBrewer::brewer.pal(11 , "Spectral")
   
-  d_mei$phase_index <- as.integer(d_mei$phase)
-  plot(d_mei$mei~d_mei$date , col=elcol_pal[d_mei$phase_index] , pch="x" , cex=0.5)
+  print(str(mei_data))
+  plot(mei~date, data=mei_data)
+  plot(d_mei$mei~d_mei$date , col=elcol_pal[d_mei$phase_index] , pch=19 , cex=0. , xlab="year" , ylab="MEI index")
   mei_spl <- with(d_mei, smooth.spline(date, mei))
   lines(mei_spl, col = "grey3")
   abline(v=d_mei$date[1:33] , col="grey")
+}
+
+plot_rate_shapes <- function(d_hr_gs_3){
+  # TODO: Reintegrate this code. Belongs basically inside construct_main_list
+  for(i in 10:20){
+    plot(density(rgamma(10000,shape=d_hr_gs_3$shape[[i]], rate=d_hr_gs_3$rate[[i]] ) , xlim=c(0,10)) , main="blah" )
+    lines(density(rgamma(10000,shape=d_hr_gs_3$shape[[i]], scale=d_hr_gs_3$scale[[i]] ) ) , lty=2 )
+    points( d_hr_gs_3$area[i] , 0.1 )
+    segments(  x0=d_hr_gs_3$low[i], y0=0.1 , x1=d_hr_gs_3$high[i] ,y1= 0.1 , col="blue")
+  }
+}
+
+
+## 1.4 Major processing functions----
+
+construct_riparian_list <- function(d_mei, d_hr_gs, drip) {
+  ## combie data frames, will do posterior across time series later ---
+  
   d_hr_gs_2 <- merge(d_hr_gs, d_mei , by="year")
   d_hr_gs_2 <- d_hr_gs_2[d_hr_gs_2$month=="JJ",]
   min(d_mei$year)
@@ -109,14 +126,6 @@ construct_riparian_list <- function(d_mei, d_hr_gs) {
   
   ## compile bigger data frames ----
   
-  d_hr_gs_3 <- merge(d_hr_gs, mean_df , by="year")
-  d_hr_gs_3 <- merge(d_hr_gs_3, min_df , by="year")
-  d_hr_gs_3 <- merge(d_hr_gs_3, max_df , by="year")
-  d_hr_gs_3 <- merge(d_hr_gs_3, sd_df , by="year")
-  #d_hr_gs_3 <- merge(d_hr_gs_3, d_akde , by="id")
-  
-  d_hr_gs_3$year_index <- as.integer(as.factor(d_hr_gs_3$year))
-  
   d_mei <- d_mei %>%
     dplyr::mutate(date = as.Date(date, "%Y-%m-%d")) %>%
     dplyr::arrange(date)
@@ -133,35 +142,13 @@ construct_riparian_list <- function(d_mei, d_hr_gs) {
   # add wet and dry season to mei, 1st 4 months of year is dry
   d_mei$season <- ifelse( lubridate::month(d_mei$date) < 5 , "dry" , "wet" )
   d_mei$season_index <- as.integer(as.factor(d_mei$season))
-  ### for same year
-  d_mei_hr_data <- d_mei[is.element(d_mei$year , d_hr_gs_3$year),]
-  
-  
-  list_area <- list(
-    hr_area_mean=d_hr_gs_3$hr_area_mean ,
-    hr_area_high=d_hr_gs_3$hr_area_high ,
-    hr_area_low=d_hr_gs_3$hr_area_low ,
-    hr_area_sd=d_hr_gs_3$hr_area_sd ,
-    mean_annual_mei=d_hr_gs_3$mean_annual_mei ,
-    min_annual_mei=d_hr_gs_3$min_annual_mei ,
-    max_annual_mei=d_hr_gs_3$max_annual_mei ,
-    sd_annual_mei=d_hr_gs_3$sd_annual_mei ,
-    group_index=d_hr_gs_3$group_index ,
-    group_size=d_hr_gs_3$group_size_std ,
-    year_index=d_hr_gs_3$year_index
-  )
-  
-  drip <- read.csv("data/df_annual_riparian.csv")
-  drip <- drip[drip$year < 2020,]
-  str(drip)
-  drip$group_index <- as.integer(as.factor(drip$group))
-  
-  d_mei_hr_data$year_index_mei <- as.integer(as.factor(d_mei_hr_data$year))
   drip$year_index <- as.integer(as.factor(drip$year))
   
   d_mei_hr_data_2 <- d_mei[is.element(d_mei$year , drip$year),]
   
   str(d_mei_hr_data_2)
+  # TODO: extract and/or formalize this check
+  
   d_mei_hr_data_2 <- d_mei_hr_data_2[d_mei_hr_data_2$year < 2020,]
   drip <- merge(drip,d_hr_gs[,c(2,12,14)],by="id") 
   
@@ -190,11 +177,7 @@ construct_main_list <- function(d_mei, d_hr_gs) {
   elcol_pal <- rev(RColorBrewer::brewer.pal(3 , "RdYlBu"))
   group_pal <- RColorBrewer::brewer.pal(11 , "Spectral")
   
-  d_mei$phase_index <- as.integer(d_mei$phase)
-  plot(d_mei$mei~d_mei$date , col=elcol_pal[d_mei$phase_index] , pch=19 , cex=0. , xlab="year" , ylab="MEI index")
-  mei_spl <- with(d_mei, smooth.spline(date, mei))
-  lines(mei_spl, col = "grey3")
-  abline(v=d_mei$date[1:33] , col="grey")
+  
   d_hr_gs_2 <- merge(d_hr_gs, d_mei , by="year")
   d_hr_gs_2 <- d_hr_gs_2[d_hr_gs_2$month=="JJ",]
   min(d_mei$year)
@@ -283,19 +266,7 @@ calculate_area_log <- function(list_area_2){
   return(list_area_2_log)
 }
 
-## 1.3 Validation Functions
-
-### visually inspect rate shape ----
-plot_rate_shapes <- function(d_hr_gs_3){
-  for(i in 10:20){
-    plot(density(rgamma(10000,shape=d_hr_gs_3$shape[[i]], rate=d_hr_gs_3$rate[[i]] ) , xlim=c(0,10)) , main="blah" )
-    lines(density(rgamma(10000,shape=d_hr_gs_3$shape[[i]], scale=d_hr_gs_3$scale[[i]] ) ) , lty=2 )
-    points( d_hr_gs_3$area[i] , 0.1 )
-    segments(  x0=d_hr_gs_3$low[i], y0=0.1 , x1=d_hr_gs_3$high[i] ,y1= 0.1 , col="blue")
-  }
-}
-
-## 1.4 Modeling Functions ----
+## 1.5 Modeling Functions ----
 
 run_a_model <- function(file, data, seed) {
   stan(
@@ -377,8 +348,6 @@ run_models <- function(list_area_2, list_area_2_log, list_rip) {
 examine_models <- function(fits){
   # TODO: probably want to print and/or return all this, not just run it
   
-  ## examine models ----
-  
   rethinking::precis(fits[['test']] , depth=2)
   
   rethinking::precis(fits[['mei_hr']], depth=2)
@@ -416,23 +385,3 @@ examine_models <- function(fits){
   rethinking::precis(fits[['mei_rip']], depth=3 , pars="v")
   rethinking::precis(fits[['mei_rip']], depth=3 , pars="Rho_g")
 }
-
-# 2. Runner ----
-
-## load data ----
-
-group_data <- load_group_homerange_data(path = "data/df_slpHRarea_group_size.csv")
-# add data validation function
-
-mei_data <- load_and_process_enso_data('data/mei.csv', group_data)
-# add data validation function
-
-## process data ----
-
-riparian_list <- construct_riparian_list(mei_data, group_data)
-area_list <- construct_main_list(mei_data, group_data)
-area_list_log <- calculate_area_log(area_list)
-
-## run model ----
-fits <- run_models(area_list, area_list_log, riparian_list)
-examine_models(fits)

@@ -8,7 +8,7 @@
 
     ```         
     # Packages needed for workshop
-    install.packages('devtools', 'validate', 'tinytest')
+    install.packages('devtools', 'validate', 'targets', 'tinytest')
 
     # Packages needed for example (only needed if you want to run the realistic example)
     install.packages(c("coda","mvtnorm","devtools","loo","dagitty", "dplyr", "RColorBrewer","lubridate"))
@@ -74,6 +74,8 @@ My script is getting long enough that I have lots and lots of objects in my work
 
 Everything is still in one script, but the script as two parts. At the top, you define all the functions you use (some might call each other). At the bottom, the "runner" section of the script calls a few of these functions to kick off the process.
 
+**OK, but how does this even help?** Before if you wanted to run only part of your script, either you highlight that part and try to be careful to highight the same portion each time, or you comment out big sections. Now, when you're only working on one section, you can just comment out the other parts in the "runner" section. Then when you run the whole script, the functions for those sections will still be defined, but not run. Likewise with plotting or anything you might want to run or not run.
+
 ### Tips
 
 - **Strategy to Transition** Options:
@@ -89,13 +91,8 @@ Everything is still in one script, but the script as two parts. At the top, you 
   - `traceback` start to be useful here
   - breakpoints
 
-### :tools: Targets
+### Debugging Demo
 
-TODO
-
-### :tools: Browser
-
-TODO
 
 ## Three File Workflow
 
@@ -103,7 +100,10 @@ TODO
 
 When I'm writing my code, I do a lot of running and rerunning with a small part. It's hard to keep track of which code is left over from this process and which is part of my "real" script.
 
+
 ### :tools: Rmd
+
+### :tools: targets
 
 ## Package
 
@@ -111,4 +111,3 @@ When I'm writing my code, I do a lot of running and rerunning with a small part.
 
 My file with functions is getting really long. I want to break it into separate scripts, but then, I'd have to add "source()" everywhere.
 
-### How it
