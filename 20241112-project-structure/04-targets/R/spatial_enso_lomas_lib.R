@@ -27,6 +27,13 @@ fetch_saved_model <- function(...){
 }
 stan <- fetch_saved_model
 
+save_plot <- function(filename, ...){
+  png(filename = filename)
+  plot(...)
+  dev.off()
+  filename
+}
+
 ## 1.2 Loading and initial processing functions----
 
 load_group_homerange_data <- function(path){
@@ -49,7 +56,6 @@ load_and_process_enso_data <- function(mei_path, d_hr_gs){
 load_riparian_data <- function(path){
   drip <- read.csv(path)
   drip <- drip[drip$year < 2020,]
-  str(drip)
   drip$group_index <- as.integer(as.factor(drip$group))
   return(drip)
 }
@@ -82,17 +88,23 @@ validate_group_homerange_data <- function(d_hr_gs){
 visually_check_enso <- function(d_mei){
   elcol_pal <- rev(RColorBrewer::brewer.pal(3 , "RdYlBu"))
   group_pal <- RColorBrewer::brewer.pal(11 , "Spectral")
+  filenames <- c('plots/mei_check.png', 'plots/mei_check2.png')
   
-  print(str(d_mei))
-  plot(mei~date, data=d_mei)
+  save_plot(filenames[1], mei~date, data=d_mei)
+  
+  png(filename = filenames[2])
   plot(d_mei$mei~d_mei$date , col=elcol_pal[d_mei$phase_index] , pch=19 , cex=0. , xlab="year" , ylab="MEI index")
   mei_spl <- with(d_mei, smooth.spline(date, mei))
   lines(mei_spl, col = "grey3")
   abline(v=d_mei$date[1:33] , col="grey")
+  dev.off()
+  
+  return(filenames)
 }
 
 plot_rate_shapes <- function(d_hr_gs_3){
   # TODO: Reintegrate this code. Belongs basically inside construct_main_list
+  # TODO: make this write to file instead of just opening the plot
   for(i in 10:20){
     plot(density(rgamma(10000,shape=d_hr_gs_3$shape[[i]], rate=d_hr_gs_3$rate[[i]] ) , xlim=c(0,10)) , main="blah" )
     lines(density(rgamma(10000,shape=d_hr_gs_3$shape[[i]], scale=d_hr_gs_3$scale[[i]] ) ) , lty=2 )
@@ -114,7 +126,8 @@ construct_riparian_list <- function(d_mei, d_hr_gs, drip) {
   
   
   ## mei consolidate ---
-  str(d_hr_gs_2)
+  # TODO: add structure validation
+  # str(d_hr_gs_2)
   mean_df <- aggregate(mei ~ year, d_mei, mean)
   names(mean_df)[2] <- "mean_annual_mei"
   max_df <- aggregate(mei ~ year, d_mei, max)
@@ -146,8 +159,8 @@ construct_riparian_list <- function(d_mei, d_hr_gs, drip) {
   
   d_mei_hr_data_2 <- d_mei[is.element(d_mei$year , drip$year),]
   
-  str(d_mei_hr_data_2)
   # TODO: extract and/or formalize this check
+  #str(d_mei_hr_data_2)
   
   d_mei_hr_data_2 <- d_mei_hr_data_2[d_mei_hr_data_2$year < 2020,]
   drip <- merge(drip,d_hr_gs[,c(2,12,14)],by="id") 
@@ -169,7 +182,8 @@ construct_riparian_list <- function(d_mei, d_hr_gs, drip) {
     group_size_std=drip$group_size_std ,
     group_size=drip$group_size
   )
-  str(list_rip)
+  # TODO: add structure validation
+  # str(list_rip)
   return(list_rip)
 }
 
@@ -184,7 +198,8 @@ construct_main_list <- function(d_mei, d_hr_gs) {
   d_mei$year_index_overall <- d_mei$year - 1990
   
   ### mei consolidate ----
-  str(d_hr_gs_2)
+  # TODO: add structure validation
+  #str(d_hr_gs_2)
   mean_df <- aggregate(mei ~ year, d_mei, mean)
   names(mean_df)[2] <- "mean_annual_mei"
   max_df <- aggregate(mei ~ year, d_mei, max)
@@ -205,7 +220,8 @@ construct_main_list <- function(d_mei, d_hr_gs) {
   d_hr_gs_3$year_index <- as.integer(as.factor(d_hr_gs_3$year))
   d_mei_hr_data <- d_mei[is.element(d_mei$year , d_hr_gs_3$year),]
   
-  str(d_hr_gs_3)
+  # TODO add structure validation
+  #str(d_hr_gs_3)
   
   # add columns
   d_hr_gs_3$hr_area_mean <- d_hr_gs_3$area
@@ -284,6 +300,9 @@ run_a_model <- function(file, data, seed) {
 }
 
 run_models <- function(list_area_2, list_area_2_log, list_rip) {
+  elcol_pal <- rev(RColorBrewer::brewer.pal(3 , "RdYlBu"))
+  group_pal <- RColorBrewer::brewer.pal(11 , "Spectral")
+  
   ## run models ---
   
   rethinking::set_ulam_cmdstan(TRUE)
@@ -382,32 +401,3 @@ examine_models <- function(fits){
   rethinking::precis(fits[['mei_rip']], depth=3 , pars="v")
   rethinking::precis(fits[['mei_rip']], depth=3 , pars="Rho_g")
 }
-
-# 2. Runner ----
-
-## load and validate data ----
-
-VISUAL_CHECKS <- TRUE
-
-group_data <- load_group_homerange_data(path = "data/df_slpHRarea_group_size.csv")
-group_validation <- validate_group_homerange_data(group_data)
-if(VISUAL_CHECKS){
-  plot(group_validation)
-  print(str(group_data))
-}
-
-mei_data <- load_and_process_enso_data('data/mei.csv', group_data)
-# TODO: add formal validation in addition to plots checks
-if(VISUAL_CHECKS) visually_check_enso(mei_data)
-
-riparian_data <- load_riparian_data("data/df_annual_riparian.csv")
-
-## process data ----
-
-riparian_list <- construct_riparian_list(mei_data, group_data, riparian_data)
-area_list <- construct_main_list(mei_data, group_data)
-area_list_log <- calculate_area_log(area_list)
-
-## run model ----
-fits <- run_models(area_list, area_list_log, riparian_list)
-examine_models(fits)

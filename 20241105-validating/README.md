@@ -12,7 +12,6 @@
             ```         
 
             tinytest::run_test_file('test_better_shapes.R')
-            
             ```
 
         -   Test existing functionality
@@ -30,7 +29,6 @@
             ```         
 
             tinytest::run_test_file('test_add_deployment_id.R')
-            
             ```
     -   Exercise: Applying validation to data processing script (add time lag)
 -   Final Notes
@@ -43,10 +41,10 @@
             -   it's easier to put your code into package format (put your code in `R` folder and add a DESCRIPTION file) than it is to try using mocks without doing so.
             -   because the latest and greatest mocking functions just came out recently, there aren't great examples for how to use them. (I'm happy to create some once folks get to this point.)
     -   `tinytest` vs `testthat`
-        - Both designed to work with packages, `tinytest` a bit easier to make work with scripts.
-        - `tinytest` is simpler and has no dependencies
-        - `testthat` is more full featured and integrated into RStudio UI
-        - Switching from one to the other is pretty easy.
+        -   Both designed to work with packages, `tinytest` a bit easier to make work with scripts.
+        -   `tinytest` is simpler and has no dependencies
+        -   `testthat` is more full featured and integrated into RStudio UI
+        -   Switching from one to the other is pretty easy.
     -   Isn't a lot of work? [Yes](https://github.com/pminasandra/bout-duration-distributions/tree/master/tests), but
         -   as an author, you have to check if your code is working anyway. This is a way to save the tests you're already doing. Also, you can speed up i iterations, because you're running it on tiny bits of data to test it.   
         -   as a code reviewer, you can get [coauthorship](https://www.biorxiv.org/content/10.1101/2024.01.20.576411v3)

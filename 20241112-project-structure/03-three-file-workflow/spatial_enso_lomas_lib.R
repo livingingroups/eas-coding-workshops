@@ -82,8 +82,8 @@ visually_check_enso <- function(d_mei){
   elcol_pal <- rev(RColorBrewer::brewer.pal(3 , "RdYlBu"))
   group_pal <- RColorBrewer::brewer.pal(11 , "Spectral")
   
-  print(str(mei_data))
-  plot(mei~date, data=mei_data)
+  print(str(d_mei))
+  plot(mei~date, data=d_mei)
   plot(d_mei$mei~d_mei$date , col=elcol_pal[d_mei$phase_index] , pch=19 , cex=0. , xlab="year" , ylab="MEI index")
   mei_spl <- with(d_mei, smooth.spline(date, mei))
   lines(mei_spl, col = "grey3")

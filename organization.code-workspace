@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../long_spatial_data_enso_lomas"
+		},
+		{
+			"path": "../rstan"
+		}
+	],
+	"settings": {}
+}
