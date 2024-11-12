@@ -7,3 +7,4 @@ X smash together script
 - add script walkthrough to intro
 - toy example
 - test from a truly blank environment
+- RMD example
