@@ -18,7 +18,7 @@ list(
   
   ## load and validate data ----
   tar_target(group_data, load_group_homerange_data(path = "data/df_slpHRarea_group_size.csv")),
-  tar_target(group_visual_validation, if(VISUAL_CHECKS) save_plot('plots/group_validation.png', group_validation), format='file'),
+  tar_target(group_visual_validation, if(VISUAL_CHECKS) save_plot('plots/groups_validation.png', group_validation), format='file'),
   tar_target(group_output_validation, if(VISUAL_CHECKS) str(group_data)),
   tar_target(group_validation, validate_group_homerange_data(group_data)),
   

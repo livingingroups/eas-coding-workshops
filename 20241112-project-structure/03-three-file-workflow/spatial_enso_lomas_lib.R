@@ -136,7 +136,7 @@ construct_riparian_list <- function(d_mei, d_hr_gs, drip) {
   ## make mei datasets ----
   
   ### compile bigger data frames ----
-  pasta <- min(which(d_mei$year==1991))
+  pasta <- min(which(d_mei$year==min(d_hr_gs_2$year)))
   d_mei[pasta:(pasta+11),]
   
   # add wet and dry season to mei, 1st 4 months of year is dry

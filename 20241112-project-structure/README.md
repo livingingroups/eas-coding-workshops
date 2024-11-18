@@ -8,7 +8,7 @@
 
     ```         
     # Packages needed to use these methodes in your project
-    install.packages('devtools', 'checkmate', 'validate', 'targets', 'tinytest', 'pkgKitten')
+    install.packages(c('devtools', 'validate', 'targets', 'tinytest', 'pkgKitten'))
 
     # Packages needed for example script only
     install.packages(c("coda","mvtnorm","loo","dagitty", "dplyr", "RColorBrewer","lubridate"))
@@ -179,7 +179,7 @@ RSTUDIO SERVER
     |- .gitignore
     |- your_code.R
     |- another_script.R
-    |- data/ -> /mnt/EAS_shared/YOUR_SPECIES/working/rawdata/your-field-season/
+    |- / -data> /mnt/EAS_shared/YOUR_SPECIES/working/rawdata/your-field-season/
             ^ This is a symlink. How to create it is not covered in this tutorial, CLI is easiest.
 YOUR WORKSTATION
 /home/YOUR_USERNAME/
