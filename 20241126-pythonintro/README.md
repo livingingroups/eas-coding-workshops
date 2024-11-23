@@ -4,7 +4,11 @@
 
 Priorities: Get intermediate R users comfortable writing and running python code.
 
-Not completely covered: - Everything you need to do a project in python. (Outline of getting from here to there provided at the end.) - Setting up your working environment to optimize for python.
+Not completely covered:
+
+-   Everything you need to do a project in python. (Outline of getting from here to there provided at the end.)
+
+-   Setting up your working environment to optimize for python.
 
 ## Setup
 
@@ -93,13 +97,11 @@ You can also manually run
 
     -   Tuples, Dictionaries Sets
 
-    -   🧑‍🏫 R lists vs Python list/dictionary
-
-    -   🧑‍🏫 List comprehension
+    -   🧑‍🏫 R lists vs Python list/dictionary, list comprehension
 
 -   Working with modules
 
-# Getting from here to your first project
+# Getting from Here to your First Project
 
 -   Complete tutorial sections on File I/O and Working with Modules
 
