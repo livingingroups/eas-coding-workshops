@@ -1,0 +1,294 @@
+---
+title: "Getting Cozy with Python"
+output: html_document
+date: "2024-11-23"
+---
+
+# Part I: Variables
+
+## Same or similar to R
+
+`=` for assignment
+
+```{R}
+message = 'Hello World'
+print(message)
+```
+
+```{python}
+message = 'Hello World'
+print(message)
+```
+
+Similar data types
+
+| R Data Type | R Example       | Python Data Type | Python Example  |
+|-------------|-----------------|------------------|-----------------|
+| Integer     | `5L`            | Integer          | `5`             |
+| Numeric     | `3.14`          | Float            | `3.14`          |
+| Logical     | `TRUE`          | Boolean          | `True`          |
+| Character   | `'Warm Drinks'` | String           | `'Warm Drinks'` |
+
+```{R}
+str(5L)
+str(3.14)
+str(TRUE)
+str('Yum')
+```
+
+```{python}
+type(5)
+type(3.5)
+type(True)
+type('Yum')
+```
+
+Equality, inequality, math mostly works the same.
+
+```{R}
+'Coffee' == 'Coffee'
+'Tea' == 'Coffee'
+'Tea' != 'Coffee'
+1+1
+2*2
+1 < 1
+```
+
+```{python}
+'Coffee' == 'Coffee'
+'Tea' == 'Coffee'
+'Tea' != 'Coffee'
+1+1
+2*2
+1 < 1
+```
+
+## Differences
+
+### No \<- for assignment
+
+```{python}
+x <- 'Spicy'
+```
+
+⚠️ Achtung: Sometimes `<-` will be "valid" but treated as less than minus.
+
+```{R}
+small = 8
+small <- 10 # R interprets assignment
+small < -10  # R interprets comparison
+print(small)
+```
+
+```{python}
+small = 8
+small <- 10 # python interprets comparison
+small < -10 # python interprets comparison
+print(small)
+```
+
+Logical Terms
+
+True and false have different capitalization in R and python.
+
+```{R}
+# R
+TRUE
+FALSE
+```
+
+```{python}
+# python
+True
+False
+```
+
+Python uses `and` instead of `&`/`&&` and `or` instead of `|`/`||`. Isn't that cute?
+
+```{R}
+1+1 == 2 & 2+2 == 5
+1+1 == 2 | 2+2 == 5
+```
+
+```{python}
+1+1 == 2 and 2+2 == 5
+1+1 == 2 or 2+2 == 5
+```
+
+⚠️ Achtung: `&` and `|` are valid operators in python, but they do something different. See: BitwiseOperators
+
+```{python}
+
+7 & 12
+
+```
+
+## Math on Strings
+
+```{python}
+'A Kitten' + ' a glass of warm milk.'
+'kitten ' * 6
+```
+
+## Indexing
+
+Another fun thing is that you can select substrings by indexing similar to how you would vectors in R.
+
+```{python}
+'A good book'[2:6]
+```
+
+A bit more combersome in R:
+
+```{R}
+substr('A good book', 3, 6)
+```
+
+A lot of string manipulation in python is more straight forward than string manipulation in R.
+
+⚠️ Achtung: Zero indexing
+
+R uses 1-based indexing so the first item in a vector/list/string/etc. is #1. Python uses 0-based indexing so the first item is #0 and the second one is #1. When specifying a range in R, the final number specified is the index of the last item you want to select. In python, you specify the first index that you *don't* select.
+
+```{R}
+alpha <- letters
+alpha[1:3]
+```
+
+```{python}
+alpha = 'abcdefghijklmnopqrstuvwxyz'
+alpha[1:3]
+alpha[0:3]
+```
+
+This might seem confusing, but one nice outcome is that the relationship between index and vector length is a bit more intuitive.
+
+```{R}
+start <- 4
+desired_length <- 10
+letters[start:(start + desired_length - 1)]
+length(letters[start:(start + desired_length - 1)])
+```
+
+```{python}
+letters = 'abcdefghijklmnopqrstuvwxyz'
+start = 4
+desired_length = 10
+letters[start:start + desired_length]
+len(letters[start:start + desired_length])
+```
+
+# Part II: Common Objects
+
+## Lists
+
+A python list is very similar to an R list. It can hold data of varying sizes and data types and you can put lists inside other lists.
+
+```{R}
+basket_of_pets = list(5, 'mama cat', list('kitten', 'another kitten'))
+print(basket_of_pets)
+```
+
+```{python}
+basket_of_pets = [5, 'mama cat', ['kitten', 'another kitten']]
+print(basket_of_pets)
+```
+
+One difference is that elements of a python list are *not* named.
+
+```{python}
+# This doesn't work
+basket_of_pets = [how_many = 5, 'mama cat', ['kitten', 'another kitten']] 
+
+```
+
+Another difference is selecting elements.
+
+```{R}
+cat('\n\nSublist with multiple element (looks the similar)\n')
+basket_of_pets[2:3]
+
+cat('\n\nSelect an element\n')
+basket_of_pets[[1]]
+str(basket_of_pets[[1]])
+
+cat('\n\nSublist with one element\n')
+basket_of_pets[1]
+str(basket_of_pets[1])
+```
+
+Python lists don't the `[[` syntax.
+
+```{python}
+print('\n\nSublist with multiple element (looks the similar)\n')
+basket_of_pets[1:3]
+
+print('\n\nSelect an element\n')
+basket_of_pets[0]
+type(basket_of_pets[0])
+
+print('\n\nSublist with one element\n')
+[basket_of_pets[0]] # here we just create a new list putting the element in it
+type([basket_of_pets[0]])
+
+```
+
+## Dictionaries
+
+Dictionaries are even more like R lists in that they have named elements.
+
+```{R}
+litter = list(
+  'Felix' = 'the responsible one',
+  'Button' = 'the friendly one',
+  'Snowball' = 'the quiet one',
+  'Pancake' = 'the goofball'
+)
+```
+
+```{python}
+litter = {
+  'Felix': 'the responsible one',
+  'Button': 'the friendly one',
+  'Snowball': 'the quiet one',
+  'Pancake': 'the goofball'
+}
+```
+
+However, in this case, the names or `keys` **are** the index. Selecting the first `n` elements is possible, not simple. This is for situations where you want to select things by name, not by number. Of course you can get just the keys or just the values.
+
+```{R}
+litter[['Snowball']]
+```
+
+```{python}
+litter['Snowball']
+```
+
+Mini Exercise: Write a for loop that introduces each member of this kitten family. (You can chose the exact wording of the introduction).
+
+## List comprehension...the most fun.
+
+```{python}
+[flavor + ' Tea' for flavor in ['Green', 'Black', 'Lemon']]
+```
+
+```{python}
+litter_pancake_version = {
+  'fELiX': 'the rESPoNsible one',
+  'buTtoN': 'tHe frIendly oNe',
+  'SnoWbaLl': 'the quIet One',
+  'PAncaKe': 'THE BEST CAT'
+}
+
+litter_felix_version = {
+  kitten_name[0].upper() + kitten_name[1:].lower(): kitten_personality.lower()
+  for kitten_name, kitten_personality in litter_pancake_version.items()
+}
+
+litter_felix_version['Pancake'] = 'the mischief maker'
+
+print(litter_felix_version)
+
+```
+
