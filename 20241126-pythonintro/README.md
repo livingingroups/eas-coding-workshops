@@ -61,6 +61,8 @@ You can also manually run
 
 # CAC Workshop Materials
 
+<https://cvw.cac.cornell.edu/python-intro/data-operations/index>
+
 -   *skip* Overview. (Replaced with Setup/Getting Started above)
 
 -   Data and Operations
