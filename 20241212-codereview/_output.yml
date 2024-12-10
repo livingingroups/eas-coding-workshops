@@ -1,0 +1,13 @@
+bookdown::gitbook:
+  split_by: section
+  config:
+    toc:
+      collapse: section
+    sharing:
+      facebook: no
+      github: no
+      twitter: no
+      linkedin: no
+      weibo: no
+      instapaper: no
+      vk: no

@@ -1,40 +1,54 @@
-# Code Review Practices
+# Intro
 
-- Library code review
-  - Maintainable, reusable
+## What is code review?
+
+Similar to review of a publication, a colleague reviews the code you've written to verify that it is scientifically sound and to offer suggestions.
+
+- Software engineering code review
+  - Typically changes are reviewed before being added to existing project
+  - Focus on maintainablity, reusability
 - Scientific code review
-  - pre-review
-  - during review
-  - post review
+  - Typically full new project is reviewed
+  - Focus on correctness of a singular set of results
 
-# Why?
+## Why?
 
-Ensure errors in code do not result in incorrect findings in the scientific literature.
+- Avoid adding incorrect findings to scientific literature
+- Facilitate communication between author and scientific community
+- Enable reusability
 
-# What are we checking?
-- Does code **R**un? [Ivmey-Cook]
-- Are the results **R**eproducable?
-    - "...ensuring that final outputs when code is rerun match those reported in the analysis and results sections (including any relevant figures and narrative text contained within these sections)." [Ivmey-Cook]
-- **R**eadable [Added] <- Focus of this talk
-    - Can you tell from reading the code what it is trying to do?
-    - "How to write code other people can read"
+## What are we checking?
+
+- **R**un [Ivmey-Cook]
+  - Does the code run?
+- **R**eproducable [Ivmey-Cook]
+  - Do code outputs match results in the paper?
+- **R**eadable [Added]
+  - Can you tell from reading the code what it is trying to do?
+  - 💫 In-Depth, Lecture-style
 - **R**eported [Ivmey-Cook]
- - Does what the code is trying to do match what's in the methods section of the paper?
-- **R**eliable [Ivmey-Cook] <- Focus of this talk
-    - Does the code actually do what it is trying to do?
-    - "How to validate code as author and reviewer."
+  - Does what the code is trying to do match what's in the methods section of the paper?
+- **R**eliable [Ivmey-Cook]
+  - Does the code actually do what it is trying to do?
+  - 💫 Practical Demo
 - **R**eusable [Added]
-    - Can readers who want to reuse and extend the functionality easily do so?
+  - Can readers who want to reuse and extend the functionality easily do so?
+
+_Ivimey-Cook, Edward & Pick, Joel & Bairos-Novak, Kevin & Culina, Antica & Gould, Elliot & Grainger, Matthew & Moreau, David & Paquet, Matthieu & Sánchez-Tójar, Alfredo & Silva, Inês & Royauté, Raphaël & Marshall, Benjamin & Windecker, Saras. (2023). **Implementing code review in the scientific workflow: Insights from ecology and evolutionary biology.** Journal of Evolutionary Biology. 36. 1347-1356. 10.1111/jeb.14230._
+
+## Code Review Practice at EAS
+
+- Expectation that all our code that results in a publication is internally reviewed
+- Clear attribution expectation for reviewer
+  - Run, Readable, Reported: acknowledgement
+  - above plus Reliable (does it do what it sets out to): coauthorship
 
 
-EAS policy - first 4 gets an acknowledgement, reliable+ gets coauthorship
+## Code as Scientific Communication
 
+**Code is written for humans to understand.** Yes, the computer needs to understand the code too, but there are many many ways to tell the computer what to do. We should chose one that is as easy as possible for other humans to understand the instructions that we give to the computer. Fortunately, "high level" programming languages like R and python are designed to be especially human-friendly.
 
-### Code as Scientific Communication
-
-Code is written for humans to understand. Yes, the computer needs to understand the code too, but there are many many ways to tell the computer what to do. We should chose one that is as easy as possible for other humans to understand the instructions that we give to the computer. Fortunately, "high level" programming languages like R and python are designed to be especially human-friendly.
-
-Like with good writing:
+## Good Code is like Good Writing
 
 -   Pragmatism over dogma
     -   there is no "one right way"
@@ -53,17 +67,19 @@ Don't let the perfect be the enemy of the good.
 
 This section is best **not** done in person. The readers of your publication will not have the benefit of an in person workshop with the author.
 
-## As the reviewer...
+## As reviewer...
 
 Follow the instructions in the README to install and run the code. If this fails, likely modifications to the README are needed.
+
+For long running portions of code, there may be an un-rerunable section. (Due to practical constraints.) This section should be kept as minimal as possible since they will only be visually reviewed. Make sure the author provides you with a way to run the post-long running sections.
 
 ## As author...
 
 - Include instructions of how to get the code running.
 - Validate your instructions on a "Fresh Environment" e.g by creating a new account on your computer.
-- If your code has a long-running portion, ensure there is a way to 
+- If your code has a long-running portion, ensure there is a way practical way tor un as much as possible.
   - For simulations, parameterize in such a way that a smaller version can be run.
-  - For models, store the model inputs and outputs immediately before and after each long-running step. 
+  - For models, store the model inputs and outputs immediately before and after each long-running step. Provide inputs and outputs of "un-rerunable" parts to the reviewer.
 - Specify versions of dependencies that you've tested
   - Tools
     - Python packages - [poetry](https://github.com/python-poetry/poetry) or similar
@@ -71,7 +87,7 @@ Follow the instructions in the README to install and run the code. If this fails
     - System packages - [docker](https://www.docker.com/) or similar
   - Requiring vs Documenting
     - Requiring - allow users to newer minor versions and/or a version range where possible
-    - Documenting - it's helpful to know the exact versions that actually worked in case 
+    - Documenting - it's helpful to know the exact versions that actually worked together
         - Docker: image hash (on dockerhub)
         - Git: Commit hash
         - Python/pip: Minor version
@@ -79,11 +95,9 @@ Follow the instructions in the README to install and run the code. If this fails
 
 # Reproducable
 
-## As reviewer...
+**As reviewer...**
 
 Compare the outputs you have generated from running the code to the outputs scientist is using to draw their conclusions (eg in the manuscript).
-For long running portions of code, there may be an un-rerunable section. This section should be kept as minimal as possible since they will only be visually reviewed.
-Make sure you have a way to run the post-long running sections.
 
 # Readable
 
@@ -91,24 +105,7 @@ Make sure you have a way to run the post-long running sections.
 
 You can evaluate readability by "was I able to read this code," but in order to give feedback that allows the author to improve, you will need to understand *how* one can make their code more readable. 
 
--  Philosophy: - 15 min
-  -  Using Modularity to Manage Cognative Load
-  -  Choices about modularity
-  -  Documentation at each level
-- Readable project/modules 15 min?
-  - Outline/Prewriting
-  - Project level documentation
-- Readable objects/functions 15 min?
-  - User-Maintainer paradigm in practice
-  - Doc strings vs comments
-- Readable Code: 15 min
-  - Naming things 
-  - Linting (Consistent formatting)
-  - Pythonic idioms
-  - Type hinting
-- Extras: magic refactoring
-
-## Break it up.. but why?
+## Meaningful Modularity
 
 Using Modularity to Manage Cognitive Load
 
@@ -121,12 +118,13 @@ Who has ever writing a script that is 100s or 1000s of lines long? In that scrip
 ####
 
 Two questions
+
 - How does the author create a working script without being able to keep track of all the variables in said script?
 - How can the author incorperate the "extra information" needed to navigate the program into the code itself? ie Create a program that the reviewer can read and understand?
 
 One long unyielding script is a bit like a wall of text with no headings or paragraphs breaks.
 
-#### How the author vs reviewer understanding of THEREALLYLONGSCRIPTtm
+### How the author vs reviewer understanding of THEREALLYLONGSCRIPTtm
 
 In practice, we do 
 
@@ -142,7 +140,7 @@ This also applies to (maybe even more) really huge class with lots of properties
 
 Modularity formalizes this process. When you making Part A into a module or a function, you make clear what the inputs and outputs. Therefore, you know only the outputs are used further down.
 
-#### User vs Maintainer (We contain multitudes.)
+### User vs Maintainer (We contain multitudes.)
 
 We have all been in the role of the *user* of any number of functions/packages. As a user, we care about the inputs and outputs of a function, but rarely look inside.
 
@@ -173,7 +171,7 @@ If you only do one, thinking about the interfaces between components (e.g. funct
 -   Easier to test (useful for Reliability)
 -   Easier to Reuse
 
-## Break it up...but how?
+### Break it up...but how?
 
 Not every way to break down a bigger problem into smaller ones is effective.
 
@@ -181,27 +179,39 @@ Not every way to break down a bigger problem into smaller ones is effective.
 
 ![](images/images%20copy.jpg)
 
-### Reading Projects
-
-#### As author...
+## Intentional Design
 
 Approach the high-level design of your program the same way you would approach the design of a large manuscript. 
 
-When you're embarking on a larger project, it helps to think about how you might break it down into components. You can use some of the same techniques that you would use for piece of writing: mind map, outlining, etc. Another useful tool is pseudo code - writing out some hypothetical functions in inputs and outputs and a rough outline of what it would do mixing together code-like structures and regular writing.
+When you're embarking on a larger project, it helps to think about how you might break it down into components. 
 
-#### Telephone example
+### Pre-writing techniques 
 
-![](images/telephone_sim.jpg)
+- Mind map
+- Outlining
+- Pseudo Code
+
+These are just ideas.
+
+### 
 
 As you settle on a structure, some things to think about:
 
--   when you do one "run" of this process, what is the execution order ie what bits of code will run in what order?
+-   when you do one "run" of this process, what is the execution order?
 
 -   what are in inputs and outputs of each component?
 
 -   which pieces will you want to re-run without running the whole pipeline?
 
-Example data pipeline:
+### Example Simulation
+
+#### Telephone game
+
+#### Visual pre-writing
+
+![](images/telephone_sim.jpg)
+
+### Example data pipeline
 
 ```         
 1) Data Cleaning (a->b->c)
@@ -223,6 +233,8 @@ Example data pipeline:
 
 You'll notice 2a and 3a are the same so perhaps you would want to write a function for that data selection that can be loaded into your modeling module and your visualization module. Likewise, 3e might be calling 3c and 3d in sequence and applying them to the same plot.
 
+#### 
+
 In crafting this design, you are trying to break down your process into human-understandable pieces. This is similar to how a paper with good headings and subheadings is easier to read than a wall of text. You can visualize what your eventual "run full analysis" file will look like. Something like:
 
 ``` python
@@ -239,8 +251,9 @@ Within each of these functions, scripts, or sub-modules, you then would have a f
 
 ℹ️ **Getting Design Feedback** Often, folks will write up the design for their software project. This is a great spot to get feedback. A "design doc" can have include the goal of your project,what you plan to do, how you plan to modularize the process, high level outcomes you hope to achieve, as well as alternative designs that you considered.
 
+## Clear and Concise Interfaces
 
-###  Reading Less
+### Avoid Unnecessary Code
  
 As you look into a program, consider whether this code even needs to exist.
 
@@ -257,7 +270,7 @@ Some Principles
 -   DRY - Do not repeat yourself
 -   YNGNI/KISS - You're not going to need it, Keep it simple.
 
-### Reading functions/objects from the outside
+### Readable functions/classes from the outside
 
 The user of the function needs to know *what* it does, but not *how*. You can write down the *what* before implementing the *how*.
 
@@ -325,7 +338,7 @@ Informed by [wordfreq](https://github.com/rspeer/wordfreq/).
 
 Once you know the *what*, then you can focus on the *how*. Here, you want to make the implementation as simple as possible. If you can write code in such a way that comments are not needed to explain what's going on, that's a good sign. If you have a good reason to have a more complex or hard to grasp implementation, add comments to bridge the gap.
 
-## Reading code
+## Consistent Style
 
 ### Naming Things
 
@@ -345,7 +358,7 @@ Some specific cases:
 
 -   consider what list/vector/vectors you're iterating over when you write for loop
 
-#### Example
+### Example
 
 ``` python
 from random import choice
@@ -366,7 +379,8 @@ for i in range(ns):
          'n': n,
          'rd': r(n)
         })
-
+```
+```python
 ## Better 
 def run_simulation(p):
     return all([choice([True]*8 + [False]*2) for i in range(p)]) 
@@ -404,12 +418,17 @@ xi
 in 
          x]
 
+```
+
+```python
 ## BETTER
 m = .5
 x = range(1, 11)
 b = 8
 y =  [m * xi + b for xi in x]
 ```
+
+####
 
 -   Coding style guides - human readable styling standards
 
@@ -451,15 +470,17 @@ More readability resources:
 
 Does what the code is trying to do match what's in the methods section of the paper?
 
+**As reviewer...**
+
 Often will focus on the supplement or wherever methods are detailed.
 
 Inverted: If you just had the paper, and wrote code to match, would that code have the same results as the code written by the author?
 
-Looking for both discrepancies and omissions.
+Look for both discrepancies and omissions.
 
 # Reliable
 
-Does the code actually do what it is trying to do?
+Does the code actually do what it is trying to do ?
 
 Approaches
 
@@ -468,34 +489,45 @@ Approaches
 - Gold standard: formal software testing
 
 Ways to examine intermediates:
+
 - pdb
 - print
 - write to file
 
-DEMO TIME
+## DEMO
 
 # Reusable 
 
 Includes, but is not limited to releasing your software as a package.
 
 Lots of new considerations when shifting focus to reusability:
+
 - Who are your users?
 - What are their goals and priorities?
 - What patterns are they familiar with?
 - Where do they want flexibility?
 - What requirements of the input data do you want to enforce?
 
+https://www.pyopensci.org/
+
 # Recap
-- Does code **R**un? [Ivmey-Cook]
-- Are the results **R**eproducable?
-    - "...ensuring that final outputs when code is rerun match those reported in the analysis and results sections (including any relevant figures and narrative text contained within these sections)." [Ivmey-Cook]
-- **R**eadable [Added] <- Focus of this talk
-    - Can you tell from reading the code what it is trying to do?
-    - "How to write code other people can read"
-- **R**eported [Ivmey-Cook]
- - Does what the code is trying to do match what's in the methods section of the paper?
-- **R**eliable [Ivmey-Cook] <- Focus of this talk
-    - Does the code actually do what it is trying to do?
-    - "How to validate code as author and reviewer."
-- **R**eusable [Added]
-    - Can readers who want to reuse and extend the functionality easily do so?
+
+- **R**un
+  - Does the code run?
+- **R**eproducable
+  - Do code outputs match results in the paper?
+- **R**eadable
+  - Can you tell from reading the code what it is trying to do?
+  - Summary
+    - Meaningful modularity
+    - Itentional Design
+    - Clear interfaces
+    - Consistent Style
+- **R**eported
+  - Does what the code is trying to do match what's in the methods section of the paper?
+- **R**eliable
+  - Does the code actually do what it is trying to do?
+  - pytest!
+- **R**eusable
+  - Can readers who want to reuse and extend the functionality easily do so?
+

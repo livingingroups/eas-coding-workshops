@@ -9,6 +9,8 @@ Finish rewriting section about modularity
 Search "object" and make sure I don't mean "class"
 Insert a per-writing example in the scientific section.
 
+Add type hinting to example
+
 
 # Nice to have
 
