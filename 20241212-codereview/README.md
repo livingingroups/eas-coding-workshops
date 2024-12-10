@@ -9,8 +9,7 @@
 
 # Why?
 
-- Ensure errors in code do not result in incorrect information in the sc
-- 
+Ensure errors in code do not result in incorrect findings in the scientific literature.
 
 # What are we checking?
 - Does code **R**un? [Ivmey-Cook]
@@ -21,7 +20,6 @@
     - "How to write code other people can read"
 - **R**eported [Ivmey-Cook]
  - Does what the code is trying to do match what's in the methods section of the paper?
-
 - **R**eliable [Ivmey-Cook] <- Focus of this talk
     - Does the code actually do what it is trying to do?
     - "How to validate code as author and reviewer."
@@ -191,6 +189,10 @@ Approach the high-level design of your program the same way you would approach t
 
 When you're embarking on a larger project, it helps to think about how you might break it down into components. You can use some of the same techniques that you would use for piece of writing: mind map, outlining, etc. Another useful tool is pseudo code - writing out some hypothetical functions in inputs and outputs and a rough outline of what it would do mixing together code-like structures and regular writing.
 
+#### Telephone example
+
+![](images/telephone_sim.jpg)
+
 As you settle on a structure, some things to think about:
 
 -   when you do one "run" of this process, what is the execution order ie what bits of code will run in what order?
@@ -314,7 +316,7 @@ def similar_word(word, lang):
 
 Above is a numpy style docstring. [Official python documentation](https://peps.python.org/pep-0257/) is not opinionated about how to document arguments. There are [several conventions](https://note.nkmk.me/en/python-docstring/#docstring-formats-and-example) to chose from in python.
 
-Both examples informed by [wordfreq](https://github.com/rspeer/wordfreq/).
+Informed by [wordfreq](https://github.com/rspeer/wordfreq/).
 
 
 ℹ️ **Write Reusable Tests** This is the point where you can write formal reusable tests to make sure you code is doing what you want. More details in the next section
@@ -441,7 +443,59 @@ There are a bunch of special features [python idioms](https://docs.python-guide.
 
 [Official Docs Reference](https://docs.python.org/3/library/typing.html)
 
-More resources:
+More readability resources:
 
 [Mozilla Code Review Guidelines](https://mozillascience.github.io/codeReview/review.html)
 
+# Reported
+
+Does what the code is trying to do match what's in the methods section of the paper?
+
+Often will focus on the supplement or wherever methods are detailed.
+
+Inverted: If you just had the paper, and wrote code to match, would that code have the same results as the code written by the author?
+
+Looking for both discrepancies and omissions.
+
+# Reliable
+
+Does the code actually do what it is trying to do?
+
+Approaches
+
+- Run with all data, examine intermediates
+- Run with known artificial data, examine intermediates
+- Gold standard: formal software testing
+
+Ways to examine intermediates:
+- pdb
+- print
+- write to file
+
+DEMO TIME
+
+# Reusable 
+
+Includes, but is not limited to releasing your software as a package.
+
+Lots of new considerations when shifting focus to reusability:
+- Who are your users?
+- What are their goals and priorities?
+- What patterns are they familiar with?
+- Where do they want flexibility?
+- What requirements of the input data do you want to enforce?
+
+# Recap
+- Does code **R**un? [Ivmey-Cook]
+- Are the results **R**eproducable?
+    - "...ensuring that final outputs when code is rerun match those reported in the analysis and results sections (including any relevant figures and narrative text contained within these sections)." [Ivmey-Cook]
+- **R**eadable [Added] <- Focus of this talk
+    - Can you tell from reading the code what it is trying to do?
+    - "How to write code other people can read"
+- **R**eported [Ivmey-Cook]
+ - Does what the code is trying to do match what's in the methods section of the paper?
+- **R**eliable [Ivmey-Cook] <- Focus of this talk
+    - Does the code actually do what it is trying to do?
+    - "How to validate code as author and reviewer."
+- **R**eusable [Added]
+    - Can readers who want to reuse and extend the functionality easily do so?

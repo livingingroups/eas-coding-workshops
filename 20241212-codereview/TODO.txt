@@ -7,6 +7,7 @@ Figure out if there is a hash-like way to note versions from pypi
     Add to "specify versions" section
 Finish rewriting section about modularity
 Search "object" and make sure I don't mean "class"
+Insert a per-writing example in the scientific section.
 
 
 # Nice to have
