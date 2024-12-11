@@ -1,3 +1,12 @@
+---
+title: "Code Review"
+author: "Brock"
+date: "2024-12-12"
+output: 
+  bookdown::gitbook:
+    md_extensions: +grid_tables
+---
+
 # Intro
 
 ## What is code review?
@@ -58,9 +67,15 @@ _Ivimey-Cook, Edward & Pick, Joel & Bairos-Novak, Kevin & Culina, Antica & Gould
     -   less formal: writing personal notes, texting a friend, creating a proof of concept, trying out package for the first time
     -   more formal: publications, talks, packages that you want others to use
     -   efficient, but unapproachable: air traffic controllers, low-level code (not covered in this tutorial)
--   It can be helpful to decide (and write down) what you plan to communicate before you start drafting.
 
 Don't let the perfect be the enemy of the good.
+
+## Good Code Feedback is like Good Writing Feedback
+
+- Need to establish between writer and reviewer the goals for the review.
+- Start broad, then get specific
+- Requires empathetic delivery
+- and more..
 
 
 # Run
@@ -88,10 +103,10 @@ For long running portions of code, there may be an un-rerunable section. (Due to
   - Requiring vs Documenting
     - Requiring - allow users to newer minor versions and/or a version range where possible
     - Documenting - it's helpful to know the exact versions that actually worked together
-        - Docker: image hash (on dockerhub)
+        - Docker: image hash (on dockerhub or similar repository)
         - Git: Commit hash
-        - Python/pip: Minor version
-        - R/CRAN: Date downloaded from CRAN
+        - Python/pip: Minor version or better still [`pip-compile --generate-hashes`](https://github.com/jazzband/pip-tools?tab=readme-ov-file#using-hashes)
+        - R/CRAN: Date downloaded from CRAN (`devtools::pakage_info()`)
 
 # Reproducable
 
@@ -113,7 +128,9 @@ Using Modularity to Manage Cognitive Load
 
 ####
 
-Who has ever writing a script that is 100s or 1000s of lines long? In that script, even when you were deep in it, could you tell exactly what every variable at every stage was doing?
+Most of us have seen or even written scripts that are 100s or 1000s of lines long.
+
+In that script, even when you were deep in it, could you tell exactly what every variable at every stage was doing?
 
 ####
 
@@ -128,11 +145,22 @@ One long unyielding script is a bit like a wall of text with no headings or para
 
 In practice, we do 
 
-| When you're working on | What the author is thinking about| What the reveiwer has to think about|
-| ---------------------- | -------------------------------------------------- |---------|
-| Part A                 | -   Everything from Part A                         |- Everything from Part A|
-| Part B                 | -   A few things from Part A that are needed for B <br> -   Everything from Part B                         | - Everything from Part A that *might* be needed <br> - Everything from Part B|
-| Part C                 | -   A few things from Part B <br> -   Maybe some thing needed from Part A <br> -   Everything needed for Part C                   | - Everything from Part A that might be needed <br> - Everything from Part B that might be needed - Everything from part C||
++------------------------+----------------------------------------------------+-------------------------------------------------+
+| When looking at        | What the author is thinking about                  | What the reveiwer has to think about            |
++========================+====================================================+=================================================+
+| Part A                 | -   All of Part A                                  | - All of Part A                                 |
+|                        |                                                    |                                                 |
++------------------------+----------------------------------------------------+-------------------------------------------------+
+| Part B                 | -   The little from Part A is needed for B         | - Everything from Part A that *might* be needed |
+|                        | -   All of Part B                                  | - All of Part B                                 |
+|                        |                                                    |                                                 |
++------------------------+----------------------------------------------------+-------------------------------------------------+
+| Part C                 | -   A little of Part A                             | - Everything from Part A that might be needed   |
+|                        | -   A little of Part B                             | - Everything from Part B that might be needed   |
+|                        | -   All of Part C                                  | - All of Part C                                 |
+|                        |                                                    |                                                 |
++------------------------+----------------------------------------------------+-------------------------------------------------+
+
 
 This also applies to (maybe even more) really huge class with lots of properties and methods that all interact with each other. 
 
@@ -146,7 +174,7 @@ We have all been in the role of the *user* of any number of functions/packages. 
 
 When we write our own code including functions and mudules, we are responsible for making each piece of the code do what it's supposed to do. As the *maintainer* of this code, we need know the internals of a particular function or module.
 
-One way to think of yourself in different moments in time as the maintainer of some of your modules and the user of others. So while you're working on Part B, consider youself as the maintaienr of Part B and  user of Part A. Only worrying about the parts of A that are explicitly passed to B. When working on Part A, consider yourself just as the maintainer of Part A. Consider what your user, Mr. Maintainer-of-Part-B (your alter ego) would want to make Part A as easy for them to use as possible. 
+One way to think of yourself in different moments in time as the maintainer of some of your modules and the user of others. So while you're working on Part B, consider youself as the maintainer of Part B and  user of Part A. Only worrying about the parts of A that are explicitly passed to B. When working on Part A, consider yourself just as the maintainer of Part A. Consider what your user, Mr. Maintainer-of-Part-B (your alter ego) would want to make Part A as easy for them to use as possible. 
 
 ### Documentation
 
@@ -178,6 +206,8 @@ Not every way to break down a bigger problem into smaller ones is effective.
 ![](images/images.jpg)
 
 ![](images/images%20copy.jpg)
+
+Prioritize boundaries that allow for minimal, but meaningful (to humans) information to be passed accross the boundary/interface.
 
 ## Intentional Design
 
@@ -334,7 +364,7 @@ Informed by [wordfreq](https://github.com/rspeer/wordfreq/).
 
 ℹ️ **Write Reusable Tests** This is the point where you can write formal reusable tests to make sure you code is doing what you want. More details in the next section
 
-### Reading functions/objects from the inside
+### Reading functions/classes from the inside
 
 Once you know the *what*, then you can focus on the *how*. Here, you want to make the implementation as simple as possible. If you can write code in such a way that comments are not needed to explain what's going on, that's a good sign. If you have a good reason to have a more complex or hard to grasp implementation, add comments to bridge the gap.
 

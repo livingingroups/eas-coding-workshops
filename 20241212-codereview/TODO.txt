@@ -1,18 +1,5 @@
 
-Add feedback section to scentific communication section
-    TODO: code as a feedback-giving exercise. You can use everything you know about giving good feedback on people's work
-Better explanation of how to work around long running code
-    Currently in "Run" section, but maybe should go somewhere else? e.g. Reproducable section.
-Figure out if there is a hash-like way to note versions from pypi
-    Add to "specify versions" section
-Finish rewriting section about modularity
-Search "object" and make sure I don't mean "class"
-Insert a per-writing example in the scientific section.
-
-Add type hinting to example
-
 
 # Nice to have
-
 Concrete examples with poetry and docker
 Concrete example of versioning vs pulling hash

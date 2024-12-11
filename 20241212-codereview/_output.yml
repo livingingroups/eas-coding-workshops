@@ -2,7 +2,7 @@ bookdown::gitbook:
   split_by: section
   config:
     toc:
-      collapse: section
+      collapse: subsection
     sharing:
       facebook: no
       github: no
@@ -11,3 +11,4 @@ bookdown::gitbook:
       weibo: no
       instapaper: no
       vk: no
+    info: false
