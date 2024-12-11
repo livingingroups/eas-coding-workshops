@@ -21,15 +21,15 @@ install.packages('reticulate')
 ```
 
 -   Set up python
+
     -   Check if python is installed and configured already by running `reticulate::py_available()`
         -   If you get `Would you like to create a default Python environment for the reticulate package?`
             -   type `Yes`
             -   then you're done
         -   If you get `TRUE` you're done!
         -   If you get `FALSE` continue.
--   Install python `reticulate::install_python()`
 
-TODO: Make sure not breaking license.
+-   Install python `reticulate::install_python()`
 
 ## Getting Started
 
