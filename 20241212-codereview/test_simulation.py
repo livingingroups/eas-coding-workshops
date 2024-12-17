@@ -5,7 +5,6 @@ from simulation import get_close_words, whisper
 def test_get_close_words():
     far_words = ['abc', 'def', 'ghi']
     close_words = ['gnuine', 'geeuine', 'genune']
-
     assert get_close_words(
         'genuine',
         word_library = far_words

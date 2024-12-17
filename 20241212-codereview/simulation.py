@@ -17,7 +17,8 @@ def get_close_words(
         and len(i) > min_length
         and input_word != i
     ]
-    return (word_library if len(close_words) == 0 else close_words)
+    return(word_library)
+    #return (word_library if len(close_words) == 0 else close_words)
 
 def whisper(word: str, p_mistake: float = .5):
     return (choice(get_close_words(word)) if uniform(0,1) < p_mistake else word)
@@ -47,4 +48,6 @@ def run(
     return all_sim_results
 
 if __name__ == '__main__':
-    pp(run())
+    #pp(run())
+    input_word = 'rain'
+    pp(get_close_words(input_word))

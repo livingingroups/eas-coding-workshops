@@ -1,8 +1,8 @@
 bookdown::gitbook:
-  split_by: section
+  split_by: '4'
   config:
     toc:
-      collapse: subsection
+      collapse: None
     sharing:
       facebook: no
       github: no

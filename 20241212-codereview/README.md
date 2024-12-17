@@ -126,7 +126,6 @@ Using Modularity to Manage Cognitive Load
 
 ### Typical Process for Creating THEREALLYLONGSCRIPTtm
 
-####
 
 Most of us have seen or even written scripts that are 100s or 1000s of lines long.
 
@@ -141,7 +140,7 @@ Two questions
 
 One long unyielding script is a bit like a wall of text with no headings or paragraphs breaks.
 
-### How the author vs reviewer understanding of THEREALLYLONGSCRIPTtm
+#### How the author vs reviewer understanding of THEREALLYLONGSCRIPTtm
 
 In practice, we do 
 
@@ -166,7 +165,9 @@ This also applies to (maybe even more) really huge class with lots of properties
 
 ####
 
-Modularity formalizes this process. When you making Part A into a module or a function, you make clear what the inputs and outputs. Therefore, you know only the outputs are used further down.
+Modularity formalizes this process.
+
+When you making Part A into a module or a function, you make clear what the inputs and outputs. Therefore, you know only the outputs are used further down.
 
 ### User vs Maintainer (We contain multitudes.)
 
@@ -223,7 +224,7 @@ When you're embarking on a larger project, it helps to think about how you might
 
 These are just ideas.
 
-### 
+#### 
 
 As you settle on a structure, some things to think about:
 
@@ -235,13 +236,15 @@ As you settle on a structure, some things to think about:
 
 ### Example Simulation
 
-#### Telephone game
+Telephone game
 
 #### Visual pre-writing
 
 ![](images/telephone_sim.jpg)
 
 ### Example data pipeline
+
+#### Example data pipeline outline
 
 ```         
 1) Data Cleaning (a->b->c)
@@ -263,7 +266,7 @@ As you settle on a structure, some things to think about:
 
 You'll notice 2a and 3a are the same so perhaps you would want to write a function for that data selection that can be loaded into your modeling module and your visualization module. Likewise, 3e might be calling 3c and 3d in sequence and applying them to the same plot.
 
-#### 
+#### Example data pipeline code
 
 In crafting this design, you are trying to break down your process into human-understandable pieces. This is similar to how a paper with good headings and subheadings is easier to read than a wall of text. You can visualize what your eventual "run full analysis" file will look like. Something like:
 
@@ -320,7 +323,7 @@ The user of the function needs to know *what* it does, but not *how*. You can wr
 
 -   Write a simple usage example.
 
-    -   🤫 Psst! This can later be turned into tests. More on that next week.
+    -   🤫 Psst! This can later be turned into tests. More on that in "Reliable" section.
 
 -   Write a quick text description of what it should do.
 
