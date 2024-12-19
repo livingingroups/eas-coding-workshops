@@ -1,4 +1,6 @@
 bookdown::gitbook:
+# This uses a bookdown feature that has not been merged to master
+# https://github.com/katrinabrock/bookdown/tree/split_by-rebased
   split_by: '4'
   config:
     toc:
