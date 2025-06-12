@@ -1,0 +1,400 @@
+Workflow:
+  3 script project TM:
+    who: "I have a longish and unweldly script. I don't want to completely re-write it, but I want to make it easier to run and debug."
+    problems:
+      - Rerunning my entire script takes a long time, but when I rerun line by line I lose reproduciblity because I'm running things out of order.
+      - I want to make sure I'm not breaking something that was already working when I write something.
+    python: yes
+    r: yes
+    gif:
+      python: TODO
+      r: TODO
+    script:
+      python: TODO
+      r: TODO
+  targets:
+   who: "I have a workflow (long script, or several interdependent scripts) where there is more than one step that takes a long time."
+   problems:
+     - It gets tricky to remember which parts of my pipeline are "fresh" and what needs to be re-run.
+     - Some parts of my pipeline could in theory be run in parallel with one another (e.g. processing two different types of data that are ulimately put together), but it's a pain start more than one script at once. 
+   python: no
+   r: yes
+  Logging (log levels):
+   who: I like to put print statements in my code to tell me what's going on.
+   problems:
+     - I spend a lot of time commenting and uncommenting different print statements.
+     - It's annoying to add in and remove print statements because they're sprinkled all throughout the code. 
+   python: yes
+   r: yes
+  browser/pdb:
+   who: I write functions or nested loops/if statements (or I want to start doing this).
+   problems:
+     - When there's an issue with my code, I end up sourcing everything that's in the function so my environment gets messy anyway.
+     - When I'm not sure what "level" the issue is at, it's especially hard because I have to check each level one by one.
+   python: yes
+   r: yes
+SW Testing (Needs new name):
+  Data Validation vs Software Testing (reusability):
+    who: I write checks at various points in my code, but I haven't written formal software tests or data validation.
+    problems:
+      - Sometimes I get my code running with one set of data, including various checks throughout, but when I introduce a new dataset, the checks aren't always appropriate.
+      - It's sometimes hard to tell if I made a coding error if the data is just messier than I thought.
+    python: yes
+    r: yes
+    gif: none
+    script: none
+  concept of mocking:
+    who: Theres really only one (or a few) steps that take a really long time in my code (such as running a model). I like to get everything surrounding the model working, and then run everything together.
+    problems:
+      - A lot of times, I run the model and then kill it multiple times just to make sure I've got my inputs in the right format.
+      - I find it difficult to write the code after the model without runnning the model.
+    python: yes
+    r: yes
+
+Data Validation:
+  typechecking/checkmate:
+    who: I'm convinced data validation is a good idea, but it's annoying to write.
+    problems:
+      - I find myself writing a lot of repetative code to check basic facts about my inputs like that it's the data type and size I'm expecting.
+    r: yes
+    python: yes
+  validate:
+    r: yes
+    python: no
+    who: A lot of my data is in dataframe format (including tibble, data table, sf, etc.).
+    problems:
+      - I want to write clear checks on my data.
+      - I don't necessarily want to stop everything if some of the checks fail.
+      - I want nice reporting or the outcome of the checkes
+  dataframely:
+    r: no
+    python: yes
+    who: A lot of my data is in polars format.
+    problems:
+      - I want to write clear checks on my data.
+      - I don't necessarily want to stop everything if some of the checks fail.
+      - I want nice reporting or the outcome of the checkes
+  diffobj:
+    r: yes 
+    python: no
+    who: I have two pretty complicated objects (e.g. lists).
+    problems: [I want to see if they're the same or not]
+
+Data Processing and Storage:
+  polars:
+    python: yes
+    r: no
+    who: I use pandas dataframes in python
+    problems:
+      - I wish pandas was faster/more parallel.
+      - I wish I could leverage GPUs.
+      - I wish I could do more data manipulation with built-in features, and not have to install or write as much extra code.
+
+  Use data.frame until it becomes cumbersome, then use data.table:
+    python: no
+    r: yes
+    who: I'm starting a new project and deciding whether to use base dataframes, tibbles, or data.table. I'm not too invested in either tidyverse or data.table world yet.
+    problems:
+      - I want my code to work well when I add more data.
+      - I want my code to benefit from multiple cores without having to write explicit parallelism myself.
+      - I want specifically Brock's recommendation.
+  tidyverse vs tinyverse:
+    python: no
+    r: yes
+    who: I'm starting a new project and trying to thoughtfully select which libraries to use.
+    problems:
+      - Some people seem to like tidyverse and others not, but I'm not sure why.
+      - I've had issues with projects changing how their functions work, but I'm not sure how to mitigate that.
+      - I know there are different options of R packages that do similar basic data processing tasks, but I'm not sure what the differences are or how I should chose among them.
+    text: https://eddelbuettel.github.io/gsir-te/Getting-Started-in-R.pdf, https://tidyverse.tidyverse.org/articles/manifesto.html
+  duckdb:
+    python: yes
+    r: yes
+    who: I'm outgrowing dataframes. I often have to load multiple (sometimes large) CSVs or Rdata/pickles with dataframes in them at the beginning of my script.
+    problems:
+      - If I store my somewhat processed data in CSVs, I have to write a bunch of code at the beginning to make sure everything is the right datatype.
+      - If I use pickle/rdata, I'm locked into using a particular datastructure (e.g. dataframe v.s. data table v.s. tibble)
+      - If I use pickle/Rdata interoperating between R and python (or other languages) can be tricky.
+      - Sometimes I just need a few rows from a huge file so loading the entire file feels like a waste.
+      - I have multiple dataframes that should be linked together. (e.g. an "individuals" data frame and a "behaviors" data frame with individual_id as a column), and I end up having to copy the linking code from script to script. 
+  GraphQL:
+    python: yes
+    r: yes
+    who: I work with network data.
+    problems:
+      - I have similar problems to those listed under "duckdb"
+      - Since my data doesn't fit so well into data frame format, many standard data processing tools aren't super helpful.
+      - Even if I use graph-specific packages (like networkx), I end up writing a lot of custom code just to explore my data.
+Readability:
+  linter:
+    python: yes
+    r: yes
+    who: Sometimes I use kind of random formatting, and I want it to be consistent.
+    problems:
+      - I can't always immediately what is and isn't managing the format guide.
+  autoformat:
+    python: yes
+    r: yes
+    who: Sometimes I use kind of random formatting, and I want it to be consistent.
+    problems:
+      - It's annoying to go through line by line and futz with spacing and line breaks.
+  auto-replace:
+    python: yes
+    r: yes
+    who: Sometimes I want to change variable names to make things more understandable.
+    problems:
+      - If I do find and replace, sometimes it catches things I don't want to change.
+Tinytips:
+  match instead of which:
+    r: yes
+    python: no
+    who: I find myself writing a lot of `df[which(df$col_1 == 'value1'),]`
+    problems:
+      - this is kind of long
+      - it's a bit hard to read
+  native pipe:
+    r: yes
+    python: no
+    who: I like using pipe %>%, but I don't use too much of the tidyverse in general
+    problems:
+      - a lot of times, I have to install and load magritte just to use the pipe and nothing else
+  index switch:
+    python: yes
+    r: yes
+    who: I tend to write a lot of long if else statements that test the same value over and over. e.g. if (my_variable == 'a') {..} else if (my_variable == 'b')
+    problems:
+      - this is a bit repeative and hard to read
+  seq_along/seq_len:
+    python: no
+    r: yes
+    who: I write a lot of for(i in 1:n){...} type loops
+    problems:
+      - If n is 0, I want the loop to not run at all, but what actually happens is it runs with i=1 then i=0.
+  emoGG:
+    python: no
+    r: yes
+    who: I use ggplot. 
+    problems: [I wish it were more fun.]
+    text: https://github.com/dill/emoGG
+  leaflet:
+    python: yes
+    r: yes
+    who: I work with geospatial data in R or python.
+    problems:
+      - it's hard get static plots at the right level of zoom/detail.
+      - I wish I had google-maps like interface with landmarks.
+Longevity:
+  pak:
+    who: I install R packages.
+    problems:
+      - It takes a long time.
+      - When something goes wrong, it's hard to tell what went wrong.
+      - Takes a long time to get to the point where the problem is, and thus a long time to figure out if it's fixed.
+      - I have to remember to swap between `install.packages`, `remote::install_github` etc.
+    python: no
+    r: yes
+  renv:
+    python: no
+    r: yes
+    who: I write code that I want to be runnable by other people or runable by me months or years later.
+    problems:
+      - It's hard to recreate the exact combination of packages and package versions that I had when my code was working. 
+    extratip:
+      In python, do not pin release versions. (e.g. Do not do `pip freeze > requirements.txt`.) This will result in both ignoring security updates and in your code being unnecessarily incompatible with other packages. It is helpful to store minor versions that were working (e.g. pip freeze > working-versions.txt), but for requirements.txt, put version ranges. e.g. numpy >=1.3.0 not numpy==1.3.0.
+  Timetravel with posit package management:
+    python: no 
+    r: yes
+    who: I'm trying to revive some code that was working at some point in the past.
+    problems:
+      - I need a version of a dependency that's no longer available on CRAN but was in the past.
+  Timetravel with git/github:
+    python: yes 
+    r: yes
+    who: I'm trying to revive some code that was working at some point in the past.
+    problems:
+      - I need an older version of anon-CRAN dependency.
+  python + docker + VSCode (+ server):
+    r: yes
+    python: yes
+    who: I want to start using a python ML library.
+    problems:
+      - ML libraries can be had to install.
+      - There might be some incompatibilities between what I need to install and what I've already installed for other projects. I don't want to mess up stuff that's already working.
+      - When I switch from testing things on my laptop to running on a bigger matchine or a cluster, it's often a pin to get everything installed again.
+  docker to rescue old projects:
+    r: yes
+    python: yes
+    who: I'm trying to get an old project running.
+    problems:
+      - I'm not just having issues with getting the right R/python package versions, but with R/python itself and/or other system-level packages.
+Interop:
+  Python from R:
+    r: yes
+    python: yes
+    who: I am an R user who wants to use a python package without learning python. OR I am a python package author who wants my packages to be availabel to R users.
+    problems:
+      - There are lots of ML packages (including made here) in python and a lot of scientists who only know R.
+  Julia from R/python:
+    r: yes
+    python: no
+    who: I am an R/python user who wants to use a julia package without learning julia.
+    problems:
+      - Julia is often a lot faster than R/python, and easier to write than C/C++/rust.
+  R from Python:
+    r: yes
+    python: yes
+    who: I am an python user who wants to use a R package without learning R. OR I am an R package author who wants my packages to be availabel to python users.
+    problems:
+      - There are lots of statistical packages (including made here) in R that don't exist in python.
+Performance:
+  Profiling:
+    python: yes
+    r: yes
+    who: My code runs slower than I want it to.
+    problems:
+      - I don't know what part of my code is the slow part
+  Benchmarking:
+    python: yes
+    r: yes
+    who: I know what part of my code is slow, and I want to make it faster.
+    problems:
+      - I'm not sure what is the most effective way to make it faster.
+  atime:
+    python: no
+    r: yes
+    who: I have already benchmarked my code with a little bit of data.
+    problems:
+      - I'm afraid the time will increase non-linearly when I add more data.
+  BLAS replacement:
+    python: yes
+    r: yes
+    who: I've already optimized my code so it uses a lot of vector/matrix/numpy operations instead of for loops.
+    problems:
+      - I want shave some time off of those big vector/matrix operations.
+  fst:
+    python: no
+    r: yes
+    who: I load really big CSVs.
+    problems:
+      - I want to load my big CSVs really fast.
+  futures:
+    python: no
+    r: yes
+    who: I have several pieces of long running code that I would like to run independently.
+    problems:
+      - I want to parallelize my code using state of the art framework.
+      - I want my code to be able to run in parallel or not in parallel without making big changes.
+      - I want to be able to run part of my code without it "blocking" my R session.
+      - In the future, I want to use High Performance Computers without changing my code.
+IDE:
+  background jobs:
+      r: yes
+      python: no
+      who: R user
+      problems:
+        - I want to run my script non-blocking
+  positron:
+      r: yes
+      python: yes
+      who: I currently use R in RStudio and/or python in VSCode.
+      problems:
+        - I would like to use one IDE for both R and python.
+        - I would like to data exploration and visualization capabilities similar to RStudio
+        - I would like to have extensibility and multi language support similar to VSCode.
+Community:
+  pkgkitten:
+      r: yes
+      python: no
+      who: I've written a novel analysis.
+      problems:
+        - I want other people to easily run my code.
+        - Making a package seems hard.
+  pkgdown:
+    r: yes
+    python: no
+    who: I'd like a nice little website about the code I published.
+    problems:
+      - I don't want to spend much time setting up the website.
+  Journal of open source software:
+      r: yes
+      python: yes
+      who: I published some code and I want it to contribute to my "impact factor".
+      problems:
+        - My code doesn't represent something novel in my field, just an easier way to apply an already published method.
+        - I don't want to have to write a paper just to make my code easily citable. 
+  Citing software:
+    r: yes
+    python: yes
+    who: I'm writing a paper and using open source software.
+    problems:
+      - I want to properly credit the authors of said open source software.
+    text: R citation function, Paper on the topic, no such thing as to big to cite (cite talk)
+  userR online is free!:
+    r: yes
+    python: no
+    who: I want to learn more about some of these tools, but get an actual introduction to them.
+    problems:
+      - I don't want to sacrifice the time and money that it would take to got to an R conference instead of a conference directly relevant to my research.
+      - I just want to see one or two talks, not a whole conference worth.
+    text: https://user2025.r-project.org/program/virtual/
+  ropensci/pyopensci package review:
+    r: yes
+    python: yes
+    who: I have some code that I'd like to make available to the world, but I'd like some feedback first.
+    problems:
+      - I don't feel comfortable asking someone to do a review who hasn't specifically volunteered to do software review.
+      - My code uses techniques that others in the department don't have expertise in.
+  runiverse:
+    r: yes
+    python: no
+    who: I want to post my R package somewhere CRAN-like.
+    problems:
+      - My packages does not yet meet CRAN requiments.
+  github issues:  
+    r: yes
+    python: yes
+    who: Sometimes I use open source packages, and I'm pretty sure it's the package that's not working correctly
+    problems:
+      - I'm shy about posting online.
+      - I'm afraid I'll be bothering the package maintainer.
+
+EAS open source:
+  cocomo:
+    r: yes
+    python: no
+    who: I have simultaneous, and equidistent in time animal location data.
+    problems:
+      - I want to calculate basic statistics like heading and speed at the individual and group level.
+      - I want to do pull/anchor and/or fission fusion analysis.
+  WildPulse EcoMove Analytics:
+    r: yes
+    python: no
+    who: I have GPS data.
+    problems:
+      - I want to do basic exploratory analysis.
+      - I want to check for inaccuracies in my data manually.
+      - I want to see if my automated anomaly detection is working correctly.
+  shinyjsonform:
+    r: yes
+    python: no
+    who: I'm writing a shiny app.
+    problems:
+      - I have a lot of different form fields that I need the user to fill out, and it's annoying to code up each one. 
+  animal2vect:
+    r: no
+    python: yes
+    who: I have audio data, some of which is labelled.
+    problems:
+      - I want to automatically identify animal calls.
+  mela:
+    r: no
+    python: yes
+    who: I have video data.
+    problems:
+      - I want to extract animal tracking data.
+  eobs data processing:
+    r: yes
+    python: no
+    who: I have eobs gps/acc data.
+    problems:
+      - I want to get the data into usable form, and optionally run ctmm
