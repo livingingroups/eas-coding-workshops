@@ -1,4 +1,4 @@
-# About
+# Tech Tip Buffet
 
 Materials from 17 June 2025 EAS Dept Meeting
 

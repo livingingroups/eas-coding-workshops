@@ -49,6 +49,12 @@ Each session worked from its own toy repo (not from this one) so participants co
 - [19 November 2024 Version](https://github.com/livingingroups/telephone2024fall) R only
 - [16 April 2024 Version](https://github.com/livingingroups/telephone2024) Supports R and python (with reticulate).
 
+## [Tech Tip Buffet](20250618-50in50)
+
+**Description:** 44 tech tips in 44 minutes aimed at having something relevant to each audience member.
+
+Presented at EAS dept meeting 17 June 2025.
+
 ##  Intro to Python for R Users
 **Description:** Ready to branch into a new language? Let python’s simplicity, flexibility, and vast ecosystem win you over.
 
