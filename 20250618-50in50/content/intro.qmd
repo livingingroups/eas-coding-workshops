@@ -1,0 +1,47 @@
+---
+title: "Tech Tip Buffet"
+author: Brock
+date: 17 June 2025
+format:
+  revealjs: 
+    slide-number: true
+    chalkboard: 
+      buttons: false
+    preview-links: auto
+    css: dracula.css
+---
+
+
+# Intro
+
+{n} Tips in {n} Mins
+
+## Goals
+
+🤔 Everyone learns something interesting.
+
+🤔 Every tip is interesting to someone.
+
+🛠️ Every coder learns something useful.
+
+⚖️ Cover topics roughly in proportion to how many people they are relevant to.
+
+## Goals
+
+If the tip is relevant to you, you can
+
+- identify that it's relevant.
+- tell in what situation you would use it.
+- know how to get started.
+
+## Anti goals
+
+- Proscriptivism
+- Any one person finding every tip interesting
+- Any one tip being interesting to everyone
+- Give enough context that everyone can understand every tip
+- Giving every detail needed to implement the tip
+
+## Latest in Emoji Reaction Technology
+Paper!
+

@@ -1,0 +1,86 @@
+## Tip #{{ n }}
+
+{{ header }}
+
+{{ tip_name }}
+
+{{ footer }}
+
+---
+
+### I'd use Tip #{{ n }} if . . .
+
+. . . {{ who }}
+
+
+{{ footer }}
+
+---
+
+### . . . and  . . .
+
+{% for problem in problems %}
+::: {.fragment}
+- {{ problem }}
+:::
+{% endfor %}
+
+{% if text is defined and text %}
+
+{{ footer }}
+
+---
+
+{{ text }}
+
+{% endif %}
+
+{% if img != '' %}
+
+{% for imlink in img %}
+
+{{ footer }}
+
+---
+
+![](img/{{ imlink }})
+
+{{ footer }}
+
+{% endfor %}
+
+{% endif %}
+
+{% if code is defined %}
+{% if code.python is defined and code.python %}
+
+{{ footer }}
+
+---
+
+![](img/logo_python.png){.absolute top=0 right=10 width="36pt"}
+
+```{.python}
+{{ code.python }}
+```
+
+{% endif %}
+
+
+{% if code.r is defined and code.r%}
+
+{{ footer }}
+
+
+---
+
+![](img/logo_r.png){.absolute top=0 right=10 width="36pt"}
+
+```{.r}
+{{ code.r }}
+```
+
+{% endif %}
+{% endif %}
+
+{{ footer }}

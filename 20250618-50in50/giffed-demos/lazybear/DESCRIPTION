@@ -1,0 +1,11 @@
+Package: lazybear
+Type: Package
+Title: Concise Summary of What the Package Does
+Version: 1.0
+Date: 2025-06-17
+Authors@R: person("MEEEEE", "Im the author", role = c("aut", "cre"), email = "your@email.com")
+Description: More about what it does (maybe more than one line).
+License: GPL (>= 2)
+Suggests: tinytest
+Encoding: UTF-8
+RoxygenNote: 7.3.2

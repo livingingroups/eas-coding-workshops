@@ -1,0 +1,5 @@
+
+{% if r and python %} ![](img/logo_rpy.png){.absolute top=0 right=10 width="72pt"}
+{% elif r %} ![](img/logo_r.png){.absolute top=0 right=10 width="36pt"}
+{% elif python %} ![](img/logo_python.png){.absolute top=0 right=10 width="36pt"}
+{% endif %}

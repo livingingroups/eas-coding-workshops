@@ -1,0 +1,4401 @@
+---
+title: "Tech Tip Buffet"
+author: Brock
+date: 17 June 2025
+format:
+  revealjs: 
+    slide-number: true
+    chalkboard: 
+      buttons: false
+    preview-links: auto
+    css: dracula.css
+---
+
+
+# Intro
+
+44 Tips in 44 Mins
+
+## Goals
+
+🤔 Everyone learns something interesting.
+
+🤔 Every tip is interesting to someone.
+
+🛠️ Every coder learns something useful.
+
+⚖️ Cover topics roughly in proportion to how many people they are relevant to.
+
+## Goals
+
+If the tip is relevant to you, you can
+
+- identify that it's relevant.
+- tell in what situation you would use it.
+- know how to get started.
+
+## Anti goals
+
+- Proscriptivism
+- Any one person finding every tip interesting
+- Any one tip being interesting to everyone
+- Give enough context that everyone can understand every tip
+- Giving every detail needed to implement the tip
+
+## Latest in Emoji Reaction Technology
+Paper!
+
+#  #1-#6 Workflow
+
+## Tip #1
+
+
+ ![](img/logo_rpy.png){.absolute top=0 right=10 width="72pt"}
+
+
+3 script project TM
+
+::: footer
+Tip #1: 3 script project TM
+
+ Links: [My Project Structure Coding Workshops](https://github.com/livingingroups/eas-coding-workshops/tree/main/20241112-project-structure)  
+
+:::
+
+
+---
+
+### I'd use Tip #1 if . . .
+
+. . . I have a longish and unweldly script.
+
+
+::: footer
+Tip #1: 3 script project TM
+
+ Links: [My Project Structure Coding Workshops](https://github.com/livingingroups/eas-coding-workshops/tree/main/20241112-project-structure)  
+
+:::
+
+
+---
+
+### . . . and  . . .
+
+
+::: {.fragment}
+- I don't want to completely re-write it, but I want to make it easier to run and debug.
+:::
+
+::: {.fragment}
+- Rerunning my entire script takes a long time, but when I rerun line by line I lose reproduciblity because I'm running things out of order.
+:::
+
+::: {.fragment}
+- I want to make sure I'm not breaking something that was already working when I write something.
+:::
+
+
+
+
+
+
+
+
+::: footer
+Tip #1: 3 script project TM
+
+ Links: [My Project Structure Coding Workshops](https://github.com/livingingroups/eas-coding-workshops/tree/main/20241112-project-structure)  
+
+:::
+
+
+---
+
+![](img/3_script_project.jpg)
+
+::: footer
+Tip #1: 3 script project TM
+
+ Links: [My Project Structure Coding Workshops](https://github.com/livingingroups/eas-coding-workshops/tree/main/20241112-project-structure)  
+
+:::
+
+
+
+
+
+
+
+
+::: footer
+Tip #1: 3 script project TM
+
+ Links: [My Project Structure Coding Workshops](https://github.com/livingingroups/eas-coding-workshops/tree/main/20241112-project-structure)  
+
+:::
+## Tip #2
+
+
+ ![](img/logo_r.png){.absolute top=0 right=10 width="36pt"}
+
+
+targets
+
+::: footer
+Tip #2: targets
+
+ Links: [{targets} walkthrough](https://books.ropensci.org/targets/walkthrough.html), [targets example from project structure workshop](https://github.com/livingingroups/eas-coding-workshops/tree/main/20241112-project-structure/04-targets)  
+
+:::
+
+
+---
+
+### I'd use Tip #2 if . . .
+
+. . . I have a workflow (long script, or several interdependent scripts) where there is more than one step that takes a long time.
+
+
+::: footer
+Tip #2: targets
+
+ Links: [{targets} walkthrough](https://books.ropensci.org/targets/walkthrough.html), [targets example from project structure workshop](https://github.com/livingingroups/eas-coding-workshops/tree/main/20241112-project-structure/04-targets)  
+
+:::
+
+
+---
+
+### . . . and  . . .
+
+
+::: {.fragment}
+- It gets tricky to remember which parts of my pipeline are "fresh" and what needs to be re-run.
+:::
+
+::: {.fragment}
+- Some parts of my pipeline could in theory be run in parallel with one another (e.g. processing two different types of data that are ulimately put together), but it's a pain start more than one script at once.
+:::
+
+
+
+
+
+
+
+
+::: footer
+Tip #2: targets
+
+ Links: [{targets} walkthrough](https://books.ropensci.org/targets/walkthrough.html), [targets example from project structure workshop](https://github.com/livingingroups/eas-coding-workshops/tree/main/20241112-project-structure/04-targets)  
+
+:::
+
+
+---
+
+![](img/targets.png)
+
+::: footer
+Tip #2: targets
+
+ Links: [{targets} walkthrough](https://books.ropensci.org/targets/walkthrough.html), [targets example from project structure workshop](https://github.com/livingingroups/eas-coding-workshops/tree/main/20241112-project-structure/04-targets)  
+
+:::
+
+
+
+
+
+
+
+
+::: footer
+Tip #2: targets
+
+ Links: [{targets} walkthrough](https://books.ropensci.org/targets/walkthrough.html), [targets example from project structure workshop](https://github.com/livingingroups/eas-coding-workshops/tree/main/20241112-project-structure/04-targets)  
+
+:::
+## Tip #3
+
+
+ ![](img/logo_rpy.png){.absolute top=0 right=10 width="72pt"}
+
+
+Logging (log levels)
+
+::: footer
+Tip #3: Logging (log levels)
+
+ Links: [R logger package](https://daroczig.github.io/logger/), [Python logging module](https://docs.python.org/3/library/logging.html)  
+
+:::
+
+
+---
+
+### I'd use Tip #3 if . . .
+
+. . . I like to put print statements in my code to tell me what's going on.
+
+
+::: footer
+Tip #3: Logging (log levels)
+
+ Links: [R logger package](https://daroczig.github.io/logger/), [Python logging module](https://docs.python.org/3/library/logging.html)  
+
+:::
+
+
+---
+
+### . . . and  . . .
+
+
+::: {.fragment}
+- I spend a lot of time commenting and uncommenting different print statements.
+:::
+
+::: {.fragment}
+- It's annoying to add in and remove print statements because they're sprinkled all throughout the code.
+:::
+
+
+
+
+
+
+
+
+::: footer
+Tip #3: Logging (log levels)
+
+ Links: [R logger package](https://daroczig.github.io/logger/), [Python logging module](https://docs.python.org/3/library/logging.html)  
+
+:::
+
+
+---
+
+![](img/logger_before.gif)
+
+::: footer
+Tip #3: Logging (log levels)
+
+ Links: [R logger package](https://daroczig.github.io/logger/), [Python logging module](https://docs.python.org/3/library/logging.html)  
+
+:::
+
+
+
+
+::: footer
+Tip #3: Logging (log levels)
+
+ Links: [R logger package](https://daroczig.github.io/logger/), [Python logging module](https://docs.python.org/3/library/logging.html)  
+
+:::
+
+
+---
+
+![](img/logger_after.gif)
+
+::: footer
+Tip #3: Logging (log levels)
+
+ Links: [R logger package](https://daroczig.github.io/logger/), [Python logging module](https://docs.python.org/3/library/logging.html)  
+
+:::
+
+
+
+
+
+
+
+
+::: footer
+Tip #3: Logging (log levels)
+
+ Links: [R logger package](https://daroczig.github.io/logger/), [Python logging module](https://docs.python.org/3/library/logging.html)  
+
+:::
+## Tip #4
+
+
+ ![](img/logo_rpy.png){.absolute top=0 right=10 width="72pt"}
+
+
+browser/pdb
+
+::: footer
+Tip #4: browser/pdb
+
+ Links: [Debugging in RStudio](https://docs.posit.co/ide/user/ide/guide/code/debugging.html), [browser](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/browser), [pdb](https://docs.python.org/3/library/pdb.html)  
+
+:::
+
+
+---
+
+### I'd use Tip #4 if . . .
+
+. . . I write functions or nested loops/if statements (or I want to start doing this).
+
+
+::: footer
+Tip #4: browser/pdb
+
+ Links: [Debugging in RStudio](https://docs.posit.co/ide/user/ide/guide/code/debugging.html), [browser](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/browser), [pdb](https://docs.python.org/3/library/pdb.html)  
+
+:::
+
+
+---
+
+### . . . and  . . .
+
+
+::: {.fragment}
+- When there's an issue with my code, I end up sourcing everything that's in the function so my environment gets messy anyway.
+:::
+
+::: {.fragment}
+- When I'm not sure what "level" the issue is at, it's especially hard because I have to check each level one by one.
+:::
+
+
+
+
+
+
+
+
+::: footer
+Tip #4: browser/pdb
+
+ Links: [Debugging in RStudio](https://docs.posit.co/ide/user/ide/guide/code/debugging.html), [browser](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/browser), [pdb](https://docs.python.org/3/library/pdb.html)  
+
+:::
+
+
+---
+
+![](img/debugging.mp4)
+
+::: footer
+Tip #4: browser/pdb
+
+ Links: [Debugging in RStudio](https://docs.posit.co/ide/user/ide/guide/code/debugging.html), [browser](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/browser), [pdb](https://docs.python.org/3/library/pdb.html)  
+
+:::
+
+
+
+
+
+
+
+
+::: footer
+Tip #4: browser/pdb
+
+ Links: [Debugging in RStudio](https://docs.posit.co/ide/user/ide/guide/code/debugging.html), [browser](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/browser), [pdb](https://docs.python.org/3/library/pdb.html)  
+
+:::
+## Tip #5
+
+
+ ![](img/logo_rpy.png){.absolute top=0 right=10 width="72pt"}
+
+
+Data Validation vs Software Testing
+
+::: footer
+Tip #5: Data Validation vs Software Testing
+
+
+
+:::
+
+
+---
+
+### I'd use Tip #5 if . . .
+
+. . . I write checks at various points in my code, but I haven't written formal software tests or data validation.
+
+
+::: footer
+Tip #5: Data Validation vs Software Testing
+
+
+
+:::
+
+
+---
+
+### . . . and  . . .
+
+
+::: {.fragment}
+- Sometimes I get my code running with one set of data, including various checks throughout, but when I introduce a new dataset, the checks aren't always appropriate.
+:::
+
+::: {.fragment}
+- It's sometimes hard to tell if I made a coding error if the data is just messier than I thought.
+:::
+
+
+
+
+::: footer
+Tip #5: Data Validation vs Software Testing
+
+
+
+:::
+
+
+---
+
+* *Software Testing*
+  - Is my code correct?
+  - Does my code do the transformations I'm expecting it to do?
+  - How? Running code with known input, verify expected output.
+* *Data Validation*
+  - Does the data I'm feeding into my code match the assumptions I'm making about it?
+  - How? Check inputs before transforming.
+
+
+
+
+
+
+
+
+
+
+
+
+::: footer
+Tip #5: Data Validation vs Software Testing
+
+
+
+:::
+#  #6-#9 Data Validation
+
+## Tip #6
+
+
+ ![](img/logo_rpy.png){.absolute top=0 right=10 width="72pt"}
+
+
+typechecking/checkmate
+
+::: footer
+Tip #6: typechecking/checkmate
+
+ Links: [Python Typing](https://docs.python.org/3/library/typing.html), [Checkmate](https://mllg.github.io/checkmate/articles/checkmate.html)  
+
+:::
+
+
+---
+
+### I'd use Tip #6 if . . .
+
+. . . I'm convinced data validation is a good idea, but it's annoying to write.
+
+
+::: footer
+Tip #6: typechecking/checkmate
+
+ Links: [Python Typing](https://docs.python.org/3/library/typing.html), [Checkmate](https://mllg.github.io/checkmate/articles/checkmate.html)  
+
+:::
+
+
+---
+
+### . . . and  . . .
+
+
+::: {.fragment}
+- I find myself writing a lot of repetative code to check basic facts about my inputs like that it's the data type and size I'm expecting.
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+
+::: footer
+Tip #6: typechecking/checkmate
+
+ Links: [Python Typing](https://docs.python.org/3/library/typing.html), [Checkmate](https://mllg.github.io/checkmate/articles/checkmate.html)  
+
+:::
+
+
+---
+
+![](img/logo_python.png){.absolute top=0 right=10 width="36pt"}
+
+```{.python}
+def fact(n: int, method: str) -> str:
+  # Function body
+
+```
+
+
+
+
+
+
+::: footer
+Tip #6: typechecking/checkmate
+
+ Links: [Python Typing](https://docs.python.org/3/library/typing.html), [Checkmate](https://mllg.github.io/checkmate/articles/checkmate.html)  
+
+:::
+
+
+
+---
+
+![](img/logo_r.png){.absolute top=0 right=10 width="36pt"}
+
+```{.r}
+fact <- function(n, method = "stirling") {
+  checkmate::assertCount(n)
+  checkmate::assertChoice(method, c("stirling", "factorial"))
+  .... 
+}
+
+```
+
+
+
+
+::: footer
+Tip #6: typechecking/checkmate
+
+ Links: [Python Typing](https://docs.python.org/3/library/typing.html), [Checkmate](https://mllg.github.io/checkmate/articles/checkmate.html)  
+
+:::
+## Tip #7
+
+
+ ![](img/logo_r.png){.absolute top=0 right=10 width="36pt"}
+
+
+validate
+
+::: footer
+Tip #7: validate
+
+ Links: [Data Validation Cookbook](https://cran.r-project.org/web/packages/validate/vignettes/cookbook.html)  
+
+:::
+
+
+---
+
+### I'd use Tip #7 if . . .
+
+. . . A lot of my data is in dataframe format (including tibble, data table, sf, etc.).
+
+
+::: footer
+Tip #7: validate
+
+ Links: [Data Validation Cookbook](https://cran.r-project.org/web/packages/validate/vignettes/cookbook.html)  
+
+:::
+
+
+---
+
+### . . . and  . . .
+
+
+::: {.fragment}
+- I want to write clear checks on my data.
+:::
+
+::: {.fragment}
+- I don't necessarily want to stop everything if some of the checks fail.
+:::
+
+::: {.fragment}
+- I want nice reporting or the outcome of the checkes
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+::: footer
+Tip #7: validate
+
+ Links: [Data Validation Cookbook](https://cran.r-project.org/web/packages/validate/vignettes/cookbook.html)  
+
+:::
+
+
+
+---
+
+![](img/logo_r.png){.absolute top=0 right=10 width="36pt"}
+
+```{.r}
+library(validate)
+data(cars)
+confront(
+  cars,
+  validator(
+    speed >= 0,
+    dist >= 0,
+    speed/dist <= 1.5,
+    cor(speed, dist)>=0.2)
+) |> summary()
+
+#   name items passes fails nNA error warning              expression
+# 1   V1    50     50     0   0 FALSE   FALSE     speed - 0 >= -1e-08
+# 2   V2    50     50     0   0 FALSE   FALSE      dist - 0 >= -1e-08
+# 3   V3    50     48     2   0 FALSE   FALSE       speed/dist <= 1.5
+# 4   V4     1      1     0   0 FALSE   FALSE cor(speed, dist) >= 0.2
+
+```
+
+
+
+
+::: footer
+Tip #7: validate
+
+ Links: [Data Validation Cookbook](https://cran.r-project.org/web/packages/validate/vignettes/cookbook.html)  
+
+:::
+## Tip #8
+
+
+ ![](img/logo_python.png){.absolute top=0 right=10 width="36pt"}
+
+
+dataframely
+
+::: footer
+Tip #8: dataframely
+
+ Links: [dataframely](https://dataframely.readthedocs.io/en/latest/)  
+
+:::
+
+
+---
+
+### I'd use Tip #8 if . . .
+
+. . . A lot of my data is in polars format.
+
+
+::: footer
+Tip #8: dataframely
+
+ Links: [dataframely](https://dataframely.readthedocs.io/en/latest/)  
+
+:::
+
+
+---
+
+### . . . and  . . .
+
+
+::: {.fragment}
+- I want to write clear checks on my data.
+:::
+
+::: {.fragment}
+- I don't necessarily want to stop everything if some of the checks fail.
+:::
+
+::: {.fragment}
+- I want nice reporting or the outcome of the checkes
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+
+::: footer
+Tip #8: dataframely
+
+ Links: [dataframely](https://dataframely.readthedocs.io/en/latest/)  
+
+:::
+
+
+---
+
+![](img/logo_python.png){.absolute top=0 right=10 width="36pt"}
+
+```{.python}
+import dataframely as dy
+
+class HouseSchema(dy.Schema):
+    zip_code = dy.String(nullable=False, min_length=3)
+    num_bedrooms = dy.UInt8(nullable=False)
+    num_bathrooms = dy.UInt8(nullable=False)
+    price = dy.Float64(nullable=False)
+
+df = pl.DataFrame({
+    "zip_code": ["01234", "01234", "1", "213", "123", "213"],
+    "num_bedrooms": [2, 2, 1, None, None, 2],
+    "num_bathrooms": [1, 2, 1, 1, 0, 8],
+    "price": [100_000, 110_000, 50_000, 80_000, 60_000, 160_000]
+})
+
+# Validate the data and cast columns to expected types
+validated_df = HouseSchema.validate(df, cast=True)
+
+# BSD 3-Clause License
+# Copyright (c) 2025, QuantCo
+# All rights reserved.
+
+```
+
+
+
+
+
+
+
+::: footer
+Tip #8: dataframely
+
+ Links: [dataframely](https://dataframely.readthedocs.io/en/latest/)  
+
+:::
+#  #9-#14 Data Processing and Storage
+
+## Tip #9
+
+
+ ![](img/logo_python.png){.absolute top=0 right=10 width="36pt"}
+
+
+polars
+
+::: footer
+Tip #9: polars
+
+ Links: [polars](https://docs.pola.rs/)  
+
+:::
+
+
+---
+
+### I'd use Tip #9 if . . .
+
+. . . I use pandas dataframes in python
+
+
+::: footer
+Tip #9: polars
+
+ Links: [polars](https://docs.pola.rs/)  
+
+:::
+
+
+---
+
+### . . . and  . . .
+
+
+::: {.fragment}
+- I wish pandas was faster/more parallel.
+:::
+
+::: {.fragment}
+- I wish I could leverage GPUs.
+:::
+
+::: {.fragment}
+- I wish I could do more data manipulation with built-in features, and not have to install or write as much extra code.
+:::
+
+
+
+
+::: footer
+Tip #9: polars
+
+ Links: [polars](https://docs.pola.rs/)  
+
+:::
+
+
+---
+
+Polars is a very fast very parallel DataFrame library written in Rust with GPU support.
+
+
+
+
+
+
+
+
+
+
+
+
+::: footer
+Tip #9: polars
+
+ Links: [polars](https://docs.pola.rs/)  
+
+:::
+## Tip #10
+
+
+ ![](img/logo_r.png){.absolute top=0 right=10 width="36pt"}
+
+
+Use data.frame until it becomes cumbersome, then use data.table
+
+::: footer
+Tip #10: Use data.frame until it becomes cumbersome, then use data.table
+
+ Links: [data.table](https://rdatatable.gitlab.io/data.table/), [dtplyr](https://github.com/tidyverse/dtplyr), [dplyr vs data.table vs base syntax comparison](https://arelbundock.com/posts/dt_tb_df/index.html)  
+
+:::
+
+
+---
+
+### I'd use Tip #10 if . . .
+
+. . . I'm starting a new project and deciding whether to use base dataframes, tibbles, or data.table. I'm not too invested in either tidyverse or data.table world yet.
+
+
+::: footer
+Tip #10: Use data.frame until it becomes cumbersome, then use data.table
+
+ Links: [data.table](https://rdatatable.gitlab.io/data.table/), [dtplyr](https://github.com/tidyverse/dtplyr), [dplyr vs data.table vs base syntax comparison](https://arelbundock.com/posts/dt_tb_df/index.html)  
+
+:::
+
+
+---
+
+### . . . and  . . .
+
+
+::: {.fragment}
+- I want my code to work well when I add more data.
+:::
+
+::: {.fragment}
+- I want my code to benefit from multiple cores without having to write explicit parallelism myself.
+:::
+
+::: {.fragment}
+- I want specifically follow Brock's recommendation.
+:::
+
+
+
+
+::: footer
+Tip #10: Use data.frame until it becomes cumbersome, then use data.table
+
+ Links: [data.table](https://rdatatable.gitlab.io/data.table/), [dtplyr](https://github.com/tidyverse/dtplyr), [dplyr vs data.table vs base syntax comparison](https://arelbundock.com/posts/dt_tb_df/index.html)  
+
+:::
+
+
+---
+
+### My recommendation
+
+Start with vanilla dataframe/base R.
+
+Switch to data.table when you:
+
+* think you need to loop over the rows of your dataframe
+* have to write multiple lines for a single operation to avoid looping (Example: Mean of one variable grouped by another variable.)
+* want things to run faster
+
+----
+
+### Why?
+
+  * Learning more base R will be an advantage in your R coding life regardless of what other packages you use
+  * dplyr may be more intuitive than data.table at first, but much less scalable. If you're at the point where you need to move beyond base R, you're not too far from the point where you need something more efficient than dplyr.
+  * data.table requires a bit more upfront learning due to its concise syntax. However, after that small initial investment, it becomes both faster to write and faster to run.
+
+
+
+
+
+
+
+
+
+
+
+
+::: footer
+Tip #10: Use data.frame until it becomes cumbersome, then use data.table
+
+ Links: [data.table](https://rdatatable.gitlab.io/data.table/), [dtplyr](https://github.com/tidyverse/dtplyr), [dplyr vs data.table vs base syntax comparison](https://arelbundock.com/posts/dt_tb_df/index.html)  
+
+:::
+## Tip #11
+
+
+ ![](img/logo_r.png){.absolute top=0 right=10 width="36pt"}
+
+
+tidyverse vs tinyverse
+
+::: footer
+Tip #11: tidyverse vs tinyverse
+
+ Links: [Tidyverse Manifesto](https://tidyverse.tidyverse.org/articles/manifesto.html), [Tinyverse](https://www.tinyverse.org/), [Getting started with R tinyverse addition](https://eddelbuettel.github.io/gsir-te/Getting-Started-in-R.pdf), [fastverse](https://github.com/fastverse/fastverse), [Tidyverse Skeptic](https://matloff.github.io/TidyverseSkeptic/Skeptic.html)  
+
+:::
+
+
+---
+
+### I'd use Tip #11 if . . .
+
+. . . I'm starting a new project and trying to thoughtfully select which libraries to use.
+
+
+::: footer
+Tip #11: tidyverse vs tinyverse
+
+ Links: [Tidyverse Manifesto](https://tidyverse.tidyverse.org/articles/manifesto.html), [Tinyverse](https://www.tinyverse.org/), [Getting started with R tinyverse addition](https://eddelbuettel.github.io/gsir-te/Getting-Started-in-R.pdf), [fastverse](https://github.com/fastverse/fastverse), [Tidyverse Skeptic](https://matloff.github.io/TidyverseSkeptic/Skeptic.html)  
+
+:::
+
+
+---
+
+### . . . and  . . .
+
+
+::: {.fragment}
+- Some people seem to like tidyverse and others not, but I'm not sure why.
+:::
+
+::: {.fragment}
+- I've had issues with projects changing how their functions work, but I'm not sure how to mitigate that.
+:::
+
+::: {.fragment}
+- I know there are different options of R packages that do similar basic data processing tasks, but I'm not sure what the differences are or how I should chose among them.
+:::
+
+
+
+
+::: footer
+Tip #11: tidyverse vs tinyverse
+
+ Links: [Tidyverse Manifesto](https://tidyverse.tidyverse.org/articles/manifesto.html), [Tinyverse](https://www.tinyverse.org/), [Getting started with R tinyverse addition](https://eddelbuettel.github.io/gsir-te/Getting-Started-in-R.pdf), [fastverse](https://github.com/fastverse/fastverse), [Tidyverse Skeptic](https://matloff.github.io/TidyverseSkeptic/Skeptic.html)  
+
+:::
+
+
+---
+
+These philosophical movements respect one another, simply have different goals.
+
+* **tidyverse** prioritizes user-friendliness, explicitly deprioritizes compute efficiency, implicitly deprioritizes longevity 
+* **fastverse** prioritizes compute efficiency, some attention paid to longevity (stable interface), implicitly deprioritizing user-friendliness 
+* **tinyverse** prioritizes longevitiy by minimizing dependencies
+When chosing what packages to add to your project for core data manipulation, understand what you may be trading off in terms of efficiency and longevity.
+
+
+
+
+
+
+
+
+
+
+
+
+::: footer
+Tip #11: tidyverse vs tinyverse
+
+ Links: [Tidyverse Manifesto](https://tidyverse.tidyverse.org/articles/manifesto.html), [Tinyverse](https://www.tinyverse.org/), [Getting started with R tinyverse addition](https://eddelbuettel.github.io/gsir-te/Getting-Started-in-R.pdf), [fastverse](https://github.com/fastverse/fastverse), [Tidyverse Skeptic](https://matloff.github.io/TidyverseSkeptic/Skeptic.html)  
+
+:::
+## Tip #12
+
+
+ ![](img/logo_rpy.png){.absolute top=0 right=10 width="72pt"}
+
+
+duckdb
+
+::: footer
+Tip #12: duckdb
+
+ Links: [DuckDB R client](https://duckdb.org/docs/stable/clients/r.html), [DuckDB python client](https://duckdb.org/docs/stable/clients/python/overview.html)  
+
+:::
+
+
+---
+
+### I'd use Tip #12 if . . .
+
+. . . I'm outgrowing dataframes. I often have to load multiple (sometimes large) CSVs or Rdata/pickles with dataframes in them at the beginning of my script.
+
+
+::: footer
+Tip #12: duckdb
+
+ Links: [DuckDB R client](https://duckdb.org/docs/stable/clients/r.html), [DuckDB python client](https://duckdb.org/docs/stable/clients/python/overview.html)  
+
+:::
+
+
+---
+
+### . . . and  . . .
+
+
+::: {.fragment}
+- If I store my somewhat processed data in CSVs, I have to write a bunch of code at the beginning to make sure everything is the right datatype.
+:::
+
+::: {.fragment}
+- If I use pickle/rdata, I'm locked into using a particular datastructure (e.g. dataframe v.s. data table v.s. tibble)
+:::
+
+::: {.fragment}
+- If I use pickle/Rdata interoperating between R and python (or other languages) can be tricky.
+:::
+
+::: {.fragment}
+- Sometimes I just need a few rows from a huge file so loading the entire file feels like a waste.
+:::
+
+::: {.fragment}
+- I have multiple dataframes that should be linked together. (e.g. an "individuals" data frame and a "behaviors" data frame with individual_id as a column), and I end up having to copy the linking code from script to script.
+:::
+
+
+
+
+::: footer
+Tip #12: duckdb
+
+ Links: [DuckDB R client](https://duckdb.org/docs/stable/clients/r.html), [DuckDB python client](https://duckdb.org/docs/stable/clients/python/overview.html)  
+
+:::
+
+
+---
+
+* Relational databases allow you to store your data, column headers, datatype *AND* relationships between tables.
+* Duckdb allows you do this with minimal setup.
+  - Install as you would any other R or python package.
+  - Data is stored in a single file simlar to pickle or .rds file.
+* Relations between tables (or data frames) are stored explicitly.
+* You can load only particular rows/columns into your session.
+
+----
+
+```{sql}
+  SELECT * 
+  FROM observations
+  JOIN individuals
+  ON observations.individual_id = individuals.id
+  WHERE 
+    observations.date > '2024-07-01' AND
+    individuals.dob < '2023-01-01'
+```
+
+
+
+
+
+
+
+
+
+
+
+
+::: footer
+Tip #12: duckdb
+
+ Links: [DuckDB R client](https://duckdb.org/docs/stable/clients/r.html), [DuckDB python client](https://duckdb.org/docs/stable/clients/python/overview.html)  
+
+:::
+## Tip #13
+
+
+ ![](img/logo_rpy.png){.absolute top=0 right=10 width="72pt"}
+
+
+neo4j
+
+::: footer
+Tip #13: neo4j
+
+ Links: [Core Database](https://github.com/neo4j/neo4j), [R client](https://neo4j-rstats.github.io/user-guide/), [python client](https://neo4j.com/docs/python-manual/current/), [Visualization Tool](https://neo4j.com/product/bloom/), [Video Screenshot Pulled From](https://www.youtube.com/watch?v=ZYIasTOhLtI)  
+
+:::
+
+
+---
+
+### I'd use Tip #13 if . . .
+
+. . . I work with network data.
+
+
+::: footer
+Tip #13: neo4j
+
+ Links: [Core Database](https://github.com/neo4j/neo4j), [R client](https://neo4j-rstats.github.io/user-guide/), [python client](https://neo4j.com/docs/python-manual/current/), [Visualization Tool](https://neo4j.com/product/bloom/), [Video Screenshot Pulled From](https://www.youtube.com/watch?v=ZYIasTOhLtI)  
+
+:::
+
+
+---
+
+### . . . and  . . .
+
+
+::: {.fragment}
+- I have similar problems to those listed under previous tip
+:::
+
+::: {.fragment}
+- Since my data doesn't fit so well into data frame format, many standard data processing tools aren't super helpful.
+:::
+
+::: {.fragment}
+- Even if I use graph-specific packages (like networkx), I end up writing a lot of custom code just to explore my data.
+:::
+
+
+
+
+::: footer
+Tip #13: neo4j
+
+ Links: [Core Database](https://github.com/neo4j/neo4j), [R client](https://neo4j-rstats.github.io/user-guide/), [python client](https://neo4j.com/docs/python-manual/current/), [Visualization Tool](https://neo4j.com/product/bloom/), [Video Screenshot Pulled From](https://www.youtube.com/watch?v=ZYIasTOhLtI)  
+
+:::
+
+
+---
+
+### neo4j
+ 
+* Core DB is free and open source.
+* Visualization tool is not open source, but has a free version.
+
+```
+MATCH (tom:Person {name:'Tom Hanks'})--{2}(colleagues:Person)
+RETURN DISTINCT colleagues.name AS name, colleagues.born AS bornIn
+ORDER BY bornIn
+LIMIT 5
+```
+
+
+
+
+
+
+
+
+::: footer
+Tip #13: neo4j
+
+ Links: [Core Database](https://github.com/neo4j/neo4j), [R client](https://neo4j-rstats.github.io/user-guide/), [python client](https://neo4j.com/docs/python-manual/current/), [Visualization Tool](https://neo4j.com/product/bloom/), [Video Screenshot Pulled From](https://www.youtube.com/watch?v=ZYIasTOhLtI)  
+
+:::
+
+
+---
+
+![](img/neo4j.png)
+
+::: footer
+Tip #13: neo4j
+
+ Links: [Core Database](https://github.com/neo4j/neo4j), [R client](https://neo4j-rstats.github.io/user-guide/), [python client](https://neo4j.com/docs/python-manual/current/), [Visualization Tool](https://neo4j.com/product/bloom/), [Video Screenshot Pulled From](https://www.youtube.com/watch?v=ZYIasTOhLtI)  
+
+:::
+
+
+
+
+
+
+
+
+::: footer
+Tip #13: neo4j
+
+ Links: [Core Database](https://github.com/neo4j/neo4j), [R client](https://neo4j-rstats.github.io/user-guide/), [python client](https://neo4j.com/docs/python-manual/current/), [Visualization Tool](https://neo4j.com/product/bloom/), [Video Screenshot Pulled From](https://www.youtube.com/watch?v=ZYIasTOhLtI)  
+
+:::
+#  #14-#17 Readability
+
+## Tip #14
+
+
+ ![](img/logo_rpy.png){.absolute top=0 right=10 width="72pt"}
+
+
+linter
+
+::: footer
+Tip #14: linter
+
+ Links: [Rstudio Diagnostics](https://docs.posit.co/ide/user/ide/guide/code/diagnostics.html), [lintr](https://lintr.r-lib.org/index.html), [pylint](https://pylint.readthedocs.io/en/latest/), [black](https://black.readthedocs.io/en/stable/index.html), [pycodestyle](https://github.com/PyCQA/pycodestyle)  
+
+:::
+
+
+---
+
+### I'd use Tip #14 if . . .
+
+. . . Sometimes I use kind of random formatting, and I want it to be consistent.
+
+
+::: footer
+Tip #14: linter
+
+ Links: [Rstudio Diagnostics](https://docs.posit.co/ide/user/ide/guide/code/diagnostics.html), [lintr](https://lintr.r-lib.org/index.html), [pylint](https://pylint.readthedocs.io/en/latest/), [black](https://black.readthedocs.io/en/stable/index.html), [pycodestyle](https://github.com/PyCQA/pycodestyle)  
+
+:::
+
+
+---
+
+### . . . and  . . .
+
+
+::: {.fragment}
+- I can't always immediately tell if I'm conforming to a style guide.
+:::
+
+
+
+
+::: footer
+Tip #14: linter
+
+ Links: [Rstudio Diagnostics](https://docs.posit.co/ide/user/ide/guide/code/diagnostics.html), [lintr](https://lintr.r-lib.org/index.html), [pylint](https://pylint.readthedocs.io/en/latest/), [black](https://black.readthedocs.io/en/stable/index.html), [pycodestyle](https://github.com/PyCQA/pycodestyle)  
+
+:::
+
+
+---
+
+* **Rstudio**: Turn on built in diagnostics Tools > Global Options > Code > Diagnostics
+* **R**: `lintr` offers additional customizable checks, integrates with multiple IDEs
+* **python**: pylint, black, pycodestyle are all customizable and integrate with multiple IDEs
+
+
+
+
+
+
+
+
+::: footer
+Tip #14: linter
+
+ Links: [Rstudio Diagnostics](https://docs.posit.co/ide/user/ide/guide/code/diagnostics.html), [lintr](https://lintr.r-lib.org/index.html), [pylint](https://pylint.readthedocs.io/en/latest/), [black](https://black.readthedocs.io/en/stable/index.html), [pycodestyle](https://github.com/PyCQA/pycodestyle)  
+
+:::
+
+
+---
+
+![](img/lint_rstudio.png)
+
+::: footer
+Tip #14: linter
+
+ Links: [Rstudio Diagnostics](https://docs.posit.co/ide/user/ide/guide/code/diagnostics.html), [lintr](https://lintr.r-lib.org/index.html), [pylint](https://pylint.readthedocs.io/en/latest/), [black](https://black.readthedocs.io/en/stable/index.html), [pycodestyle](https://github.com/PyCQA/pycodestyle)  
+
+:::
+
+
+
+
+::: footer
+Tip #14: linter
+
+ Links: [Rstudio Diagnostics](https://docs.posit.co/ide/user/ide/guide/code/diagnostics.html), [lintr](https://lintr.r-lib.org/index.html), [pylint](https://pylint.readthedocs.io/en/latest/), [black](https://black.readthedocs.io/en/stable/index.html), [pycodestyle](https://github.com/PyCQA/pycodestyle)  
+
+:::
+
+
+---
+
+![](img/lint_python.png)
+
+::: footer
+Tip #14: linter
+
+ Links: [Rstudio Diagnostics](https://docs.posit.co/ide/user/ide/guide/code/diagnostics.html), [lintr](https://lintr.r-lib.org/index.html), [pylint](https://pylint.readthedocs.io/en/latest/), [black](https://black.readthedocs.io/en/stable/index.html), [pycodestyle](https://github.com/PyCQA/pycodestyle)  
+
+:::
+
+
+
+
+
+
+
+
+::: footer
+Tip #14: linter
+
+ Links: [Rstudio Diagnostics](https://docs.posit.co/ide/user/ide/guide/code/diagnostics.html), [lintr](https://lintr.r-lib.org/index.html), [pylint](https://pylint.readthedocs.io/en/latest/), [black](https://black.readthedocs.io/en/stable/index.html), [pycodestyle](https://github.com/PyCQA/pycodestyle)  
+
+:::
+## Tip #15
+
+
+ ![](img/logo_rpy.png){.absolute top=0 right=10 width="72pt"}
+
+
+autoformat
+
+::: footer
+Tip #15: autoformat
+
+ Links: [black](https://black.readthedocs.io/en/stable/), [autopep8](https://github.com/hhatto/autopep8), [formatR](https://yihui.org/formatr/), [styleR](https://styler.r-lib.org/), [flir](https://flir.etiennebacher.com/), [air](https://www.tidyverse.org/blog/2025/02/air/)  
+
+:::
+
+
+---
+
+### I'd use Tip #15 if . . .
+
+. . . Sometimes I use kind of random formatting, and I want it to be consistent.
+
+
+::: footer
+Tip #15: autoformat
+
+ Links: [black](https://black.readthedocs.io/en/stable/), [autopep8](https://github.com/hhatto/autopep8), [formatR](https://yihui.org/formatr/), [styleR](https://styler.r-lib.org/), [flir](https://flir.etiennebacher.com/), [air](https://www.tidyverse.org/blog/2025/02/air/)  
+
+:::
+
+
+---
+
+### . . . and  . . .
+
+
+::: {.fragment}
+- It's annoying to go through line by line and futz with spacing and line breaks.
+:::
+
+
+
+
+
+
+
+
+::: footer
+Tip #15: autoformat
+
+ Links: [black](https://black.readthedocs.io/en/stable/), [autopep8](https://github.com/hhatto/autopep8), [formatR](https://yihui.org/formatr/), [styleR](https://styler.r-lib.org/), [flir](https://flir.etiennebacher.com/), [air](https://www.tidyverse.org/blog/2025/02/air/)  
+
+:::
+
+
+---
+
+![](img/autoformat_rstudio.gif)
+
+::: footer
+Tip #15: autoformat
+
+ Links: [black](https://black.readthedocs.io/en/stable/), [autopep8](https://github.com/hhatto/autopep8), [formatR](https://yihui.org/formatr/), [styleR](https://styler.r-lib.org/), [flir](https://flir.etiennebacher.com/), [air](https://www.tidyverse.org/blog/2025/02/air/)  
+
+:::
+
+
+
+
+::: footer
+Tip #15: autoformat
+
+ Links: [black](https://black.readthedocs.io/en/stable/), [autopep8](https://github.com/hhatto/autopep8), [formatR](https://yihui.org/formatr/), [styleR](https://styler.r-lib.org/), [flir](https://flir.etiennebacher.com/), [air](https://www.tidyverse.org/blog/2025/02/air/)  
+
+:::
+
+
+---
+
+![](img/autoformat_vscode.gif)
+
+::: footer
+Tip #15: autoformat
+
+ Links: [black](https://black.readthedocs.io/en/stable/), [autopep8](https://github.com/hhatto/autopep8), [formatR](https://yihui.org/formatr/), [styleR](https://styler.r-lib.org/), [flir](https://flir.etiennebacher.com/), [air](https://www.tidyverse.org/blog/2025/02/air/)  
+
+:::
+
+
+
+
+
+
+
+
+::: footer
+Tip #15: autoformat
+
+ Links: [black](https://black.readthedocs.io/en/stable/), [autopep8](https://github.com/hhatto/autopep8), [formatR](https://yihui.org/formatr/), [styleR](https://styler.r-lib.org/), [flir](https://flir.etiennebacher.com/), [air](https://www.tidyverse.org/blog/2025/02/air/)  
+
+:::
+## Tip #16
+
+
+ ![](img/logo_rpy.png){.absolute top=0 right=10 width="72pt"}
+
+
+auto-replace
+
+::: footer
+Tip #16: auto-replace
+
+ Links: [rope](https://github.com/python-rope/rope) powerful python refactoring library  
+
+:::
+
+
+---
+
+### I'd use Tip #16 if . . .
+
+. . . Sometimes I want to change variable names to make things more understandable.
+
+
+::: footer
+Tip #16: auto-replace
+
+ Links: [rope](https://github.com/python-rope/rope) powerful python refactoring library  
+
+:::
+
+
+---
+
+### . . . and  . . .
+
+
+::: {.fragment}
+- If I do find and replace, sometimes it catches things I don't want to change.
+:::
+
+
+
+
+
+
+
+
+::: footer
+Tip #16: auto-replace
+
+ Links: [rope](https://github.com/python-rope/rope) powerful python refactoring library  
+
+:::
+
+
+---
+
+![](img/autoreplace_vscode.gif)
+
+::: footer
+Tip #16: auto-replace
+
+ Links: [rope](https://github.com/python-rope/rope) powerful python refactoring library  
+
+:::
+
+
+
+
+::: footer
+Tip #16: auto-replace
+
+ Links: [rope](https://github.com/python-rope/rope) powerful python refactoring library  
+
+:::
+
+
+---
+
+![](img/autoreplace_rstudio.gif)
+
+::: footer
+Tip #16: auto-replace
+
+ Links: [rope](https://github.com/python-rope/rope) powerful python refactoring library  
+
+:::
+
+
+
+
+
+
+
+
+::: footer
+Tip #16: auto-replace
+
+ Links: [rope](https://github.com/python-rope/rope) powerful python refactoring library  
+
+:::
+#  #17-#23 Tinytips
+
+## Tip #17
+
+
+ ![](img/logo_r.png){.absolute top=0 right=10 width="36pt"}
+
+
+match instead of which
+
+::: footer
+Tip #17: match instead of which
+
+
+
+:::
+
+
+---
+
+### I'd use Tip #17 if . . .
+
+. . . I find myself writing a lot of 
+
+`df[which(df$col_1 == 'value1'),]`
+
+
+
+::: footer
+Tip #17: match instead of which
+
+
+
+:::
+
+
+---
+
+### . . . and  . . .
+
+
+::: {.fragment}
+- this is kind of long
+:::
+
+::: {.fragment}
+- it's a bit hard to read
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+::: footer
+Tip #17: match instead of which
+
+
+
+:::
+
+
+
+---
+
+![](img/logo_r.png){.absolute top=0 right=10 width="36pt"}
+
+```{.r}
+# slower
+LETTERS[which(letters == 's')]
+# S
+ 
+# faster
+LETTERS[match('s', letters)]
+# S
+
+```
+
+
+
+
+::: footer
+Tip #17: match instead of which
+
+
+
+:::
+## Tip #18
+
+
+ ![](img/logo_r.png){.absolute top=0 right=10 width="36pt"}
+
+
+native pipe `|>`
+
+::: footer
+Tip #18: native pipe `|>`
+
+
+
+:::
+
+
+---
+
+### I'd use Tip #18 if . . .
+
+. . . I like using pipe `%>%`, but I don't use too much of the tidyverse in general
+
+
+::: footer
+Tip #18: native pipe `|>`
+
+
+
+:::
+
+
+---
+
+### . . . and  . . .
+
+
+::: {.fragment}
+- a lot of times, I have to install and load `magrittr` just to use the pipe and nothing else
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+::: footer
+Tip #18: native pipe `|>`
+
+
+
+:::
+
+
+
+---
+
+![](img/logo_r.png){.absolute top=0 right=10 width="36pt"}
+
+```{.r}
+iris |> summary()
+# 
+#   Sepal.Length    Sepal.Width     Petal.Length  
+#  Min.   :4.300   Min.   :2.000   Min.   :1.000  
+#  1st Qu.:5.100   1st Qu.:2.800   1st Qu.:1.600  
+#  Median :5.800   Median :3.000   Median :4.350  
+#  Mean   :5.843   Mean   :3.057   Mean   :3.758  
+#  3rd Qu.:6.400   3rd Qu.:3.300   3rd Qu.:5.100  
+#  Max.   :7.900   Max.   :4.400   Max.   :6.900  
+#   Petal.Width          Species  
+#  Min.   :0.100   setosa    :50  
+#  1st Qu.:0.300   versicolor:50  
+#  Median :1.300   virginica :50  
+#  Mean   :1.199                  
+#  3rd Qu.:1.800                  
+#  Max.   :2.500  
+
+```
+
+
+
+
+::: footer
+Tip #18: native pipe `|>`
+
+
+
+:::
+## Tip #19
+
+
+ ![](img/logo_rpy.png){.absolute top=0 right=10 width="72pt"}
+
+
+switch with a list
+
+::: footer
+Tip #19: switch with a list
+
+
+
+:::
+
+
+---
+
+### I'd use Tip #19 if . . .
+
+. . . I tend to write a lot of long if else statements that test the same value over and over.
+  e.g.
+
+```
+if (my_variable == 'a') {
+  ...
+} else if (my_variable == 'b'){
+  ...
+} else if (my_variable == ...
+```
+
+
+
+::: footer
+Tip #19: switch with a list
+
+
+
+:::
+
+
+---
+
+### . . . and  . . .
+
+
+::: {.fragment}
+- this is a bit repeative and hard to read
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+
+::: footer
+Tip #19: switch with a list
+
+
+
+:::
+
+
+---
+
+![](img/logo_python.png){.absolute top=0 right=10 width="36pt"}
+
+```{.python}
+# Switch with ifelse
+name = 'brook'
+if (name.lower() == 'brook'):
+    name = 'Brock'
+elif (name.lower() == 'rbock'):
+    name = 'Brock'
+elif (name.lower() == 'allie'):
+    name = 'Alie'
+elif (name.lower() == 'aly'):
+    name = 'Alie'
+print(name)
+
+
+# Using dictionary
+name = 'brook'
+name = {
+  'brook': 'Brock',
+  'rbock': 'Brock',
+  'allie': 'Alie',
+  'aly': 'Alie'
+}[name.lower()]
+print(name)
+
+```
+
+
+
+
+
+
+::: footer
+Tip #19: switch with a list
+
+
+
+:::
+
+
+
+---
+
+![](img/logo_r.png){.absolute top=0 right=10 width="36pt"}
+
+```{.r}
+# Switch with ifelse
+name <- 'brook'
+if (tolower(name) == 'brook') name <- 'Brock' else
+  if (tolower(name) == 'rbock') name <- 'Brock' else
+    if (tolower(name) == 'allie') name <- 'Alie' else
+      if (tolower(name) == 'aly') name <- 'Alie'
+print(name)
+
+# Using switch function
+name <- 'brook'
+name <- switch(tolower(name),
+  'brook' = 'Brock',
+  'rbock' = 'Brock',
+  'allie' = 'Alie',
+  'aly' = 'Alie'
+)
+print(name)
+
+# Using list
+name <- 'brook'
+name <- list(
+  'brook' = 'Brock',
+  'rbock' = 'Brock',
+  'allie' = 'Alie',
+  'aly' = 'Alie'
+)[[tolower(name)]]
+print(name)
+
+```
+
+
+
+
+::: footer
+Tip #19: switch with a list
+
+
+
+:::
+## Tip #20
+
+
+ ![](img/logo_r.png){.absolute top=0 right=10 width="36pt"}
+
+
+seq_along/seq_len
+
+::: footer
+Tip #20: seq_along/seq_len
+
+
+
+:::
+
+
+---
+
+### I'd use Tip #20 if . . .
+
+. . . I write a lot of `for(i in 1:n){...}` type loops
+
+
+::: footer
+Tip #20: seq_along/seq_len
+
+
+
+:::
+
+
+---
+
+### . . . and  . . .
+
+
+::: {.fragment}
+- If `n` is `0`, I want the loop to not run at all, but what actually happens is it runs with `i=1` then `i=0`.
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+::: footer
+Tip #20: seq_along/seq_len
+
+
+
+:::
+
+
+
+---
+
+![](img/logo_r.png){.absolute top=0 right=10 width="36pt"}
+
+```{.r}
+# works with 1:length(my_vector)
+colors <- c('Red', 'Green', 'Purple')
+colors_filtered <- colors[startsWith(colors, 'P')]
+for (i in 1:length(colors_filtered)) {
+  print(paste(colors_filtered[i], 'starts with P'))
+}
+
+# [1] "Purple starts with P"
+
+# doesn't  work with 1:length(my_vector)
+colors <- c('Red', 'Green', 'Violet')
+colors_filtered <- colors[startsWith(colors, 'P')]
+for (i in 1:length(colors_filtered)) {
+  print(paste(colors_filtered[i], 'starts with P'))
+}
+
+# [1] "NA starts with P"
+# [1] " starts with P"
+
+# Updated
+colors <- c('Red', 'Green', 'Purple')
+colors_filtered <- colors[startsWith(colors, 'P')]
+for (i in seq_along(colors_filtered)) {
+  print(paste(colors_filtered[i], 'starts with P'))
+}
+
+# "Purple starts with P"
+
+colors <- c('Red', 'Green', 'Violet')
+colors_filtered <- colors[startsWith(colors, 'P')]
+for (i in seq_along(colors_filtered)) {
+  print(paste(colors_filtered[i], 'starts with P'))
+}
+
+# doesn't print anything
+
+```
+
+
+
+
+::: footer
+Tip #20: seq_along/seq_len
+
+
+
+:::
+## Tip #21
+
+
+ ![](img/logo_r.png){.absolute top=0 right=10 width="36pt"}
+
+
+Don't forget to have fun (emoGG)
+
+::: footer
+Tip #21: Don't forget to have fun (emoGG)
+
+ Links: [emoGG](https://github.com/dill/emoGG)  
+
+:::
+
+
+---
+
+### I'd use Tip #21 if . . .
+
+. . . I use ggplot.
+
+
+::: footer
+Tip #21: Don't forget to have fun (emoGG)
+
+ Links: [emoGG](https://github.com/dill/emoGG)  
+
+:::
+
+
+---
+
+### . . . and  . . .
+
+
+::: {.fragment}
+- I wish it were more fun.
+:::
+
+
+
+
+::: footer
+Tip #21: Don't forget to have fun (emoGG)
+
+ Links: [emoGG](https://github.com/dill/emoGG)  
+
+:::
+
+
+---
+
+Not the most practical package, but succeeds in its goal of being fun
+
+
+
+
+
+
+
+::: footer
+Tip #21: Don't forget to have fun (emoGG)
+
+ Links: [emoGG](https://github.com/dill/emoGG)  
+
+:::
+
+
+---
+
+![](img/emoGG.png)
+
+::: footer
+Tip #21: Don't forget to have fun (emoGG)
+
+ Links: [emoGG](https://github.com/dill/emoGG)  
+
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+::: footer
+Tip #21: Don't forget to have fun (emoGG)
+
+ Links: [emoGG](https://github.com/dill/emoGG)  
+
+:::
+
+
+
+---
+
+![](img/logo_r.png){.absolute top=0 right=10 width="36pt"}
+
+```{.r}
+zzz <- '1f634'
+hmm <- '1f914'
+
+x <- seq(0, 1, by=.1)
+df <- data.frame(
+  time = rep(x, 2),
+  mood = c(
+    rep(zzz, length(x)),
+    rep(hmm, length(x))
+  ),
+  pct_people = c(
+    pnorm(x, 1, .5),
+    (1 - pnorm(x, 1, .5))/5
+  )
+)
+
+ggplot(data = df, mapping = aes(
+  x = time,
+  y = pct_people,
+  emoji = mood,
+)) + geom_emoji() + ggtitle('Expected Reaction to Talk')
+
+```
+
+
+
+
+::: footer
+Tip #21: Don't forget to have fun (emoGG)
+
+ Links: [emoGG](https://github.com/dill/emoGG)  
+
+:::
+## Tip #22
+
+
+ ![](img/logo_rpy.png){.absolute top=0 right=10 width="72pt"}
+
+
+leaflet
+
+::: footer
+Tip #22: leaflet
+
+ Links: [Python Client](https://ipyleaflet.readthedocs.io/en/latest/index.html), [R Client](https://rstudio.github.io/leaflet/)  
+
+:::
+
+
+---
+
+### I'd use Tip #22 if . . .
+
+. . . I work with geospatial data in R or python.
+
+
+::: footer
+Tip #22: leaflet
+
+ Links: [Python Client](https://ipyleaflet.readthedocs.io/en/latest/index.html), [R Client](https://rstudio.github.io/leaflet/)  
+
+:::
+
+
+---
+
+### . . . and  . . .
+
+
+::: {.fragment}
+- it's hard get static plots at the right level of zoom/detail.
+:::
+
+::: {.fragment}
+- I wish I had google-maps like interface with landmarks.
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+
+::: footer
+Tip #22: leaflet
+
+ Links: [Python Client](https://ipyleaflet.readthedocs.io/en/latest/index.html), [R Client](https://rstudio.github.io/leaflet/)  
+
+:::
+
+
+---
+
+![](img/logo_python.png){.absolute top=0 right=10 width="36pt"}
+
+```{.python}
+from ipyleaflet import Map, Marker
+
+center = (47.67747, 9.16736)
+
+m = Map(center=center, zoom=14)
+
+eps = eps = .0005
+for i in range(-10, 10):
+    for j in range(-10, 10):
+        marker = Marker(
+            location=(
+                center[0] + i * eps,
+                center[1] + i * eps,
+            ),
+            draggable=True
+        )
+        m.add(marker)
+        marker = Marker(
+            location=(
+                center[0] - i * eps,
+                center[1] + i * eps,
+            ),
+            draggable=True
+        )
+        m.add(marker)
+m.save('map.html')
+
+```
+
+
+
+
+
+
+
+::: footer
+Tip #22: leaflet
+
+ Links: [Python Client](https://ipyleaflet.readthedocs.io/en/latest/index.html), [R Client](https://rstudio.github.io/leaflet/)  
+
+:::
+#  #23-#29 Longevity
+
+## Tip #23
+
+
+ ![](img/logo_r.png){.absolute top=0 right=10 width="36pt"}
+
+
+pak
+
+::: footer
+Tip #23: pak
+
+ Links: [pak](https://pak.r-lib.org/)  
+
+:::
+
+
+---
+
+### I'd use Tip #23 if . . .
+
+. . . I install R packages.
+
+
+::: footer
+Tip #23: pak
+
+ Links: [pak](https://pak.r-lib.org/)  
+
+:::
+
+
+---
+
+### . . . and  . . .
+
+
+::: {.fragment}
+- It takes a long time.
+:::
+
+::: {.fragment}
+- Hard to parse from logs exactly what dependencies are being installed.
+:::
+
+::: {.fragment}
+- When something goes wrong, it's hard to tell what went wrong.
+:::
+
+::: {.fragment}
+- Takes a long time to get to the point where the problem is, and thus a long time to figure out if it's fixed.
+:::
+
+::: {.fragment}
+- I have to remember to swap between `install.packages`, `remote::install_github` etc.
+:::
+
+
+
+
+
+
+
+
+::: footer
+Tip #23: pak
+
+ Links: [pak](https://pak.r-lib.org/)  
+
+:::
+
+
+---
+
+![](img/install_base.gif)
+
+::: footer
+Tip #23: pak
+
+ Links: [pak](https://pak.r-lib.org/)  
+
+:::
+
+
+
+
+::: footer
+Tip #23: pak
+
+ Links: [pak](https://pak.r-lib.org/)  
+
+:::
+
+
+---
+
+![](img/install_pak.gif)
+
+::: footer
+Tip #23: pak
+
+ Links: [pak](https://pak.r-lib.org/)  
+
+:::
+
+
+
+
+
+
+
+
+::: footer
+Tip #23: pak
+
+ Links: [pak](https://pak.r-lib.org/)  
+
+:::
+## Tip #24
+
+
+ ![](img/logo_r.png){.absolute top=0 right=10 width="36pt"}
+
+
+renv
+
+::: footer
+Tip #24: renv
+
+ Links: [renv](https://rstudio.github.io/renv/)  
+
+:::
+
+
+---
+
+### I'd use Tip #24 if . . .
+
+. . . I write code that I want to be runnable by other people or runable by me months or years later.
+
+
+::: footer
+Tip #24: renv
+
+ Links: [renv](https://rstudio.github.io/renv/)  
+
+:::
+
+
+---
+
+### . . . and  . . .
+
+
+::: {.fragment}
+- It's hard to recreate the exact combination of packages and package versions that I had when my code was working.
+:::
+
+
+
+
+::: footer
+Tip #24: renv
+
+ Links: [renv](https://rstudio.github.io/renv/)  
+
+:::
+
+
+---
+
+* `renv` keeps dependencies separate accross projects ie you can have two different projects with different versions of the same package
+* `renv` stores the information about what version of everything you are using in a single file that you can commit.
+
+
+
+
+
+
+
+
+::: footer
+Tip #24: renv
+
+ Links: [renv](https://rstudio.github.io/renv/)  
+
+:::
+
+
+---
+
+![](img/renv.png)
+
+::: footer
+Tip #24: renv
+
+ Links: [renv](https://rstudio.github.io/renv/)  
+
+:::
+
+
+
+
+
+
+
+
+::: footer
+Tip #24: renv
+
+ Links: [renv](https://rstudio.github.io/renv/)  
+
+:::
+## Tip #25
+
+
+ ![](img/logo_rpy.png){.absolute top=0 right=10 width="72pt"}
+
+
+Timetravel with posit package manager
+
+::: footer
+Tip #25: Timetravel with posit package manager
+
+ Links: [Posit Package Manager](https://packagemanager.posit.co/client/#/)  
+
+:::
+
+
+---
+
+### I'd use Tip #25 if . . .
+
+. . . I'm trying to revive some code that was working at some point in the past.
+
+
+::: footer
+Tip #25: Timetravel with posit package manager
+
+ Links: [Posit Package Manager](https://packagemanager.posit.co/client/#/)  
+
+:::
+
+
+---
+
+### . . . and  . . .
+
+
+::: {.fragment}
+- I need a version of a dependency that's no longer available on CRAN/pypi but was in the past.
+:::
+
+
+
+
+
+
+
+
+::: footer
+Tip #25: Timetravel with posit package manager
+
+ Links: [Posit Package Manager](https://packagemanager.posit.co/client/#/)  
+
+:::
+
+
+---
+
+![](img/ppm.png)
+
+::: footer
+Tip #25: Timetravel with posit package manager
+
+ Links: [Posit Package Manager](https://packagemanager.posit.co/client/#/)  
+
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+::: footer
+Tip #25: Timetravel with posit package manager
+
+ Links: [Posit Package Manager](https://packagemanager.posit.co/client/#/)  
+
+:::
+
+
+
+---
+
+![](img/logo_r.png){.absolute top=0 right=10 width="36pt"}
+
+```{.r}
+# Base install packages
+install.packages('stringr', repos='https://packagemanager.posit.co/cran/2022-03-15')
+# pak
+withr::with_options(
+  list(repos=c(CRAN='https://packagemanager.posit.co/cran/2022-03-15')),
+  pak::pkg_install('stringr')
+)
+
+```
+
+
+
+
+::: footer
+Tip #25: Timetravel with posit package manager
+
+ Links: [Posit Package Manager](https://packagemanager.posit.co/client/#/)  
+
+:::
+## Tip #26
+
+
+ ![](img/logo_rpy.png){.absolute top=0 right=10 width="72pt"}
+
+
+Timetravel with git/github
+
+::: footer
+Tip #26: Timetravel with git/github
+
+
+
+:::
+
+
+---
+
+### I'd use Tip #26 if . . .
+
+. . . I'm trying to revive some code that was working at some point in the past.
+
+
+::: footer
+Tip #26: Timetravel with git/github
+
+
+
+:::
+
+
+---
+
+### . . . and  . . .
+
+
+::: {.fragment}
+- I need an older version of a non-CRAN dependency.
+:::
+
+
+
+
+
+
+
+
+::: footer
+Tip #26: Timetravel with git/github
+
+
+
+:::
+
+
+---
+
+![](img/github_timetravel.png)
+
+::: footer
+Tip #26: Timetravel with git/github
+
+
+
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+::: footer
+Tip #26: Timetravel with git/github
+
+
+
+:::
+
+
+
+---
+
+![](img/logo_r.png){.absolute top=0 right=10 width="36pt"}
+
+```{.r}
+# remotes
+remotes::install_github('stan-dev/cmdstanr', ref='e117e7318c95524db403778ac99b39429084545c')
+
+# pak
+pak::pkg_install('stan-dev/cmdstanr@e117e7318c95524db403778ac99b39429084545c')
+
+```
+
+
+
+
+::: footer
+Tip #26: Timetravel with git/github
+
+
+
+:::
+## Tip #27
+
+
+ ![](img/logo_python.png){.absolute top=0 right=10 width="36pt"}
+
+
+python + docker + VSCode (+ server)
+
+::: footer
+Tip #27: python + docker + VSCode (+ server)
+
+ Links: [My Tutorial](https://github.com/livingingroups/ods_wiki/wiki/How%E2%80%90to:-Using-VSCode-for-an-ML-python-project-with-a-Dockerfile)  
+
+:::
+
+
+---
+
+### I'd use Tip #27 if . . .
+
+. . . I want to start using a python ML library.
+
+
+::: footer
+Tip #27: python + docker + VSCode (+ server)
+
+ Links: [My Tutorial](https://github.com/livingingroups/ods_wiki/wiki/How%E2%80%90to:-Using-VSCode-for-an-ML-python-project-with-a-Dockerfile)  
+
+:::
+
+
+---
+
+### . . . and  . . .
+
+
+::: {.fragment}
+- ML libraries can be had to install.
+:::
+
+::: {.fragment}
+- There might be some incompatibilities between what I need to install and what I've already installed for other projects. I don't want to mess up stuff that's already working.
+:::
+
+::: {.fragment}
+- When I switch from testing things on my laptop to running on a bigger matchine or a cluster, it's often a pin to get everything installed again.
+:::
+
+
+
+
+::: footer
+Tip #27: python + docker + VSCode (+ server)
+
+ Links: [My Tutorial](https://github.com/livingingroups/ods_wiki/wiki/How%E2%80%90to:-Using-VSCode-for-an-ML-python-project-with-a-Dockerfile)  
+
+:::
+
+
+---
+
+Docker locks in not just python dependencies, but also system-level dependences. Gives you exact same environment on a server.
+
+
+
+
+
+
+
+
+
+
+
+::: footer
+Tip #27: python + docker + VSCode (+ server)
+
+ Links: [My Tutorial](https://github.com/livingingroups/ods_wiki/wiki/How%E2%80%90to:-Using-VSCode-for-an-ML-python-project-with-a-Dockerfile)  
+
+:::
+## Tip #28
+
+
+ ![](img/logo_rpy.png){.absolute top=0 right=10 width="72pt"}
+
+
+docker to rescue old projects
+
+::: footer
+Tip #28: docker to rescue old projects
+
+ Links: [rocker](https://rocker-project.org/), [official python image](https://hub.docker.com/_/python/)  
+
+:::
+
+
+---
+
+### I'd use Tip #28 if . . .
+
+. . . I'm trying to get an old project running.
+
+
+::: footer
+Tip #28: docker to rescue old projects
+
+ Links: [rocker](https://rocker-project.org/), [official python image](https://hub.docker.com/_/python/)  
+
+:::
+
+
+---
+
+### . . . and  . . .
+
+
+::: {.fragment}
+- I'm not just having issues with getting the right R/python package versions, but with R/python itself and/or other system-level packages.
+:::
+
+::: {.fragment}
+- I can't install old R/python versions locally because it would require me to install old (maybe dangerous) versions of other packages.
+:::
+
+
+
+
+::: footer
+Tip #28: docker to rescue old projects
+
+ Links: [rocker](https://rocker-project.org/), [official python image](https://hub.docker.com/_/python/)  
+
+:::
+
+
+---
+
+* Rocker project has stored shapshots as docker containers of R itself, rstudio, and common package suites (tidyverse, cuda, geospatial, etc.). You can run these in VSCode (tutorial linked in previous tip) or use rstudio from the container (ask me how).
+* Docker Community maintains official python images, these have minimal libraries.
+* Check if the project or package you're primarily using published its own image in the timeframe you're interested in.
+
+
+
+
+
+
+
+
+
+
+
+
+::: footer
+Tip #28: docker to rescue old projects
+
+ Links: [rocker](https://rocker-project.org/), [official python image](https://hub.docker.com/_/python/)  
+
+:::
+#  #29-#32 Interop
+
+## Tip #29
+
+
+ ![](img/logo_rpy.png){.absolute top=0 right=10 width="72pt"}
+
+
+Python from R
+
+::: footer
+Tip #29: Python from R
+
+ Links: [reticulate](https://rstudio.github.io/reticulate/reference/index.html), [My tutorial on EAS Scrapbook](https://livingingroups.github.io/scrapbook/python-from-r.html)  
+
+:::
+
+
+---
+
+### I'd use Tip #29 if . . .
+
+. . . I am an R user who wants to use a python package without learning python. OR I am a python package author who wants my packages to be availabel to R users.
+
+
+::: footer
+Tip #29: Python from R
+
+ Links: [reticulate](https://rstudio.github.io/reticulate/reference/index.html), [My tutorial on EAS Scrapbook](https://livingingroups.github.io/scrapbook/python-from-r.html)  
+
+:::
+
+
+---
+
+### . . . and  . . .
+
+
+::: {.fragment}
+- There are lots of ML packages (including made here) in python and a lot of scientists who only know R.
+:::
+
+
+
+
+
+
+
+
+::: footer
+Tip #29: Python from R
+
+ Links: [reticulate](https://rstudio.github.io/reticulate/reference/index.html), [My tutorial on EAS Scrapbook](https://livingingroups.github.io/scrapbook/python-from-r.html)  
+
+:::
+
+
+---
+
+![](img/reticulate.png)
+
+::: footer
+Tip #29: Python from R
+
+ Links: [reticulate](https://rstudio.github.io/reticulate/reference/index.html), [My tutorial on EAS Scrapbook](https://livingingroups.github.io/scrapbook/python-from-r.html)  
+
+:::
+
+
+
+
+
+
+
+
+::: footer
+Tip #29: Python from R
+
+ Links: [reticulate](https://rstudio.github.io/reticulate/reference/index.html), [My tutorial on EAS Scrapbook](https://livingingroups.github.io/scrapbook/python-from-r.html)  
+
+:::
+## Tip #30
+
+
+ ![](img/logo_r.png){.absolute top=0 right=10 width="36pt"}
+
+
+Julia from R/python
+
+::: footer
+Tip #30: Julia from R/python
+
+ Links: [R JuliaCall](https://github.com/JuliaInterop/JuliaCall), [Python JuliaCall](https://github.com/JuliaPy/PythonCall.jl), [My tutorial on EAS Scrapbook](https://livingingroups.github.io/scrapbook/julia-from-r.html)  
+
+:::
+
+
+---
+
+### I'd use Tip #30 if . . .
+
+. . . I am an R/python user who wants to use a julia package without learning julia.
+
+
+::: footer
+Tip #30: Julia from R/python
+
+ Links: [R JuliaCall](https://github.com/JuliaInterop/JuliaCall), [Python JuliaCall](https://github.com/JuliaPy/PythonCall.jl), [My tutorial on EAS Scrapbook](https://livingingroups.github.io/scrapbook/julia-from-r.html)  
+
+:::
+
+
+---
+
+### . . . and  . . .
+
+
+::: {.fragment}
+- Julia is often a lot faster than R/python, and easier to write than C/C++/rust.
+:::
+
+
+
+
+::: footer
+Tip #30: Julia from R/python
+
+ Links: [R JuliaCall](https://github.com/JuliaInterop/JuliaCall), [Python JuliaCall](https://github.com/JuliaPy/PythonCall.jl), [My tutorial on EAS Scrapbook](https://livingingroups.github.io/scrapbook/julia-from-r.html)  
+
+:::
+
+
+---
+
+JuliaCall in R and python let you call Julia from those languages.
+
+
+
+
+
+
+
+
+
+
+
+::: footer
+Tip #30: Julia from R/python
+
+ Links: [R JuliaCall](https://github.com/JuliaInterop/JuliaCall), [Python JuliaCall](https://github.com/JuliaPy/PythonCall.jl), [My tutorial on EAS Scrapbook](https://livingingroups.github.io/scrapbook/julia-from-r.html)  
+
+:::
+## Tip #31
+
+
+ ![](img/logo_rpy.png){.absolute top=0 right=10 width="72pt"}
+
+
+R from Python
+
+::: footer
+Tip #31: R from Python
+
+ Links: [rpy2](https://rpy2.github.io/)  
+
+:::
+
+
+---
+
+### I'd use Tip #31 if . . .
+
+. . . I am an python user who wants to use a R package without learning R. OR I am an R package author who wants my packages to be availabel to python users.
+
+
+::: footer
+Tip #31: R from Python
+
+ Links: [rpy2](https://rpy2.github.io/)  
+
+:::
+
+
+---
+
+### . . . and  . . .
+
+
+::: {.fragment}
+- There are lots of statistical packages (including made here) in R that don't exist in python.
+:::
+
+
+
+
+::: footer
+Tip #31: R from Python
+
+ Links: [rpy2](https://rpy2.github.io/)  
+
+:::
+
+
+---
+
+also possible! If you have a particular package in mind, I'd love to base a tutorial on it.
+
+
+
+
+
+
+
+
+
+
+
+::: footer
+Tip #31: R from Python
+
+ Links: [rpy2](https://rpy2.github.io/)  
+
+:::
+#  #32-#34 IDE
+
+## Tip #32
+
+
+ ![](img/logo_r.png){.absolute top=0 right=10 width="36pt"}
+
+
+background jobs
+
+::: footer
+Tip #32: background jobs
+
+ Links: [RStudio User Guide Instructions](https://docs.posit.co/ide/user/ide/guide/tools/jobs.html)  
+
+:::
+
+
+---
+
+### I'd use Tip #32 if . . .
+
+. . . Rstudio User
+
+
+::: footer
+Tip #32: background jobs
+
+ Links: [RStudio User Guide Instructions](https://docs.posit.co/ide/user/ide/guide/tools/jobs.html)  
+
+:::
+
+
+---
+
+### . . . and  . . .
+
+
+::: {.fragment}
+- I want to run a long running script and without clogging up my R console for minutes, hours, or days.
+:::
+
+
+
+
+
+
+
+
+::: footer
+Tip #32: background jobs
+
+ Links: [RStudio User Guide Instructions](https://docs.posit.co/ide/user/ide/guide/tools/jobs.html)  
+
+:::
+
+
+---
+
+![](img/rstudio_backgroundjob.png)
+
+::: footer
+Tip #32: background jobs
+
+ Links: [RStudio User Guide Instructions](https://docs.posit.co/ide/user/ide/guide/tools/jobs.html)  
+
+:::
+
+
+
+
+
+
+
+
+::: footer
+Tip #32: background jobs
+
+ Links: [RStudio User Guide Instructions](https://docs.posit.co/ide/user/ide/guide/tools/jobs.html)  
+
+:::
+## Tip #33
+
+
+ ![](img/logo_rpy.png){.absolute top=0 right=10 width="72pt"}
+
+
+positron
+
+::: footer
+Tip #33: positron
+
+ Links: [Positron](https://positron.posit.co/)  
+
+:::
+
+
+---
+
+### I'd use Tip #33 if . . .
+
+. . . I currently use R in RStudio and/or python in VSCode.
+
+
+::: footer
+Tip #33: positron
+
+ Links: [Positron](https://positron.posit.co/)  
+
+:::
+
+
+---
+
+### . . . and  . . .
+
+
+::: {.fragment}
+- I would like to use one IDE for both R and python.
+:::
+
+::: {.fragment}
+- I would like to data exploration and visualization capabilities similar to RStudio
+:::
+
+::: {.fragment}
+- I would like to have extensibility and multi language support similar to VSCode.
+:::
+
+
+
+
+::: footer
+Tip #33: positron
+
+ Links: [Positron](https://positron.posit.co/)  
+
+:::
+
+
+---
+
+* Positron is a new IDE based on the same codebase as VSCode, made by the makers of RStudio.
+* Aims to offer both R and python first class support
+* Similar to RStudio and unlike VSCode, focused on folks doing Data Analysis/Data Science
+* Like VSCode and unlike RStudio, is compatible with a rich network of extensions used by software developers across languages
+
+
+
+
+
+
+
+
+::: footer
+Tip #33: positron
+
+ Links: [Positron](https://positron.posit.co/)  
+
+:::
+
+
+---
+
+![](img/positron1.png)
+
+::: footer
+Tip #33: positron
+
+ Links: [Positron](https://positron.posit.co/)  
+
+:::
+
+
+
+
+::: footer
+Tip #33: positron
+
+ Links: [Positron](https://positron.posit.co/)  
+
+:::
+
+
+---
+
+![](img/positron2.png)
+
+::: footer
+Tip #33: positron
+
+ Links: [Positron](https://positron.posit.co/)  
+
+:::
+
+
+
+
+
+
+
+
+::: footer
+Tip #33: positron
+
+ Links: [Positron](https://positron.posit.co/)  
+
+:::
+#  #34-#42 Community
+
+## Tip #34
+
+
+ ![](img/logo_r.png){.absolute top=0 right=10 width="36pt"}
+
+
+pkgkitten
+
+::: footer
+Tip #34: pkgkitten
+
+ Links: [pkgKitten](https://eddelbuettel.github.io/pkgkitten/)  
+
+:::
+
+
+---
+
+### I'd use Tip #34 if . . .
+
+. . . I've written a novel analysis.
+
+
+::: footer
+Tip #34: pkgkitten
+
+ Links: [pkgKitten](https://eddelbuettel.github.io/pkgkitten/)  
+
+:::
+
+
+---
+
+### . . . and  . . .
+
+
+::: {.fragment}
+- I want other people to easily run my code.
+:::
+
+::: {.fragment}
+- Making a package seems hard.
+:::
+
+
+
+
+::: footer
+Tip #34: pkgkitten
+
+ Links: [pkgKitten](https://eddelbuettel.github.io/pkgkitten/)  
+
+:::
+
+
+---
+
+There are several templating options for creating R packages. I recommend package kitten because it gives you the most complete result.
+
+
+
+
+
+
+
+
+::: footer
+Tip #34: pkgkitten
+
+ Links: [pkgKitten](https://eddelbuettel.github.io/pkgkitten/)  
+
+:::
+
+
+---
+
+![](img/pkgkitten.mov)
+
+::: footer
+Tip #34: pkgkitten
+
+ Links: [pkgKitten](https://eddelbuettel.github.io/pkgkitten/)  
+
+:::
+
+
+
+
+
+
+
+
+::: footer
+Tip #34: pkgkitten
+
+ Links: [pkgKitten](https://eddelbuettel.github.io/pkgkitten/)  
+
+:::
+## Tip #35
+
+
+ ![](img/logo_r.png){.absolute top=0 right=10 width="36pt"}
+
+
+pkgdown
+
+::: footer
+Tip #35: pkgdown
+
+ Links: [pkgdown](https://pkgdown.r-lib.org/)  
+
+:::
+
+
+---
+
+### I'd use Tip #35 if . . .
+
+. . . I'd like a nice little website about the code I published.
+
+
+::: footer
+Tip #35: pkgdown
+
+ Links: [pkgdown](https://pkgdown.r-lib.org/)  
+
+:::
+
+
+---
+
+### . . . and  . . .
+
+
+::: {.fragment}
+- I don't want to spend much time setting up the website.
+:::
+
+
+
+
+::: footer
+Tip #35: pkgdown
+
+ Links: [pkgdown](https://pkgdown.r-lib.org/)  
+
+:::
+
+
+---
+
+Once your code is in "package form", a pkgdown website is a single command away!
+
+
+
+
+
+
+
+
+
+
+
+::: footer
+Tip #35: pkgdown
+
+ Links: [pkgdown](https://pkgdown.r-lib.org/)  
+
+:::
+## Tip #36
+
+
+ ![](img/logo_rpy.png){.absolute top=0 right=10 width="72pt"}
+
+
+Journal of Open Source Software
+
+::: footer
+Tip #36: Journal of Open Source Software
+
+ Links: [GitHub's Guide to Create a DOI](https://docs.github.com/en/repositories/archiving-a-github-repository/referencing-and-citing-content), [Journal of Open Source Software](https://joss.theoj.org/)  
+
+:::
+
+
+---
+
+### I'd use Tip #36 if . . .
+
+. . . I published some code and I want to get credit when people use my code to write papers.
+
+
+::: footer
+Tip #36: Journal of Open Source Software
+
+ Links: [GitHub's Guide to Create a DOI](https://docs.github.com/en/repositories/archiving-a-github-repository/referencing-and-citing-content), [Journal of Open Source Software](https://joss.theoj.org/)  
+
+:::
+
+
+---
+
+### . . . and  . . .
+
+
+::: {.fragment}
+- My code doesn't represent something novel in my field, just an easier way to apply an already published method.
+:::
+
+::: {.fragment}
+- I don't want to have to write a paper just to make my code easily citable.
+:::
+
+
+
+
+::: footer
+Tip #36: Journal of Open Source Software
+
+ Links: [GitHub's Guide to Create a DOI](https://docs.github.com/en/repositories/archiving-a-github-repository/referencing-and-citing-content), [Journal of Open Source Software](https://joss.theoj.org/)  
+
+:::
+
+
+---
+
+* You can create a DOI for your software without any review process.
+* To get a bit more recognition, you can submit to Journal of Open Source Software.
+  - Fully Open Access journal
+  - Requirements: must have scientific application, must be substantive, must be complete.
+
+
+
+
+
+
+
+
+::: footer
+Tip #36: Journal of Open Source Software
+
+ Links: [GitHub's Guide to Create a DOI](https://docs.github.com/en/repositories/archiving-a-github-repository/referencing-and-citing-content), [Journal of Open Source Software](https://joss.theoj.org/)  
+
+:::
+
+
+---
+
+![](img/joss_banner_title.png)
+
+::: footer
+Tip #36: Journal of Open Source Software
+
+ Links: [GitHub's Guide to Create a DOI](https://docs.github.com/en/repositories/archiving-a-github-repository/referencing-and-citing-content), [Journal of Open Source Software](https://joss.theoj.org/)  
+
+:::
+
+
+
+
+
+
+
+
+::: footer
+Tip #36: Journal of Open Source Software
+
+ Links: [GitHub's Guide to Create a DOI](https://docs.github.com/en/repositories/archiving-a-github-repository/referencing-and-citing-content), [Journal of Open Source Software](https://joss.theoj.org/)  
+
+:::
+## Tip #37
+
+
+ ![](img/logo_rpy.png){.absolute top=0 right=10 width="72pt"}
+
+
+Citing software
+
+::: footer
+Tip #37: Citing software
+
+ Links: [Force11 Software Citation Principles](https://force11.org/wp-content/d7/software-citation-principles.pdf), This tip inspired by "Citation is Collaboration": Software Recognition in Research and Industry" Ivelina Momcheva, PyConDE 2025
+  
+
+:::
+
+
+---
+
+### I'd use Tip #37 if . . .
+
+. . . I'm writing a paper and using open source software.
+
+
+::: footer
+Tip #37: Citing software
+
+ Links: [Force11 Software Citation Principles](https://force11.org/wp-content/d7/software-citation-principles.pdf), This tip inspired by "Citation is Collaboration": Software Recognition in Research and Industry" Ivelina Momcheva, PyConDE 2025
+  
+
+:::
+
+
+---
+
+### . . . and  . . .
+
+
+::: {.fragment}
+- I want to properly credit the authors of said open source software.
+:::
+
+
+
+
+::: footer
+Tip #37: Citing software
+
+ Links: [Force11 Software Citation Principles](https://force11.org/wp-content/d7/software-citation-principles.pdf), This tip inspired by "Citation is Collaboration": Software Recognition in Research and Industry" Ivelina Momcheva, PyConDE 2025
+  
+
+:::
+
+
+---
+
+Where to find author's preferred citation method:
+
+  * In R `citation('package_name')` e.g. `citation('ctmm')`
+  * For non-R packages, there is often a `CITATION` file right next to the README that tells how the authors wish to be cited.
+  * Some non-R packages, such as pandas have citation info [explicitly on their site](https://pandas.pydata.org/about/citing.html).
+
+
+
+
+
+
+
+
+
+
+
+
+::: footer
+Tip #37: Citing software
+
+ Links: [Force11 Software Citation Principles](https://force11.org/wp-content/d7/software-citation-principles.pdf), This tip inspired by "Citation is Collaboration": Software Recognition in Research and Industry" Ivelina Momcheva, PyConDE 2025
+  
+
+:::
+## Tip #38
+
+
+ ![](img/logo_r.png){.absolute top=0 right=10 width="36pt"}
+
+
+virtual userR 2025 is free
+
+::: footer
+Tip #38: virtual userR 2025 is free
+
+ Links: [useR 2025 Virtual Program](https://user2025.r-project.org/program/virtual/)  
+
+:::
+
+
+---
+
+### I'd use Tip #38 if . . .
+
+. . . I want to learn more about some of these tools, but get an actual introduction to them.
+
+
+::: footer
+Tip #38: virtual userR 2025 is free
+
+ Links: [useR 2025 Virtual Program](https://user2025.r-project.org/program/virtual/)  
+
+:::
+
+
+---
+
+### . . . and  . . .
+
+
+::: {.fragment}
+- I don't want to sacrifice the time and money that it would take to got to an R conference instead of a conference directly relevant to my research.
+:::
+
+::: {.fragment}
+- I just want to see one or two talks, not a whole conference worth.
+:::
+
+
+
+
+::: footer
+Tip #38: virtual userR 2025 is free
+
+ Links: [useR 2025 Virtual Program](https://user2025.r-project.org/program/virtual/)  
+
+:::
+
+
+---
+
+* useR is a major confence for R users and developers
+* On Aug 1st, there will be virtual conference day, and it's free!
+* (You still have to register.)
+
+
+
+
+
+
+
+
+
+
+
+
+::: footer
+Tip #38: virtual userR 2025 is free
+
+ Links: [useR 2025 Virtual Program](https://user2025.r-project.org/program/virtual/)  
+
+:::
+## Tip #39
+
+
+ ![](img/logo_rpy.png){.absolute top=0 right=10 width="72pt"}
+
+
+ropensci/pyopensci package review
+
+::: footer
+Tip #39: ropensci/pyopensci package review
+
+ Links: [ROpenSci Peer Review](https://ropensci.org/software-review/), [pyOpenSci Peer Review](https://www.pyopensci.org/about-peer-review/index.html)  
+
+:::
+
+
+---
+
+### I'd use Tip #39 if . . .
+
+. . . I have some code that I'd like to make available to the world, but I'd like some feedback first.
+
+
+::: footer
+Tip #39: ropensci/pyopensci package review
+
+ Links: [ROpenSci Peer Review](https://ropensci.org/software-review/), [pyOpenSci Peer Review](https://www.pyopensci.org/about-peer-review/index.html)  
+
+:::
+
+
+---
+
+### . . . and  . . .
+
+
+::: {.fragment}
+- I don't feel comfortable asking someone to do a review who hasn't specifically volunteered to do software review.
+:::
+
+::: {.fragment}
+- My code uses techniques that others in the department don't have expertise in.
+:::
+
+
+
+
+::: footer
+Tip #39: ropensci/pyopensci package review
+
+ Links: [ROpenSci Peer Review](https://ropensci.org/software-review/), [pyOpenSci Peer Review](https://www.pyopensci.org/about-peer-review/index.html)  
+
+:::
+
+
+---
+
+Ropensci/pyopensci pairs you with reviewers to give you feedback on your scientific software. They have detailed guidelines for submitters and reviewers.
+
+
+
+
+
+
+
+
+
+
+
+::: footer
+Tip #39: ropensci/pyopensci package review
+
+ Links: [ROpenSci Peer Review](https://ropensci.org/software-review/), [pyOpenSci Peer Review](https://www.pyopensci.org/about-peer-review/index.html)  
+
+:::
+## Tip #40
+
+
+ ![](img/logo_r.png){.absolute top=0 right=10 width="36pt"}
+
+
+r-universe
+
+::: footer
+Tip #40: r-universe
+
+ Links: [R-Universe Setup](https://docs.r-universe.dev/publish/set-up.html)  
+
+:::
+
+
+---
+
+### I'd use Tip #40 if . . .
+
+. . . I want potential users to be able to `install.packages` my project.
+
+
+::: footer
+Tip #40: r-universe
+
+ Links: [R-Universe Setup](https://docs.r-universe.dev/publish/set-up.html)  
+
+:::
+
+
+---
+
+### . . . and  . . .
+
+
+::: {.fragment}
+- My packages does not yet meet CRAN requiments. (e.g. >5MB, doesn't work on Windows, etc.)
+:::
+
+
+
+
+::: footer
+Tip #40: r-universe
+
+ Links: [R-Universe Setup](https://docs.r-universe.dev/publish/set-up.html)  
+
+:::
+
+
+---
+
+R universe is an ROpenSci project that allows you create your own cran-like repository, host your docs, and run cross-platform tests (among other things).
+
+
+
+
+
+
+
+
+
+
+
+
+::: footer
+Tip #40: r-universe
+
+ Links: [R-Universe Setup](https://docs.r-universe.dev/publish/set-up.html)  
+
+:::
+## Tip #41
+
+
+ ![](img/logo_rpy.png){.absolute top=0 right=10 width="72pt"}
+
+
+github issues
+
+::: footer
+Tip #41: github issues
+
+
+
+:::
+
+
+---
+
+### I'd use Tip #41 if . . .
+
+. . . Sometimes I use open source packages, and I'm pretty sure it's the package that's not working correctly
+
+
+::: footer
+Tip #41: github issues
+
+
+
+:::
+
+
+---
+
+### . . . and  . . .
+
+
+::: {.fragment}
+- I'm shy about posting online.
+:::
+
+::: {.fragment}
+- I'm afraid I'll be bothering the package maintainer.
+:::
+
+
+
+
+::: footer
+Tip #41: github issues
+
+
+
+:::
+
+
+---
+
+* Making the maintainer aware of a problem a *contribution* to that project, not an insult.
+* Spending a bit of time to make your issue as clear as possible and reproducible is a bigger contribution.
+* Even the feedback of "this was hard to figure out from the docs" is valuable, especially if accompanied by a concrete suggestion.
+
+
+
+
+
+
+
+
+::: footer
+Tip #41: github issues
+
+
+
+:::
+
+
+---
+
+![](img/issue_rgl.png)
+
+::: footer
+Tip #41: github issues
+
+
+
+:::
+
+
+
+
+::: footer
+Tip #41: github issues
+
+
+
+:::
+
+
+---
+
+![](img/issue_smoove.png)
+
+::: footer
+Tip #41: github issues
+
+
+
+:::
+
+
+
+
+::: footer
+Tip #41: github issues
+
+
+
+:::
+
+
+---
+
+![](img/issue_cmdstanr_doc.png)
+
+::: footer
+Tip #41: github issues
+
+
+
+:::
+
+
+
+
+::: footer
+Tip #41: github issues
+
+
+
+:::
+
+
+---
+
+![](img/issue_datatable_doc.png)
+
+::: footer
+Tip #41: github issues
+
+
+
+:::
+
+
+
+
+
+
+
+
+::: footer
+Tip #41: github issues
+
+
+
+:::
+#  #42-#45 EAS open source
+
+## Tip #42
+
+
+ ![](img/logo_r.png){.absolute top=0 right=10 width="36pt"}
+
+
+cocomo
+
+::: footer
+Tip #42: cocomo
+
+ Links: [cocomo package](https://livingingroups.github.io/cocomo/index.html)  
+
+:::
+
+
+---
+
+### I'd use Tip #42 if . . .
+
+. . . I have simultaneous animal location data at regular time intervals.
+
+
+::: footer
+Tip #42: cocomo
+
+ Links: [cocomo package](https://livingingroups.github.io/cocomo/index.html)  
+
+:::
+
+
+---
+
+### . . . and  . . .
+
+
+::: {.fragment}
+- I want to calculate basic statistics like heading and speed at the individual and group level.
+:::
+
+::: {.fragment}
+- I want to do pull/anchor and/or fission fusion analysis.
+:::
+
+
+
+
+::: footer
+Tip #42: cocomo
+
+ Links: [cocomo package](https://livingingroups.github.io/cocomo/index.html)  
+
+:::
+
+
+---
+
+Ari's in-development-but-also-in-use package. Eli and Dario have also contributed.
+
+
+
+
+
+
+
+::: footer
+Tip #42: cocomo
+
+ Links: [cocomo package](https://livingingroups.github.io/cocomo/index.html)  
+
+:::
+
+
+---
+
+![](img/cocomo.png)
+
+::: footer
+Tip #42: cocomo
+
+ Links: [cocomo package](https://livingingroups.github.io/cocomo/index.html)  
+
+:::
+
+
+
+
+
+
+
+
+::: footer
+Tip #42: cocomo
+
+ Links: [cocomo package](https://livingingroups.github.io/cocomo/index.html)  
+
+:::
+## Tip #43
+
+
+ ![](img/logo_r.png){.absolute top=0 right=10 width="36pt"}
+
+
+WildPulse EcoMove Analytics
+
+::: footer
+Tip #43: WildPulse EcoMove Analytics
+
+ Links: [WildPulse Ecomove Analytics](https://github.com/Richard6195/WildPulse-EcoMove-Analytics)  
+
+:::
+
+
+---
+
+### I'd use Tip #43 if . . .
+
+. . . I have GPS data.
+
+
+::: footer
+Tip #43: WildPulse EcoMove Analytics
+
+ Links: [WildPulse Ecomove Analytics](https://github.com/Richard6195/WildPulse-EcoMove-Analytics)  
+
+:::
+
+
+---
+
+### . . . and  . . .
+
+
+::: {.fragment}
+- I want to do basic exploratory analysis.
+:::
+
+::: {.fragment}
+- I want to check for inaccuracies in my data manually.
+:::
+
+::: {.fragment}
+- I want to see if my automated anomaly detection is working correctly.
+:::
+
+
+
+
+::: footer
+Tip #43: WildPulse EcoMove Analytics
+
+ Links: [WildPulse Ecomove Analytics](https://github.com/Richard6195/WildPulse-EcoMove-Analytics)  
+
+:::
+
+
+---
+
+Richard's shiny app lets you point and click to do initial processing gps processing steps.
+
+
+
+
+
+
+
+::: footer
+Tip #43: WildPulse EcoMove Analytics
+
+ Links: [WildPulse Ecomove Analytics](https://github.com/Richard6195/WildPulse-EcoMove-Analytics)  
+
+:::
+
+
+---
+
+![](img/wildpulse1.png)
+
+::: footer
+Tip #43: WildPulse EcoMove Analytics
+
+ Links: [WildPulse Ecomove Analytics](https://github.com/Richard6195/WildPulse-EcoMove-Analytics)  
+
+:::
+
+
+
+
+::: footer
+Tip #43: WildPulse EcoMove Analytics
+
+ Links: [WildPulse Ecomove Analytics](https://github.com/Richard6195/WildPulse-EcoMove-Analytics)  
+
+:::
+
+
+---
+
+![](img/wildpulse2.png)
+
+::: footer
+Tip #43: WildPulse EcoMove Analytics
+
+ Links: [WildPulse Ecomove Analytics](https://github.com/Richard6195/WildPulse-EcoMove-Analytics)  
+
+:::
+
+
+
+
+
+
+
+
+::: footer
+Tip #43: WildPulse EcoMove Analytics
+
+ Links: [WildPulse Ecomove Analytics](https://github.com/Richard6195/WildPulse-EcoMove-Analytics)  
+
+:::
+## Tip #44
+
+
+ ![](img/logo_r.png){.absolute top=0 right=10 width="36pt"}
+
+
+shinyjsonform
+
+::: footer
+Tip #44: shinyjsonform
+
+ Links: [shinyjsonschemaform](https://github.com/katrinabrock/shinyjsonschemaform)  
+
+:::
+
+
+---
+
+### I'd use Tip #44 if . . .
+
+. . . I'm writing a shiny app.
+
+
+::: footer
+Tip #44: shinyjsonform
+
+ Links: [shinyjsonschemaform](https://github.com/katrinabrock/shinyjsonschemaform)  
+
+:::
+
+
+---
+
+### . . . and  . . .
+
+
+::: {.fragment}
+- I have a lot of different form fields that I need the user to fill out, and it's annoying to code up each one.
+:::
+
+
+
+
+
+
+
+
+::: footer
+Tip #44: shinyjsonform
+
+ Links: [shinyjsonschemaform](https://github.com/katrinabrock/shinyjsonschemaform)  
+
+:::
+
+
+---
+
+![](img/shinyjsonschemaform.png)
+
+::: footer
+Tip #44: shinyjsonform
+
+ Links: [shinyjsonschemaform](https://github.com/katrinabrock/shinyjsonschemaform)  
+
+:::
+
+
+
+
+
+
+
+
+::: footer
+Tip #44: shinyjsonform
+
+ Links: [shinyjsonschemaform](https://github.com/katrinabrock/shinyjsonschemaform)  
+
+:::
+
+---
+
+### Reminders
+- [CodeHub](https://github.com/livingingroups/ods_wiki/wiki/Code-Hu)
+- [Scrapbook](https://livingingroups.github.io/scrapbook/quick-upload.html)
+
+The End.

@@ -1,0 +1,3432 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="index_files/libs/clipboard/clipboard.min.js"></script>
+<script src="index_files/libs/quarto-html/tabby.min.js"></script>
+<script src="index_files/libs/quarto-html/popper.min.js"></script>
+<script src="index_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="index_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="index_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="index_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="index_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.5.53">
+
+  <meta name="author" content="Brock">
+  <meta name="dcterms.date" content="2025-06-17">
+  <title>Tech Tip Buffet</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="index_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="index_files/libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto.css">
+  <link rel="stylesheet" href="dracula.css">
+  <link href="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="index_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="index_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="index_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="index_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="index_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+
+  .callout {
+    margin-top: 1em;
+    margin-bottom: 1em;  
+    border-radius: .25rem;
+  }
+
+  .callout.callout-style-simple { 
+    padding: 0em 0.5em;
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+    display: flex;
+  }
+
+  .callout.callout-style-default {
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+  }
+
+  .callout .callout-body-container {
+    flex-grow: 1;
+  }
+
+  .callout.callout-style-simple .callout-body {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-style-default .callout-body {
+    font-size: 0.9rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-titled.callout-style-simple .callout-body {
+    margin-top: 0.2em;
+  }
+
+  .callout:not(.callout-titled) .callout-body {
+      display: flex;
+  }
+
+  .callout:not(.no-icon).callout-titled.callout-style-simple .callout-content {
+    padding-left: 1.6em;
+  }
+
+  .callout.callout-titled .callout-header {
+    padding-top: 0.2em;
+    margin-bottom: -0.2em;
+  }
+
+  .callout.callout-titled .callout-title  p {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+    
+  .callout.callout-titled.callout-style-simple .callout-content  p {
+    margin-top: 0;
+  }
+
+  .callout.callout-titled.callout-style-default .callout-content  p {
+    margin-top: 0.7em;
+  }
+
+  .callout.callout-style-simple div.callout-title {
+    border-bottom: none;
+    font-size: .9rem;
+    font-weight: 600;
+    opacity: 75%;
+  }
+
+  .callout.callout-style-default  div.callout-title {
+    border-bottom: none;
+    font-weight: 600;
+    opacity: 85%;
+    font-size: 0.9rem;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-default div.callout-content {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-simple .callout-icon::before {
+    height: 1rem;
+    width: 1rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 1rem 1rem;
+  }
+
+  .callout.callout-style-default .callout-icon::before {
+    height: 0.9rem;
+    width: 0.9rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 0.9rem 0.9rem;
+  }
+
+  .callout-title {
+    display: flex
+  }
+    
+  .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  .callout.no-icon::before {
+    display: none !important;
+  }
+
+  .callout.callout-titled .callout-body > .callout-content > :last-child {
+    padding-bottom: 0.5rem;
+    margin-bottom: 0;
+  }
+
+  .callout.callout-titled .callout-icon::before {
+    margin-top: .5rem;
+    padding-right: .5rem;
+  }
+
+  .callout:not(.callout-titled) .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  /* Callout Types */
+
+  div.callout-note {
+    border-left-color: #4582ec !important;
+  }
+
+  div.callout-note .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEU0lEQVRYCcVXTWhcVRQ+586kSUMMxkyaElstCto2SIhitS5Ek8xUKV2poatCcVHtUlFQk8mbaaziwpWgglJwVaquitBOfhQXFlqlzSJpFSpIYyXNjBNiTCck7x2/8/LeNDOZxDuEkgOXe++553zfefee+/OYLOXFk3+1LLrRdiO81yNqZ6K9cG0P3MeFaMIQjXssE8Z1JzLO9ls20MBZX7oG8w9GxB0goaPrW5aNMp1yOZIa7Wv6o2ykpLtmAPs/vrG14Z+6d4jpbSKuhdcSyq9wGMPXjonwmESXrriLzFGOdDBLB8Y6MNYBu0dRokSygMA/mrun8MGFN3behm6VVAwg4WR3i6FvYK1T7MHo9BK7ydH+1uurECoouk5MPRyVSBrBHMYwVobG2aOXM07sWrn5qgB60rc6mcwIDJtQrnrEr44kmy+UO9r0u9O5/YbkS9juQckLed3DyW2XV/qWBBB3ptvI8EUY3I9p/67OW+g967TNr3Sotn3IuVlfMLVnsBwH4fsnebJvyGm5GeIUA3jljERmrv49SizPYuq+z7c2H/jlGC+Ghhupn/hcapqmcudB9jwJ/3jvnvu6vu5lVzF1fXyZuZZ7U8nRmVzytvT+H3kilYvH09mLWrQdwFSsFEsxFVs5fK7A0g8gMZjbif4ACpKbjv7gNGaD8bUrlk8x+KRflttr22JEMRUbTUwwDQScyzPgedQHZT0xnx7ujw2jfVfExwYHwOsDTjLdJ2ebmeQIlJ7neo41s/DrsL3kl+W2lWvAga0tR3zueGr6GL78M3ifH0rGXrBC2aAR8uYcIA5gwV8zIE8onoh8u0Fca/ciF7j1uOzEnqcIm59sEXoGc0+z6+H45V1CvAvHcD7THztu669cnp+L0okAeIc6zjbM/24LgGM1gZk7jnRu1aQWoU9sfUOuhrmtaPIO3YY1KLLWZaEO5TKUbMY5zx8W9UJ6elpLwKXbsaZ4EFl7B4bMtDv0iRipKoDQT2sNQI9b1utXFdYisi+wzZ/ri/1m7QfDgEuvgUUEIJPq3DhX/5DWNqIXDOweC2wvIR90Oq3lDpdMIgD2r0dXvGdsEW5H6x6HLRJYU7C69VefO1x8Gde1ZFSJLfWS1jbCnhtOPxmpfv2LXOA2Xk2tvnwKKPFuZ/oRmwBwqRQDcKNeVQkYcOjtWVBuM/JuYw5b6isojIkYxyYAFn5K7ZBF10fea52y8QltAg6jnMqNHFBmGkQ1j+U43HMi2xMar1Nv0zGsf1s8nUsmUtPOOrbFIR8bHFDMB5zL13Gmr/kGlCkUzedTzzmzsaJXhYawnA3UmARpiYj5ooJZiUoxFRtK3X6pgNPv+IZVPcnwbOl6f+aBaO1CNvPW9n9LmCp01nuSaTRF2YxHqZ8DYQT6WsXT+RD6eUztwYLZ8rM+rcPxamv1VQzFUkzFXvkiVrySGQgJNvXHJAxiU3/NwiC03rSf05VBaPtu/Z7/B8Yn/w7eguloAAAAAElFTkSuQmCC');
+  }
+
+  div.callout-note.callout-style-default .callout-title {
+    background-color: #dae6fb
+  }
+
+  div.callout-important {
+    border-left-color: #d9534f !important;
+  }
+
+  div.callout-important .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEKklEQVRYCcVXTWhcVRS+575MJym48A+hSRFr00ySRQhURRfd2HYjk2SSTokuBCkU2o0LoSKKraKIBTcuFCoidGFD08nkBzdREbpQ1EDNIv8qSGMFUboImMSZd4/f9zJv8ibJMC8xJQfO3HPPPef7zrvvvnvviIkpC9nsw0UttFunbUhpFzFtarSd6WJkStVMw5xyVqYTvkwfzuf/5FgtkVoB0729j1rjXwThS7Vio+Mo6DNnvLfahoZ+i/o32lULuJ3NNiz7q6+pyAUkJaFF6JwaM2lUJlV0MlnQn5aTRbEu0SEqHUa0A4AdiGuB1kFXRfVyg5d87+Dg4DL6m2TLAub60ilj7A1Ec4odSAc8X95sHh7+ZRPCFo6Fnp7HfU/fBng/hi10CjCnWnJjsxvDNxWw0NfV6Rv5GgP3I3jGWXumdTD/3cbEOP2ZbOZp69yniG3FQ9z1jD7bnBu9Fc2tKGC2q+uAJOQHBDRiZX1x36o7fWBs7J9ownbtO+n0/qWkvW7UPIfc37WgT6ZGR++EOJyeQDSb9UB+DZ1G6DdLDzyS+b/kBCYGsYgJbSQHuThGKRcw5xdeQf8YdNHsc6ePXrlSYMBuSIAFTGAtQo+VuALo4BX83N190NWZWbynBjhOHsmNfFWLeL6v+ynsA58zDvvAC8j5PkbOcXCMg2PZFk3q8MjI7WAG/Dp9AwP7jdGBOOQkAvlFUB+irtm16I1Zw9YBcpGTGXYmk3kQIC/Cds55l+iMI3jqhjAuaoe+am2Jw5GT3Nbz3CkE12NavmzN5+erJW7046n/CH1RO/RVa8lBLozXk9uqykkGAyRXLWlLv5jyp4RFsG5vGVzpDLnIjTWgnRy2Rr+tDKvRc7Y8AyZq10jj8DqXdnIRNtFZb+t/ZRtXcDiVnzpqx8mPcDWxgARUqx0W1QB9MeUZiNrV4qP+Ehc+BpNgATsTX8ozYKL2NtFYAHc84fG7ndxUPr+AR/iQSns7uSUufAymwDOb2+NjK27lEFocm/EE2WpyIy/Hi66MWuMKJn8RvxIcj87IM5Vh9663ziW36kR0HNenXuxmfaD8JC7tfKbrhFr7LiZCrMjrzTeGx+PmkosrkNzW94ObzwocJ7A1HokLolY+AvkTiD/q1H0cN48c5EL8Crkttsa/AXQVDmutfyku0E7jShx49XqV3MFK8IryDhYVbj7Sj2P2eBxwcXoe8T8idsKKPRcnZw1b+slFTubwUwhktrfnAt7J++jwQtLZcm3sr9LQrjRzz6cfMv9aLvgmnAGvpoaGLxM4mAEaLV7iAzQ3oU0IvD5x9ix3yF2RAAuYAOO2f7PEFWCXZ4C9Pb2UsgDeVnFSpbFK7/IWu7TPTvBqzbGdCHOJQSxiEjt6IyZmxQyEJHv6xyQsYk//moVFsN2zP6fRImjfq7/n/wFDguUQFNEwugAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-important.callout-style-default .callout-title {
+    background-color: #f7dddc
+  }
+
+  div.callout-warning {
+    border-left-color: #f0ad4e !important;
+  }
+
+  div.callout-warning .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAETklEQVRYCeVWW2gcVRg+58yaTUnizqbipZeX4uWhBEniBaoUX1Ioze52t7sRq6APio9V9MEaoWlVsFasRq0gltaAPuxms8lu0gcviE/FFOstVbSIxgcv6SU7EZqmdc7v9+9mJtNks51NTUH84ed889/PP+cmxP+d5FIbMJmNbpREu4WUkiTtCicKny0l1pIKmBzovF2S+hIJHX8iEu3hZJ5lNZGqyRrGSIQpq15AzF28jgpeY6yk6GVdrfFqdrD6Iw+QlB8g0YS2g7dyQmXM/IDhBhT0UCiRf59lfqmmDvzRt6kByV/m4JjtzuaujMUM2c5Z2d6JdKrRb3K2q6mA+oYVz8JnDdKPmmNthzkAk/lN63sYPgevrguc72aZX/L9C6x09GYyxBgCX4NlvyGUHOKELlm5rXeR1kchuChJt4SSwyddZRXgvwMGvYo4QSlk3/zkHD8UHxwVJA6zjZZqP8v8kK8OWLnIZtLyCAJagYC4rTGW/9Pqj92N/c+LUaAj27movwbi19tk/whRCIE7Q9vyI6yvRpftAKVTdUjOW40X3h5OXsKCdmFcx0xlLJoSuQngnrJe7Kcjm4OMq9FlC7CMmScQANuNvjfP3PjGXDBaUQmbp296S5L4DrpbrHN1T87ZVEZVCzg1FF0Ft+dKrlLukI+/c9ENo+TvlTDbYFvuKPtQ9+l052rXrgKoWkDAFnvh0wTOmYn8R5f4k/jN/fZiCM1tQx9jQQ4ANhqG4hiL0qIFTGViG9DKB7GYzgubnpofgYRwO+DFjh0Zin2m4b/97EDkXkc+f6xYAPX0KK2I/7fUQuwzuwo/L3AkcjugPNixC8cHf0FyPjWlItmLxWw4Ou9YsQCr5fijMGoD/zpdRy95HRysyXA74MWOnscpO4j2y3HAVisw85hX5+AFBRSHt4ShfLFkIMXTqyKFc46xdzQM6XbAi702a7sy04J0+feReMFKp5q9esYLCqAZYw/k14E/xcLLsFElaornTuJB0svMuJINy8xkIYuL+xPAlWRceH6+HX7THJ0djLUom46zREu7tTkxwmf/FdOZ/sh6Q8qvEAiHpm4PJ4a/doJe0gH1t+aHRgCzOvBvJedEK5OFE5jpm4AGP2a8Dxe3gGJ/pAutug9Gp6he92CsSsWBaEcxGx0FHytmIpuqGkOpldqNYQK8cSoXvd+xLxXADw0kf6UkJNFtdo5MOgaLjiQOQHcn+A6h5NuL2s0qsC2LOM75PcF3yr5STuBSAcGG+meA14K/CI21HcS4LBT6tv0QAh8Dr5l93AhZzG5ZJ4VxAqdZUEl9z7WJ4aN+svMvwHHL21UKTd1mqvChH7/Za5xzXBBKrUcB0TQ+Ulgkfbi/H/YT5EptrGzsEK7tR1B7ln9BBwckYfMiuSqklSznIuoIIOM42MQO+QnduCoFCI0bpkzjCjddHPN/F+2Yu+sd9bKNpVwHhbS3LluK/0zgfwD0xYI5dXuzlQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-warning.callout-style-default .callout-title {
+    background-color: #fcefdc
+  }
+
+  div.callout-tip {
+    border-left-color: #02b875 !important;
+  }
+
+  div.callout-tip .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAADr0lEQVRYCe1XTWgTQRj9ZjZV8a9SPIkKgj8I1bMHsUWrqYLVg4Ue6v9BwZOxSYsIerFao7UiUryIqJcqgtpimhbBXoSCVxUFe9CTiogUrUp2Pt+3aUI2u5vdNh4dmMzOzHvvezuz8xNFM0mjnbXaNu1MvFWRXkXEyE6aYOYJpdW4IXuA4r0fo8qqSMDBU0v1HJUgVieAXxzCsdE/YJTdFcVIZQNMyhruOMJKXYFoLfIfIvVIMWdsrd+Rpd86ZmyzzjJmLStqRn0v8lzkb4rVIXvnpScOJuAn2ACC65FkPzEdEy4TPWRLJ2h7z4cArXzzaOdKlbOvKKX25Wl00jSnrwVxAg3o4dRxhO13RBSdNvH0xSARv3adTXbBdTf64IWO2vH0LT+cv4GR1DJt+DUItaQogeBX/chhbTBxEiZ6gftlDNXTrvT7co4ub5A6gp9HIcHvzTa46OS5fBeP87Qm0fQkr4FsYgVQ7Qg+ZayaDg9jhg1GkWj8RG6lkeSacrrHgDaxdoBiZPg+NXV/KifMuB6//JmYH4CntVEHy/keA6x4h4CU5oFy8GzrBS18cLJMXcljAKB6INjWsRcuZBWVaS3GDrqB7rdapVIeA+isQ57Eev9eCqzqOa81CY05VLd6SamW2wA2H3SiTbnbSxmzfp7WtKZkqy4mdyAlGx7ennghYf8voqp9cLSgKdqNfa6RdRsAAkPwRuJZNbpByn+RrJi1RXTwdi8RQF6ymDwGMAtZ6TVE+4uoKh+MYkcLsT0Hk8eAienbiGdjJHZTpmNjlbFJNKDVAp2fJlYju6IreQxQ08UJDNYdoLSl6AadO+fFuCQqVMB1NJwPm69T04Wv5WhfcWyfXQB+wXRs1pt+nCknRa0LVzSA/2B+a9+zQJadb7IyyV24YAxKp2Jqs3emZTuNnKxsah+uabKbMk7CbTgJx/zIgQYErIeTKRQ9yD9wxVof5YolPHqaWo7TD6tJlh7jQnK5z2n3+fGdggIOx2kaa2YI9QWarc5Ce1ipNWMKeSG4DysFF52KBmTNMmn5HqCFkwy34rDg05gDwgH3bBi+sgFhN/e8QvRn8kbamCOhgrZ9GJhFDgfcMHzFb6BAtjKpFhzTjwv1KCVuxHvCbsSiEz4CANnj84cwHdFXAbAOJ4LTSAawGWFn5tDhLMYz6nWeU2wJfIhmIJBefcd/A5FWQWGgrWzyORZ3Q6HuV+Jf0Bj+BTX69fm1zWgK7By1YTXchFDORywnfQ7GpzOo6S+qECrsx2ifVQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-tip.callout-style-default .callout-title {
+    background-color: #ccf1e3
+  }
+
+  div.callout-caution {
+    border-left-color: #fd7e14 !important;
+  }
+
+  div.callout-caution .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAACV0lEQVRYCdVWzWoUQRCuqp2ICBLJXgITZL1EfQDBW/bkzUMUD7klD+ATSHBEfAIfQO+iXsWDxJsHL96EHAwhgzlkg8nBg25XWb0zIb0zs9muYYWkoKeru+vn664fBqElyZNuyh167NXJ8Ut8McjbmEraKHkd7uAnAFku+VWdb3reSmRV8PKSLfZ0Gjn3a6Xlcq9YGb6tADjn+lUfTXtVmaZ1KwBIvFI11rRXlWlatwIAAv2asaa9mlB9wwygiDX26qaw1yYPzFXg2N1GgG0FMF8Oj+VIx7E/03lHx8UhvYyNZLN7BwSPgekXXLribw7w5/c8EF+DBK5idvDVYtEEwMeYefjjLAdEyQ3M9nfOkgnPTEkYU+sxMq0BxNR6jExrAI31H1rzvLEfRIdgcv1XEdj6QTQAS2wtstEALLG1yEZ3QhH6oDX7ExBSFEkFINXH98NTrme5IOaaA7kIfiu2L8A3qhH9zRbukdCqdsA98TdElyeMe5BI8Rs2xHRIsoTSSVFfCFCWGPn9XHb4cdobRIWABNf0add9jakDjQJpJ1bTXOJXnnRXHRf+dNL1ZV1MBRCXhMbaHqGI1JkKIL7+i8uffuP6wVQAzO7+qVEbF6NbS0LJureYcWXUUhH66nLR5rYmva+2tjRFtojkM2aD76HEGAD3tPtKM309FJg5j/K682ywcWJ3PASCcycH/22u+Bh7Aa0ehM2Fu4z0SAE81HF9RkB21c5bEn4Dzw+/qNOyXr3DCTQDMBOdhi4nAgiFDGCinIa2owCEChUwD8qzd03PG+qdW/4fDzjUMcE1ZpIAAAAASUVORK5CYII=');
+  }
+
+  div.callout-caution.callout-style-default .callout-title {
+    background-color: #ffe5d0
+  }
+
+  </style>
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Tech Tip Buffet</h1>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Brock 
+</div>
+</div>
+</div>
+
+  <p class="date">2025-06-17</p>
+</section>
+<section>
+<section id="intro" class="title-slide slide level1 center">
+<h1>Intro</h1>
+<p>44 Tips in 44 Mins</p>
+</section>
+<section id="goals" class="slide level2">
+<h2>Goals</h2>
+<p>🤔 Everyone learns something interesting.</p>
+<p>🤔 Every tip is interesting to someone.</p>
+<p>🛠️ Every coder learns something useful.</p>
+<p>⚖️ Cover topics roughly in proportion to how many people they are relevant to.</p>
+</section>
+<section id="goals-1" class="slide level2">
+<h2>Goals</h2>
+<p>If the tip is relevant to you, you can</p>
+<ul>
+<li>identify that it’s relevant.</li>
+<li>tell in what situation you would use it.</li>
+<li>know how to get started.</li>
+</ul>
+</section>
+<section id="anti-goals" class="slide level2">
+<h2>Anti goals</h2>
+<ul>
+<li>Proscriptivism</li>
+<li>Any one person finding every tip interesting</li>
+<li>Any one tip being interesting to everyone</li>
+<li>Give enough context that everyone can understand every tip</li>
+<li>Giving every detail needed to implement the tip</li>
+</ul>
+</section>
+<section id="latest-in-emoji-reaction-technology" class="slide level2">
+<h2>Latest in Emoji Reaction Technology</h2>
+<p>Paper!</p>
+</section></section>
+<section>
+<section id="workflow" class="title-slide slide level1 center">
+<h1>#1-#6 Workflow</h1>
+
+</section>
+<section id="tip-1" class="slide level2">
+<h2>Tip #1</h2>
+<p><img data-src="img/logo_rpy.png" class="absolute" style="top: 0px; right: 10px; width: 72pt; "></p>
+<p>3 script project TM</p>
+<div class="footer">
+<p>Tip #1: 3 script project TM</p>
+<p>Links: <a href="https://github.com/livingingroups/eas-coding-workshops/tree/main/20241112-project-structure">My Project Structure Coding Workshops</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="id-use-tip-1-if-.-.-.">I’d use Tip #1 if . . .</h3>
+<p>. . . I have a longish and unweldly script.</p>
+<div class="footer">
+<p>Tip #1: 3 script project TM</p>
+<p>Links: <a href="https://github.com/livingingroups/eas-coding-workshops/tree/main/20241112-project-structure">My Project Structure Coding Workshops</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="and-.-.-.">. . . and . . .</h3>
+<div class="fragment">
+<ul>
+<li>I don’t want to completely re-write it, but I want to make it easier to run and debug.</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>Rerunning my entire script takes a long time, but when I rerun line by line I lose reproduciblity because I’m running things out of order.</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>I want to make sure I’m not breaking something that was already working when I write something.</li>
+</ul>
+</div>
+<div class="footer">
+<p>Tip #1: 3 script project TM</p>
+<p>Links: <a href="https://github.com/livingingroups/eas-coding-workshops/tree/main/20241112-project-structure">My Project Structure Coding Workshops</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+
+<img data-src="img/3_script_project.jpg" class="r-stretch"><div class="footer">
+<p>Tip #1: 3 script project TM</p>
+<p>Links: <a href="https://github.com/livingingroups/eas-coding-workshops/tree/main/20241112-project-structure">My Project Structure Coding Workshops</a></p>
+</div>
+<div class="footer">
+<p>Tip #1: 3 script project TM</p>
+<p>Links: <a href="https://github.com/livingingroups/eas-coding-workshops/tree/main/20241112-project-structure">My Project Structure Coding Workshops</a></p>
+</div>
+</section>
+<section id="tip-2" class="slide level2">
+<h2>Tip #2</h2>
+<p><img data-src="img/logo_r.png" class="absolute" style="top: 0px; right: 10px; width: 36pt; "></p>
+<p>targets</p>
+<div class="footer">
+<p>Tip #2: targets</p>
+<p>Links: <a href="https://books.ropensci.org/targets/walkthrough.html">{targets} walkthrough</a>, <a href="https://github.com/livingingroups/eas-coding-workshops/tree/main/20241112-project-structure/04-targets">targets example from project structure workshop</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="id-use-tip-2-if-.-.-.">I’d use Tip #2 if . . .</h3>
+<p>. . . I have a workflow (long script, or several interdependent scripts) where there is more than one step that takes a long time.</p>
+<div class="footer">
+<p>Tip #2: targets</p>
+<p>Links: <a href="https://books.ropensci.org/targets/walkthrough.html">{targets} walkthrough</a>, <a href="https://github.com/livingingroups/eas-coding-workshops/tree/main/20241112-project-structure/04-targets">targets example from project structure workshop</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="and-.-.-.-1">. . . and . . .</h3>
+<div class="fragment">
+<ul>
+<li>It gets tricky to remember which parts of my pipeline are “fresh” and what needs to be re-run.</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>Some parts of my pipeline could in theory be run in parallel with one another (e.g.&nbsp;processing two different types of data that are ulimately put together), but it’s a pain start more than one script at once.</li>
+</ul>
+</div>
+<div class="footer">
+<p>Tip #2: targets</p>
+<p>Links: <a href="https://books.ropensci.org/targets/walkthrough.html">{targets} walkthrough</a>, <a href="https://github.com/livingingroups/eas-coding-workshops/tree/main/20241112-project-structure/04-targets">targets example from project structure workshop</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+
+<img data-src="img/targets.png" class="r-stretch"><div class="footer">
+<p>Tip #2: targets</p>
+<p>Links: <a href="https://books.ropensci.org/targets/walkthrough.html">{targets} walkthrough</a>, <a href="https://github.com/livingingroups/eas-coding-workshops/tree/main/20241112-project-structure/04-targets">targets example from project structure workshop</a></p>
+</div>
+<div class="footer">
+<p>Tip #2: targets</p>
+<p>Links: <a href="https://books.ropensci.org/targets/walkthrough.html">{targets} walkthrough</a>, <a href="https://github.com/livingingroups/eas-coding-workshops/tree/main/20241112-project-structure/04-targets">targets example from project structure workshop</a></p>
+</div>
+</section>
+<section id="tip-3" class="slide level2">
+<h2>Tip #3</h2>
+<p><img data-src="img/logo_rpy.png" class="absolute" style="top: 0px; right: 10px; width: 72pt; "></p>
+<p>Logging (log levels)</p>
+<div class="footer">
+<p>Tip #3: Logging (log levels)</p>
+<p>Links: <a href="https://daroczig.github.io/logger/">R logger package</a>, <a href="https://docs.python.org/3/library/logging.html">Python logging module</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="id-use-tip-3-if-.-.-.">I’d use Tip #3 if . . .</h3>
+<p>. . . I like to put print statements in my code to tell me what’s going on.</p>
+<div class="footer">
+<p>Tip #3: Logging (log levels)</p>
+<p>Links: <a href="https://daroczig.github.io/logger/">R logger package</a>, <a href="https://docs.python.org/3/library/logging.html">Python logging module</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="and-.-.-.-2">. . . and . . .</h3>
+<div class="fragment">
+<ul>
+<li>I spend a lot of time commenting and uncommenting different print statements.</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>It’s annoying to add in and remove print statements because they’re sprinkled all throughout the code.</li>
+</ul>
+</div>
+<div class="footer">
+<p>Tip #3: Logging (log levels)</p>
+<p>Links: <a href="https://daroczig.github.io/logger/">R logger package</a>, <a href="https://docs.python.org/3/library/logging.html">Python logging module</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+
+<img data-src="img/logger_before.gif" class="r-stretch"><div class="footer">
+<p>Tip #3: Logging (log levels)</p>
+<p>Links: <a href="https://daroczig.github.io/logger/">R logger package</a>, <a href="https://docs.python.org/3/library/logging.html">Python logging module</a></p>
+</div>
+<div class="footer">
+<p>Tip #3: Logging (log levels)</p>
+<p>Links: <a href="https://daroczig.github.io/logger/">R logger package</a>, <a href="https://docs.python.org/3/library/logging.html">Python logging module</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+
+<img data-src="img/logger_after.gif" class="r-stretch"><div class="footer">
+<p>Tip #3: Logging (log levels)</p>
+<p>Links: <a href="https://daroczig.github.io/logger/">R logger package</a>, <a href="https://docs.python.org/3/library/logging.html">Python logging module</a></p>
+</div>
+<div class="footer">
+<p>Tip #3: Logging (log levels)</p>
+<p>Links: <a href="https://daroczig.github.io/logger/">R logger package</a>, <a href="https://docs.python.org/3/library/logging.html">Python logging module</a></p>
+</div>
+</section>
+<section id="tip-4" class="slide level2">
+<h2>Tip #4</h2>
+<p><img data-src="img/logo_rpy.png" class="absolute" style="top: 0px; right: 10px; width: 72pt; "></p>
+<p>browser/pdb</p>
+<div class="footer">
+<p>Tip #4: browser/pdb</p>
+<p>Links: <a href="https://docs.posit.co/ide/user/ide/guide/code/debugging.html">Debugging in RStudio</a>, <a href="https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/browser">browser</a>, <a href="https://docs.python.org/3/library/pdb.html">pdb</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="id-use-tip-4-if-.-.-.">I’d use Tip #4 if . . .</h3>
+<p>. . . I write functions or nested loops/if statements (or I want to start doing this).</p>
+<div class="footer">
+<p>Tip #4: browser/pdb</p>
+<p>Links: <a href="https://docs.posit.co/ide/user/ide/guide/code/debugging.html">Debugging in RStudio</a>, <a href="https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/browser">browser</a>, <a href="https://docs.python.org/3/library/pdb.html">pdb</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="and-.-.-.-3">. . . and . . .</h3>
+<div class="fragment">
+<ul>
+<li>When there’s an issue with my code, I end up sourcing everything that’s in the function so my environment gets messy anyway.</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>When I’m not sure what “level” the issue is at, it’s especially hard because I have to check each level one by one.</li>
+</ul>
+</div>
+<div class="footer">
+<p>Tip #4: browser/pdb</p>
+<p>Links: <a href="https://docs.posit.co/ide/user/ide/guide/code/debugging.html">Debugging in RStudio</a>, <a href="https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/browser">browser</a>, <a href="https://docs.python.org/3/library/pdb.html">pdb</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<p><video data-src="img/debugging.mp4" controls=""><a href="img/debugging.mp4">Video</a></video></p>
+<div class="footer">
+<p>Tip #4: browser/pdb</p>
+<p>Links: <a href="https://docs.posit.co/ide/user/ide/guide/code/debugging.html">Debugging in RStudio</a>, <a href="https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/browser">browser</a>, <a href="https://docs.python.org/3/library/pdb.html">pdb</a></p>
+</div>
+<div class="footer">
+<p>Tip #4: browser/pdb</p>
+<p>Links: <a href="https://docs.posit.co/ide/user/ide/guide/code/debugging.html">Debugging in RStudio</a>, <a href="https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/browser">browser</a>, <a href="https://docs.python.org/3/library/pdb.html">pdb</a></p>
+</div>
+</section>
+<section id="tip-5" class="slide level2">
+<h2>Tip #5</h2>
+<p><img data-src="img/logo_rpy.png" class="absolute" style="top: 0px; right: 10px; width: 72pt; "></p>
+<p>Data Validation vs Software Testing</p>
+<div class="footer">
+<p>Tip #5: Data Validation vs Software Testing</p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="id-use-tip-5-if-.-.-.">I’d use Tip #5 if . . .</h3>
+<p>. . . I write checks at various points in my code, but I haven’t written formal software tests or data validation.</p>
+<div class="footer">
+<p>Tip #5: Data Validation vs Software Testing</p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="and-.-.-.-4">. . . and . . .</h3>
+<div class="fragment">
+<ul>
+<li>Sometimes I get my code running with one set of data, including various checks throughout, but when I introduce a new dataset, the checks aren’t always appropriate.</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>It’s sometimes hard to tell if I made a coding error if the data is just messier than I thought.</li>
+</ul>
+</div>
+<div class="footer">
+<p>Tip #5: Data Validation vs Software Testing</p>
+</div>
+</section>
+<section class="slide level2">
+
+<ul>
+<li><em>Software Testing</em>
+<ul>
+<li>Is my code correct?</li>
+<li>Does my code do the transformations I’m expecting it to do?</li>
+<li>How? Running code with known input, verify expected output.</li>
+</ul></li>
+<li><em>Data Validation</em>
+<ul>
+<li>Does the data I’m feeding into my code match the assumptions I’m making about it?</li>
+<li>How? Check inputs before transforming.</li>
+</ul></li>
+</ul>
+<div class="footer">
+<p>Tip #5: Data Validation vs Software Testing</p>
+</div>
+</section></section>
+<section>
+<section id="data-validation" class="title-slide slide level1 center">
+<h1>#6-#9 Data Validation</h1>
+
+</section>
+<section id="tip-6" class="slide level2">
+<h2>Tip #6</h2>
+<p><img data-src="img/logo_rpy.png" class="absolute" style="top: 0px; right: 10px; width: 72pt; "></p>
+<p>typechecking/checkmate</p>
+<div class="footer">
+<p>Tip #6: typechecking/checkmate</p>
+<p>Links: <a href="https://docs.python.org/3/library/typing.html">Python Typing</a>, <a href="https://mllg.github.io/checkmate/articles/checkmate.html">Checkmate</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="id-use-tip-6-if-.-.-.">I’d use Tip #6 if . . .</h3>
+<p>. . . I’m convinced data validation is a good idea, but it’s annoying to write.</p>
+<div class="footer">
+<p>Tip #6: typechecking/checkmate</p>
+<p>Links: <a href="https://docs.python.org/3/library/typing.html">Python Typing</a>, <a href="https://mllg.github.io/checkmate/articles/checkmate.html">Checkmate</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="and-.-.-.-5">. . . and . . .</h3>
+<div class="fragment">
+<ul>
+<li>I find myself writing a lot of repetative code to check basic facts about my inputs like that it’s the data type and size I’m expecting.</li>
+</ul>
+</div>
+<div class="footer">
+<p>Tip #6: typechecking/checkmate</p>
+<p>Links: <a href="https://docs.python.org/3/library/typing.html">Python Typing</a>, <a href="https://mllg.github.io/checkmate/articles/checkmate.html">Checkmate</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<p><img data-src="img/logo_python.png" class="absolute" style="top: 0px; right: 10px; width: 36pt; "></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href=""></a><span class="kw">def</span> fact(n: <span class="bu">int</span>, method: <span class="bu">str</span>) <span class="op">-&gt;</span> <span class="bu">str</span>:</span>
+<span id="cb1-2"><a href=""></a>  <span class="co"># Function body</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="footer">
+<p>Tip #6: typechecking/checkmate</p>
+<p>Links: <a href="https://docs.python.org/3/library/typing.html">Python Typing</a>, <a href="https://mllg.github.io/checkmate/articles/checkmate.html">Checkmate</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<p><img data-src="img/logo_r.png" class="absolute" style="top: 0px; right: 10px; width: 36pt; "></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href=""></a>fact <span class="ot">&lt;-</span> <span class="cf">function</span>(n, <span class="at">method =</span> <span class="st">"stirling"</span>) {</span>
+<span id="cb2-2"><a href=""></a>  checkmate<span class="sc">::</span><span class="fu">assertCount</span>(n)</span>
+<span id="cb2-3"><a href=""></a>  checkmate<span class="sc">::</span><span class="fu">assertChoice</span>(method, <span class="fu">c</span>(<span class="st">"stirling"</span>, <span class="st">"factorial"</span>))</span>
+<span id="cb2-4"><a href=""></a>  .... </span>
+<span id="cb2-5"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="footer">
+<p>Tip #6: typechecking/checkmate</p>
+<p>Links: <a href="https://docs.python.org/3/library/typing.html">Python Typing</a>, <a href="https://mllg.github.io/checkmate/articles/checkmate.html">Checkmate</a></p>
+</div>
+</section>
+<section id="tip-7" class="slide level2">
+<h2>Tip #7</h2>
+<p><img data-src="img/logo_r.png" class="absolute" style="top: 0px; right: 10px; width: 36pt; "></p>
+<p>validate</p>
+<div class="footer">
+<p>Tip #7: validate</p>
+<p>Links: <a href="https://cran.r-project.org/web/packages/validate/vignettes/cookbook.html">Data Validation Cookbook</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="id-use-tip-7-if-.-.-.">I’d use Tip #7 if . . .</h3>
+<p>. . . A lot of my data is in dataframe format (including tibble, data table, sf, etc.).</p>
+<div class="footer">
+<p>Tip #7: validate</p>
+<p>Links: <a href="https://cran.r-project.org/web/packages/validate/vignettes/cookbook.html">Data Validation Cookbook</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="and-.-.-.-6">. . . and . . .</h3>
+<div class="fragment">
+<ul>
+<li>I want to write clear checks on my data.</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>I don’t necessarily want to stop everything if some of the checks fail.</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>I want nice reporting or the outcome of the checkes</li>
+</ul>
+</div>
+<div class="footer">
+<p>Tip #7: validate</p>
+<p>Links: <a href="https://cran.r-project.org/web/packages/validate/vignettes/cookbook.html">Data Validation Cookbook</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<p><img data-src="img/logo_r.png" class="absolute" style="top: 0px; right: 10px; width: 36pt; "></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a><span class="fu">library</span>(validate)</span>
+<span id="cb3-2"><a href=""></a><span class="fu">data</span>(cars)</span>
+<span id="cb3-3"><a href=""></a><span class="fu">confront</span>(</span>
+<span id="cb3-4"><a href=""></a>  cars,</span>
+<span id="cb3-5"><a href=""></a>  <span class="fu">validator</span>(</span>
+<span id="cb3-6"><a href=""></a>    speed <span class="sc">&gt;=</span> <span class="dv">0</span>,</span>
+<span id="cb3-7"><a href=""></a>    dist <span class="sc">&gt;=</span> <span class="dv">0</span>,</span>
+<span id="cb3-8"><a href=""></a>    speed<span class="sc">/</span>dist <span class="sc">&lt;=</span> <span class="fl">1.5</span>,</span>
+<span id="cb3-9"><a href=""></a>    <span class="fu">cor</span>(speed, dist)<span class="sc">&gt;=</span><span class="fl">0.2</span>)</span>
+<span id="cb3-10"><a href=""></a>) <span class="sc">|&gt;</span> <span class="fu">summary</span>()</span>
+<span id="cb3-11"><a href=""></a></span>
+<span id="cb3-12"><a href=""></a><span class="co">#   name items passes fails nNA error warning              expression</span></span>
+<span id="cb3-13"><a href=""></a><span class="co"># 1   V1    50     50     0   0 FALSE   FALSE     speed - 0 &gt;= -1e-08</span></span>
+<span id="cb3-14"><a href=""></a><span class="co"># 2   V2    50     50     0   0 FALSE   FALSE      dist - 0 &gt;= -1e-08</span></span>
+<span id="cb3-15"><a href=""></a><span class="co"># 3   V3    50     48     2   0 FALSE   FALSE       speed/dist &lt;= 1.5</span></span>
+<span id="cb3-16"><a href=""></a><span class="co"># 4   V4     1      1     0   0 FALSE   FALSE cor(speed, dist) &gt;= 0.2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="footer">
+<p>Tip #7: validate</p>
+<p>Links: <a href="https://cran.r-project.org/web/packages/validate/vignettes/cookbook.html">Data Validation Cookbook</a></p>
+</div>
+</section>
+<section id="tip-8" class="slide level2">
+<h2>Tip #8</h2>
+<p><img data-src="img/logo_python.png" class="absolute" style="top: 0px; right: 10px; width: 36pt; "></p>
+<p>dataframely</p>
+<div class="footer">
+<p>Tip #8: dataframely</p>
+<p>Links: <a href="https://dataframely.readthedocs.io/en/latest/">dataframely</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="id-use-tip-8-if-.-.-.">I’d use Tip #8 if . . .</h3>
+<p>. . . A lot of my data is in polars format.</p>
+<div class="footer">
+<p>Tip #8: dataframely</p>
+<p>Links: <a href="https://dataframely.readthedocs.io/en/latest/">dataframely</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="and-.-.-.-7">. . . and . . .</h3>
+<div class="fragment">
+<ul>
+<li>I want to write clear checks on my data.</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>I don’t necessarily want to stop everything if some of the checks fail.</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>I want nice reporting or the outcome of the checkes</li>
+</ul>
+</div>
+<div class="footer">
+<p>Tip #8: dataframely</p>
+<p>Links: <a href="https://dataframely.readthedocs.io/en/latest/">dataframely</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<p><img data-src="img/logo_python.png" class="absolute" style="top: 0px; right: 10px; width: 36pt; "></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href=""></a><span class="im">import</span> dataframely <span class="im">as</span> dy</span>
+<span id="cb4-2"><a href=""></a></span>
+<span id="cb4-3"><a href=""></a><span class="kw">class</span> HouseSchema(dy.Schema):</span>
+<span id="cb4-4"><a href=""></a>    zip_code <span class="op">=</span> dy.String(nullable<span class="op">=</span><span class="va">False</span>, min_length<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb4-5"><a href=""></a>    num_bedrooms <span class="op">=</span> dy.UInt8(nullable<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb4-6"><a href=""></a>    num_bathrooms <span class="op">=</span> dy.UInt8(nullable<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb4-7"><a href=""></a>    price <span class="op">=</span> dy.Float64(nullable<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb4-8"><a href=""></a></span>
+<span id="cb4-9"><a href=""></a>df <span class="op">=</span> pl.DataFrame({</span>
+<span id="cb4-10"><a href=""></a>    <span class="st">"zip_code"</span>: [<span class="st">"01234"</span>, <span class="st">"01234"</span>, <span class="st">"1"</span>, <span class="st">"213"</span>, <span class="st">"123"</span>, <span class="st">"213"</span>],</span>
+<span id="cb4-11"><a href=""></a>    <span class="st">"num_bedrooms"</span>: [<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="va">None</span>, <span class="va">None</span>, <span class="dv">2</span>],</span>
+<span id="cb4-12"><a href=""></a>    <span class="st">"num_bathrooms"</span>: [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">8</span>],</span>
+<span id="cb4-13"><a href=""></a>    <span class="st">"price"</span>: [<span class="dv">100_000</span>, <span class="dv">110_000</span>, <span class="dv">50_000</span>, <span class="dv">80_000</span>, <span class="dv">60_000</span>, <span class="dv">160_000</span>]</span>
+<span id="cb4-14"><a href=""></a>})</span>
+<span id="cb4-15"><a href=""></a></span>
+<span id="cb4-16"><a href=""></a><span class="co"># Validate the data and cast columns to expected types</span></span>
+<span id="cb4-17"><a href=""></a>validated_df <span class="op">=</span> HouseSchema.validate(df, cast<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb4-18"><a href=""></a></span>
+<span id="cb4-19"><a href=""></a><span class="co"># BSD 3-Clause License</span></span>
+<span id="cb4-20"><a href=""></a><span class="co"># Copyright (c) 2025, QuantCo</span></span>
+<span id="cb4-21"><a href=""></a><span class="co"># All rights reserved.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="footer">
+<p>Tip #8: dataframely</p>
+<p>Links: <a href="https://dataframely.readthedocs.io/en/latest/">dataframely</a></p>
+</div>
+</section></section>
+<section>
+<section id="data-processing-and-storage" class="title-slide slide level1 center">
+<h1>#9-#14 Data Processing and Storage</h1>
+
+</section>
+<section id="tip-9" class="slide level2">
+<h2>Tip #9</h2>
+<p><img data-src="img/logo_python.png" class="absolute" style="top: 0px; right: 10px; width: 36pt; "></p>
+<p>polars</p>
+<div class="footer">
+<p>Tip #9: polars</p>
+<p>Links: <a href="https://docs.pola.rs/">polars</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="id-use-tip-9-if-.-.-.">I’d use Tip #9 if . . .</h3>
+<p>. . . I use pandas dataframes in python</p>
+<div class="footer">
+<p>Tip #9: polars</p>
+<p>Links: <a href="https://docs.pola.rs/">polars</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="and-.-.-.-8">. . . and . . .</h3>
+<div class="fragment">
+<ul>
+<li>I wish pandas was faster/more parallel.</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>I wish I could leverage GPUs.</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>I wish I could do more data manipulation with built-in features, and not have to install or write as much extra code.</li>
+</ul>
+</div>
+<div class="footer">
+<p>Tip #9: polars</p>
+<p>Links: <a href="https://docs.pola.rs/">polars</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<p>Polars is a very fast very parallel DataFrame library written in Rust with GPU support.</p>
+<div class="footer">
+<p>Tip #9: polars</p>
+<p>Links: <a href="https://docs.pola.rs/">polars</a></p>
+</div>
+</section>
+<section id="tip-10" class="slide level2">
+<h2>Tip #10</h2>
+<p><img data-src="img/logo_r.png" class="absolute" style="top: 0px; right: 10px; width: 36pt; "></p>
+<p>Use data.frame until it becomes cumbersome, then use data.table</p>
+<div class="footer">
+<p>Tip #10: Use data.frame until it becomes cumbersome, then use data.table</p>
+<p>Links: <a href="https://rdatatable.gitlab.io/data.table/">data.table</a>, <a href="https://github.com/tidyverse/dtplyr">dtplyr</a>, <a href="https://arelbundock.com/posts/dt_tb_df/index.html">dplyr vs data.table vs base syntax comparison</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="id-use-tip-10-if-.-.-.">I’d use Tip #10 if . . .</h3>
+<p>. . . I’m starting a new project and deciding whether to use base dataframes, tibbles, or data.table. I’m not too invested in either tidyverse or data.table world yet.</p>
+<div class="footer">
+<p>Tip #10: Use data.frame until it becomes cumbersome, then use data.table</p>
+<p>Links: <a href="https://rdatatable.gitlab.io/data.table/">data.table</a>, <a href="https://github.com/tidyverse/dtplyr">dtplyr</a>, <a href="https://arelbundock.com/posts/dt_tb_df/index.html">dplyr vs data.table vs base syntax comparison</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="and-.-.-.-9">. . . and . . .</h3>
+<div class="fragment">
+<ul>
+<li>I want my code to work well when I add more data.</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>I want my code to benefit from multiple cores without having to write explicit parallelism myself.</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>I want specifically follow Brock’s recommendation.</li>
+</ul>
+</div>
+<div class="footer">
+<p>Tip #10: Use data.frame until it becomes cumbersome, then use data.table</p>
+<p>Links: <a href="https://rdatatable.gitlab.io/data.table/">data.table</a>, <a href="https://github.com/tidyverse/dtplyr">dtplyr</a>, <a href="https://arelbundock.com/posts/dt_tb_df/index.html">dplyr vs data.table vs base syntax comparison</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="my-recommendation">My recommendation</h3>
+<p>Start with vanilla dataframe/base R.</p>
+<p>Switch to data.table when you:</p>
+<ul>
+<li>think you need to loop over the rows of your dataframe</li>
+<li>have to write multiple lines for a single operation to avoid looping (Example: Mean of one variable grouped by another variable.)</li>
+<li>want things to run faster</li>
+</ul>
+</section>
+<section class="slide level2">
+
+<h3 id="why">Why?</h3>
+<ul>
+<li>Learning more base R will be an advantage in your R coding life regardless of what other packages you use</li>
+<li>dplyr may be more intuitive than data.table at first, but much less scalable. If you’re at the point where you need to move beyond base R, you’re not too far from the point where you need something more efficient than dplyr.</li>
+<li>data.table requires a bit more upfront learning due to its concise syntax. However, after that small initial investment, it becomes both faster to write and faster to run.</li>
+</ul>
+<div class="footer">
+<p>Tip #10: Use data.frame until it becomes cumbersome, then use data.table</p>
+<p>Links: <a href="https://rdatatable.gitlab.io/data.table/">data.table</a>, <a href="https://github.com/tidyverse/dtplyr">dtplyr</a>, <a href="https://arelbundock.com/posts/dt_tb_df/index.html">dplyr vs data.table vs base syntax comparison</a></p>
+</div>
+</section>
+<section id="tip-11" class="slide level2">
+<h2>Tip #11</h2>
+<p><img data-src="img/logo_r.png" class="absolute" style="top: 0px; right: 10px; width: 36pt; "></p>
+<p>tidyverse vs tinyverse</p>
+<div class="footer">
+<p>Tip #11: tidyverse vs tinyverse</p>
+<p>Links: <a href="https://tidyverse.tidyverse.org/articles/manifesto.html">Tidyverse Manifesto</a>, <a href="https://www.tinyverse.org/">Tinyverse</a>, <a href="https://eddelbuettel.github.io/gsir-te/Getting-Started-in-R.pdf">Getting started with R tinyverse addition</a>, <a href="https://github.com/fastverse/fastverse">fastverse</a>, <a href="https://matloff.github.io/TidyverseSkeptic/Skeptic.html">Tidyverse Skeptic</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="id-use-tip-11-if-.-.-.">I’d use Tip #11 if . . .</h3>
+<p>. . . I’m starting a new project and trying to thoughtfully select which libraries to use.</p>
+<div class="footer">
+<p>Tip #11: tidyverse vs tinyverse</p>
+<p>Links: <a href="https://tidyverse.tidyverse.org/articles/manifesto.html">Tidyverse Manifesto</a>, <a href="https://www.tinyverse.org/">Tinyverse</a>, <a href="https://eddelbuettel.github.io/gsir-te/Getting-Started-in-R.pdf">Getting started with R tinyverse addition</a>, <a href="https://github.com/fastverse/fastverse">fastverse</a>, <a href="https://matloff.github.io/TidyverseSkeptic/Skeptic.html">Tidyverse Skeptic</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="and-.-.-.-10">. . . and . . .</h3>
+<div class="fragment">
+<ul>
+<li>Some people seem to like tidyverse and others not, but I’m not sure why.</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>I’ve had issues with projects changing how their functions work, but I’m not sure how to mitigate that.</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>I know there are different options of R packages that do similar basic data processing tasks, but I’m not sure what the differences are or how I should chose among them.</li>
+</ul>
+</div>
+<div class="footer">
+<p>Tip #11: tidyverse vs tinyverse</p>
+<p>Links: <a href="https://tidyverse.tidyverse.org/articles/manifesto.html">Tidyverse Manifesto</a>, <a href="https://www.tinyverse.org/">Tinyverse</a>, <a href="https://eddelbuettel.github.io/gsir-te/Getting-Started-in-R.pdf">Getting started with R tinyverse addition</a>, <a href="https://github.com/fastverse/fastverse">fastverse</a>, <a href="https://matloff.github.io/TidyverseSkeptic/Skeptic.html">Tidyverse Skeptic</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<p>These philosophical movements respect one another, simply have different goals.</p>
+<ul>
+<li><strong>tidyverse</strong> prioritizes user-friendliness, explicitly deprioritizes compute efficiency, implicitly deprioritizes longevity</li>
+<li><strong>fastverse</strong> prioritizes compute efficiency, some attention paid to longevity (stable interface), implicitly deprioritizing user-friendliness</li>
+<li><strong>tinyverse</strong> prioritizes longevitiy by minimizing dependencies When chosing what packages to add to your project for core data manipulation, understand what you may be trading off in terms of efficiency and longevity.</li>
+</ul>
+<div class="footer">
+<p>Tip #11: tidyverse vs tinyverse</p>
+<p>Links: <a href="https://tidyverse.tidyverse.org/articles/manifesto.html">Tidyverse Manifesto</a>, <a href="https://www.tinyverse.org/">Tinyverse</a>, <a href="https://eddelbuettel.github.io/gsir-te/Getting-Started-in-R.pdf">Getting started with R tinyverse addition</a>, <a href="https://github.com/fastverse/fastverse">fastverse</a>, <a href="https://matloff.github.io/TidyverseSkeptic/Skeptic.html">Tidyverse Skeptic</a></p>
+</div>
+</section>
+<section id="tip-12" class="slide level2">
+<h2>Tip #12</h2>
+<p><img data-src="img/logo_rpy.png" class="absolute" style="top: 0px; right: 10px; width: 72pt; "></p>
+<p>duckdb</p>
+<div class="footer">
+<p>Tip #12: duckdb</p>
+<p>Links: <a href="https://duckdb.org/docs/stable/clients/r.html">DuckDB R client</a>, <a href="https://duckdb.org/docs/stable/clients/python/overview.html">DuckDB python client</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="id-use-tip-12-if-.-.-.">I’d use Tip #12 if . . .</h3>
+<p>. . . I’m outgrowing dataframes. I often have to load multiple (sometimes large) CSVs or Rdata/pickles with dataframes in them at the beginning of my script.</p>
+<div class="footer">
+<p>Tip #12: duckdb</p>
+<p>Links: <a href="https://duckdb.org/docs/stable/clients/r.html">DuckDB R client</a>, <a href="https://duckdb.org/docs/stable/clients/python/overview.html">DuckDB python client</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="and-.-.-.-11">. . . and . . .</h3>
+<div class="fragment">
+<ul>
+<li>If I store my somewhat processed data in CSVs, I have to write a bunch of code at the beginning to make sure everything is the right datatype.</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>If I use pickle/rdata, I’m locked into using a particular datastructure (e.g.&nbsp;dataframe v.s. data table v.s. tibble)</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>If I use pickle/Rdata interoperating between R and python (or other languages) can be tricky.</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>Sometimes I just need a few rows from a huge file so loading the entire file feels like a waste.</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>I have multiple dataframes that should be linked together. (e.g.&nbsp;an “individuals” data frame and a “behaviors” data frame with individual_id as a column), and I end up having to copy the linking code from script to script.</li>
+</ul>
+</div>
+<div class="footer">
+<p>Tip #12: duckdb</p>
+<p>Links: <a href="https://duckdb.org/docs/stable/clients/r.html">DuckDB R client</a>, <a href="https://duckdb.org/docs/stable/clients/python/overview.html">DuckDB python client</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<ul>
+<li>Relational databases allow you to store your data, column headers, datatype <em>AND</em> relationships between tables.</li>
+<li>Duckdb allows you do this with minimal setup.
+<ul>
+<li>Install as you would any other R or python package.</li>
+<li>Data is stored in a single file simlar to pickle or .rds file.</li>
+</ul></li>
+<li>Relations between tables (or data frames) are stored explicitly.</li>
+<li>You can load only particular rows/columns into your session.</li>
+</ul>
+</section>
+<section class="slide level2">
+
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource {sql} number-lines code-with-copy"><code class="sourceCode"><span id="cb5-1"><a href=""></a>  SELECT * </span>
+<span id="cb5-2"><a href=""></a>  FROM observations</span>
+<span id="cb5-3"><a href=""></a>  JOIN individuals</span>
+<span id="cb5-4"><a href=""></a>  ON observations.individual_id = individuals.id</span>
+<span id="cb5-5"><a href=""></a>  WHERE </span>
+<span id="cb5-6"><a href=""></a>    observations.date &gt; '2024-07-01' AND</span>
+<span id="cb5-7"><a href=""></a>    individuals.dob &lt; '2023-01-01'</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="footer">
+<p>Tip #12: duckdb</p>
+<p>Links: <a href="https://duckdb.org/docs/stable/clients/r.html">DuckDB R client</a>, <a href="https://duckdb.org/docs/stable/clients/python/overview.html">DuckDB python client</a></p>
+</div>
+</section>
+<section id="tip-13" class="slide level2">
+<h2>Tip #13</h2>
+<p><img data-src="img/logo_rpy.png" class="absolute" style="top: 0px; right: 10px; width: 72pt; "></p>
+<p>neo4j</p>
+<div class="footer">
+<p>Tip #13: neo4j</p>
+<p>Links: <a href="https://github.com/neo4j/neo4j">Core Database</a>, <a href="https://neo4j-rstats.github.io/user-guide/">R client</a>, <a href="https://neo4j.com/docs/python-manual/current/">python client</a>, <a href="https://neo4j.com/product/bloom/">Visualization Tool</a>, <a href="https://www.youtube.com/watch?v=ZYIasTOhLtI">Video Screenshot Pulled From</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="id-use-tip-13-if-.-.-.">I’d use Tip #13 if . . .</h3>
+<p>. . . I work with network data.</p>
+<div class="footer">
+<p>Tip #13: neo4j</p>
+<p>Links: <a href="https://github.com/neo4j/neo4j">Core Database</a>, <a href="https://neo4j-rstats.github.io/user-guide/">R client</a>, <a href="https://neo4j.com/docs/python-manual/current/">python client</a>, <a href="https://neo4j.com/product/bloom/">Visualization Tool</a>, <a href="https://www.youtube.com/watch?v=ZYIasTOhLtI">Video Screenshot Pulled From</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="and-.-.-.-12">. . . and . . .</h3>
+<div class="fragment">
+<ul>
+<li>I have similar problems to those listed under previous tip</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>Since my data doesn’t fit so well into data frame format, many standard data processing tools aren’t super helpful.</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>Even if I use graph-specific packages (like networkx), I end up writing a lot of custom code just to explore my data.</li>
+</ul>
+</div>
+<div class="footer">
+<p>Tip #13: neo4j</p>
+<p>Links: <a href="https://github.com/neo4j/neo4j">Core Database</a>, <a href="https://neo4j-rstats.github.io/user-guide/">R client</a>, <a href="https://neo4j.com/docs/python-manual/current/">python client</a>, <a href="https://neo4j.com/product/bloom/">Visualization Tool</a>, <a href="https://www.youtube.com/watch?v=ZYIasTOhLtI">Video Screenshot Pulled From</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="neo4j">neo4j</h3>
+<ul>
+<li>Core DB is free and open source.</li>
+<li>Visualization tool is not open source, but has a free version.</li>
+</ul>
+<pre><code>MATCH (tom:Person {name:'Tom Hanks'})--{2}(colleagues:Person)
+RETURN DISTINCT colleagues.name AS name, colleagues.born AS bornIn
+ORDER BY bornIn
+LIMIT 5</code></pre>
+<div class="footer">
+<p>Tip #13: neo4j</p>
+<p>Links: <a href="https://github.com/neo4j/neo4j">Core Database</a>, <a href="https://neo4j-rstats.github.io/user-guide/">R client</a>, <a href="https://neo4j.com/docs/python-manual/current/">python client</a>, <a href="https://neo4j.com/product/bloom/">Visualization Tool</a>, <a href="https://www.youtube.com/watch?v=ZYIasTOhLtI">Video Screenshot Pulled From</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+
+<img data-src="img/neo4j.png" class="r-stretch"><div class="footer">
+<p>Tip #13: neo4j</p>
+<p>Links: <a href="https://github.com/neo4j/neo4j">Core Database</a>, <a href="https://neo4j-rstats.github.io/user-guide/">R client</a>, <a href="https://neo4j.com/docs/python-manual/current/">python client</a>, <a href="https://neo4j.com/product/bloom/">Visualization Tool</a>, <a href="https://www.youtube.com/watch?v=ZYIasTOhLtI">Video Screenshot Pulled From</a></p>
+</div>
+<div class="footer">
+<p>Tip #13: neo4j</p>
+<p>Links: <a href="https://github.com/neo4j/neo4j">Core Database</a>, <a href="https://neo4j-rstats.github.io/user-guide/">R client</a>, <a href="https://neo4j.com/docs/python-manual/current/">python client</a>, <a href="https://neo4j.com/product/bloom/">Visualization Tool</a>, <a href="https://www.youtube.com/watch?v=ZYIasTOhLtI">Video Screenshot Pulled From</a></p>
+</div>
+</section></section>
+<section>
+<section id="readability" class="title-slide slide level1 center">
+<h1>#14-#17 Readability</h1>
+
+</section>
+<section id="tip-14" class="slide level2">
+<h2>Tip #14</h2>
+<p><img data-src="img/logo_rpy.png" class="absolute" style="top: 0px; right: 10px; width: 72pt; "></p>
+<p>linter</p>
+<div class="footer">
+<p>Tip #14: linter</p>
+<p>Links: <a href="https://docs.posit.co/ide/user/ide/guide/code/diagnostics.html">Rstudio Diagnostics</a>, <a href="https://lintr.r-lib.org/index.html">lintr</a>, <a href="https://pylint.readthedocs.io/en/latest/">pylint</a>, <a href="https://black.readthedocs.io/en/stable/index.html">black</a>, <a href="https://github.com/PyCQA/pycodestyle">pycodestyle</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="id-use-tip-14-if-.-.-.">I’d use Tip #14 if . . .</h3>
+<p>. . . Sometimes I use kind of random formatting, and I want it to be consistent.</p>
+<div class="footer">
+<p>Tip #14: linter</p>
+<p>Links: <a href="https://docs.posit.co/ide/user/ide/guide/code/diagnostics.html">Rstudio Diagnostics</a>, <a href="https://lintr.r-lib.org/index.html">lintr</a>, <a href="https://pylint.readthedocs.io/en/latest/">pylint</a>, <a href="https://black.readthedocs.io/en/stable/index.html">black</a>, <a href="https://github.com/PyCQA/pycodestyle">pycodestyle</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="and-.-.-.-13">. . . and . . .</h3>
+<div class="fragment">
+<ul>
+<li>I can’t always immediately tell if I’m conforming to a style guide.</li>
+</ul>
+</div>
+<div class="footer">
+<p>Tip #14: linter</p>
+<p>Links: <a href="https://docs.posit.co/ide/user/ide/guide/code/diagnostics.html">Rstudio Diagnostics</a>, <a href="https://lintr.r-lib.org/index.html">lintr</a>, <a href="https://pylint.readthedocs.io/en/latest/">pylint</a>, <a href="https://black.readthedocs.io/en/stable/index.html">black</a>, <a href="https://github.com/PyCQA/pycodestyle">pycodestyle</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<ul>
+<li><strong>Rstudio</strong>: Turn on built in diagnostics Tools &gt; Global Options &gt; Code &gt; Diagnostics</li>
+<li><strong>R</strong>: <code>lintr</code> offers additional customizable checks, integrates with multiple IDEs</li>
+<li><strong>python</strong>: pylint, black, pycodestyle are all customizable and integrate with multiple IDEs</li>
+</ul>
+<div class="footer">
+<p>Tip #14: linter</p>
+<p>Links: <a href="https://docs.posit.co/ide/user/ide/guide/code/diagnostics.html">Rstudio Diagnostics</a>, <a href="https://lintr.r-lib.org/index.html">lintr</a>, <a href="https://pylint.readthedocs.io/en/latest/">pylint</a>, <a href="https://black.readthedocs.io/en/stable/index.html">black</a>, <a href="https://github.com/PyCQA/pycodestyle">pycodestyle</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+
+<img data-src="img/lint_rstudio.png" class="r-stretch"><div class="footer">
+<p>Tip #14: linter</p>
+<p>Links: <a href="https://docs.posit.co/ide/user/ide/guide/code/diagnostics.html">Rstudio Diagnostics</a>, <a href="https://lintr.r-lib.org/index.html">lintr</a>, <a href="https://pylint.readthedocs.io/en/latest/">pylint</a>, <a href="https://black.readthedocs.io/en/stable/index.html">black</a>, <a href="https://github.com/PyCQA/pycodestyle">pycodestyle</a></p>
+</div>
+<div class="footer">
+<p>Tip #14: linter</p>
+<p>Links: <a href="https://docs.posit.co/ide/user/ide/guide/code/diagnostics.html">Rstudio Diagnostics</a>, <a href="https://lintr.r-lib.org/index.html">lintr</a>, <a href="https://pylint.readthedocs.io/en/latest/">pylint</a>, <a href="https://black.readthedocs.io/en/stable/index.html">black</a>, <a href="https://github.com/PyCQA/pycodestyle">pycodestyle</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+
+<img data-src="img/lint_python.png" class="r-stretch"><div class="footer">
+<p>Tip #14: linter</p>
+<p>Links: <a href="https://docs.posit.co/ide/user/ide/guide/code/diagnostics.html">Rstudio Diagnostics</a>, <a href="https://lintr.r-lib.org/index.html">lintr</a>, <a href="https://pylint.readthedocs.io/en/latest/">pylint</a>, <a href="https://black.readthedocs.io/en/stable/index.html">black</a>, <a href="https://github.com/PyCQA/pycodestyle">pycodestyle</a></p>
+</div>
+<div class="footer">
+<p>Tip #14: linter</p>
+<p>Links: <a href="https://docs.posit.co/ide/user/ide/guide/code/diagnostics.html">Rstudio Diagnostics</a>, <a href="https://lintr.r-lib.org/index.html">lintr</a>, <a href="https://pylint.readthedocs.io/en/latest/">pylint</a>, <a href="https://black.readthedocs.io/en/stable/index.html">black</a>, <a href="https://github.com/PyCQA/pycodestyle">pycodestyle</a></p>
+</div>
+</section>
+<section id="tip-15" class="slide level2">
+<h2>Tip #15</h2>
+<p><img data-src="img/logo_rpy.png" class="absolute" style="top: 0px; right: 10px; width: 72pt; "></p>
+<p>autoformat</p>
+<div class="footer">
+<p>Tip #15: autoformat</p>
+<p>Links: <a href="https://black.readthedocs.io/en/stable/">black</a>, <a href="https://github.com/hhatto/autopep8">autopep8</a>, <a href="https://yihui.org/formatr/">formatR</a>, <a href="https://styler.r-lib.org/">styleR</a>, <a href="https://flir.etiennebacher.com/">flir</a>, <a href="https://www.tidyverse.org/blog/2025/02/air/">air</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="id-use-tip-15-if-.-.-.">I’d use Tip #15 if . . .</h3>
+<p>. . . Sometimes I use kind of random formatting, and I want it to be consistent.</p>
+<div class="footer">
+<p>Tip #15: autoformat</p>
+<p>Links: <a href="https://black.readthedocs.io/en/stable/">black</a>, <a href="https://github.com/hhatto/autopep8">autopep8</a>, <a href="https://yihui.org/formatr/">formatR</a>, <a href="https://styler.r-lib.org/">styleR</a>, <a href="https://flir.etiennebacher.com/">flir</a>, <a href="https://www.tidyverse.org/blog/2025/02/air/">air</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="and-.-.-.-14">. . . and . . .</h3>
+<div class="fragment">
+<ul>
+<li>It’s annoying to go through line by line and futz with spacing and line breaks.</li>
+</ul>
+</div>
+<div class="footer">
+<p>Tip #15: autoformat</p>
+<p>Links: <a href="https://black.readthedocs.io/en/stable/">black</a>, <a href="https://github.com/hhatto/autopep8">autopep8</a>, <a href="https://yihui.org/formatr/">formatR</a>, <a href="https://styler.r-lib.org/">styleR</a>, <a href="https://flir.etiennebacher.com/">flir</a>, <a href="https://www.tidyverse.org/blog/2025/02/air/">air</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+
+<img data-src="img/autoformat_rstudio.gif" class="r-stretch"><div class="footer">
+<p>Tip #15: autoformat</p>
+<p>Links: <a href="https://black.readthedocs.io/en/stable/">black</a>, <a href="https://github.com/hhatto/autopep8">autopep8</a>, <a href="https://yihui.org/formatr/">formatR</a>, <a href="https://styler.r-lib.org/">styleR</a>, <a href="https://flir.etiennebacher.com/">flir</a>, <a href="https://www.tidyverse.org/blog/2025/02/air/">air</a></p>
+</div>
+<div class="footer">
+<p>Tip #15: autoformat</p>
+<p>Links: <a href="https://black.readthedocs.io/en/stable/">black</a>, <a href="https://github.com/hhatto/autopep8">autopep8</a>, <a href="https://yihui.org/formatr/">formatR</a>, <a href="https://styler.r-lib.org/">styleR</a>, <a href="https://flir.etiennebacher.com/">flir</a>, <a href="https://www.tidyverse.org/blog/2025/02/air/">air</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+
+<img data-src="img/autoformat_vscode.gif" class="r-stretch"><div class="footer">
+<p>Tip #15: autoformat</p>
+<p>Links: <a href="https://black.readthedocs.io/en/stable/">black</a>, <a href="https://github.com/hhatto/autopep8">autopep8</a>, <a href="https://yihui.org/formatr/">formatR</a>, <a href="https://styler.r-lib.org/">styleR</a>, <a href="https://flir.etiennebacher.com/">flir</a>, <a href="https://www.tidyverse.org/blog/2025/02/air/">air</a></p>
+</div>
+<div class="footer">
+<p>Tip #15: autoformat</p>
+<p>Links: <a href="https://black.readthedocs.io/en/stable/">black</a>, <a href="https://github.com/hhatto/autopep8">autopep8</a>, <a href="https://yihui.org/formatr/">formatR</a>, <a href="https://styler.r-lib.org/">styleR</a>, <a href="https://flir.etiennebacher.com/">flir</a>, <a href="https://www.tidyverse.org/blog/2025/02/air/">air</a></p>
+</div>
+</section>
+<section id="tip-16" class="slide level2">
+<h2>Tip #16</h2>
+<p><img data-src="img/logo_rpy.png" class="absolute" style="top: 0px; right: 10px; width: 72pt; "></p>
+<p>auto-replace</p>
+<div class="footer">
+<p>Tip #16: auto-replace</p>
+<p>Links: <a href="https://github.com/python-rope/rope">rope</a> powerful python refactoring library</p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="id-use-tip-16-if-.-.-.">I’d use Tip #16 if . . .</h3>
+<p>. . . Sometimes I want to change variable names to make things more understandable.</p>
+<div class="footer">
+<p>Tip #16: auto-replace</p>
+<p>Links: <a href="https://github.com/python-rope/rope">rope</a> powerful python refactoring library</p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="and-.-.-.-15">. . . and . . .</h3>
+<div class="fragment">
+<ul>
+<li>If I do find and replace, sometimes it catches things I don’t want to change.</li>
+</ul>
+</div>
+<div class="footer">
+<p>Tip #16: auto-replace</p>
+<p>Links: <a href="https://github.com/python-rope/rope">rope</a> powerful python refactoring library</p>
+</div>
+</section>
+<section class="slide level2">
+
+
+<img data-src="img/autoreplace_vscode.gif" class="r-stretch"><div class="footer">
+<p>Tip #16: auto-replace</p>
+<p>Links: <a href="https://github.com/python-rope/rope">rope</a> powerful python refactoring library</p>
+</div>
+<div class="footer">
+<p>Tip #16: auto-replace</p>
+<p>Links: <a href="https://github.com/python-rope/rope">rope</a> powerful python refactoring library</p>
+</div>
+</section>
+<section class="slide level2">
+
+
+<img data-src="img/autoreplace_rstudio.gif" class="r-stretch"><div class="footer">
+<p>Tip #16: auto-replace</p>
+<p>Links: <a href="https://github.com/python-rope/rope">rope</a> powerful python refactoring library</p>
+</div>
+<div class="footer">
+<p>Tip #16: auto-replace</p>
+<p>Links: <a href="https://github.com/python-rope/rope">rope</a> powerful python refactoring library</p>
+</div>
+</section></section>
+<section>
+<section id="tinytips" class="title-slide slide level1 center">
+<h1>#17-#23 Tinytips</h1>
+
+</section>
+<section id="tip-17" class="slide level2">
+<h2>Tip #17</h2>
+<p><img data-src="img/logo_r.png" class="absolute" style="top: 0px; right: 10px; width: 36pt; "></p>
+<p>match instead of which</p>
+<div class="footer">
+<p>Tip #17: match instead of which</p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="id-use-tip-17-if-.-.-.">I’d use Tip #17 if . . .</h3>
+<p>. . . I find myself writing a lot of</p>
+<p><code>df[which(df$col_1 == 'value1'),]</code></p>
+<div class="footer">
+<p>Tip #17: match instead of which</p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="and-.-.-.-16">. . . and . . .</h3>
+<div class="fragment">
+<ul>
+<li>this is kind of long</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>it’s a bit hard to read</li>
+</ul>
+</div>
+<div class="footer">
+<p>Tip #17: match instead of which</p>
+</div>
+</section>
+<section class="slide level2">
+
+<p><img data-src="img/logo_r.png" class="absolute" style="top: 0px; right: 10px; width: 36pt; "></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a><span class="co"># slower</span></span>
+<span id="cb7-2"><a href=""></a>LETTERS[<span class="fu">which</span>(letters <span class="sc">==</span> <span class="st">'s'</span>)]</span>
+<span id="cb7-3"><a href=""></a><span class="co"># S</span></span>
+<span id="cb7-4"><a href=""></a> </span>
+<span id="cb7-5"><a href=""></a><span class="co"># faster</span></span>
+<span id="cb7-6"><a href=""></a>LETTERS[<span class="fu">match</span>(<span class="st">'s'</span>, letters)]</span>
+<span id="cb7-7"><a href=""></a><span class="co"># S</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="footer">
+<p>Tip #17: match instead of which</p>
+</div>
+</section>
+<section id="tip-18" class="slide level2">
+<h2>Tip #18</h2>
+<p><img data-src="img/logo_r.png" class="absolute" style="top: 0px; right: 10px; width: 36pt; "></p>
+<p>native pipe <code>|&gt;</code></p>
+<div class="footer">
+<p>Tip #18: native pipe <code>|&gt;</code></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="id-use-tip-18-if-.-.-.">I’d use Tip #18 if . . .</h3>
+<p>. . . I like using pipe <code>%&gt;%</code>, but I don’t use too much of the tidyverse in general</p>
+<div class="footer">
+<p>Tip #18: native pipe <code>|&gt;</code></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="and-.-.-.-17">. . . and . . .</h3>
+<div class="fragment">
+<ul>
+<li>a lot of times, I have to install and load <code>magrittr</code> just to use the pipe and nothing else</li>
+</ul>
+</div>
+<div class="footer">
+<p>Tip #18: native pipe <code>|&gt;</code></p>
+</div>
+</section>
+<section class="slide level2">
+
+<p><img data-src="img/logo_r.png" class="absolute" style="top: 0px; right: 10px; width: 36pt; "></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a>iris <span class="sc">|&gt;</span> <span class="fu">summary</span>()</span>
+<span id="cb8-2"><a href=""></a><span class="co"># </span></span>
+<span id="cb8-3"><a href=""></a><span class="co">#   Sepal.Length    Sepal.Width     Petal.Length  </span></span>
+<span id="cb8-4"><a href=""></a><span class="co">#  Min.   :4.300   Min.   :2.000   Min.   :1.000  </span></span>
+<span id="cb8-5"><a href=""></a><span class="co">#  1st Qu.:5.100   1st Qu.:2.800   1st Qu.:1.600  </span></span>
+<span id="cb8-6"><a href=""></a><span class="co">#  Median :5.800   Median :3.000   Median :4.350  </span></span>
+<span id="cb8-7"><a href=""></a><span class="co">#  Mean   :5.843   Mean   :3.057   Mean   :3.758  </span></span>
+<span id="cb8-8"><a href=""></a><span class="co">#  3rd Qu.:6.400   3rd Qu.:3.300   3rd Qu.:5.100  </span></span>
+<span id="cb8-9"><a href=""></a><span class="co">#  Max.   :7.900   Max.   :4.400   Max.   :6.900  </span></span>
+<span id="cb8-10"><a href=""></a><span class="co">#   Petal.Width          Species  </span></span>
+<span id="cb8-11"><a href=""></a><span class="co">#  Min.   :0.100   setosa    :50  </span></span>
+<span id="cb8-12"><a href=""></a><span class="co">#  1st Qu.:0.300   versicolor:50  </span></span>
+<span id="cb8-13"><a href=""></a><span class="co">#  Median :1.300   virginica :50  </span></span>
+<span id="cb8-14"><a href=""></a><span class="co">#  Mean   :1.199                  </span></span>
+<span id="cb8-15"><a href=""></a><span class="co">#  3rd Qu.:1.800                  </span></span>
+<span id="cb8-16"><a href=""></a><span class="co">#  Max.   :2.500  </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="footer">
+<p>Tip #18: native pipe <code>|&gt;</code></p>
+</div>
+</section>
+<section id="tip-19" class="slide level2">
+<h2>Tip #19</h2>
+<p><img data-src="img/logo_rpy.png" class="absolute" style="top: 0px; right: 10px; width: 72pt; "></p>
+<p>switch with a list</p>
+<div class="footer">
+<p>Tip #19: switch with a list</p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="id-use-tip-19-if-.-.-.">I’d use Tip #19 if . . .</h3>
+<p>. . . I tend to write a lot of long if else statements that test the same value over and over. e.g.</p>
+<pre><code>if (my_variable == 'a') {
+  ...
+} else if (my_variable == 'b'){
+  ...
+} else if (my_variable == ...</code></pre>
+<div class="footer">
+<p>Tip #19: switch with a list</p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="and-.-.-.-18">. . . and . . .</h3>
+<div class="fragment">
+<ul>
+<li>this is a bit repeative and hard to read</li>
+</ul>
+</div>
+<div class="footer">
+<p>Tip #19: switch with a list</p>
+</div>
+</section>
+<section class="slide level2">
+
+<p><img data-src="img/logo_python.png" class="absolute" style="top: 0px; right: 10px; width: 36pt; "></p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href=""></a><span class="co"># Switch with ifelse</span></span>
+<span id="cb10-2"><a href=""></a>name <span class="op">=</span> <span class="st">'brook'</span></span>
+<span id="cb10-3"><a href=""></a><span class="cf">if</span> (name.lower() <span class="op">==</span> <span class="st">'brook'</span>):</span>
+<span id="cb10-4"><a href=""></a>    name <span class="op">=</span> <span class="st">'Brock'</span></span>
+<span id="cb10-5"><a href=""></a><span class="cf">elif</span> (name.lower() <span class="op">==</span> <span class="st">'rbock'</span>):</span>
+<span id="cb10-6"><a href=""></a>    name <span class="op">=</span> <span class="st">'Brock'</span></span>
+<span id="cb10-7"><a href=""></a><span class="cf">elif</span> (name.lower() <span class="op">==</span> <span class="st">'allie'</span>):</span>
+<span id="cb10-8"><a href=""></a>    name <span class="op">=</span> <span class="st">'Alie'</span></span>
+<span id="cb10-9"><a href=""></a><span class="cf">elif</span> (name.lower() <span class="op">==</span> <span class="st">'aly'</span>):</span>
+<span id="cb10-10"><a href=""></a>    name <span class="op">=</span> <span class="st">'Alie'</span></span>
+<span id="cb10-11"><a href=""></a><span class="bu">print</span>(name)</span>
+<span id="cb10-12"><a href=""></a></span>
+<span id="cb10-13"><a href=""></a></span>
+<span id="cb10-14"><a href=""></a><span class="co"># Using dictionary</span></span>
+<span id="cb10-15"><a href=""></a>name <span class="op">=</span> <span class="st">'brook'</span></span>
+<span id="cb10-16"><a href=""></a>name <span class="op">=</span> {</span>
+<span id="cb10-17"><a href=""></a>  <span class="st">'brook'</span>: <span class="st">'Brock'</span>,</span>
+<span id="cb10-18"><a href=""></a>  <span class="st">'rbock'</span>: <span class="st">'Brock'</span>,</span>
+<span id="cb10-19"><a href=""></a>  <span class="st">'allie'</span>: <span class="st">'Alie'</span>,</span>
+<span id="cb10-20"><a href=""></a>  <span class="st">'aly'</span>: <span class="st">'Alie'</span></span>
+<span id="cb10-21"><a href=""></a>}[name.lower()]</span>
+<span id="cb10-22"><a href=""></a><span class="bu">print</span>(name)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="footer">
+<p>Tip #19: switch with a list</p>
+</div>
+</section>
+<section class="slide level2">
+
+<p><img data-src="img/logo_r.png" class="absolute" style="top: 0px; right: 10px; width: 36pt; "></p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href=""></a><span class="co"># Switch with ifelse</span></span>
+<span id="cb11-2"><a href=""></a>name <span class="ot">&lt;-</span> <span class="st">'brook'</span></span>
+<span id="cb11-3"><a href=""></a><span class="cf">if</span> (<span class="fu">tolower</span>(name) <span class="sc">==</span> <span class="st">'brook'</span>) name <span class="ot">&lt;-</span> <span class="st">'Brock'</span> <span class="cf">else</span></span>
+<span id="cb11-4"><a href=""></a>  <span class="cf">if</span> (<span class="fu">tolower</span>(name) <span class="sc">==</span> <span class="st">'rbock'</span>) name <span class="ot">&lt;-</span> <span class="st">'Brock'</span> <span class="cf">else</span></span>
+<span id="cb11-5"><a href=""></a>    <span class="cf">if</span> (<span class="fu">tolower</span>(name) <span class="sc">==</span> <span class="st">'allie'</span>) name <span class="ot">&lt;-</span> <span class="st">'Alie'</span> <span class="cf">else</span></span>
+<span id="cb11-6"><a href=""></a>      <span class="cf">if</span> (<span class="fu">tolower</span>(name) <span class="sc">==</span> <span class="st">'aly'</span>) name <span class="ot">&lt;-</span> <span class="st">'Alie'</span></span>
+<span id="cb11-7"><a href=""></a><span class="fu">print</span>(name)</span>
+<span id="cb11-8"><a href=""></a></span>
+<span id="cb11-9"><a href=""></a><span class="co"># Using switch function</span></span>
+<span id="cb11-10"><a href=""></a>name <span class="ot">&lt;-</span> <span class="st">'brook'</span></span>
+<span id="cb11-11"><a href=""></a>name <span class="ot">&lt;-</span> <span class="cf">switch</span>(<span class="fu">tolower</span>(name),</span>
+<span id="cb11-12"><a href=""></a>  <span class="st">'brook'</span> <span class="ot">=</span> <span class="st">'Brock'</span>,</span>
+<span id="cb11-13"><a href=""></a>  <span class="st">'rbock'</span> <span class="ot">=</span> <span class="st">'Brock'</span>,</span>
+<span id="cb11-14"><a href=""></a>  <span class="st">'allie'</span> <span class="ot">=</span> <span class="st">'Alie'</span>,</span>
+<span id="cb11-15"><a href=""></a>  <span class="st">'aly'</span> <span class="ot">=</span> <span class="st">'Alie'</span></span>
+<span id="cb11-16"><a href=""></a>)</span>
+<span id="cb11-17"><a href=""></a><span class="fu">print</span>(name)</span>
+<span id="cb11-18"><a href=""></a></span>
+<span id="cb11-19"><a href=""></a><span class="co"># Using list</span></span>
+<span id="cb11-20"><a href=""></a>name <span class="ot">&lt;-</span> <span class="st">'brook'</span></span>
+<span id="cb11-21"><a href=""></a>name <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb11-22"><a href=""></a>  <span class="st">'brook'</span> <span class="ot">=</span> <span class="st">'Brock'</span>,</span>
+<span id="cb11-23"><a href=""></a>  <span class="st">'rbock'</span> <span class="ot">=</span> <span class="st">'Brock'</span>,</span>
+<span id="cb11-24"><a href=""></a>  <span class="st">'allie'</span> <span class="ot">=</span> <span class="st">'Alie'</span>,</span>
+<span id="cb11-25"><a href=""></a>  <span class="st">'aly'</span> <span class="ot">=</span> <span class="st">'Alie'</span></span>
+<span id="cb11-26"><a href=""></a>)[[<span class="fu">tolower</span>(name)]]</span>
+<span id="cb11-27"><a href=""></a><span class="fu">print</span>(name)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="footer">
+<p>Tip #19: switch with a list</p>
+</div>
+</section>
+<section id="tip-20" class="slide level2">
+<h2>Tip #20</h2>
+<p><img data-src="img/logo_r.png" class="absolute" style="top: 0px; right: 10px; width: 36pt; "></p>
+<p>seq_along/seq_len</p>
+<div class="footer">
+<p>Tip #20: seq_along/seq_len</p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="id-use-tip-20-if-.-.-.">I’d use Tip #20 if . . .</h3>
+<p>. . . I write a lot of <code>for(i in 1:n){...}</code> type loops</p>
+<div class="footer">
+<p>Tip #20: seq_along/seq_len</p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="and-.-.-.-19">. . . and . . .</h3>
+<div class="fragment">
+<ul>
+<li>If <code>n</code> is <code>0</code>, I want the loop to not run at all, but what actually happens is it runs with <code>i=1</code> then <code>i=0</code>.</li>
+</ul>
+</div>
+<div class="footer">
+<p>Tip #20: seq_along/seq_len</p>
+</div>
+</section>
+<section class="slide level2">
+
+<p><img data-src="img/logo_r.png" class="absolute" style="top: 0px; right: 10px; width: 36pt; "></p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href=""></a><span class="co"># works with 1:length(my_vector)</span></span>
+<span id="cb12-2"><a href=""></a>colors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'Red'</span>, <span class="st">'Green'</span>, <span class="st">'Purple'</span>)</span>
+<span id="cb12-3"><a href=""></a>colors_filtered <span class="ot">&lt;-</span> colors[<span class="fu">startsWith</span>(colors, <span class="st">'P'</span>)]</span>
+<span id="cb12-4"><a href=""></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(colors_filtered)) {</span>
+<span id="cb12-5"><a href=""></a>  <span class="fu">print</span>(<span class="fu">paste</span>(colors_filtered[i], <span class="st">'starts with P'</span>))</span>
+<span id="cb12-6"><a href=""></a>}</span>
+<span id="cb12-7"><a href=""></a></span>
+<span id="cb12-8"><a href=""></a><span class="co"># [1] "Purple starts with P"</span></span>
+<span id="cb12-9"><a href=""></a></span>
+<span id="cb12-10"><a href=""></a><span class="co"># doesn't  work with 1:length(my_vector)</span></span>
+<span id="cb12-11"><a href=""></a>colors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'Red'</span>, <span class="st">'Green'</span>, <span class="st">'Violet'</span>)</span>
+<span id="cb12-12"><a href=""></a>colors_filtered <span class="ot">&lt;-</span> colors[<span class="fu">startsWith</span>(colors, <span class="st">'P'</span>)]</span>
+<span id="cb12-13"><a href=""></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(colors_filtered)) {</span>
+<span id="cb12-14"><a href=""></a>  <span class="fu">print</span>(<span class="fu">paste</span>(colors_filtered[i], <span class="st">'starts with P'</span>))</span>
+<span id="cb12-15"><a href=""></a>}</span>
+<span id="cb12-16"><a href=""></a></span>
+<span id="cb12-17"><a href=""></a><span class="co"># [1] "NA starts with P"</span></span>
+<span id="cb12-18"><a href=""></a><span class="co"># [1] " starts with P"</span></span>
+<span id="cb12-19"><a href=""></a></span>
+<span id="cb12-20"><a href=""></a><span class="co"># Updated</span></span>
+<span id="cb12-21"><a href=""></a>colors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'Red'</span>, <span class="st">'Green'</span>, <span class="st">'Purple'</span>)</span>
+<span id="cb12-22"><a href=""></a>colors_filtered <span class="ot">&lt;-</span> colors[<span class="fu">startsWith</span>(colors, <span class="st">'P'</span>)]</span>
+<span id="cb12-23"><a href=""></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(colors_filtered)) {</span>
+<span id="cb12-24"><a href=""></a>  <span class="fu">print</span>(<span class="fu">paste</span>(colors_filtered[i], <span class="st">'starts with P'</span>))</span>
+<span id="cb12-25"><a href=""></a>}</span>
+<span id="cb12-26"><a href=""></a></span>
+<span id="cb12-27"><a href=""></a><span class="co"># "Purple starts with P"</span></span>
+<span id="cb12-28"><a href=""></a></span>
+<span id="cb12-29"><a href=""></a>colors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'Red'</span>, <span class="st">'Green'</span>, <span class="st">'Violet'</span>)</span>
+<span id="cb12-30"><a href=""></a>colors_filtered <span class="ot">&lt;-</span> colors[<span class="fu">startsWith</span>(colors, <span class="st">'P'</span>)]</span>
+<span id="cb12-31"><a href=""></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(colors_filtered)) {</span>
+<span id="cb12-32"><a href=""></a>  <span class="fu">print</span>(<span class="fu">paste</span>(colors_filtered[i], <span class="st">'starts with P'</span>))</span>
+<span id="cb12-33"><a href=""></a>}</span>
+<span id="cb12-34"><a href=""></a></span>
+<span id="cb12-35"><a href=""></a><span class="co"># doesn't print anything</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="footer">
+<p>Tip #20: seq_along/seq_len</p>
+</div>
+</section>
+<section id="tip-21" class="slide level2">
+<h2>Tip #21</h2>
+<p><img data-src="img/logo_r.png" class="absolute" style="top: 0px; right: 10px; width: 36pt; "></p>
+<p>Don’t forget to have fun (emoGG)</p>
+<div class="footer">
+<p>Tip #21: Don’t forget to have fun (emoGG)</p>
+<p>Links: <a href="https://github.com/dill/emoGG">emoGG</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="id-use-tip-21-if-.-.-.">I’d use Tip #21 if . . .</h3>
+<p>. . . I use ggplot.</p>
+<div class="footer">
+<p>Tip #21: Don’t forget to have fun (emoGG)</p>
+<p>Links: <a href="https://github.com/dill/emoGG">emoGG</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="and-.-.-.-20">. . . and . . .</h3>
+<div class="fragment">
+<ul>
+<li>I wish it were more fun.</li>
+</ul>
+</div>
+<div class="footer">
+<p>Tip #21: Don’t forget to have fun (emoGG)</p>
+<p>Links: <a href="https://github.com/dill/emoGG">emoGG</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<p>Not the most practical package, but succeeds in its goal of being fun</p>
+<div class="footer">
+<p>Tip #21: Don’t forget to have fun (emoGG)</p>
+<p>Links: <a href="https://github.com/dill/emoGG">emoGG</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+
+<img data-src="img/emoGG.png" class="r-stretch"><div class="footer">
+<p>Tip #21: Don’t forget to have fun (emoGG)</p>
+<p>Links: <a href="https://github.com/dill/emoGG">emoGG</a></p>
+</div>
+<div class="footer">
+<p>Tip #21: Don’t forget to have fun (emoGG)</p>
+<p>Links: <a href="https://github.com/dill/emoGG">emoGG</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<p><img data-src="img/logo_r.png" class="absolute" style="top: 0px; right: 10px; width: 36pt; "></p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href=""></a>zzz <span class="ot">&lt;-</span> <span class="st">'1f634'</span></span>
+<span id="cb13-2"><a href=""></a>hmm <span class="ot">&lt;-</span> <span class="st">'1f914'</span></span>
+<span id="cb13-3"><a href=""></a></span>
+<span id="cb13-4"><a href=""></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">by=</span>.<span class="dv">1</span>)</span>
+<span id="cb13-5"><a href=""></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb13-6"><a href=""></a>  <span class="at">time =</span> <span class="fu">rep</span>(x, <span class="dv">2</span>),</span>
+<span id="cb13-7"><a href=""></a>  <span class="at">mood =</span> <span class="fu">c</span>(</span>
+<span id="cb13-8"><a href=""></a>    <span class="fu">rep</span>(zzz, <span class="fu">length</span>(x)),</span>
+<span id="cb13-9"><a href=""></a>    <span class="fu">rep</span>(hmm, <span class="fu">length</span>(x))</span>
+<span id="cb13-10"><a href=""></a>  ),</span>
+<span id="cb13-11"><a href=""></a>  <span class="at">pct_people =</span> <span class="fu">c</span>(</span>
+<span id="cb13-12"><a href=""></a>    <span class="fu">pnorm</span>(x, <span class="dv">1</span>, .<span class="dv">5</span>),</span>
+<span id="cb13-13"><a href=""></a>    (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(x, <span class="dv">1</span>, .<span class="dv">5</span>))<span class="sc">/</span><span class="dv">5</span></span>
+<span id="cb13-14"><a href=""></a>  )</span>
+<span id="cb13-15"><a href=""></a>)</span>
+<span id="cb13-16"><a href=""></a></span>
+<span id="cb13-17"><a href=""></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(</span>
+<span id="cb13-18"><a href=""></a>  <span class="at">x =</span> time,</span>
+<span id="cb13-19"><a href=""></a>  <span class="at">y =</span> pct_people,</span>
+<span id="cb13-20"><a href=""></a>  <span class="at">emoji =</span> mood,</span>
+<span id="cb13-21"><a href=""></a>)) <span class="sc">+</span> <span class="fu">geom_emoji</span>() <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">'Expected Reaction to Talk'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="footer">
+<p>Tip #21: Don’t forget to have fun (emoGG)</p>
+<p>Links: <a href="https://github.com/dill/emoGG">emoGG</a></p>
+</div>
+</section>
+<section id="tip-22" class="slide level2">
+<h2>Tip #22</h2>
+<p><img data-src="img/logo_rpy.png" class="absolute" style="top: 0px; right: 10px; width: 72pt; "></p>
+<p>leaflet</p>
+<div class="footer">
+<p>Tip #22: leaflet</p>
+<p>Links: <a href="https://ipyleaflet.readthedocs.io/en/latest/index.html">Python Client</a>, <a href="https://rstudio.github.io/leaflet/">R Client</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="id-use-tip-22-if-.-.-.">I’d use Tip #22 if . . .</h3>
+<p>. . . I work with geospatial data in R or python.</p>
+<div class="footer">
+<p>Tip #22: leaflet</p>
+<p>Links: <a href="https://ipyleaflet.readthedocs.io/en/latest/index.html">Python Client</a>, <a href="https://rstudio.github.io/leaflet/">R Client</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="and-.-.-.-21">. . . and . . .</h3>
+<div class="fragment">
+<ul>
+<li>it’s hard get static plots at the right level of zoom/detail.</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>I wish I had google-maps like interface with landmarks.</li>
+</ul>
+</div>
+<div class="footer">
+<p>Tip #22: leaflet</p>
+<p>Links: <a href="https://ipyleaflet.readthedocs.io/en/latest/index.html">Python Client</a>, <a href="https://rstudio.github.io/leaflet/">R Client</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<p><img data-src="img/logo_python.png" class="absolute" style="top: 0px; right: 10px; width: 36pt; "></p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href=""></a><span class="im">from</span> ipyleaflet <span class="im">import</span> Map, Marker</span>
+<span id="cb14-2"><a href=""></a></span>
+<span id="cb14-3"><a href=""></a>center <span class="op">=</span> (<span class="fl">47.67747</span>, <span class="fl">9.16736</span>)</span>
+<span id="cb14-4"><a href=""></a></span>
+<span id="cb14-5"><a href=""></a>m <span class="op">=</span> Map(center<span class="op">=</span>center, zoom<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb14-6"><a href=""></a></span>
+<span id="cb14-7"><a href=""></a>eps <span class="op">=</span> eps <span class="op">=</span> <span class="fl">.0005</span></span>
+<span id="cb14-8"><a href=""></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="op">-</span><span class="dv">10</span>, <span class="dv">10</span>):</span>
+<span id="cb14-9"><a href=""></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="op">-</span><span class="dv">10</span>, <span class="dv">10</span>):</span>
+<span id="cb14-10"><a href=""></a>        marker <span class="op">=</span> Marker(</span>
+<span id="cb14-11"><a href=""></a>            location<span class="op">=</span>(</span>
+<span id="cb14-12"><a href=""></a>                center[<span class="dv">0</span>] <span class="op">+</span> i <span class="op">*</span> eps,</span>
+<span id="cb14-13"><a href=""></a>                center[<span class="dv">1</span>] <span class="op">+</span> i <span class="op">*</span> eps,</span>
+<span id="cb14-14"><a href=""></a>            ),</span>
+<span id="cb14-15"><a href=""></a>            draggable<span class="op">=</span><span class="va">True</span></span>
+<span id="cb14-16"><a href=""></a>        )</span>
+<span id="cb14-17"><a href=""></a>        m.add(marker)</span>
+<span id="cb14-18"><a href=""></a>        marker <span class="op">=</span> Marker(</span>
+<span id="cb14-19"><a href=""></a>            location<span class="op">=</span>(</span>
+<span id="cb14-20"><a href=""></a>                center[<span class="dv">0</span>] <span class="op">-</span> i <span class="op">*</span> eps,</span>
+<span id="cb14-21"><a href=""></a>                center[<span class="dv">1</span>] <span class="op">+</span> i <span class="op">*</span> eps,</span>
+<span id="cb14-22"><a href=""></a>            ),</span>
+<span id="cb14-23"><a href=""></a>            draggable<span class="op">=</span><span class="va">True</span></span>
+<span id="cb14-24"><a href=""></a>        )</span>
+<span id="cb14-25"><a href=""></a>        m.add(marker)</span>
+<span id="cb14-26"><a href=""></a>m.save(<span class="st">'map.html'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="footer">
+<p>Tip #22: leaflet</p>
+<p>Links: <a href="https://ipyleaflet.readthedocs.io/en/latest/index.html">Python Client</a>, <a href="https://rstudio.github.io/leaflet/">R Client</a></p>
+</div>
+</section></section>
+<section>
+<section id="longevity" class="title-slide slide level1 center">
+<h1>#23-#29 Longevity</h1>
+
+</section>
+<section id="tip-23" class="slide level2">
+<h2>Tip #23</h2>
+<p><img data-src="img/logo_r.png" class="absolute" style="top: 0px; right: 10px; width: 36pt; "></p>
+<p>pak</p>
+<div class="footer">
+<p>Tip #23: pak</p>
+<p>Links: <a href="https://pak.r-lib.org/">pak</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="id-use-tip-23-if-.-.-.">I’d use Tip #23 if . . .</h3>
+<p>. . . I install R packages.</p>
+<div class="footer">
+<p>Tip #23: pak</p>
+<p>Links: <a href="https://pak.r-lib.org/">pak</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="and-.-.-.-22">. . . and . . .</h3>
+<div class="fragment">
+<ul>
+<li>It takes a long time.</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>Hard to parse from logs exactly what dependencies are being installed.</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>When something goes wrong, it’s hard to tell what went wrong.</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>Takes a long time to get to the point where the problem is, and thus a long time to figure out if it’s fixed.</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>I have to remember to swap between <code>install.packages</code>, <code>remote::install_github</code> etc.</li>
+</ul>
+</div>
+<div class="footer">
+<p>Tip #23: pak</p>
+<p>Links: <a href="https://pak.r-lib.org/">pak</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+
+<img data-src="img/install_base.gif" class="r-stretch"><div class="footer">
+<p>Tip #23: pak</p>
+<p>Links: <a href="https://pak.r-lib.org/">pak</a></p>
+</div>
+<div class="footer">
+<p>Tip #23: pak</p>
+<p>Links: <a href="https://pak.r-lib.org/">pak</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+
+<img data-src="img/install_pak.gif" class="r-stretch"><div class="footer">
+<p>Tip #23: pak</p>
+<p>Links: <a href="https://pak.r-lib.org/">pak</a></p>
+</div>
+<div class="footer">
+<p>Tip #23: pak</p>
+<p>Links: <a href="https://pak.r-lib.org/">pak</a></p>
+</div>
+</section>
+<section id="tip-24" class="slide level2">
+<h2>Tip #24</h2>
+<p><img data-src="img/logo_r.png" class="absolute" style="top: 0px; right: 10px; width: 36pt; "></p>
+<p>renv</p>
+<div class="footer">
+<p>Tip #24: renv</p>
+<p>Links: <a href="https://rstudio.github.io/renv/">renv</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="id-use-tip-24-if-.-.-.">I’d use Tip #24 if . . .</h3>
+<p>. . . I write code that I want to be runnable by other people or runable by me months or years later.</p>
+<div class="footer">
+<p>Tip #24: renv</p>
+<p>Links: <a href="https://rstudio.github.io/renv/">renv</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="and-.-.-.-23">. . . and . . .</h3>
+<div class="fragment">
+<ul>
+<li>It’s hard to recreate the exact combination of packages and package versions that I had when my code was working.</li>
+</ul>
+</div>
+<div class="footer">
+<p>Tip #24: renv</p>
+<p>Links: <a href="https://rstudio.github.io/renv/">renv</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<ul>
+<li><code>renv</code> keeps dependencies separate accross projects ie you can have two different projects with different versions of the same package</li>
+<li><code>renv</code> stores the information about what version of everything you are using in a single file that you can commit.</li>
+</ul>
+<div class="footer">
+<p>Tip #24: renv</p>
+<p>Links: <a href="https://rstudio.github.io/renv/">renv</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+
+<img data-src="img/renv.png" class="r-stretch"><div class="footer">
+<p>Tip #24: renv</p>
+<p>Links: <a href="https://rstudio.github.io/renv/">renv</a></p>
+</div>
+<div class="footer">
+<p>Tip #24: renv</p>
+<p>Links: <a href="https://rstudio.github.io/renv/">renv</a></p>
+</div>
+</section>
+<section id="tip-25" class="slide level2">
+<h2>Tip #25</h2>
+<p><img data-src="img/logo_rpy.png" class="absolute" style="top: 0px; right: 10px; width: 72pt; "></p>
+<p>Timetravel with posit package manager</p>
+<div class="footer">
+<p>Tip #25: Timetravel with posit package manager</p>
+<p>Links: <a href="https://packagemanager.posit.co/client/#/">Posit Package Manager</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="id-use-tip-25-if-.-.-.">I’d use Tip #25 if . . .</h3>
+<p>. . . I’m trying to revive some code that was working at some point in the past.</p>
+<div class="footer">
+<p>Tip #25: Timetravel with posit package manager</p>
+<p>Links: <a href="https://packagemanager.posit.co/client/#/">Posit Package Manager</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="and-.-.-.-24">. . . and . . .</h3>
+<div class="fragment">
+<ul>
+<li>I need a version of a dependency that’s no longer available on CRAN/pypi but was in the past.</li>
+</ul>
+</div>
+<div class="footer">
+<p>Tip #25: Timetravel with posit package manager</p>
+<p>Links: <a href="https://packagemanager.posit.co/client/#/">Posit Package Manager</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+
+<img data-src="img/ppm.png" class="r-stretch"><div class="footer">
+<p>Tip #25: Timetravel with posit package manager</p>
+<p>Links: <a href="https://packagemanager.posit.co/client/#/">Posit Package Manager</a></p>
+</div>
+<div class="footer">
+<p>Tip #25: Timetravel with posit package manager</p>
+<p>Links: <a href="https://packagemanager.posit.co/client/#/">Posit Package Manager</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<p><img data-src="img/logo_r.png" class="absolute" style="top: 0px; right: 10px; width: 36pt; "></p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href=""></a><span class="co"># Base install packages</span></span>
+<span id="cb15-2"><a href=""></a><span class="fu">install.packages</span>(<span class="st">'stringr'</span>, <span class="at">repos=</span><span class="st">'https://packagemanager.posit.co/cran/2022-03-15'</span>)</span>
+<span id="cb15-3"><a href=""></a><span class="co"># pak</span></span>
+<span id="cb15-4"><a href=""></a>withr<span class="sc">::</span><span class="fu">with_options</span>(</span>
+<span id="cb15-5"><a href=""></a>  <span class="fu">list</span>(<span class="at">repos=</span><span class="fu">c</span>(<span class="at">CRAN=</span><span class="st">'https://packagemanager.posit.co/cran/2022-03-15'</span>)),</span>
+<span id="cb15-6"><a href=""></a>  pak<span class="sc">::</span><span class="fu">pkg_install</span>(<span class="st">'stringr'</span>)</span>
+<span id="cb15-7"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="footer">
+<p>Tip #25: Timetravel with posit package manager</p>
+<p>Links: <a href="https://packagemanager.posit.co/client/#/">Posit Package Manager</a></p>
+</div>
+</section>
+<section id="tip-26" class="slide level2">
+<h2>Tip #26</h2>
+<p><img data-src="img/logo_rpy.png" class="absolute" style="top: 0px; right: 10px; width: 72pt; "></p>
+<p>Timetravel with git/github</p>
+<div class="footer">
+<p>Tip #26: Timetravel with git/github</p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="id-use-tip-26-if-.-.-.">I’d use Tip #26 if . . .</h3>
+<p>. . . I’m trying to revive some code that was working at some point in the past.</p>
+<div class="footer">
+<p>Tip #26: Timetravel with git/github</p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="and-.-.-.-25">. . . and . . .</h3>
+<div class="fragment">
+<ul>
+<li>I need an older version of a non-CRAN dependency.</li>
+</ul>
+</div>
+<div class="footer">
+<p>Tip #26: Timetravel with git/github</p>
+</div>
+</section>
+<section class="slide level2">
+
+
+<img data-src="img/github_timetravel.png" class="r-stretch"><div class="footer">
+<p>Tip #26: Timetravel with git/github</p>
+</div>
+<div class="footer">
+<p>Tip #26: Timetravel with git/github</p>
+</div>
+</section>
+<section class="slide level2">
+
+<p><img data-src="img/logo_r.png" class="absolute" style="top: 0px; right: 10px; width: 36pt; "></p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href=""></a><span class="co"># remotes</span></span>
+<span id="cb16-2"><a href=""></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">'stan-dev/cmdstanr'</span>, <span class="at">ref=</span><span class="st">'e117e7318c95524db403778ac99b39429084545c'</span>)</span>
+<span id="cb16-3"><a href=""></a></span>
+<span id="cb16-4"><a href=""></a><span class="co"># pak</span></span>
+<span id="cb16-5"><a href=""></a>pak<span class="sc">::</span><span class="fu">pkg_install</span>(<span class="st">'stan-dev/cmdstanr@e117e7318c95524db403778ac99b39429084545c'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="footer">
+<p>Tip #26: Timetravel with git/github</p>
+</div>
+</section>
+<section id="tip-27" class="slide level2">
+<h2>Tip #27</h2>
+<p><img data-src="img/logo_python.png" class="absolute" style="top: 0px; right: 10px; width: 36pt; "></p>
+<p>python + docker + VSCode (+ server)</p>
+<div class="footer">
+<p>Tip #27: python + docker + VSCode (+ server)</p>
+<p>Links: <a href="https://github.com/livingingroups/ods_wiki/wiki/How%E2%80%90to:-Using-VSCode-for-an-ML-python-project-with-a-Dockerfile">My Tutorial</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="id-use-tip-27-if-.-.-.">I’d use Tip #27 if . . .</h3>
+<p>. . . I want to start using a python ML library.</p>
+<div class="footer">
+<p>Tip #27: python + docker + VSCode (+ server)</p>
+<p>Links: <a href="https://github.com/livingingroups/ods_wiki/wiki/How%E2%80%90to:-Using-VSCode-for-an-ML-python-project-with-a-Dockerfile">My Tutorial</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="and-.-.-.-26">. . . and . . .</h3>
+<div class="fragment">
+<ul>
+<li>ML libraries can be had to install.</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>There might be some incompatibilities between what I need to install and what I’ve already installed for other projects. I don’t want to mess up stuff that’s already working.</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>When I switch from testing things on my laptop to running on a bigger matchine or a cluster, it’s often a pin to get everything installed again.</li>
+</ul>
+</div>
+<div class="footer">
+<p>Tip #27: python + docker + VSCode (+ server)</p>
+<p>Links: <a href="https://github.com/livingingroups/ods_wiki/wiki/How%E2%80%90to:-Using-VSCode-for-an-ML-python-project-with-a-Dockerfile">My Tutorial</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<p>Docker locks in not just python dependencies, but also system-level dependences. Gives you exact same environment on a server.</p>
+<div class="footer">
+<p>Tip #27: python + docker + VSCode (+ server)</p>
+<p>Links: <a href="https://github.com/livingingroups/ods_wiki/wiki/How%E2%80%90to:-Using-VSCode-for-an-ML-python-project-with-a-Dockerfile">My Tutorial</a></p>
+</div>
+</section>
+<section id="tip-28" class="slide level2">
+<h2>Tip #28</h2>
+<p><img data-src="img/logo_rpy.png" class="absolute" style="top: 0px; right: 10px; width: 72pt; "></p>
+<p>docker to rescue old projects</p>
+<div class="footer">
+<p>Tip #28: docker to rescue old projects</p>
+<p>Links: <a href="https://rocker-project.org/">rocker</a>, <a href="https://hub.docker.com/_/python/">official python image</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="id-use-tip-28-if-.-.-.">I’d use Tip #28 if . . .</h3>
+<p>. . . I’m trying to get an old project running.</p>
+<div class="footer">
+<p>Tip #28: docker to rescue old projects</p>
+<p>Links: <a href="https://rocker-project.org/">rocker</a>, <a href="https://hub.docker.com/_/python/">official python image</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="and-.-.-.-27">. . . and . . .</h3>
+<div class="fragment">
+<ul>
+<li>I’m not just having issues with getting the right R/python package versions, but with R/python itself and/or other system-level packages.</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>I can’t install old R/python versions locally because it would require me to install old (maybe dangerous) versions of other packages.</li>
+</ul>
+</div>
+<div class="footer">
+<p>Tip #28: docker to rescue old projects</p>
+<p>Links: <a href="https://rocker-project.org/">rocker</a>, <a href="https://hub.docker.com/_/python/">official python image</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<ul>
+<li>Rocker project has stored shapshots as docker containers of R itself, rstudio, and common package suites (tidyverse, cuda, geospatial, etc.). You can run these in VSCode (tutorial linked in previous tip) or use rstudio from the container (ask me how).</li>
+<li>Docker Community maintains official python images, these have minimal libraries.</li>
+<li>Check if the project or package you’re primarily using published its own image in the timeframe you’re interested in.</li>
+</ul>
+<div class="footer">
+<p>Tip #28: docker to rescue old projects</p>
+<p>Links: <a href="https://rocker-project.org/">rocker</a>, <a href="https://hub.docker.com/_/python/">official python image</a></p>
+</div>
+</section></section>
+<section>
+<section id="interop" class="title-slide slide level1 center">
+<h1>#29-#32 Interop</h1>
+
+</section>
+<section id="tip-29" class="slide level2">
+<h2>Tip #29</h2>
+<p><img data-src="img/logo_rpy.png" class="absolute" style="top: 0px; right: 10px; width: 72pt; "></p>
+<p>Python from R</p>
+<div class="footer">
+<p>Tip #29: Python from R</p>
+<p>Links: <a href="https://rstudio.github.io/reticulate/reference/index.html">reticulate</a>, <a href="https://livingingroups.github.io/scrapbook/python-from-r.html">My tutorial on EAS Scrapbook</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="id-use-tip-29-if-.-.-.">I’d use Tip #29 if . . .</h3>
+<p>. . . I am an R user who wants to use a python package without learning python. OR I am a python package author who wants my packages to be availabel to R users.</p>
+<div class="footer">
+<p>Tip #29: Python from R</p>
+<p>Links: <a href="https://rstudio.github.io/reticulate/reference/index.html">reticulate</a>, <a href="https://livingingroups.github.io/scrapbook/python-from-r.html">My tutorial on EAS Scrapbook</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="and-.-.-.-28">. . . and . . .</h3>
+<div class="fragment">
+<ul>
+<li>There are lots of ML packages (including made here) in python and a lot of scientists who only know R.</li>
+</ul>
+</div>
+<div class="footer">
+<p>Tip #29: Python from R</p>
+<p>Links: <a href="https://rstudio.github.io/reticulate/reference/index.html">reticulate</a>, <a href="https://livingingroups.github.io/scrapbook/python-from-r.html">My tutorial on EAS Scrapbook</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+
+<img data-src="img/reticulate.png" class="r-stretch"><div class="footer">
+<p>Tip #29: Python from R</p>
+<p>Links: <a href="https://rstudio.github.io/reticulate/reference/index.html">reticulate</a>, <a href="https://livingingroups.github.io/scrapbook/python-from-r.html">My tutorial on EAS Scrapbook</a></p>
+</div>
+<div class="footer">
+<p>Tip #29: Python from R</p>
+<p>Links: <a href="https://rstudio.github.io/reticulate/reference/index.html">reticulate</a>, <a href="https://livingingroups.github.io/scrapbook/python-from-r.html">My tutorial on EAS Scrapbook</a></p>
+</div>
+</section>
+<section id="tip-30" class="slide level2">
+<h2>Tip #30</h2>
+<p><img data-src="img/logo_r.png" class="absolute" style="top: 0px; right: 10px; width: 36pt; "></p>
+<p>Julia from R/python</p>
+<div class="footer">
+<p>Tip #30: Julia from R/python</p>
+<p>Links: <a href="https://github.com/JuliaInterop/JuliaCall">R JuliaCall</a>, <a href="https://github.com/JuliaPy/PythonCall.jl">Python JuliaCall</a>, <a href="https://livingingroups.github.io/scrapbook/julia-from-r.html">My tutorial on EAS Scrapbook</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="id-use-tip-30-if-.-.-.">I’d use Tip #30 if . . .</h3>
+<p>. . . I am an R/python user who wants to use a julia package without learning julia.</p>
+<div class="footer">
+<p>Tip #30: Julia from R/python</p>
+<p>Links: <a href="https://github.com/JuliaInterop/JuliaCall">R JuliaCall</a>, <a href="https://github.com/JuliaPy/PythonCall.jl">Python JuliaCall</a>, <a href="https://livingingroups.github.io/scrapbook/julia-from-r.html">My tutorial on EAS Scrapbook</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="and-.-.-.-29">. . . and . . .</h3>
+<div class="fragment">
+<ul>
+<li>Julia is often a lot faster than R/python, and easier to write than C/C++/rust.</li>
+</ul>
+</div>
+<div class="footer">
+<p>Tip #30: Julia from R/python</p>
+<p>Links: <a href="https://github.com/JuliaInterop/JuliaCall">R JuliaCall</a>, <a href="https://github.com/JuliaPy/PythonCall.jl">Python JuliaCall</a>, <a href="https://livingingroups.github.io/scrapbook/julia-from-r.html">My tutorial on EAS Scrapbook</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<p>JuliaCall in R and python let you call Julia from those languages.</p>
+<div class="footer">
+<p>Tip #30: Julia from R/python</p>
+<p>Links: <a href="https://github.com/JuliaInterop/JuliaCall">R JuliaCall</a>, <a href="https://github.com/JuliaPy/PythonCall.jl">Python JuliaCall</a>, <a href="https://livingingroups.github.io/scrapbook/julia-from-r.html">My tutorial on EAS Scrapbook</a></p>
+</div>
+</section>
+<section id="tip-31" class="slide level2">
+<h2>Tip #31</h2>
+<p><img data-src="img/logo_rpy.png" class="absolute" style="top: 0px; right: 10px; width: 72pt; "></p>
+<p>R from Python</p>
+<div class="footer">
+<p>Tip #31: R from Python</p>
+<p>Links: <a href="https://rpy2.github.io/">rpy2</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="id-use-tip-31-if-.-.-.">I’d use Tip #31 if . . .</h3>
+<p>. . . I am an python user who wants to use a R package without learning R. OR I am an R package author who wants my packages to be availabel to python users.</p>
+<div class="footer">
+<p>Tip #31: R from Python</p>
+<p>Links: <a href="https://rpy2.github.io/">rpy2</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="and-.-.-.-30">. . . and . . .</h3>
+<div class="fragment">
+<ul>
+<li>There are lots of statistical packages (including made here) in R that don’t exist in python.</li>
+</ul>
+</div>
+<div class="footer">
+<p>Tip #31: R from Python</p>
+<p>Links: <a href="https://rpy2.github.io/">rpy2</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<p>also possible! If you have a particular package in mind, I’d love to base a tutorial on it.</p>
+<div class="footer">
+<p>Tip #31: R from Python</p>
+<p>Links: <a href="https://rpy2.github.io/">rpy2</a></p>
+</div>
+</section></section>
+<section>
+<section id="ide" class="title-slide slide level1 center">
+<h1>#32-#34 IDE</h1>
+
+</section>
+<section id="tip-32" class="slide level2">
+<h2>Tip #32</h2>
+<p><img data-src="img/logo_r.png" class="absolute" style="top: 0px; right: 10px; width: 36pt; "></p>
+<p>background jobs</p>
+<div class="footer">
+<p>Tip #32: background jobs</p>
+<p>Links: <a href="https://docs.posit.co/ide/user/ide/guide/tools/jobs.html">RStudio User Guide Instructions</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="id-use-tip-32-if-.-.-.">I’d use Tip #32 if . . .</h3>
+<p>. . . Rstudio User</p>
+<div class="footer">
+<p>Tip #32: background jobs</p>
+<p>Links: <a href="https://docs.posit.co/ide/user/ide/guide/tools/jobs.html">RStudio User Guide Instructions</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="and-.-.-.-31">. . . and . . .</h3>
+<div class="fragment">
+<ul>
+<li>I want to run a long running script and without clogging up my R console for minutes, hours, or days.</li>
+</ul>
+</div>
+<div class="footer">
+<p>Tip #32: background jobs</p>
+<p>Links: <a href="https://docs.posit.co/ide/user/ide/guide/tools/jobs.html">RStudio User Guide Instructions</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+
+<img data-src="img/rstudio_backgroundjob.png" class="r-stretch"><div class="footer">
+<p>Tip #32: background jobs</p>
+<p>Links: <a href="https://docs.posit.co/ide/user/ide/guide/tools/jobs.html">RStudio User Guide Instructions</a></p>
+</div>
+<div class="footer">
+<p>Tip #32: background jobs</p>
+<p>Links: <a href="https://docs.posit.co/ide/user/ide/guide/tools/jobs.html">RStudio User Guide Instructions</a></p>
+</div>
+</section>
+<section id="tip-33" class="slide level2">
+<h2>Tip #33</h2>
+<p><img data-src="img/logo_rpy.png" class="absolute" style="top: 0px; right: 10px; width: 72pt; "></p>
+<p>positron</p>
+<div class="footer">
+<p>Tip #33: positron</p>
+<p>Links: <a href="https://positron.posit.co/">Positron</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="id-use-tip-33-if-.-.-.">I’d use Tip #33 if . . .</h3>
+<p>. . . I currently use R in RStudio and/or python in VSCode.</p>
+<div class="footer">
+<p>Tip #33: positron</p>
+<p>Links: <a href="https://positron.posit.co/">Positron</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="and-.-.-.-32">. . . and . . .</h3>
+<div class="fragment">
+<ul>
+<li>I would like to use one IDE for both R and python.</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>I would like to data exploration and visualization capabilities similar to RStudio</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>I would like to have extensibility and multi language support similar to VSCode.</li>
+</ul>
+</div>
+<div class="footer">
+<p>Tip #33: positron</p>
+<p>Links: <a href="https://positron.posit.co/">Positron</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<ul>
+<li>Positron is a new IDE based on the same codebase as VSCode, made by the makers of RStudio.</li>
+<li>Aims to offer both R and python first class support</li>
+<li>Similar to RStudio and unlike VSCode, focused on folks doing Data Analysis/Data Science</li>
+<li>Like VSCode and unlike RStudio, is compatible with a rich network of extensions used by software developers across languages</li>
+</ul>
+<div class="footer">
+<p>Tip #33: positron</p>
+<p>Links: <a href="https://positron.posit.co/">Positron</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+
+<img data-src="img/positron1.png" class="r-stretch"><div class="footer">
+<p>Tip #33: positron</p>
+<p>Links: <a href="https://positron.posit.co/">Positron</a></p>
+</div>
+<div class="footer">
+<p>Tip #33: positron</p>
+<p>Links: <a href="https://positron.posit.co/">Positron</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+
+<img data-src="img/positron2.png" class="r-stretch"><div class="footer">
+<p>Tip #33: positron</p>
+<p>Links: <a href="https://positron.posit.co/">Positron</a></p>
+</div>
+<div class="footer">
+<p>Tip #33: positron</p>
+<p>Links: <a href="https://positron.posit.co/">Positron</a></p>
+</div>
+</section></section>
+<section>
+<section id="community" class="title-slide slide level1 center">
+<h1>#34-#42 Community</h1>
+
+</section>
+<section id="tip-34" class="slide level2">
+<h2>Tip #34</h2>
+<p><img data-src="img/logo_r.png" class="absolute" style="top: 0px; right: 10px; width: 36pt; "></p>
+<p>pkgkitten</p>
+<div class="footer">
+<p>Tip #34: pkgkitten</p>
+<p>Links: <a href="https://eddelbuettel.github.io/pkgkitten/">pkgKitten</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="id-use-tip-34-if-.-.-.">I’d use Tip #34 if . . .</h3>
+<p>. . . I’ve written a novel analysis.</p>
+<div class="footer">
+<p>Tip #34: pkgkitten</p>
+<p>Links: <a href="https://eddelbuettel.github.io/pkgkitten/">pkgKitten</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="and-.-.-.-33">. . . and . . .</h3>
+<div class="fragment">
+<ul>
+<li>I want other people to easily run my code.</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>Making a package seems hard.</li>
+</ul>
+</div>
+<div class="footer">
+<p>Tip #34: pkgkitten</p>
+<p>Links: <a href="https://eddelbuettel.github.io/pkgkitten/">pkgKitten</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<p>There are several templating options for creating R packages. I recommend package kitten because it gives you the most complete result.</p>
+<div class="footer">
+<p>Tip #34: pkgkitten</p>
+<p>Links: <a href="https://eddelbuettel.github.io/pkgkitten/">pkgKitten</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<p><video data-src="img/pkgkitten.mov" controls=""><a href="img/pkgkitten.mov">Video</a></video></p>
+<div class="footer">
+<p>Tip #34: pkgkitten</p>
+<p>Links: <a href="https://eddelbuettel.github.io/pkgkitten/">pkgKitten</a></p>
+</div>
+<div class="footer">
+<p>Tip #34: pkgkitten</p>
+<p>Links: <a href="https://eddelbuettel.github.io/pkgkitten/">pkgKitten</a></p>
+</div>
+</section>
+<section id="tip-35" class="slide level2">
+<h2>Tip #35</h2>
+<p><img data-src="img/logo_r.png" class="absolute" style="top: 0px; right: 10px; width: 36pt; "></p>
+<p>pkgdown</p>
+<div class="footer">
+<p>Tip #35: pkgdown</p>
+<p>Links: <a href="https://pkgdown.r-lib.org/">pkgdown</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="id-use-tip-35-if-.-.-.">I’d use Tip #35 if . . .</h3>
+<p>. . . I’d like a nice little website about the code I published.</p>
+<div class="footer">
+<p>Tip #35: pkgdown</p>
+<p>Links: <a href="https://pkgdown.r-lib.org/">pkgdown</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="and-.-.-.-34">. . . and . . .</h3>
+<div class="fragment">
+<ul>
+<li>I don’t want to spend much time setting up the website.</li>
+</ul>
+</div>
+<div class="footer">
+<p>Tip #35: pkgdown</p>
+<p>Links: <a href="https://pkgdown.r-lib.org/">pkgdown</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<p>Once your code is in “package form”, a pkgdown website is a single command away!</p>
+<div class="footer">
+<p>Tip #35: pkgdown</p>
+<p>Links: <a href="https://pkgdown.r-lib.org/">pkgdown</a></p>
+</div>
+</section>
+<section id="tip-36" class="slide level2">
+<h2>Tip #36</h2>
+<p><img data-src="img/logo_rpy.png" class="absolute" style="top: 0px; right: 10px; width: 72pt; "></p>
+<p>Journal of Open Source Software</p>
+<div class="footer">
+<p>Tip #36: Journal of Open Source Software</p>
+<p>Links: <a href="https://docs.github.com/en/repositories/archiving-a-github-repository/referencing-and-citing-content">GitHub’s Guide to Create a DOI</a>, <a href="https://joss.theoj.org/">Journal of Open Source Software</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="id-use-tip-36-if-.-.-.">I’d use Tip #36 if . . .</h3>
+<p>. . . I published some code and I want to get credit when people use my code to write papers.</p>
+<div class="footer">
+<p>Tip #36: Journal of Open Source Software</p>
+<p>Links: <a href="https://docs.github.com/en/repositories/archiving-a-github-repository/referencing-and-citing-content">GitHub’s Guide to Create a DOI</a>, <a href="https://joss.theoj.org/">Journal of Open Source Software</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="and-.-.-.-35">. . . and . . .</h3>
+<div class="fragment">
+<ul>
+<li>My code doesn’t represent something novel in my field, just an easier way to apply an already published method.</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>I don’t want to have to write a paper just to make my code easily citable.</li>
+</ul>
+</div>
+<div class="footer">
+<p>Tip #36: Journal of Open Source Software</p>
+<p>Links: <a href="https://docs.github.com/en/repositories/archiving-a-github-repository/referencing-and-citing-content">GitHub’s Guide to Create a DOI</a>, <a href="https://joss.theoj.org/">Journal of Open Source Software</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<ul>
+<li>You can create a DOI for your software without any review process.</li>
+<li>To get a bit more recognition, you can submit to Journal of Open Source Software.
+<ul>
+<li>Fully Open Access journal</li>
+<li>Requirements: must have scientific application, must be substantive, must be complete.</li>
+</ul></li>
+</ul>
+<div class="footer">
+<p>Tip #36: Journal of Open Source Software</p>
+<p>Links: <a href="https://docs.github.com/en/repositories/archiving-a-github-repository/referencing-and-citing-content">GitHub’s Guide to Create a DOI</a>, <a href="https://joss.theoj.org/">Journal of Open Source Software</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+
+<img data-src="img/joss_banner_title.png" class="r-stretch"><div class="footer">
+<p>Tip #36: Journal of Open Source Software</p>
+<p>Links: <a href="https://docs.github.com/en/repositories/archiving-a-github-repository/referencing-and-citing-content">GitHub’s Guide to Create a DOI</a>, <a href="https://joss.theoj.org/">Journal of Open Source Software</a></p>
+</div>
+<div class="footer">
+<p>Tip #36: Journal of Open Source Software</p>
+<p>Links: <a href="https://docs.github.com/en/repositories/archiving-a-github-repository/referencing-and-citing-content">GitHub’s Guide to Create a DOI</a>, <a href="https://joss.theoj.org/">Journal of Open Source Software</a></p>
+</div>
+</section>
+<section id="tip-37" class="slide level2">
+<h2>Tip #37</h2>
+<p><img data-src="img/logo_rpy.png" class="absolute" style="top: 0px; right: 10px; width: 72pt; "></p>
+<p>Citing software</p>
+<div class="footer">
+<p>Tip #37: Citing software</p>
+<p>Links: <a href="https://force11.org/wp-content/d7/software-citation-principles.pdf">Force11 Software Citation Principles</a>, This tip inspired by “Citation is Collaboration”: Software Recognition in Research and Industry” Ivelina Momcheva, PyConDE 2025</p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="id-use-tip-37-if-.-.-.">I’d use Tip #37 if . . .</h3>
+<p>. . . I’m writing a paper and using open source software.</p>
+<div class="footer">
+<p>Tip #37: Citing software</p>
+<p>Links: <a href="https://force11.org/wp-content/d7/software-citation-principles.pdf">Force11 Software Citation Principles</a>, This tip inspired by “Citation is Collaboration”: Software Recognition in Research and Industry” Ivelina Momcheva, PyConDE 2025</p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="and-.-.-.-36">. . . and . . .</h3>
+<div class="fragment">
+<ul>
+<li>I want to properly credit the authors of said open source software.</li>
+</ul>
+</div>
+<div class="footer">
+<p>Tip #37: Citing software</p>
+<p>Links: <a href="https://force11.org/wp-content/d7/software-citation-principles.pdf">Force11 Software Citation Principles</a>, This tip inspired by “Citation is Collaboration”: Software Recognition in Research and Industry” Ivelina Momcheva, PyConDE 2025</p>
+</div>
+</section>
+<section class="slide level2">
+
+<p>Where to find author’s preferred citation method:</p>
+<ul>
+<li>In R <code>citation('package_name')</code> e.g.&nbsp;<code>citation('ctmm')</code></li>
+<li>For non-R packages, there is often a <code>CITATION</code> file right next to the README that tells how the authors wish to be cited.</li>
+<li>Some non-R packages, such as pandas have citation info <a href="https://pandas.pydata.org/about/citing.html">explicitly on their site</a>.</li>
+</ul>
+<div class="footer">
+<p>Tip #37: Citing software</p>
+<p>Links: <a href="https://force11.org/wp-content/d7/software-citation-principles.pdf">Force11 Software Citation Principles</a>, This tip inspired by “Citation is Collaboration”: Software Recognition in Research and Industry” Ivelina Momcheva, PyConDE 2025</p>
+</div>
+</section>
+<section id="tip-38" class="slide level2">
+<h2>Tip #38</h2>
+<p><img data-src="img/logo_r.png" class="absolute" style="top: 0px; right: 10px; width: 36pt; "></p>
+<p>virtual userR 2025 is free</p>
+<div class="footer">
+<p>Tip #38: virtual userR 2025 is free</p>
+<p>Links: <a href="https://user2025.r-project.org/program/virtual/">useR 2025 Virtual Program</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="id-use-tip-38-if-.-.-.">I’d use Tip #38 if . . .</h3>
+<p>. . . I want to learn more about some of these tools, but get an actual introduction to them.</p>
+<div class="footer">
+<p>Tip #38: virtual userR 2025 is free</p>
+<p>Links: <a href="https://user2025.r-project.org/program/virtual/">useR 2025 Virtual Program</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="and-.-.-.-37">. . . and . . .</h3>
+<div class="fragment">
+<ul>
+<li>I don’t want to sacrifice the time and money that it would take to got to an R conference instead of a conference directly relevant to my research.</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>I just want to see one or two talks, not a whole conference worth.</li>
+</ul>
+</div>
+<div class="footer">
+<p>Tip #38: virtual userR 2025 is free</p>
+<p>Links: <a href="https://user2025.r-project.org/program/virtual/">useR 2025 Virtual Program</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<ul>
+<li>useR is a major confence for R users and developers</li>
+<li>On Aug 1st, there will be virtual conference day, and it’s free!</li>
+<li>(You still have to register.)</li>
+</ul>
+<div class="footer">
+<p>Tip #38: virtual userR 2025 is free</p>
+<p>Links: <a href="https://user2025.r-project.org/program/virtual/">useR 2025 Virtual Program</a></p>
+</div>
+</section>
+<section id="tip-39" class="slide level2">
+<h2>Tip #39</h2>
+<p><img data-src="img/logo_rpy.png" class="absolute" style="top: 0px; right: 10px; width: 72pt; "></p>
+<p>ropensci/pyopensci package review</p>
+<div class="footer">
+<p>Tip #39: ropensci/pyopensci package review</p>
+<p>Links: <a href="https://ropensci.org/software-review/">ROpenSci Peer Review</a>, <a href="https://www.pyopensci.org/about-peer-review/index.html">pyOpenSci Peer Review</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="id-use-tip-39-if-.-.-.">I’d use Tip #39 if . . .</h3>
+<p>. . . I have some code that I’d like to make available to the world, but I’d like some feedback first.</p>
+<div class="footer">
+<p>Tip #39: ropensci/pyopensci package review</p>
+<p>Links: <a href="https://ropensci.org/software-review/">ROpenSci Peer Review</a>, <a href="https://www.pyopensci.org/about-peer-review/index.html">pyOpenSci Peer Review</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="and-.-.-.-38">. . . and . . .</h3>
+<div class="fragment">
+<ul>
+<li>I don’t feel comfortable asking someone to do a review who hasn’t specifically volunteered to do software review.</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>My code uses techniques that others in the department don’t have expertise in.</li>
+</ul>
+</div>
+<div class="footer">
+<p>Tip #39: ropensci/pyopensci package review</p>
+<p>Links: <a href="https://ropensci.org/software-review/">ROpenSci Peer Review</a>, <a href="https://www.pyopensci.org/about-peer-review/index.html">pyOpenSci Peer Review</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<p>Ropensci/pyopensci pairs you with reviewers to give you feedback on your scientific software. They have detailed guidelines for submitters and reviewers.</p>
+<div class="footer">
+<p>Tip #39: ropensci/pyopensci package review</p>
+<p>Links: <a href="https://ropensci.org/software-review/">ROpenSci Peer Review</a>, <a href="https://www.pyopensci.org/about-peer-review/index.html">pyOpenSci Peer Review</a></p>
+</div>
+</section>
+<section id="tip-40" class="slide level2">
+<h2>Tip #40</h2>
+<p><img data-src="img/logo_r.png" class="absolute" style="top: 0px; right: 10px; width: 36pt; "></p>
+<p>r-universe</p>
+<div class="footer">
+<p>Tip #40: r-universe</p>
+<p>Links: <a href="https://docs.r-universe.dev/publish/set-up.html">R-Universe Setup</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="id-use-tip-40-if-.-.-.">I’d use Tip #40 if . . .</h3>
+<p>. . . I want potential users to be able to <code>install.packages</code> my project.</p>
+<div class="footer">
+<p>Tip #40: r-universe</p>
+<p>Links: <a href="https://docs.r-universe.dev/publish/set-up.html">R-Universe Setup</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="and-.-.-.-39">. . . and . . .</h3>
+<div class="fragment">
+<ul>
+<li>My packages does not yet meet CRAN requiments. (e.g.&nbsp;&gt;5MB, doesn’t work on Windows, etc.)</li>
+</ul>
+</div>
+<div class="footer">
+<p>Tip #40: r-universe</p>
+<p>Links: <a href="https://docs.r-universe.dev/publish/set-up.html">R-Universe Setup</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<p>R universe is an ROpenSci project that allows you create your own cran-like repository, host your docs, and run cross-platform tests (among other things).</p>
+<div class="footer">
+<p>Tip #40: r-universe</p>
+<p>Links: <a href="https://docs.r-universe.dev/publish/set-up.html">R-Universe Setup</a></p>
+</div>
+</section>
+<section id="tip-41" class="slide level2">
+<h2>Tip #41</h2>
+<p><img data-src="img/logo_rpy.png" class="absolute" style="top: 0px; right: 10px; width: 72pt; "></p>
+<p>github issues</p>
+<div class="footer">
+<p>Tip #41: github issues</p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="id-use-tip-41-if-.-.-.">I’d use Tip #41 if . . .</h3>
+<p>. . . Sometimes I use open source packages, and I’m pretty sure it’s the package that’s not working correctly</p>
+<div class="footer">
+<p>Tip #41: github issues</p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="and-.-.-.-40">. . . and . . .</h3>
+<div class="fragment">
+<ul>
+<li>I’m shy about posting online.</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>I’m afraid I’ll be bothering the package maintainer.</li>
+</ul>
+</div>
+<div class="footer">
+<p>Tip #41: github issues</p>
+</div>
+</section>
+<section class="slide level2">
+
+<ul>
+<li>Making the maintainer aware of a problem a <em>contribution</em> to that project, not an insult.</li>
+<li>Spending a bit of time to make your issue as clear as possible and reproducible is a bigger contribution.</li>
+<li>Even the feedback of “this was hard to figure out from the docs” is valuable, especially if accompanied by a concrete suggestion.</li>
+</ul>
+<div class="footer">
+<p>Tip #41: github issues</p>
+</div>
+</section>
+<section class="slide level2">
+
+
+<img data-src="img/issue_rgl.png" class="r-stretch"><div class="footer">
+<p>Tip #41: github issues</p>
+</div>
+<div class="footer">
+<p>Tip #41: github issues</p>
+</div>
+</section>
+<section class="slide level2">
+
+
+<img data-src="img/issue_smoove.png" class="r-stretch"><div class="footer">
+<p>Tip #41: github issues</p>
+</div>
+<div class="footer">
+<p>Tip #41: github issues</p>
+</div>
+</section>
+<section class="slide level2">
+
+
+<img data-src="img/issue_cmdstanr_doc.png" class="r-stretch"><div class="footer">
+<p>Tip #41: github issues</p>
+</div>
+<div class="footer">
+<p>Tip #41: github issues</p>
+</div>
+</section>
+<section class="slide level2">
+
+
+<img data-src="img/issue_datatable_doc.png" class="r-stretch"><div class="footer">
+<p>Tip #41: github issues</p>
+</div>
+<div class="footer">
+<p>Tip #41: github issues</p>
+</div>
+</section></section>
+<section>
+<section id="eas-open-source" class="title-slide slide level1 center">
+<h1>#42-#45 EAS open source</h1>
+
+</section>
+<section id="tip-42" class="slide level2">
+<h2>Tip #42</h2>
+<p><img data-src="img/logo_r.png" class="absolute" style="top: 0px; right: 10px; width: 36pt; "></p>
+<p>cocomo</p>
+<div class="footer">
+<p>Tip #42: cocomo</p>
+<p>Links: <a href="https://livingingroups.github.io/cocomo/index.html">cocomo package</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="id-use-tip-42-if-.-.-.">I’d use Tip #42 if . . .</h3>
+<p>. . . I have simultaneous animal location data at regular time intervals.</p>
+<div class="footer">
+<p>Tip #42: cocomo</p>
+<p>Links: <a href="https://livingingroups.github.io/cocomo/index.html">cocomo package</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="and-.-.-.-41">. . . and . . .</h3>
+<div class="fragment">
+<ul>
+<li>I want to calculate basic statistics like heading and speed at the individual and group level.</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>I want to do pull/anchor and/or fission fusion analysis.</li>
+</ul>
+</div>
+<div class="footer">
+<p>Tip #42: cocomo</p>
+<p>Links: <a href="https://livingingroups.github.io/cocomo/index.html">cocomo package</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<p>Ari’s in-development-but-also-in-use package. Eli and Dario have also contributed.</p>
+<div class="footer">
+<p>Tip #42: cocomo</p>
+<p>Links: <a href="https://livingingroups.github.io/cocomo/index.html">cocomo package</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+
+<img data-src="img/cocomo.png" class="r-stretch"><div class="footer">
+<p>Tip #42: cocomo</p>
+<p>Links: <a href="https://livingingroups.github.io/cocomo/index.html">cocomo package</a></p>
+</div>
+<div class="footer">
+<p>Tip #42: cocomo</p>
+<p>Links: <a href="https://livingingroups.github.io/cocomo/index.html">cocomo package</a></p>
+</div>
+</section>
+<section id="tip-43" class="slide level2">
+<h2>Tip #43</h2>
+<p><img data-src="img/logo_r.png" class="absolute" style="top: 0px; right: 10px; width: 36pt; "></p>
+<p>WildPulse EcoMove Analytics</p>
+<div class="footer">
+<p>Tip #43: WildPulse EcoMove Analytics</p>
+<p>Links: <a href="https://github.com/Richard6195/WildPulse-EcoMove-Analytics">WildPulse Ecomove Analytics</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="id-use-tip-43-if-.-.-.">I’d use Tip #43 if . . .</h3>
+<p>. . . I have GPS data.</p>
+<div class="footer">
+<p>Tip #43: WildPulse EcoMove Analytics</p>
+<p>Links: <a href="https://github.com/Richard6195/WildPulse-EcoMove-Analytics">WildPulse Ecomove Analytics</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="and-.-.-.-42">. . . and . . .</h3>
+<div class="fragment">
+<ul>
+<li>I want to do basic exploratory analysis.</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>I want to check for inaccuracies in my data manually.</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>I want to see if my automated anomaly detection is working correctly.</li>
+</ul>
+</div>
+<div class="footer">
+<p>Tip #43: WildPulse EcoMove Analytics</p>
+<p>Links: <a href="https://github.com/Richard6195/WildPulse-EcoMove-Analytics">WildPulse Ecomove Analytics</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<p>Richard’s shiny app lets you point and click to do initial processing gps processing steps.</p>
+<div class="footer">
+<p>Tip #43: WildPulse EcoMove Analytics</p>
+<p>Links: <a href="https://github.com/Richard6195/WildPulse-EcoMove-Analytics">WildPulse Ecomove Analytics</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+
+<img data-src="img/wildpulse1.png" class="r-stretch"><div class="footer">
+<p>Tip #43: WildPulse EcoMove Analytics</p>
+<p>Links: <a href="https://github.com/Richard6195/WildPulse-EcoMove-Analytics">WildPulse Ecomove Analytics</a></p>
+</div>
+<div class="footer">
+<p>Tip #43: WildPulse EcoMove Analytics</p>
+<p>Links: <a href="https://github.com/Richard6195/WildPulse-EcoMove-Analytics">WildPulse Ecomove Analytics</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+
+<img data-src="img/wildpulse2.png" class="r-stretch"><div class="footer">
+<p>Tip #43: WildPulse EcoMove Analytics</p>
+<p>Links: <a href="https://github.com/Richard6195/WildPulse-EcoMove-Analytics">WildPulse Ecomove Analytics</a></p>
+</div>
+<div class="footer">
+<p>Tip #43: WildPulse EcoMove Analytics</p>
+<p>Links: <a href="https://github.com/Richard6195/WildPulse-EcoMove-Analytics">WildPulse Ecomove Analytics</a></p>
+</div>
+</section>
+<section id="tip-44" class="slide level2">
+<h2>Tip #44</h2>
+<p><img data-src="img/logo_r.png" class="absolute" style="top: 0px; right: 10px; width: 36pt; "></p>
+<p>shinyjsonform</p>
+<div class="footer">
+<p>Tip #44: shinyjsonform</p>
+<p>Links: <a href="https://github.com/katrinabrock/shinyjsonschemaform">shinyjsonschemaform</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="id-use-tip-44-if-.-.-.">I’d use Tip #44 if . . .</h3>
+<p>. . . I’m writing a shiny app.</p>
+<div class="footer">
+<p>Tip #44: shinyjsonform</p>
+<p>Links: <a href="https://github.com/katrinabrock/shinyjsonschemaform">shinyjsonschemaform</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="and-.-.-.-43">. . . and . . .</h3>
+<div class="fragment">
+<ul>
+<li>I have a lot of different form fields that I need the user to fill out, and it’s annoying to code up each one.</li>
+</ul>
+</div>
+<div class="footer">
+<p>Tip #44: shinyjsonform</p>
+<p>Links: <a href="https://github.com/katrinabrock/shinyjsonschemaform">shinyjsonschemaform</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+
+<img data-src="img/shinyjsonschemaform.png" class="r-stretch"><div class="footer">
+<p>Tip #44: shinyjsonform</p>
+<p>Links: <a href="https://github.com/katrinabrock/shinyjsonschemaform">shinyjsonschemaform</a></p>
+</div>
+<div class="footer">
+<p>Tip #44: shinyjsonform</p>
+<p>Links: <a href="https://github.com/katrinabrock/shinyjsonschemaform">shinyjsonschemaform</a></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="reminders">Reminders</h3>
+<ul>
+<li><a href="https://github.com/livingingroups/ods_wiki/wiki/Code-Hu">CodeHub</a></li>
+<li><a href="https://livingingroups.github.io/scrapbook/quick-upload.html">Scrapbook</a></li>
+</ul>
+<p>The End.</p>
+<div class="quarto-auto-generated-content">
+<div class="footer footer-default">
+
+</div>
+</div>
+</section></section>
+    </div>
+  </div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="index_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="index_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="index_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="index_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="index_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="index_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="index_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="index_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="index_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="index_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': true,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":false},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+      const toggleBodyColorMode = (bsSheetEl) => {
+        const mode = bsSheetEl.getAttribute("data-mode");
+        const bodyEl = window.document.querySelector("body");
+        if (mode === "dark") {
+          bodyEl.classList.add("quarto-dark");
+          bodyEl.classList.remove("quarto-light");
+        } else {
+          bodyEl.classList.add("quarto-light");
+          bodyEl.classList.remove("quarto-dark");
+        }
+      }
+      const toggleBodyColorPrimary = () => {
+        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+        if (bsSheetEl) {
+          toggleBodyColorMode(bsSheetEl);
+        }
+      }
+      toggleBodyColorPrimary();  
+      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+      tabsets.forEach(function(tabset) {
+        const tabby = new Tabby('#' + tabset.id);
+      });
+      const isCodeAnnotation = (el) => {
+        for (const clz of el.classList) {
+          if (clz.startsWith('code-annotation-')) {                     
+            return true;
+          }
+        }
+        return false;
+      }
+      const onCopySuccess = function(e) {
+        // button target
+        const button = e.trigger;
+        // don't keep focus
+        button.blur();
+        // flash "checked"
+        button.classList.add('code-copy-button-checked');
+        var currentTitle = button.getAttribute("title");
+        button.setAttribute("title", "Copied!");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copied!");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
+        setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
+          button.setAttribute("title", currentTitle);
+          button.classList.remove('code-copy-button-checked');
+        }, 1000);
+        // clear code selection
+        e.clearSelection();
+      }
+      const getTextToCopy = function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+        text: getTextToCopy
+      });
+      clipboard.on('success', onCopySuccess);
+      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+        // For code content inside modals, clipBoardJS needs to be initialized with a container option
+        // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+          text: getTextToCopy,
+          container: window.document.getElementById('quarto-embedded-source-code-modal')
+        });
+        clipboardModal.on('success', onCopySuccess);
+      }
+        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+        var mailtoRegex = new RegExp(/^mailto:/);
+          var filterRegex = new RegExp('/' + window.location.host + '/');
+        var isInternal = (href) => {
+            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+        }
+        // Inspect non-navigation links and adorn them if external
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+        for (var i=0; i<links.length; i++) {
+          const link = links[i];
+          if (!isInternal(link.href)) {
+            // undo the damage that might have been done by quarto-nav.js in the case of
+            // links that we want to consider external
+            if (link.dataset.originalHref !== undefined) {
+              link.href = link.dataset.originalHref;
+            }
+          }
+        }
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+        const config = {
+          allowHTML: true,
+          maxWidth: 500,
+          delay: 100,
+          arrow: false,
+          appendTo: function(el) {
+              return el.closest('section.slide') || el.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start',
+        };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
+          config['offset'] = [0,0];
+          config['maxWidth'] = 700;
+        window.tippy(el, config); 
+      }
+      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+      for (var i=0; i<noterefs.length; i++) {
+        const ref = noterefs[i];
+        tippyHover(ref, function() {
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+          try { href = new URL(href).hash; } catch {}
+          const id = href.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note) {
+            return note.innerHTML;
+          } else {
+            return "";
+          }
+        });
+      }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
+      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+      for (var i=0; i<bibliorefs.length; i++) {
+        const ref = bibliorefs[i];
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
+          });
+        }
+      }
+    });
+    </script>
+    
+
+</body></html>

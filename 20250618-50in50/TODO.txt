@@ -1,0 +1,31 @@
+
+
+MUST:
+- CITATIONS
+- links
+- Mark python or R or both
+- better headers
+
+- Either frame EAS projects better or remove.
+
+
+Very nice:
+- Tip header more bold
+
+
+
+- Go back to 3 script thingy and make it appear script by script and sized better
+- Add backgrounds
+- RMD example
+- convert outro to tips
+- pypi post package manager example
+- cute characters
+- reevaluate leftovers
+- fix fonts
+- speech bubbles
+- add emoji to goals
+- reshoot autoformat
+
+
+DONE
+- code

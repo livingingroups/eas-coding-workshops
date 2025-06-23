@@ -1,0 +1,89 @@
+  diffobj:
+    r: yes 
+    python: no
+    who: I have two pretty complicated objects (e.g. lists).
+    problems: [I want to see if they're the same or not]
+  concept of mocking:
+    who: Theres really only one (or a few) steps that take a really long time in my code (such as running a model). I like to get everything surrounding the model working, and then run everything together.
+    problems:
+      - A lot of times, I run the model and then kill it multiple times just to make sure I've got my inputs in the right format.
+      - I find it difficult to write the code after the long part without runnning the long part.
+    python: yes
+    r: yes
+    scripts:
+      r: >
+        library(rstan)
+
+        # Mock setup 
+        TESTING_REPORTING_CODE <- TRUE
+        fake_stan <- function(...){
+          return(readRDS("old-fit-model.rds"))
+        }
+        if(TESTING_REPORTING_CODE){stan <- fake_stan}
+
+
+        ## Data processing code. (not currently being tested)
+
+        ##...
+
+        ## Model
+        file_name <- 'stan_code/new-model.stan'
+        fit <- stan( file = file_name,
+                   data = mtcars,
+                   iter = 1000,
+                   chains=4,
+                   cores=4,
+                   control=list(adapt_delta=0.9) ,
+                   refresh=100,
+                   init=0,
+                   seed=12,
+                   rstan_out = FALSE
+        )
+
+        ### Reporting code (to test)
+
+        #...
+        #
+        #
+        #
+Performance:
+  Profiling:
+    python: yes
+    r: yes
+    who: My code runs slower than I want it to.
+    problems:
+      - I don't know what part of my code is the slow part
+  Benchmarking:
+    python: yes
+    r: yes
+    who: I know what part of my code is slow, and I want to make it faster.
+    problems:
+      - I'm not sure what is the most effective way to make it faster.
+  atime:
+    python: no
+    r: yes
+    who: I have already benchmarked my code with a little bit of data.
+    problems:
+      - I'm afraid the time will increase non-linearly when I add more data.
+  BLAS replacement:
+    python: yes
+    r: yes
+    who: I've already optimized my code so it uses a lot of vector/matrix/numpy operations instead of for loops.
+    problems:
+      - I want shave some time off of those big vector/matrix operations.
+  fst:
+    python: no
+    r: yes
+    who: I load really big CSVs.
+    problems:
+      - I want to load my big CSVs really fast.
+  futures:
+    python: no
+    r: yes
+    who: I have several pieces of long running code that I would like to run independently.
+    problems:
+      - I want to parallelize my code using state of the art framework.
+      - I want my code to be able to run in parallel or not in parallel without making big changes.
+      - I want to be able to run part of my code without it "blocking" my R session.
+      - In the future, I want to use High Performance Computers without changing my code.
+TO ADD: Docstring/Roxygen

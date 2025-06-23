@@ -1,0 +1,7 @@
+::: footer
+Tip #{{ n }}: {{ tip_name }}
+
+{% if links %} Links: {{ links | join(', ')}}  {% endif %}
+
+:::
+

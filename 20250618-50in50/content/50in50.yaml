@@ -1,0 +1,857 @@
+Workflow:
+  3 script project TM:
+    who: I have a longish and unweldly script. 
+    problems:
+      - I don't want to completely re-write it, but I want to make it easier to run and debug.
+      - Rerunning my entire script takes a long time, but when I rerun line by line I lose reproduciblity because I'm running things out of order.
+      - I want to make sure I'm not breaking something that was already working when I write something.
+    python: yes
+    r: yes
+    img: [3_script_project.jpg]
+    links:
+      - "[My Project Structure Coding Workshops](https://github.com/livingingroups/eas-coding-workshops/tree/main/20241112-project-structure)"
+  targets:
+    who: "I have a workflow (long script, or several interdependent scripts) where there is more than one step that takes a long time."
+    problems:
+      - It gets tricky to remember which parts of my pipeline are "fresh" and what needs to be re-run.
+      - Some parts of my pipeline could in theory be run in parallel with one another (e.g. processing two different types of data that are ulimately put together), but it's a pain start more than one script at once. 
+    img: [targets.png]
+    python: no
+    r: yes
+    links:
+      - "[{targets} walkthrough](https://books.ropensci.org/targets/walkthrough.html)"
+      - "[targets example from project structure workshop](https://github.com/livingingroups/eas-coding-workshops/tree/main/20241112-project-structure/04-targets)"
+    citation: >
+      @Article{,
+        title = {The targets R package: a dynamic Make-like function-oriented pipeline toolkit for reproducibility and high-performance computing},
+        author = {William Michael Landau},
+        journal = {Journal of Open Source Software},
+        year = {2021},
+        volume = {6},
+        number = {57},
+        pages = {2959},
+        url = {https://doi.org/10.21105/joss.02959},
+      }
+  Logging (log levels):
+    who: I like to put print statements in my code to tell me what's going on.
+    problems:
+      - I spend a lot of time commenting and uncommenting different print statements.
+      - It's annoying to add in and remove print statements because they're sprinkled all throughout the code. 
+    img:
+      - logger_before.gif
+      - logger_after.gif
+    python: yes
+    r: yes
+    links:
+      - "[R logger package](https://daroczig.github.io/logger/)"
+      - "[Python logging module](https://docs.python.org/3/library/logging.html)"
+  browser/pdb:
+    who: I write functions or nested loops/if statements (or I want to start doing this).
+    problems:
+      - When there's an issue with my code, I end up sourcing everything that's in the function so my environment gets messy anyway.
+      - When I'm not sure what "level" the issue is at, it's especially hard because I have to check each level one by one.
+    img: [debugging.mp4] 
+    python: yes
+    r: yes
+    links:
+      - "[Debugging in RStudio](https://docs.posit.co/ide/user/ide/guide/code/debugging.html)"
+      - "[browser](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/browser)"
+      - "[pdb](https://docs.python.org/3/library/pdb.html)"
+  Data Validation vs Software Testing:
+    who: I write checks at various points in my code, but I haven't written formal software tests or data validation.
+    problems:
+      - Sometimes I get my code running with one set of data, including various checks throughout, but when I introduce a new dataset, the checks aren't always appropriate.
+      - It's sometimes hard to tell if I made a coding error if the data is just messier than I thought.
+    python: yes
+    r: yes
+    text: |
+      * *Software Testing*
+        - Is my code correct?
+        - Does my code do the transformations I'm expecting it to do?
+        - How? Running code with known input, verify expected output.
+      * *Data Validation*
+        - Does the data I'm feeding into my code match the assumptions I'm making about it?
+        - How? Check inputs before transforming.
+    links: []
+Data Validation:
+  typechecking/checkmate:
+    who: I'm convinced data validation is a good idea, but it's annoying to write.
+    problems:
+      - I find myself writing a lot of repetative code to check basic facts about my inputs like that it's the data type and size I'm expecting.
+    r: yes
+    python: yes
+    code:
+      r: |
+        fact <- function(n, method = "stirling") {
+          checkmate::assertCount(n)
+          checkmate::assertChoice(method, c("stirling", "factorial"))
+          .... 
+        }
+      python: |
+        def fact(n: int, method: str) -> str:
+          # Function body
+    links:
+      - "[Python Typing](https://docs.python.org/3/library/typing.html)"
+      - "[Checkmate](https://mllg.github.io/checkmate/articles/checkmate.html)"
+    citation: >
+      @Article{checkmate,
+        title = {{checkmate}: Fast Argument Checks for Defensive {R} Programming},
+        author = {Michel Lang},
+        journal = {The R Journal},
+        year = {2017},
+        doi = {10.32614/RJ-2017-028},
+        pages = {437--445},
+        volume = {9},
+        number = {1},
+      }
+  validate:
+    r: yes
+    python: no
+    who: A lot of my data is in dataframe format (including tibble, data table, sf, etc.).
+    problems:
+      - I want to write clear checks on my data.
+      - I don't necessarily want to stop everything if some of the checks fail.
+      - I want nice reporting or the outcome of the checkes
+    links:
+      - "[Data Validation Cookbook](https://cran.r-project.org/web/packages/validate/vignettes/cookbook.html)"
+    code:
+      r: |
+        library(validate)
+        data(cars)
+        confront(
+          cars,
+          validator(
+            speed >= 0,
+            dist >= 0,
+            speed/dist <= 1.5,
+            cor(speed, dist)>=0.2)
+        ) |> summary()
+
+        #   name items passes fails nNA error warning              expression
+        # 1   V1    50     50     0   0 FALSE   FALSE     speed - 0 >= -1e-08
+        # 2   V2    50     50     0   0 FALSE   FALSE      dist - 0 >= -1e-08
+        # 3   V3    50     48     2   0 FALSE   FALSE       speed/dist <= 1.5
+        # 4   V4     1      1     0   0 FALSE   FALSE cor(speed, dist) >= 0.2
+  dataframely:
+    r: no
+    python: yes
+    who: A lot of my data is in polars format.
+    problems:
+      - I want to write clear checks on my data.
+      - I don't necessarily want to stop everything if some of the checks fail.
+      - I want nice reporting or the outcome of the checkes
+    code:
+      python: |
+        import dataframely as dy
+
+        class HouseSchema(dy.Schema):
+            zip_code = dy.String(nullable=False, min_length=3)
+            num_bedrooms = dy.UInt8(nullable=False)
+            num_bathrooms = dy.UInt8(nullable=False)
+            price = dy.Float64(nullable=False)
+
+        df = pl.DataFrame({
+            "zip_code": ["01234", "01234", "1", "213", "123", "213"],
+            "num_bedrooms": [2, 2, 1, None, None, 2],
+            "num_bathrooms": [1, 2, 1, 1, 0, 8],
+            "price": [100_000, 110_000, 50_000, 80_000, 60_000, 160_000]
+        })
+
+        # Validate the data and cast columns to expected types
+        validated_df = HouseSchema.validate(df, cast=True)
+        
+        # BSD 3-Clause License
+        # Copyright (c) 2025, QuantCo
+        # All rights reserved.
+    links:
+      - "[dataframely](https://dataframely.readthedocs.io/en/latest/)"
+
+Data Processing and Storage:
+  polars:
+    python: yes
+    r: no
+    who: I use pandas dataframes in python
+    problems:
+      - I wish pandas was faster/more parallel.
+      - I wish I could leverage GPUs.
+      - I wish I could do more data manipulation with built-in features, and not have to install or write as much extra code.
+    text: |
+      Polars is a very fast very parallel DataFrame library written in Rust with GPU support.
+    links:
+      - "[polars](https://docs.pola.rs/)"
+
+  Use data.frame until it becomes cumbersome, then use data.table:
+    python: no
+    r: yes
+    who: I'm starting a new project and deciding whether to use base dataframes, tibbles, or data.table. I'm not too invested in either tidyverse or data.table world yet.
+    problems:
+      - I want my code to work well when I add more data.
+      - I want my code to benefit from multiple cores without having to write explicit parallelism myself.
+      - I want specifically follow Brock's recommendation.
+    text: |
+      ### My recommendation
+
+      Start with vanilla dataframe/base R.
+
+      Switch to data.table when you:
+
+      * think you need to loop over the rows of your dataframe
+      * have to write multiple lines for a single operation to avoid looping (Example: Mean of one variable grouped by another variable.)
+      * want things to run faster
+      
+      ----
+      
+      ### Why?
+
+        * Learning more base R will be an advantage in your R coding life regardless of what other packages you use
+        * dplyr may be more intuitive than data.table at first, but much less scalable. If you're at the point where you need to move beyond base R, you're not too far from the point where you need something more efficient than dplyr.
+        * data.table requires a bit more upfront learning due to its concise syntax. However, after that small initial investment, it becomes both faster to write and faster to run.
+    links:
+      - "[data.table](https://rdatatable.gitlab.io/data.table/)"
+      - "[dtplyr](https://github.com/tidyverse/dtplyr)"
+      - "[dplyr vs data.table vs base syntax comparison](https://arelbundock.com/posts/dt_tb_df/index.html)"
+  tidyverse vs tinyverse:
+    python: no
+    r: yes
+    who: I'm starting a new project and trying to thoughtfully select which libraries to use.
+    problems:
+      - Some people seem to like tidyverse and others not, but I'm not sure why.
+      - I've had issues with projects changing how their functions work, but I'm not sure how to mitigate that.
+      - I know there are different options of R packages that do similar basic data processing tasks, but I'm not sure what the differences are or how I should chose among them.
+    text: |
+      These philosophical movements respect one another, simply have different goals.
+
+      * **tidyverse** prioritizes user-friendliness, explicitly deprioritizes compute efficiency, implicitly deprioritizes longevity 
+      * **fastverse** prioritizes compute efficiency, some attention paid to longevity (stable interface), implicitly deprioritizing user-friendliness 
+      * **tinyverse** prioritizes longevitiy by minimizing dependencies
+      When chosing what packages to add to your project for core data manipulation, understand what you may be trading off in terms of efficiency and longevity.
+    links:
+      - "[Tidyverse Manifesto](https://tidyverse.tidyverse.org/articles/manifesto.html)"
+      - "[Tinyverse](https://www.tinyverse.org/)"
+      - "[Getting started with R tinyverse addition](https://eddelbuettel.github.io/gsir-te/Getting-Started-in-R.pdf)"
+      - "[fastverse](https://github.com/fastverse/fastverse)"
+      - "[Tidyverse Skeptic](https://matloff.github.io/TidyverseSkeptic/Skeptic.html)"
+  duckdb:
+    python: yes
+    r: yes
+    who: I'm outgrowing dataframes. I often have to load multiple (sometimes large) CSVs or Rdata/pickles with dataframes in them at the beginning of my script.
+    problems:
+      - If I store my somewhat processed data in CSVs, I have to write a bunch of code at the beginning to make sure everything is the right datatype.
+      - If I use pickle/rdata, I'm locked into using a particular datastructure (e.g. dataframe v.s. data table v.s. tibble)
+      - If I use pickle/Rdata interoperating between R and python (or other languages) can be tricky.
+      - Sometimes I just need a few rows from a huge file so loading the entire file feels like a waste.
+      - I have multiple dataframes that should be linked together. (e.g. an "individuals" data frame and a "behaviors" data frame with individual_id as a column), and I end up having to copy the linking code from script to script. 
+    text: |
+      * Relational databases allow you to store your data, column headers, datatype *AND* relationships between tables.
+      * Duckdb allows you do this with minimal setup.
+        - Install as you would any other R or python package.
+        - Data is stored in a single file simlar to pickle or .rds file.
+      * Relations between tables (or data frames) are stored explicitly.
+      * You can load only particular rows/columns into your session.
+      
+      ----
+      
+      ```{sql}
+        SELECT * 
+        FROM observations
+        JOIN individuals
+        ON observations.individual_id = individuals.id
+        WHERE 
+          observations.date > '2024-07-01' AND
+          individuals.dob < '2023-01-01'
+      ```
+    links:
+     - "[DuckDB R client](https://duckdb.org/docs/stable/clients/r.html)"
+     - "[DuckDB python client](https://duckdb.org/docs/stable/clients/python/overview.html)"
+
+  neo4j:
+    python: yes
+    r: yes
+    who: I work with network data.
+    problems:
+      - I have similar problems to those listed under previous tip
+      - Since my data doesn't fit so well into data frame format, many standard data processing tools aren't super helpful.
+      - Even if I use graph-specific packages (like networkx), I end up writing a lot of custom code just to explore my data.
+    text: |
+      ### neo4j
+       
+      * Core DB is free and open source.
+      * Visualization tool is not open source, but has a free version.
+
+      ```
+      MATCH (tom:Person {name:'Tom Hanks'})--{2}(colleagues:Person)
+      RETURN DISTINCT colleagues.name AS name, colleagues.born AS bornIn
+      ORDER BY bornIn
+      LIMIT 5
+      ```
+
+    img: [neo4j.png]
+    links:
+      - "[Core Database](https://github.com/neo4j/neo4j)"
+      - "[R client](https://neo4j-rstats.github.io/user-guide/)"
+      - "[python client](https://neo4j.com/docs/python-manual/current/)"
+      - "[Visualization Tool](https://neo4j.com/product/bloom/)"
+      - "[Video Screenshot Pulled From](https://www.youtube.com/watch?v=ZYIasTOhLtI)"
+Readability:
+  linter:
+    python: yes
+    r: yes
+    who: Sometimes I use kind of random formatting, and I want it to be consistent.
+    problems:
+      - I can't always immediately tell if I'm conforming to a style guide.
+    text: | 
+      * **Rstudio**: Turn on built in diagnostics Tools > Global Options > Code > Diagnostics
+      * **R**: `lintr` offers additional customizable checks, integrates with multiple IDEs
+      * **python**: pylint, black, pycodestyle are all customizable and integrate with multiple IDEs
+    img:
+      - lint_rstudio.png
+      - lint_python.png
+    links:
+      - "[Rstudio Diagnostics](https://docs.posit.co/ide/user/ide/guide/code/diagnostics.html)"
+      - "[lintr](https://lintr.r-lib.org/index.html)"
+      - "[pylint](https://pylint.readthedocs.io/en/latest/)"
+      - "[black](https://black.readthedocs.io/en/stable/index.html)"
+      - "[pycodestyle](https://github.com/PyCQA/pycodestyle)"
+  autoformat:
+    python: yes
+    r: yes
+    who: Sometimes I use kind of random formatting, and I want it to be consistent.
+    problems:
+      - It's annoying to go through line by line and futz with spacing and line breaks.
+    img:
+      - autoformat_rstudio.gif
+      - autoformat_vscode.gif
+    links:
+      - "[black](https://black.readthedocs.io/en/stable/)"
+      - "[autopep8](https://github.com/hhatto/autopep8)"
+      - "[formatR](https://yihui.org/formatr/)"
+      - "[styleR](https://styler.r-lib.org/)"
+      - "[flir](https://flir.etiennebacher.com/)"
+      - "[air](https://www.tidyverse.org/blog/2025/02/air/)"
+  auto-replace:
+    python: yes
+    r: yes
+    who: Sometimes I want to change variable names to make things more understandable.
+    problems:
+      - If I do find and replace, sometimes it catches things I don't want to change.
+    img:
+      - autoreplace_vscode.gif
+      - autoreplace_rstudio.gif
+    links:
+      - "[rope](https://github.com/python-rope/rope) powerful python refactoring library"
+Tinytips:
+  match instead of which:
+    r: yes
+    python: no
+    who: |
+      I find myself writing a lot of 
+
+      `df[which(df$col_1 == 'value1'),]`
+    problems:
+      - this is kind of long
+      - it's a bit hard to read
+    code: 
+      r: |
+        # slower
+        LETTERS[which(letters == 's')]
+        # S
+         
+        # faster
+        LETTERS[match('s', letters)]
+        # S
+    links: []
+  native pipe `|>`:
+    r: yes
+    python: no
+    who: I like using pipe `%>%`, but I don't use too much of the tidyverse in general
+    problems:
+      - a lot of times, I have to install and load `magrittr` just to use the pipe and nothing else
+    code:
+      r: |
+        iris |> summary()
+        # 
+        #   Sepal.Length    Sepal.Width     Petal.Length  
+        #  Min.   :4.300   Min.   :2.000   Min.   :1.000  
+        #  1st Qu.:5.100   1st Qu.:2.800   1st Qu.:1.600  
+        #  Median :5.800   Median :3.000   Median :4.350  
+        #  Mean   :5.843   Mean   :3.057   Mean   :3.758  
+        #  3rd Qu.:6.400   3rd Qu.:3.300   3rd Qu.:5.100  
+        #  Max.   :7.900   Max.   :4.400   Max.   :6.900  
+        #   Petal.Width          Species  
+        #  Min.   :0.100   setosa    :50  
+        #  1st Qu.:0.300   versicolor:50  
+        #  Median :1.300   virginica :50  
+        #  Mean   :1.199                  
+        #  3rd Qu.:1.800                  
+        #  Max.   :2.500  
+    links: []
+  switch with a list:
+    python: yes
+    r: yes
+    who: |
+      I tend to write a lot of long if else statements that test the same value over and over.
+        e.g.
+
+      ```
+      if (my_variable == 'a') {
+        ...
+      } else if (my_variable == 'b'){
+        ...
+      } else if (my_variable == ...
+      ```
+    problems:
+      - this is a bit repeative and hard to read
+    code:
+      r: |
+        # Switch with ifelse
+        name <- 'brook'
+        if (tolower(name) == 'brook') name <- 'Brock' else
+          if (tolower(name) == 'rbock') name <- 'Brock' else
+            if (tolower(name) == 'allie') name <- 'Alie' else
+              if (tolower(name) == 'aly') name <- 'Alie'
+        print(name)
+
+        # Using switch function
+        name <- 'brook'
+        name <- switch(tolower(name),
+          'brook' = 'Brock',
+          'rbock' = 'Brock',
+          'allie' = 'Alie',
+          'aly' = 'Alie'
+        )
+        print(name)
+
+        # Using list
+        name <- 'brook'
+        name <- list(
+          'brook' = 'Brock',
+          'rbock' = 'Brock',
+          'allie' = 'Alie',
+          'aly' = 'Alie'
+        )[[tolower(name)]]
+        print(name)
+      python: |
+        # Switch with ifelse
+        name = 'brook'
+        if (name.lower() == 'brook'):
+            name = 'Brock'
+        elif (name.lower() == 'rbock'):
+            name = 'Brock'
+        elif (name.lower() == 'allie'):
+            name = 'Alie'
+        elif (name.lower() == 'aly'):
+            name = 'Alie'
+        print(name)
+
+
+        # Using dictionary
+        name = 'brook'
+        name = {
+          'brook': 'Brock',
+          'rbock': 'Brock',
+          'allie': 'Alie',
+          'aly': 'Alie'
+        }[name.lower()]
+        print(name)
+    links: []
+  seq_along/seq_len:
+    python: no
+    r: yes
+    who: I write a lot of `for(i in 1:n){...}` type loops
+    problems:
+      - If `n` is `0`, I want the loop to not run at all, but what actually happens is it runs with `i=1` then `i=0`.
+    code:
+      r: |
+        # works with 1:length(my_vector)
+        colors <- c('Red', 'Green', 'Purple')
+        colors_filtered <- colors[startsWith(colors, 'P')]
+        for (i in 1:length(colors_filtered)) {
+          print(paste(colors_filtered[i], 'starts with P'))
+        }
+        
+        # [1] "Purple starts with P"
+
+        # doesn't  work with 1:length(my_vector)
+        colors <- c('Red', 'Green', 'Violet')
+        colors_filtered <- colors[startsWith(colors, 'P')]
+        for (i in 1:length(colors_filtered)) {
+          print(paste(colors_filtered[i], 'starts with P'))
+        }
+        
+        # [1] "NA starts with P"
+        # [1] " starts with P"
+
+        # Updated
+        colors <- c('Red', 'Green', 'Purple')
+        colors_filtered <- colors[startsWith(colors, 'P')]
+        for (i in seq_along(colors_filtered)) {
+          print(paste(colors_filtered[i], 'starts with P'))
+        }
+
+        # "Purple starts with P"
+
+        colors <- c('Red', 'Green', 'Violet')
+        colors_filtered <- colors[startsWith(colors, 'P')]
+        for (i in seq_along(colors_filtered)) {
+          print(paste(colors_filtered[i], 'starts with P'))
+        }
+
+        # doesn't print anything
+    links: []
+  Don't forget to have fun (emoGG):
+    python: no
+    r: yes
+    who: I use ggplot. 
+    problems: [I wish it were more fun.]
+    text: Not the most practical package, but succeeds in its goal of being fun
+    code:
+      r: |
+        zzz <- '1f634'
+        hmm <- '1f914'
+
+        x <- seq(0, 1, by=.1)
+        df <- data.frame(
+          time = rep(x, 2),
+          mood = c(
+            rep(zzz, length(x)),
+            rep(hmm, length(x))
+          ),
+          pct_people = c(
+            pnorm(x, 1, .5),
+            (1 - pnorm(x, 1, .5))/5
+          )
+        )
+
+        ggplot(data = df, mapping = aes(
+          x = time,
+          y = pct_people,
+          emoji = mood,
+        )) + geom_emoji() + ggtitle('Expected Reaction to Talk')
+    img: [emoGG.png]
+    links:
+      - "[emoGG](https://github.com/dill/emoGG)"
+  leaflet:
+    python: yes
+    r: yes
+    who: I work with geospatial data in R or python.
+    problems:
+      - it's hard get static plots at the right level of zoom/detail.
+      - I wish I had google-maps like interface with landmarks.
+    code: 
+      python: |
+        from ipyleaflet import Map, Marker
+
+        center = (47.67747, 9.16736)
+
+        m = Map(center=center, zoom=14)
+
+        eps = eps = .0005
+        for i in range(-10, 10):
+            for j in range(-10, 10):
+                marker = Marker(
+                    location=(
+                        center[0] + i * eps,
+                        center[1] + i * eps,
+                    ),
+                    draggable=True
+                )
+                m.add(marker)
+                marker = Marker(
+                    location=(
+                        center[0] - i * eps,
+                        center[1] + i * eps,
+                    ),
+                    draggable=True
+                )
+                m.add(marker)
+        m.save('map.html')
+    links:
+      - "[Python Client](https://ipyleaflet.readthedocs.io/en/latest/index.html)"
+      - "[R Client](https://rstudio.github.io/leaflet/)"
+Longevity:
+  pak:
+    who: I install R packages.
+    problems:
+      - It takes a long time.
+      - Hard to parse from logs exactly what dependencies are being installed.
+      - When something goes wrong, it's hard to tell what went wrong.
+      - Takes a long time to get to the point where the problem is, and thus a long time to figure out if it's fixed.
+      - I have to remember to swap between `install.packages`, `remote::install_github` etc.
+    python: no
+    r: yes
+    img:
+        - install_base.gif
+        - install_pak.gif
+    links:
+      - "[pak](https://pak.r-lib.org/)"
+  renv:
+    python: no
+    r: yes
+    who: I write code that I want to be runnable by other people or runable by me months or years later.
+    problems:
+      - It's hard to recreate the exact combination of packages and package versions that I had when my code was working. 
+    text: |
+      * `renv` keeps dependencies separate accross projects ie you can have two different projects with different versions of the same package
+      * `renv` stores the information about what version of everything you are using in a single file that you can commit.
+    links:
+      - "[renv](https://rstudio.github.io/renv/)"
+    img: ['renv.png']
+    extratip:
+      In python, do not pin release versions. (e.g. Do not do `pip freeze > requirements.txt`.) This will result in both ignoring security updates and in your code being unnecessarily incompatible with other packages. It is helpful to store minor versions that were working (e.g. pip freeze > working-versions.txt), but for requirements.txt, put version ranges. e.g. numpy >=1.3.0 not numpy==1.3.0.
+  Timetravel with posit package manager:
+    python: yes
+    r: yes
+    who: I'm trying to revive some code that was working at some point in the past.
+    problems:
+      - I need a version of a dependency that's no longer available on CRAN/pypi but was in the past.
+    code:
+      r: |
+        # Base install packages
+        install.packages('stringr', repos='https://packagemanager.posit.co/cran/2022-03-15')
+        # pak
+        withr::with_options(
+          list(repos=c(CRAN='https://packagemanager.posit.co/cran/2022-03-15')),
+          pak::pkg_install('stringr')
+        )
+    img: [ppm.png]
+    links:
+      - "[Posit Package Manager](https://packagemanager.posit.co/client/#/)"
+  Timetravel with git/github:
+    python: yes 
+    r: yes
+    who: I'm trying to revive some code that was working at some point in the past.
+    problems:
+      - I need an older version of a non-CRAN dependency.
+    img:
+      - github_timetravel.png
+    code:
+      r: |
+        # remotes
+        remotes::install_github('stan-dev/cmdstanr', ref='e117e7318c95524db403778ac99b39429084545c')
+        
+        # pak
+        pak::pkg_install('stan-dev/cmdstanr@e117e7318c95524db403778ac99b39429084545c')
+    links: []
+  python + docker + VSCode (+ server):
+    r: no
+    python: yes
+    who: I want to start using a python ML library.
+    problems:
+      - ML libraries can be had to install.
+      - There might be some incompatibilities between what I need to install and what I've already installed for other projects. I don't want to mess up stuff that's already working.
+      - When I switch from testing things on my laptop to running on a bigger matchine or a cluster, it's often a pin to get everything installed again.
+    text: Docker locks in not just python dependencies, but also system-level dependences. Gives you exact same environment on a server.
+    links:
+      - "[My Tutorial](https://github.com/livingingroups/ods_wiki/wiki/How%E2%80%90to:-Using-VSCode-for-an-ML-python-project-with-a-Dockerfile)"
+  docker to rescue old projects:
+    r: yes
+    python: yes
+    who: I'm trying to get an old project running.
+    problems:
+      - I'm not just having issues with getting the right R/python package versions, but with R/python itself and/or other system-level packages.
+      - I can't install old R/python versions locally because it would require me to install old (maybe dangerous) versions of other packages.
+    text: |
+      * Rocker project has stored shapshots as docker containers of R itself, rstudio, and common package suites (tidyverse, cuda, geospatial, etc.). You can run these in VSCode (tutorial linked in previous tip) or use rstudio from the container (ask me how).
+      * Docker Community maintains official python images, these have minimal libraries.
+      * Check if the project or package you're primarily using published its own image in the timeframe you're interested in.
+    links:
+      - "[rocker](https://rocker-project.org/)"
+      - "[official python image](https://hub.docker.com/_/python/)"
+Interop:
+  Python from R:
+    r: yes
+    python: yes
+    who: I am an R user who wants to use a python package without learning python. OR I am a python package author who wants my packages to be availabel to R users.
+    problems:
+      - There are lots of ML packages (including made here) in python and a lot of scientists who only know R.
+    img: [reticulate.png]
+    links:
+      - "[reticulate](https://rstudio.github.io/reticulate/reference/index.html)"
+      - "[My tutorial on EAS Scrapbook](https://livingingroups.github.io/scrapbook/python-from-r.html)"
+  Julia from R/python:
+    r: yes
+    python: no
+    who: I am an R/python user who wants to use a julia package without learning julia.
+    problems:
+      - Julia is often a lot faster than R/python, and easier to write than C/C++/rust.
+    text: JuliaCall in R and python let you call Julia from those languages.
+    links:
+      - "[R JuliaCall](https://github.com/JuliaInterop/JuliaCall)"
+      - "[Python JuliaCall](https://github.com/JuliaPy/PythonCall.jl)"
+      - "[My tutorial on EAS Scrapbook](https://livingingroups.github.io/scrapbook/julia-from-r.html)"
+  R from Python:
+    r: yes
+    python: yes
+    who: I am an python user who wants to use a R package without learning R. OR I am an R package author who wants my packages to be availabel to python users.
+    problems:
+      - There are lots of statistical packages (including made here) in R that don't exist in python.
+    text: also possible! If you have a particular package in mind, I'd love to base a tutorial on it.
+    links:
+      - "[rpy2](https://rpy2.github.io/)"
+IDE:
+  background jobs:
+      r: yes
+      python: no
+      who: Rstudio User
+      problems:
+        - I want to run a long running script and without clogging up my R console for minutes, hours, or days.
+      img: [rstudio_backgroundjob.png]
+      links:
+        - "[RStudio User Guide Instructions](https://docs.posit.co/ide/user/ide/guide/tools/jobs.html)"
+  positron:
+      r: yes
+      python: yes
+      who: I currently use R in RStudio and/or python in VSCode.
+      problems:
+        - I would like to use one IDE for both R and python.
+        - I would like to data exploration and visualization capabilities similar to RStudio
+        - I would like to have extensibility and multi language support similar to VSCode.
+      text: |
+        * Positron is a new IDE based on the same codebase as VSCode, made by the makers of RStudio.
+        * Aims to offer both R and python first class support
+        * Similar to RStudio and unlike VSCode, focused on folks doing Data Analysis/Data Science
+        * Like VSCode and unlike RStudio, is compatible with a rich network of extensions used by software developers across languages
+      img:
+        - positron1.png
+        - positron2.png
+      links: ["[Positron](https://positron.posit.co/)"]
+Community:
+  pkgkitten:
+      r: yes
+      python: no
+      who: I've written a novel analysis.
+      problems:
+        - I want other people to easily run my code.
+        - Making a package seems hard.
+      text: |
+        There are several templating options for creating R packages. I recommend package kitten because it gives you the most complete result.
+      img: [pkgkitten.mov]
+      links: ["[pkgKitten](https://eddelbuettel.github.io/pkgkitten/)"]
+  pkgdown:
+    r: yes
+    python: no
+    who: I'd like a nice little website about the code I published.
+    problems:
+      - I don't want to spend much time setting up the website.
+    text: Once your code is in "package form", a pkgdown website is a single command away!
+    links: ["[pkgdown](https://pkgdown.r-lib.org/)"]
+  Journal of Open Source Software:
+      r: yes
+      python: yes
+      who: I published some code and I want to get credit when people use my code to write papers.
+      problems:
+        - My code doesn't represent something novel in my field, just an easier way to apply an already published method.
+        - I don't want to have to write a paper just to make my code easily citable. 
+      text: |
+        * You can create a DOI for your software without any review process.
+        * To get a bit more recognition, you can submit to Journal of Open Source Software.
+          - Fully Open Access journal
+          - Requirements: must have scientific application, must be substantive, must be complete.
+      img:
+        - joss_banner_title.png
+      links:
+        - "[GitHub's Guide to Create a DOI](https://docs.github.com/en/repositories/archiving-a-github-repository/referencing-and-citing-content)"
+        - "[Journal of Open Source Software](https://joss.theoj.org/)"
+        
+  Citing software:
+    r: yes
+    python: yes
+    who: I'm writing a paper and using open source software.
+    problems:
+      - I want to properly credit the authors of said open source software.
+    text: |
+      Where to find author's preferred citation method:
+
+        * In R `citation('package_name')` e.g. `citation('ctmm')`
+        * For non-R packages, there is often a `CITATION` file right next to the README that tells how the authors wish to be cited.
+        * Some non-R packages, such as pandas have citation info [explicitly on their site](https://pandas.pydata.org/about/citing.html).
+    links:
+      - "[Force11 Software Citation Principles](https://force11.org/wp-content/d7/software-citation-principles.pdf)"
+      - |
+        This tip inspired by "Citation is Collaboration": Software Recognition in Research and Industry" Ivelina Momcheva, PyConDE 2025
+    citation: >
+  virtual userR 2025 is free:
+    r: yes
+    python: no
+    who: I want to learn more about some of these tools, but get an actual introduction to them.
+    problems:
+      - I don't want to sacrifice the time and money that it would take to got to an R conference instead of a conference directly relevant to my research.
+      - I just want to see one or two talks, not a whole conference worth.
+    text: |
+      * useR is a major confence for R users and developers
+      * On Aug 1st, there will be virtual conference day, and it's free!
+      * (You still have to register.)
+    links:
+      - "[useR 2025 Virtual Program](https://user2025.r-project.org/program/virtual/)"
+  ropensci/pyopensci package review:
+    r: yes
+    python: yes
+    who: I have some code that I'd like to make available to the world, but I'd like some feedback first.
+    problems:
+      - I don't feel comfortable asking someone to do a review who hasn't specifically volunteered to do software review.
+      - My code uses techniques that others in the department don't have expertise in.
+    text: Ropensci/pyopensci pairs you with reviewers to give you feedback on your scientific software. They have detailed guidelines for submitters and reviewers.
+    links:
+      - "[ROpenSci Peer Review](https://ropensci.org/software-review/)"
+      - "[pyOpenSci Peer Review](https://www.pyopensci.org/about-peer-review/index.html)"
+
+  r-universe:
+    r: yes
+    python: no
+    who: I want potential users to be able to `install.packages` my project.
+    problems:
+      - My packages does not yet meet CRAN requiments. (e.g. >5MB, doesn't work on Windows, etc.)
+    text: |
+      R universe is an ROpenSci project that allows you create your own cran-like repository, host your docs, and run cross-platform tests (among other things).
+    links:
+      - "[R-Universe Setup](https://docs.r-universe.dev/publish/set-up.html)"
+    
+  github issues:  
+    r: yes
+    python: yes
+    who: Sometimes I use open source packages, and I'm pretty sure it's the package that's not working correctly
+    problems:
+      - I'm shy about posting online.
+      - I'm afraid I'll be bothering the package maintainer.
+    text: |
+       * Making the maintainer aware of a problem a *contribution* to that project, not an insult.
+       * Spending a bit of time to make your issue as clear as possible and reproducible is a bigger contribution.
+       * Even the feedback of "this was hard to figure out from the docs" is valuable, especially if accompanied by a concrete suggestion.
+    img:
+      - issue_rgl.png
+      - issue_smoove.png
+      - issue_cmdstanr_doc.png
+      - issue_datatable_doc.png
+    links: []
+
+EAS open source:
+  cocomo:
+    r: yes
+    python: no
+    who: I have simultaneous animal location data at regular time intervals.
+    problems:
+      - I want to calculate basic statistics like heading and speed at the individual and group level.
+      - I want to do pull/anchor and/or fission fusion analysis.
+    text: Ari's in-development-but-also-in-use package. Eli and Dario have also contributed.
+    img: [cocomo.png]
+    links:
+      - "[cocomo package](https://livingingroups.github.io/cocomo/index.html)" 
+  WildPulse EcoMove Analytics:
+    r: yes
+    python: no
+    who: I have GPS data.
+    problems:
+      - I want to do basic exploratory analysis.
+      - I want to check for inaccuracies in my data manually.
+      - I want to see if my automated anomaly detection is working correctly.
+    text: Richard's shiny app lets you point and click to do initial processing gps processing steps.
+    img: [wildpulse1.png, wildpulse2.png]
+    links: ["[WildPulse Ecomove Analytics](https://github.com/Richard6195/WildPulse-EcoMove-Analytics)"]
+  shinyjsonform:
+    r: yes
+    python: no
+    who: I'm writing a shiny app.
+    problems:
+      - I have a lot of different form fields that I need the user to fill out, and it's annoying to code up each one. 
+    img: [shinyjsonschemaform.png]
+    links: ["[shinyjsonschemaform](https://github.com/katrinabrock/shinyjsonschemaform)"]
