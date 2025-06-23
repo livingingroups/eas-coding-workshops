@@ -6,7 +6,7 @@ Materials from 17 June 2025 EAS Dept Meeting
 
 50in50 was an aspirational title
 
-# [Click here for slides](https://htmlpreview.github.io/?https://github.com/livingingroups/eas-coding-workshops/blob/main/index.html)
+# [Click here for slides](https://htmlpreview.github.io/?https://github.com/livingingroups/eas-coding-workshops/blob/main/20250618-50in50/index.html#/title-slide)
 
 
 # Table of Contents
