@@ -26,7 +26,7 @@ with open(out_path, 'w') as out_handle:
         with open('templates/section_template.rmd') as section_template:
             out_handle.writelines([l.format( **{
                 'n_start': n + 1,
-                'n_end': n + len(s.keys()) + 1,
+                'n_end': n + len(s.keys()),
                 'section_name': s_key
             }) for l in section_template])
         for t_key, t in y[s_key].items():

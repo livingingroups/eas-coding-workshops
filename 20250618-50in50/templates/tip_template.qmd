@@ -4,6 +4,8 @@
 
 {{ tip_name }}
 
+![](reacts/plots/{{ n }}.png)
+
 {{ footer }}
 
 ---

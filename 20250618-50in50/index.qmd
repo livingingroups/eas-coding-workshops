@@ -7,6 +7,9 @@ format:
     slide-number: true
     chalkboard: 
       buttons: false
+    menu:
+      titleSelector: h1,h2
+      hideMissingTitles: true
     preview-links: auto
     css: dracula.css
 ---
@@ -45,7 +48,7 @@ If the tip is relevant to you, you can
 ## Latest in Emoji Reaction Technology
 Paper!
 
-#  #1-#6 Workflow
+#  #1-#5 Workflow
 
 ## Tip #1
 
@@ -54,6 +57,8 @@ Paper!
 
 
 3 script project TM
+
+![](reacts/plots/1.png)
 
 ::: footer
 Tip #1: 3 script project TM
@@ -142,6 +147,8 @@ Tip #1: 3 script project TM
 
 targets
 
+![](reacts/plots/2.png)
+
 ::: footer
 Tip #2: targets
 
@@ -224,6 +231,8 @@ Tip #2: targets
 
 
 Logging (log levels)
+
+![](reacts/plots/3.png)
 
 ::: footer
 Tip #3: Logging (log levels)
@@ -330,6 +339,8 @@ Tip #3: Logging (log levels)
 
 browser/pdb
 
+![](reacts/plots/4.png)
+
 ::: footer
 Tip #4: browser/pdb
 
@@ -413,6 +424,8 @@ Tip #4: browser/pdb
 
 Data Validation vs Software Testing
 
+![](reacts/plots/5.png)
+
 ::: footer
 Tip #5: Data Validation vs Software Testing
 
@@ -487,7 +500,7 @@ Tip #5: Data Validation vs Software Testing
 
 
 :::
-#  #6-#9 Data Validation
+#  #6-#8 Data Validation
 
 ## Tip #6
 
@@ -496,6 +509,8 @@ Tip #5: Data Validation vs Software Testing
 
 
 typechecking/checkmate
+
+![](reacts/plots/6.png)
 
 ::: footer
 Tip #6: typechecking/checkmate
@@ -603,6 +618,8 @@ Tip #6: typechecking/checkmate
 
 validate
 
+![](reacts/plots/7.png)
+
 ::: footer
 Tip #7: validate
 
@@ -708,6 +725,8 @@ Tip #7: validate
 
 dataframely
 
+![](reacts/plots/8.png)
+
 ::: footer
 Tip #8: dataframely
 
@@ -809,7 +828,7 @@ Tip #8: dataframely
  Links: [dataframely](https://dataframely.readthedocs.io/en/latest/)  
 
 :::
-#  #9-#14 Data Processing and Storage
+#  #9-#13 Data Processing and Storage
 
 ## Tip #9
 
@@ -818,6 +837,8 @@ Tip #8: dataframely
 
 
 polars
+
+![](reacts/plots/9.png)
 
 ::: footer
 Tip #9: polars
@@ -898,6 +919,8 @@ Tip #9: polars
 
 
 Use data.frame until it becomes cumbersome, then use data.table
+
+![](reacts/plots/10.png)
 
 ::: footer
 Tip #10: Use data.frame until it becomes cumbersome, then use data.table
@@ -995,6 +1018,8 @@ Tip #10: Use data.frame until it becomes cumbersome, then use data.table
 
 tidyverse vs tinyverse
 
+![](reacts/plots/11.png)
+
 ::: footer
 Tip #11: tidyverse vs tinyverse
 
@@ -1079,6 +1104,8 @@ Tip #11: tidyverse vs tinyverse
 
 
 duckdb
+
+![](reacts/plots/12.png)
 
 ::: footer
 Tip #12: duckdb
@@ -1185,6 +1212,8 @@ Tip #12: duckdb
 
 neo4j
 
+![](reacts/plots/13.png)
+
 ::: footer
 Tip #13: neo4j
 
@@ -1289,7 +1318,7 @@ Tip #13: neo4j
  Links: [Core Database](https://github.com/neo4j/neo4j), [R client](https://neo4j-rstats.github.io/user-guide/), [python client](https://neo4j.com/docs/python-manual/current/), [Visualization Tool](https://neo4j.com/product/bloom/), [Video Screenshot Pulled From](https://www.youtube.com/watch?v=ZYIasTOhLtI)  
 
 :::
-#  #14-#17 Readability
+#  #14-#16 Readability
 
 ## Tip #14
 
@@ -1298,6 +1327,8 @@ Tip #13: neo4j
 
 
 linter
+
+![](reacts/plots/14.png)
 
 ::: footer
 Tip #14: linter
@@ -1417,6 +1448,8 @@ Tip #14: linter
 
 autoformat
 
+![](reacts/plots/15.png)
+
 ::: footer
 Tip #15: autoformat
 
@@ -1518,6 +1551,8 @@ Tip #15: autoformat
 
 auto-replace
 
+![](reacts/plots/16.png)
+
 ::: footer
 Tip #16: auto-replace
 
@@ -1611,7 +1646,7 @@ Tip #16: auto-replace
  Links: [rope](https://github.com/python-rope/rope) powerful python refactoring library  
 
 :::
-#  #17-#23 Tinytips
+#  #17-#22 Tinytips
 
 ## Tip #17
 
@@ -1620,6 +1655,8 @@ Tip #16: auto-replace
 
 
 match instead of which
+
+![](reacts/plots/17.png)
 
 ::: footer
 Tip #17: match instead of which
@@ -1715,6 +1752,8 @@ Tip #17: match instead of which
 
 
 native pipe `|>`
+
+![](reacts/plots/18.png)
 
 ::: footer
 Tip #18: native pipe `|>`
@@ -1812,6 +1851,8 @@ Tip #18: native pipe `|>`
 
 
 switch with a list
+
+![](reacts/plots/19.png)
 
 ::: footer
 Tip #19: switch with a list
@@ -1971,6 +2012,8 @@ Tip #19: switch with a list
 
 seq_along/seq_len
 
+![](reacts/plots/20.png)
+
 ::: footer
 Tip #20: seq_along/seq_len
 
@@ -2086,6 +2129,8 @@ Tip #20: seq_along/seq_len
 
 
 Don't forget to have fun (emoGG)
+
+![](reacts/plots/21.png)
 
 ::: footer
 Tip #21: Don't forget to have fun (emoGG)
@@ -2225,6 +2270,8 @@ Tip #21: Don't forget to have fun (emoGG)
 
 leaflet
 
+![](reacts/plots/22.png)
+
 ::: footer
 Tip #22: leaflet
 
@@ -2327,7 +2374,7 @@ Tip #22: leaflet
  Links: [Python Client](https://ipyleaflet.readthedocs.io/en/latest/index.html), [R Client](https://rstudio.github.io/leaflet/)  
 
 :::
-#  #23-#29 Longevity
+#  #23-#28 Longevity
 
 ## Tip #23
 
@@ -2336,6 +2383,8 @@ Tip #22: leaflet
 
 
 pak
+
+![](reacts/plots/23.png)
 
 ::: footer
 Tip #23: pak
@@ -2454,6 +2503,8 @@ Tip #23: pak
 
 renv
 
+![](reacts/plots/24.png)
+
 ::: footer
 Tip #24: renv
 
@@ -2548,6 +2599,8 @@ Tip #24: renv
 
 
 Timetravel with posit package manager
+
+![](reacts/plots/25.png)
 
 ::: footer
 Tip #25: Timetravel with posit package manager
@@ -2659,6 +2712,8 @@ Tip #25: Timetravel with posit package manager
 
 Timetravel with git/github
 
+![](reacts/plots/26.png)
+
 ::: footer
 Tip #26: Timetravel with git/github
 
@@ -2767,6 +2822,8 @@ Tip #26: Timetravel with git/github
 
 python + docker + VSCode (+ server)
 
+![](reacts/plots/27.png)
+
 ::: footer
 Tip #27: python + docker + VSCode (+ server)
 
@@ -2846,6 +2903,8 @@ Tip #27: python + docker + VSCode (+ server)
 
 docker to rescue old projects
 
+![](reacts/plots/28.png)
+
 ::: footer
 Tip #28: docker to rescue old projects
 
@@ -2916,7 +2975,7 @@ Tip #28: docker to rescue old projects
  Links: [rocker](https://rocker-project.org/), [official python image](https://hub.docker.com/_/python/)  
 
 :::
-#  #29-#32 Interop
+#  #29-#31 Interop
 
 ## Tip #29
 
@@ -2925,6 +2984,8 @@ Tip #28: docker to rescue old projects
 
 
 Python from R
+
+![](reacts/plots/29.png)
 
 ::: footer
 Tip #29: Python from R
@@ -3005,6 +3066,8 @@ Tip #29: Python from R
 
 Julia from R/python
 
+![](reacts/plots/30.png)
+
 ::: footer
 Tip #30: Julia from R/python
 
@@ -3076,6 +3139,8 @@ Tip #30: Julia from R/python
 
 R from Python
 
+![](reacts/plots/31.png)
+
 ::: footer
 Tip #31: R from Python
 
@@ -3139,7 +3204,7 @@ Tip #31: R from Python
  Links: [rpy2](https://rpy2.github.io/)  
 
 :::
-#  #32-#34 IDE
+#  #32-#33 IDE
 
 ## Tip #32
 
@@ -3148,6 +3213,8 @@ Tip #31: R from Python
 
 
 background jobs
+
+![](reacts/plots/32.png)
 
 ::: footer
 Tip #32: background jobs
@@ -3227,6 +3294,8 @@ Tip #32: background jobs
 
 
 positron
+
+![](reacts/plots/33.png)
 
 ::: footer
 Tip #33: positron
@@ -3347,7 +3416,7 @@ Tip #33: positron
  Links: [Positron](https://positron.posit.co/)  
 
 :::
-#  #34-#42 Community
+#  #34-#41 Community
 
 ## Tip #34
 
@@ -3356,6 +3425,8 @@ Tip #33: positron
 
 
 pkgkitten
+
+![](reacts/plots/34.png)
 
 ::: footer
 Tip #34: pkgkitten
@@ -3455,6 +3526,8 @@ Tip #34: pkgkitten
 
 pkgdown
 
+![](reacts/plots/35.png)
+
 ::: footer
 Tip #35: pkgdown
 
@@ -3508,6 +3581,28 @@ Once your code is in "package form", a pkgdown website is a single command away!
 
 
 
+::: footer
+Tip #35: pkgdown
+
+ Links: [pkgdown](https://pkgdown.r-lib.org/)  
+
+:::
+
+
+---
+
+![](img/pkgdown.mov)
+
+::: footer
+Tip #35: pkgdown
+
+ Links: [pkgdown](https://pkgdown.r-lib.org/)  
+
+:::
+
+
+
+
 
 
 
@@ -3525,6 +3620,8 @@ Tip #35: pkgdown
 
 
 Journal of Open Source Software
+
+![](reacts/plots/36.png)
 
 ::: footer
 Tip #36: Journal of Open Source Software
@@ -3627,6 +3724,8 @@ Tip #36: Journal of Open Source Software
 
 Citing software
 
+![](reacts/plots/37.png)
+
 ::: footer
 Tip #37: Citing software
 
@@ -3707,6 +3806,8 @@ Tip #37: Citing software
 
 virtual userR 2025 is free
 
+![](reacts/plots/38.png)
+
 ::: footer
 Tip #38: virtual userR 2025 is free
 
@@ -3785,6 +3886,8 @@ Tip #38: virtual userR 2025 is free
 
 ropensci/pyopensci package review
 
+![](reacts/plots/39.png)
+
 ::: footer
 Tip #39: ropensci/pyopensci package review
 
@@ -3860,6 +3963,8 @@ Tip #39: ropensci/pyopensci package review
 
 r-universe
 
+![](reacts/plots/40.png)
+
 ::: footer
 Tip #40: r-universe
 
@@ -3931,6 +4036,8 @@ Tip #40: r-universe
 
 
 github issues
+
+![](reacts/plots/41.png)
 
 ::: footer
 Tip #41: github issues
@@ -4090,7 +4197,7 @@ Tip #41: github issues
 
 
 :::
-#  #42-#45 EAS open source
+#  #42-#44 EAS open source
 
 ## Tip #42
 
@@ -4099,6 +4206,8 @@ Tip #41: github issues
 
 
 cocomo
+
+![](reacts/plots/42.png)
 
 ::: footer
 Tip #42: cocomo
@@ -4196,6 +4305,8 @@ Tip #42: cocomo
 
 
 WildPulse EcoMove Analytics
+
+![](reacts/plots/43.png)
 
 ::: footer
 Tip #43: WildPulse EcoMove Analytics
@@ -4320,6 +4431,8 @@ Tip #43: WildPulse EcoMove Analytics
 
 shinyjsonform
 
+![](reacts/plots/44.png)
+
 ::: footer
 Tip #44: shinyjsonform
 
@@ -4395,7 +4508,7 @@ Tip #44: shinyjsonform
 ---
 
 ### Reminders
-- [CodeHub](https://github.com/livingingroups/ods_wiki/wiki/Code-Hu)
+- [CodeHub](https://github.com/livingingroups/ods_wiki/wiki/Code-Hub)
 - [Scrapbook](https://livingingroups.github.io/scrapbook/quick-upload.html)
 
 The End.

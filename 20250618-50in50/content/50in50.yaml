@@ -735,6 +735,7 @@ Community:
       - I don't want to spend much time setting up the website.
     text: Once your code is in "package form", a pkgdown website is a single command away!
     links: ["[pkgdown](https://pkgdown.r-lib.org/)"]
+    img: [pkgdown.mov]
   Journal of Open Source Software:
       r: yes
       python: yes

@@ -1,19 +1,11 @@
-
-
-MUST:
-- CITATIONS
-- links
-- Mark python or R or both
-- better headers
-
-- Either frame EAS projects better or remove.
-
+Fixup:
+- find pkgdown gif
+- add plots to session intro
 
 Very nice:
 - Tip header more bold
 
-
-
+Not done:
 - Go back to 3 script thingy and make it appear script by script and sized better
 - Add backgrounds
 - RMD example

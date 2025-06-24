@@ -1,0 +1,45 @@
+"name";"section_name";"py";"r";"img";"img_count";"img_still";"img_gif";"text";"code_py";"code_r";"links_count"
+3 script project TM;Workflow;TRUE;TRUE;TRUE;1;NA;NA;FALSE;FALSE;FALSE;1
+targets;Workflow;FALSE;TRUE;TRUE;1;NA;NA;FALSE;FALSE;FALSE;2
+Logging (log levels);Workflow;TRUE;TRUE;TRUE;2;NA;NA;FALSE;FALSE;FALSE;2
+browser/pdb;Workflow;TRUE;TRUE;TRUE;1;NA;NA;FALSE;FALSE;FALSE;3
+Data Validation vs Software Testing;Workflow;TRUE;TRUE;FALSE;0;FALSE;FALSE;TRUE;FALSE;FALSE;0
+typechecking/checkmate;Data Validation;TRUE;TRUE;FALSE;0;FALSE;FALSE;FALSE;TRUE;TRUE;2
+validate;Data Validation;FALSE;TRUE;FALSE;0;FALSE;FALSE;FALSE;FALSE;TRUE;1
+dataframely;Data Validation;TRUE;FALSE;FALSE;0;FALSE;FALSE;FALSE;TRUE;FALSE;1
+polars;Data Processing and Storage;TRUE;FALSE;FALSE;0;FALSE;FALSE;TRUE;FALSE;FALSE;1
+Use data.frame until it becomes cumbersome, then use data.table;Data Processing and Storage;FALSE;TRUE;FALSE;0;FALSE;FALSE;TRUE;FALSE;FALSE;3
+tidyverse vs tinyverse;Data Processing and Storage;FALSE;TRUE;FALSE;0;FALSE;FALSE;TRUE;FALSE;FALSE;5
+duckdb;Data Processing and Storage;TRUE;TRUE;FALSE;0;FALSE;FALSE;TRUE;FALSE;FALSE;2
+neo4j;Data Processing and Storage;TRUE;TRUE;TRUE;1;NA;NA;TRUE;FALSE;FALSE;5
+linter;Readability;TRUE;TRUE;TRUE;2;NA;NA;TRUE;FALSE;FALSE;5
+autoformat;Readability;TRUE;TRUE;TRUE;2;NA;NA;FALSE;FALSE;FALSE;6
+auto-replace;Readability;TRUE;TRUE;TRUE;2;NA;NA;FALSE;FALSE;FALSE;1
+match instead of which;Tinytips;FALSE;TRUE;FALSE;0;FALSE;FALSE;FALSE;FALSE;TRUE;0
+native pipe `|>`;Tinytips;FALSE;TRUE;FALSE;0;FALSE;FALSE;FALSE;FALSE;TRUE;0
+switch with a list;Tinytips;TRUE;TRUE;FALSE;0;FALSE;FALSE;FALSE;TRUE;TRUE;0
+seq_along/seq_len;Tinytips;FALSE;TRUE;FALSE;0;FALSE;FALSE;FALSE;FALSE;TRUE;0
+Don't forget to have fun (emoGG);Tinytips;FALSE;TRUE;TRUE;1;NA;NA;TRUE;FALSE;TRUE;1
+leaflet;Tinytips;TRUE;TRUE;FALSE;0;FALSE;FALSE;FALSE;TRUE;FALSE;2
+pak;Longevity;FALSE;TRUE;TRUE;2;NA;NA;FALSE;FALSE;FALSE;1
+renv;Longevity;FALSE;TRUE;TRUE;1;NA;NA;TRUE;FALSE;FALSE;1
+Timetravel with posit package manager;Longevity;TRUE;TRUE;TRUE;1;NA;NA;FALSE;FALSE;TRUE;1
+Timetravel with git/github;Longevity;TRUE;TRUE;TRUE;1;NA;NA;FALSE;FALSE;TRUE;0
+python + docker + VSCode (+ server);Longevity;TRUE;FALSE;FALSE;0;FALSE;FALSE;TRUE;FALSE;FALSE;1
+docker to rescue old projects;Longevity;TRUE;TRUE;FALSE;0;FALSE;FALSE;TRUE;FALSE;FALSE;2
+Python from R;Interop;TRUE;TRUE;TRUE;1;NA;NA;FALSE;FALSE;FALSE;2
+Julia from R/python;Interop;FALSE;TRUE;FALSE;0;FALSE;FALSE;TRUE;FALSE;FALSE;3
+R from Python;Interop;TRUE;TRUE;FALSE;0;FALSE;FALSE;TRUE;FALSE;FALSE;1
+background jobs;IDE;FALSE;TRUE;TRUE;1;NA;NA;FALSE;FALSE;FALSE;1
+positron;IDE;TRUE;TRUE;TRUE;2;NA;NA;TRUE;FALSE;FALSE;1
+pkgkitten;Community;FALSE;TRUE;TRUE;1;NA;NA;TRUE;FALSE;FALSE;1
+pkgdown;Community;FALSE;TRUE;FALSE;0;FALSE;FALSE;TRUE;FALSE;FALSE;1
+Journal of Open Source Software;Community;TRUE;TRUE;TRUE;1;NA;NA;TRUE;FALSE;FALSE;2
+Citing software;Community;TRUE;TRUE;FALSE;0;FALSE;FALSE;TRUE;FALSE;FALSE;2
+virtual userR 2025 is free;Community;FALSE;TRUE;FALSE;0;FALSE;FALSE;TRUE;FALSE;FALSE;1
+ropensci/pyopensci package review;Community;TRUE;TRUE;FALSE;0;FALSE;FALSE;TRUE;FALSE;FALSE;2
+r-universe;Community;FALSE;TRUE;FALSE;0;FALSE;FALSE;TRUE;FALSE;FALSE;1
+github issues;Community;TRUE;TRUE;TRUE;4;NA;NA;TRUE;FALSE;FALSE;0
+cocomo;EAS open source;FALSE;TRUE;TRUE;1;NA;NA;TRUE;FALSE;FALSE;1
+WildPulse EcoMove Analytics;EAS open source;FALSE;TRUE;TRUE;2;NA;NA;TRUE;FALSE;FALSE;1
+shinyjsonform;EAS open source;FALSE;TRUE;TRUE;1;NA;NA;FALSE;FALSE;FALSE;1

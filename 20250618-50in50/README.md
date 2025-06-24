@@ -8,6 +8,10 @@ Materials from 17 June 2025 EAS Dept Meeting
 
 # [Click here for slides](https://htmlpreview.github.io/?https://github.com/livingingroups/eas-coding-workshops/blob/main/20250618-50in50/index.html#/title-slide)
 
+# Reactions
+
+![](reacts/plots/reacts-by-tip.png)
+
 
 # Table of Contents
 
@@ -25,3 +29,4 @@ Materials from 17 June 2025 EAS Dept Meeting
   - build_rmd.py <- transforms source files into qmd
 - index.qmd <- full talk in quarto format
 - index.html, index_files <- full talk in html format (after quarto build)
+- reacts - data, scripts, and plots related to emotereact activity
