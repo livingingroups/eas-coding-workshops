@@ -1,0 +1,1 @@
+These images are from The Carpentries Lesson [The Unix Shell](https://swcarpentry.github.io/shell-novice/) and reproduced under [CC-BY](https://swcarpentry.github.io/shell-novice/LICENSE.html) license.

@@ -1,0 +1,1 @@
+These images were produced for this workshop by Katrina Brock at the Max Planck Institute of Animal Behavior and provided under CC-BY license. Trademarks within the images are the property of their respective holders.
