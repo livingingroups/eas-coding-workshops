@@ -1,3 +1,6 @@
+>[!IMPORTANT]
+># [Click Here for Today's Workshop Notes](./20251103-shell-files)
+
 # EAS Coding Workshops
 
 This repo houses materials for coding workshops run by @katrinabrock
