@@ -1,0 +1,2 @@
+- Add review of 20251103-shell-files (equivalent to Carpentries intro to Unix Shell episodes 1, 2, and part of 3)
+- Remove (some) dependencies on episode 5
