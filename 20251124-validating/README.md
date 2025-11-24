@@ -79,7 +79,7 @@ setwd("20251124-validating")
 ### Scenario
 
 Today, we are imagining that a colleague has given us their data analysis script and asked for our help
-making sure it's working properly. You can find the script in `01-orig-code/eva_data_analysis.R`.
+making sure it's working properly. You can find the script in `eva_data_analysis.R`.
 The accompanying data is in `data/eva-data.json`.
 
 
@@ -91,7 +91,7 @@ This JSON file called `data/eva-data.json` - a snippet of which is shown below -
 ,{"eva": "3", "country": "USA", "crew": "Eugene Cernan;", "vehicle": "Gemini IX-A", "date": "1966-06-05T00:00:00.000", "duration": "2:07", "purpose": "Inadequate restraints, stiff 25ft umbilical and high workloads exceeded suit vent loop cooling capacity and caused fogging.  Demo called off of tethered astronaut maneuvering unit"}
 ...
 ```
-2. A R script called `01-orig/eva_data_analysis.R` containing some analysis code.
+2. A R script called `eva_data_analysis.R` containing some analysis code.
 
 ```r
 library(jsonlite)
