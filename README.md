@@ -1,5 +1,5 @@
 >[!IMPORTANT]
-># [Click Here for Today's Workshop Notes](./20251103-shell-files)
+># [Click Here for Today's Workshop Notes](./20251124-validating)
 
 # EAS Coding Workshops
 
