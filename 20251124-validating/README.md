@@ -4,6 +4,13 @@ teaching: 60
 exercises: 30
 ---
 
+> [!IMPORTANT]
+> This document is full of typos and broken code.
+> It may still be useful as guide/outline,
+> but if you see errors or something from this
+> doc is not working for you,
+> you're probably right and the doc is probably wrong. 
+
 # Validating Code as Author and Reviewer
 
 ## About
