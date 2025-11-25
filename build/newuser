@@ -1,0 +1,6 @@
+echo "Username"
+read u
+useradd -m $u
+passwd $u
+cp -r /mnt/EAS_ind/kbrock/shell-lesson-data /home/$u
+chown -R $u /home/$u/shell-lesson-data
