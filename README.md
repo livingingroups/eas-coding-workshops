@@ -1,6 +1,3 @@
->[!IMPORTANT]
-># [Click Here for Today's Workshop Notes](./20251124-validating)
-
 # EAS Coding Workshops
 
 This repo houses materials for coding workshops run by @katrinabrock
