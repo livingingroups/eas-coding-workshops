@@ -1,11 +1,36 @@
 # EAS Coding Workshops
 
+
 This repo houses materials for coding workshops run by @katrinabrock
 in the Ecology of Animal Societies Department at the Max Plank Institute of Animal Behavior.
 
 Target audience is scientists with beginning to intermediate knowledge of either R or python looking to upskill.
 
 Sessions vary in style from lecture style with full content listed here to fully interactive with only some basics here.
+
+## [Command Line Basics: Wrokingi with Files](./20251103-shell-files/)
+
+**Description:**
+Does the command line seem like black magic (that might melt your computer)? In
+this workshop, we’ll demystify and learn some basic commands that can help you
+organize and search your files eﬃciently.
+
+## [Running Multi-step Processes with Command Line](./20251110-shell-multistep/)
+
+**Description:**
+Do you find yourself re-running similar commands with slight variations to get
+everything done? Are you looking for a “glue” to bind together multiple processes
+(for example scripts in diﬀerent languages) into one pipeline? In this session we’ll
+move from running individual commands to writing small programs in the command
+line.
+
+## [Tracking Your Changes with Git](./20251117-git)
+
+**Description:**
+Do you wish there was some way to do track changes but for code? Have you heard
+that git is a magic time machine, but somehow always seem to be operating in the
+present? In this session, we’ll learn how to use git to build a timeline of your coding
+project, and explore past versions.
 
 ## [Writing Code that Other People Can Read](./20240319-readability)
 
@@ -20,11 +45,11 @@ A revised and abbreviated version of the content (python only, no exercises) can
 
 ## [Validating Code as Author and Reviewer](./20241105-validating)
 
+- [Fall 2025](./20251124-validating)
+- [Fall 2024](./20241105-validating)
+- [Spring 2024](https://github.com/livingingroups/eas-coding-workshops/tree/b2052696d4dd7d5f71c815c81f54a66f83d86051/20240326-validating)
+
 **Description:** Does your code do what you think it does? Are you sure? What about the code you're reviewing? In this session, we'll put our code to test, learn new ways to automatically check our code, and/or uncover hidden bugs.
-
-This session was run workshop-style in R twice 05 November 2024 with tinytest and 26 March 2024 with testthat ([Material Here](https://github.com/livingingroups/eas-coding-workshops/tree/b2052696d4dd7d5f71c815c81f54a66f83d86051/20240326-validating)). Similar content lecture-style in python was covered in the "Reliability" section of the [Code Review](./20241212-codereview) workshop presented BioAccustic AI workshop.
-
-All three of these sessions were primarily demos and exercises so the content is mostly code, and not much text. Likely not useful to those who didn't attend the session.
 
 ## [R Project Structure: One source(...) to Rule Them All](./20241112-project-structure)
 
